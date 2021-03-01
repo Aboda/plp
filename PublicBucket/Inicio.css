@@ -1,0 +1,6 @@
+#master_container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
