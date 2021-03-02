@@ -58,4 +58,4 @@ Example deploy commands
 
 Virtual machine
     Re download repository
-        gcloud source repos clone sitiopersonal/fearsome --project=bi-cloud-db-core
+        gcloud source repos clone sitiopersonal --project=bi-cloud-db-core
