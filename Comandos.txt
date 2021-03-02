@@ -34,7 +34,7 @@ Functions
 Source Repositories
 
     Import repository
-    gcloud source repos clone codigovertebral --project=bi-cloud-db-core
+    gcloud source repos clone sitiopersonal/ce/fearsome --project=bi-cloud-db-core
 
     Update Cloud Repo
     git add .
@@ -54,3 +54,8 @@ Example deploy commands
         --tags http-server
 
     gcloud compute instances get-serial-port-output my-app-instance --zone us-central1-a
+
+
+Virtual machine
+    Re download repository
+        gcloud source repos clone sitiopersonal/fearsome --project=bi-cloud-db-core

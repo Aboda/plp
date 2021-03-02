@@ -2,7 +2,7 @@
 1.- Google cloud virtual machines selection (f1-micro (1 vCPU, 0.6 GB memory), you get one of these for free)
 2.- OS selection  (UBUNTU for server i dont remember the version)
 3.- Network setup selection (you get a free public static ip adress on ONE of your vm´s)
-4.- VM environment preparation (most is already installed, only missing node and certbot)
+4.- VM environment preparation (most is already installed, only missing node, certbot and git)
 5.- Domain DNS A record creation with Google Domains
 6.- Firewall rules revision on Google Cloud
 7.- setcap adjustmente to allow node network binding below port 1000
