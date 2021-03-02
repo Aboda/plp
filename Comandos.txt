@@ -58,4 +58,5 @@ Example deploy commands
 
 Virtual machine
     Re download repository
+        rm -rf sitiopersonal
         gcloud source repos clone sitiopersonal --project=bi-cloud-db-core
