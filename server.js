@@ -3,18 +3,18 @@ var https = require("https");
 var querystring = require("querystring");
 
 var do_log = true;
-var log_file = fs.createWriteStream("/home/andthenbeyond/sitiopersonal/server_log.txt", {flags : "w"});
-
-const options = {
-    key: fs.readFileSync("/home/andthenbeyond/tls/privkey.pem"),
-    cert: fs.readFileSync("/home/andthenbeyond/tls/fullchain.pem")
-};
+var log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", {flags : "w"});
 
 const log_JSON = function (log_stringifieable) {
     if (do_log == true) {
         log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
     }    
 }
+
+const options = {
+    key: fs.readFileSync("/home/andthenbeyond/tls/privkey.pem"),
+    cert: fs.readFileSync("/home/andthenbeyond/tls/fullchain.pem")
+};
 
 https.createServer(options, (req, res) => {
     try {
@@ -47,7 +47,7 @@ https.createServer(options, (req, res) => {
             switch (url) {
                 case "/":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/Inicio.html"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.html"));
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
@@ -55,21 +55,21 @@ https.createServer(options, (req, res) => {
                 break;
                 case "/Inicio.css":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/Inicio.css"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.css"));
                 break;
                 case "/Inicio.js":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/Inicio.js"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.js"));
                 break;
                 default: 
-                    final_reply = JSON.stringify(incomming_params);
+                    final_reply = "404: el recurso no ha sido localizado:\n"+JSON.stringify(incomming_params);
                     res.writeHead(404);
                     res.end (final_reply);
             }
         }
         
     } catch (err) {
-        //test to catch and send errors
+        //catch and send errors back to caller
         res.writeHead(500);
         res.end("error disparado en main server try: "+JSON.stringify(err));
     }
