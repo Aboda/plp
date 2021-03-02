@@ -15,7 +15,7 @@
 
 8.- daemonization of node process to remain up while the computer is up*
     a) from home folder after manual file upload
-        sudo cp -f plp.service /etc/systemd/system/plp.service
+        sudo cp -f /home/andthenbeyond/sitiopersonal/infra/plp.service /etc/systemd/system/plp.service
     
     b) daemonization controls
         sudo systemctl daemon-reload
@@ -47,7 +47,11 @@
         gcloud source repos clone sitiopersonal --project=bi-cloud-db-core
 
     e) update changes in the future (from folder sitiopersonal)
+        -> git pull origin master
         git fetch origin
+
+    f) how to run node from cloud shell
+    /usr/bin/node /home/andthenbeyond/sitiopersonal/bundler.js
 
 11.- Lets Encrypt / Certbot certificate creation
 

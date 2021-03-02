@@ -37,7 +37,8 @@ https.createServer(options, (req, res) => {
             "ip_found_in": ip_found_in,
             "method": method,
             "url": url,
-            "headers": headers
+            "headers": headers,
+            "data": querystring.parse(url)
         };
 
         log_JSON(incomming_params);
