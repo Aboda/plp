@@ -1,0 +1,15 @@
+[Unit]
+Description=personal lab portfolio
+After=network.target
+
+[Service]
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+Restart=always
+User=nobody
+Group=nogroup
+WorkingDirectory=/home/andthenbeyond/sitiopersonal/
+ExecStart=/usr/bin/node /home/andthenbeyond/sitiopersonal/server.js
+
+[Install]
+WantedBy=multi-user.target
