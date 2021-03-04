@@ -13,18 +13,15 @@ const log_JSON = function (log_stringifieable) {
 
 const asserted_gates = function (url) {
     var is_it_ok = false;
-
     var site_status = [
         "fb-app-contenidospuma-terms-of-service",
         "fb-app-contenidospuma-privacy-policy"
     ];
-
     for (built_piece of site_status) {
-        if (built_piece.indexOf(url) == 1) {
+        if (url.indexOf(built_piece) == 1) {
             is_it_ok = true;
         };
     };
-
     return is_it_ok;
 }
 
