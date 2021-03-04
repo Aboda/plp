@@ -1,6 +1,5 @@
 var fs = require("fs");
 var https = require("https");
-var querystring = require("querystring");
 
 var do_log = true;
 var log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", {flags : "w"});
@@ -38,36 +37,29 @@ https.createServer(options, (req, res) => {
             "method": method,
             "url": url,
             "headers": headers,
-            "data": querystring.parse(url)
         };
 
         log_JSON(incomming_params);
-        var final_reply;
 
         if (method == "GET") {
             switch (url) {
-                case "/":
+                case "/whoscalling/":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
-                break;
-                case "/fb-app-contenidospuma-terms-of-service/":
-                    res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
-                break;
-                case "/fb-app-contenidospuma-privacy-policy/":
-                    res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+                    res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
                 break;
-                default: 
-                    final_reply = "404: el recurso no ha sido localizado:\n"+JSON.stringify(incomming_params);
-                    res.writeHead(404);
-                    res.end (final_reply);
+                default:
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
             };
         };
+
+        if (method == "POST") {
+            //Pendiente integración y almacenamiento de mensajes recibidos
+        }
         
     } catch (err) {
         //catch and send errors back to caller
