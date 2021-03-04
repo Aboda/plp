@@ -48,27 +48,19 @@ https.createServer(options, (req, res) => {
             switch (url) {
                 case "/":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.html"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
                 break;
                 case "/fb-app-contenidospuma-terms-of-service/":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.html"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
                 break;
                 case "/fb-app-contenidospuma-privacy-policy/":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.html"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
-                break;
-                case "/Inicio.css":
-                    res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.css"));
-                break;
-                case "/Inicio.js":
-                    res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.js"));
                 break;
                 default: 
                     final_reply = "404: el recurso no ha sido localizado:\n"+JSON.stringify(incomming_params);
