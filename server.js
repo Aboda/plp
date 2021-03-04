@@ -11,6 +11,23 @@ const log_JSON = function (log_stringifieable) {
     }    
 }
 
+const asserted_gates = function (url) {
+    var is_it_ok = false;
+
+    var site_status = [
+        "fb-app-contenidospuma-terms-of-service",
+        "fb-app-contenidospuma-privacy-policy"
+    ];
+
+    for (built_piece of site_status) {
+        if (built_piece.indexOf(url) == 1) {
+            is_it_ok = true;
+        };
+    };
+
+    return is_it_ok;
+}
+
 const options = {
     key: fs.readFileSync("/home/andthenbeyond/tls/privkey.pem"),
     cert: fs.readFileSync("/home/andthenbeyond/tls/fullchain.pem")
@@ -61,6 +78,10 @@ https.createServer(options, (req, res) => {
                 case "/Inicio.js":
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.js"));
+                break;
+                case asserted_gates(url):
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.html"));
                 break;
                 default: 
                     final_reply = "404: el recurso no ha sido localizado:\n"+JSON.stringify(incomming_params);
