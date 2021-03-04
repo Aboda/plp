@@ -8,22 +8,8 @@ var log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", {f
 const log_JSON = function (log_stringifieable) {
     if (do_log == true) {
         log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
-    }    
-}
-
-const asserted_gates = function (url) {
-    var is_it_ok = false;
-    var site_status = [
-        "fb-app-contenidospuma-terms-of-service",
-        "fb-app-contenidospuma-privacy-policy"
-    ];
-    for (built_piece of site_status) {
-        if (url.indexOf(built_piece) == 1) {
-            is_it_ok = true;
-        };
     };
-    return is_it_ok;
-}
+};
 
 const options = {
     key: fs.readFileSync("/home/andthenbeyond/tls/privkey.pem"),
@@ -64,6 +50,14 @@ https.createServer(options, (req, res) => {
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.html"));
                 break;
+                case "/fb-app-contenidospuma-terms-of-service/":
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.html"));
+                break;
+                case "/fb-app-contenidospuma-privacy-policy/":
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.html"));
+                break;
                 case "/favicon.ico":
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
@@ -76,20 +70,16 @@ https.createServer(options, (req, res) => {
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.js"));
                 break;
-                case asserted_gates(url):
-                    res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/parts/Inicio.html"));
-                break;
                 default: 
                     final_reply = "404: el recurso no ha sido localizado:\n"+JSON.stringify(incomming_params);
                     res.writeHead(404);
                     res.end (final_reply);
-            }
-        }
+            };
+        };
         
     } catch (err) {
         //catch and send errors back to caller
         res.writeHead(500);
         res.end("error disparado en main server try: "+JSON.stringify(err));
-    }
+    };
 }).listen(443);
