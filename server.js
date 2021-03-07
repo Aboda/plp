@@ -150,7 +150,7 @@ https.createServer(options, (req, res) => {
             "method": method,
             "url": url,
             "headers": headers,
-            "smart_url": new URL(url,incomming_params.headers.host)
+            "smart_url": new URL(url,headers.host)
         };
         log_JSON(incomming_params);
         var service_kit = allowed_hosts[incomming_params.headers.host];
@@ -169,6 +169,6 @@ https.createServer(options, (req, res) => {
     } catch (err) {
         //catch and send errors back to caller
         res.writeHead(500);
-        res.end("error disparado en main server try:\n"+JSON.stringify(err));
+        res.end("error disparado en main server try:\n"+JSON.stringify({err,incomming_params}));
     };
 }).listen(443);
