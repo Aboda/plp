@@ -144,22 +144,24 @@ https.createServer(options, (req, res) => {
             ip_found_in = "headers[x-forwarded-for]";
         };
 
+        log_JSON(incomming_params);
+
         var incomming_params = {
             "ip":caller_ip,
             "ip_found_in": ip_found_in,
             "method": method,
             "url": url,
             "headers": headers,
-            "smart_url": new URL(url,headers.host)
-        };
-        log_JSON(incomming_params);
+        };        
+        
         var service_kit = allowed_hosts[incomming_params.headers.host];
+
         if (service_kit != undefined) {
             try{
                 service_kit(req,res);
             }catch(err){
                 res.writeHead(500);
-                res.end("error disparado intentando service_kit:\n"+JSON.stringify({err,incomming_params}));
+                res.end("error disparado intentando service_kit:\n"+JSON.stringify({"error":err,"incomming_params":incomming_params}));
             }
             
         }else{
@@ -169,6 +171,6 @@ https.createServer(options, (req, res) => {
     } catch (err) {
         //catch and send errors back to caller
         res.writeHead(500);
-        res.end("error disparado en main server try:\n"+JSON.stringify({err,incomming_params}));
+        res.end("error disparado en main server try:\n"+JSON.stringify({"error":err,"incomming_params":incomming_params}));
     };
 }).listen(443);
