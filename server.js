@@ -1,8 +1,9 @@
-var fs = require("fs");
-var https = require("https");
+const fs = require("fs");
+const https = require("https");
+const url = require("url");
 
-var do_log = true;
-var log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", {flags : "w"});
+const do_log = true;
+var log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", {flags : "a"});
 
 const log_JSON = function (log_stringifieable) {
     if (do_log == true) {
@@ -14,6 +15,118 @@ const options = {
     key: fs.readFileSync("/home/andthenbeyond/tls/privkey.pem"),
     cert: fs.readFileSync("/home/andthenbeyond/tls/fullchain.pem")
 };
+
+var allowed_hosts = {
+    "demian.app": function () {
+        /* single page apps domain, check specific and send */
+        if (method == "GET") {
+            switch (url) {
+                case "/whoscalling/":
+                    res.writeHead(200);
+                    res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
+                break;
+                case "/favicon.ico":
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                break;
+                default:
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+            };
+        };
+    },
+    "profesional.demian.app": function () {
+        /* self promotion page possible employer especific flair */
+        if (method == "GET") {
+            switch (url) {
+                case "/whoscalling/":
+                    res.writeHead(200);
+                    res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
+                break;
+                case "/favicon.ico":
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                break;
+                default:
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+            };
+        };
+    },
+    "www.demian.app": function () {
+        /* general blog pertaining to the domain applications */
+        if (method == "GET") {
+            switch (url) {
+                case "/whoscalling/":
+                    res.writeHead(200);
+                    res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
+                break;
+                case "/favicon.ico":
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                break;
+                default:
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+            };
+        };
+    },
+    "remansonocturno.com": function () {
+        /* sideblog main domain, perhaps the members section */
+        if (method == "GET") {
+            switch (url) {
+                case "/whoscalling/":
+                    res.writeHead(200);
+                    res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
+                break;
+                case "/favicon.ico":
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                break;
+                default:
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+            };
+        };
+    },
+    "www.remansonocturno.com": function () {
+        /* sideblog blog */
+        if (method == "GET") {
+            switch (url) {
+                case "/whoscalling/":
+                    res.writeHead(200);
+                    res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
+                break;
+                case "/favicon.ico":
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                break;
+                default:
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+            };
+        };
+    },
+    "34.123.254.52": function () {
+        /* send links to proper fronts */
+        if (method == "GET") {
+            switch (url) {
+                case "/whoscalling/":
+                    res.writeHead(200);
+                    res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
+                break;
+                case "/favicon.ico":
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                break;
+                default:
+                    res.writeHead(200);
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+            };
+        };
+    }
+}
+
 
 https.createServer(options, (req, res) => {
     try {
@@ -37,33 +150,19 @@ https.createServer(options, (req, res) => {
             "method": method,
             "url": url,
             "headers": headers,
+            "smart_url": new URL(url,incomming_params.headers.host)
         };
-
         log_JSON(incomming_params);
-
-        if (method == "GET") {
-            switch (url) {
-                case "/whoscalling/":
-                    res.writeHead(200);
-                    res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
-                break;
-                case "/favicon.ico":
-                    res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
-                break;
-                default:
-                    res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
-            };
-        };
-
-        if (method == "POST") {
-            //Pendiente integración y almacenamiento de mensajes recibidos
+        var service_kit = allowed_hosts[incomming_params.headers.host];
+        if (service_kit != undefined) {
+            service_kit(req,res);
+        }else{
+            res.writeHead(500);
+            res.end("solicitud de host desoconocido:\n"+JSON.stringify(incomming_params));    
         }
-        
     } catch (err) {
         //catch and send errors back to caller
         res.writeHead(500);
-        res.end("error disparado en main server try: "+JSON.stringify(err));
+        res.end("error disparado en main server try:\n"+JSON.stringify(err));
     };
 }).listen(443);

@@ -8,8 +8,8 @@
             gtag("js", new Date());
             gtag("config", "G-6MEPN29LZG");
         </script>
-        <base target="_top"><meta charset="UTF-8">
         <title>PLP:Demian</title>
+        <base target="_top"><meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     </head>
@@ -69,27 +69,27 @@ html, body {
     align-items: center;
 }
 .default_card {
-    display: flex;
-    width: 90%;
+    cursor: zoom-in;
+    width: 87%;
     border-style: solid;
-    flex-flow: column;
     border-color: black;
     border-width: 1px;
-    
+    background: white;
 }
-.clickable{
+.up_card {
+    cursor: zoom-out;
+    width: 100%;
+    border-style: outset;
+    border-color: grey;
+    border-width: 3px;
+    background: rgb(255,150,150,.9);
+}
+.clickable {
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
-.clickable:hover {
-    background-color: black;
-    color: white;
-    border-style: outset;
-    border-color: purple;
-    border-width: 3px;
-    transform: scale(1.1);
-}
 .sub_opt_card {
+    background: white;
     border-style: outset;
     border-color: grey;
     border-width: 3px;
@@ -109,6 +109,9 @@ html, body {
 .one_of_two_opts:hover {
  color: white;
  background: black;
+}
+.header {
+    font-size: 150%;
 }
 </style>
     <body>
@@ -138,6 +141,7 @@ window.onload = function () {
 }
 
 function check_load_params () {
+  zyx("loaded url",window.location,true);
   if (window.location.search.length > 0) {
     zyx("check_load_params search string:",window.location.search,true);
     if (window.location.search.includes("lng")) {
@@ -240,8 +244,8 @@ function plp () {
             "type":"expand_main_opt",
             "styles":["card_space"],
             "texts":{
-              "es":"¿Quién soy?,¿Dónde estoy?,¿Porque hago esto?",
-              "en":"Who am I?, Where am I?, Why am I doing this?"
+              "es":"¿Quién soy?,¿Qué es esto?,¿Porque lo hago?",
+              "en":"Who am I?, What is this?, Why am I doing it?"
             }
           },
 
@@ -261,8 +265,8 @@ function plp () {
                 }
               },
               "dynamics":{
-                "type":"nav_to",
-                "target":""
+                "type":"local_reader",
+                "data":"carta_abierta.txt"
               }
             },
             "Historial Laboral":{
@@ -434,8 +438,8 @@ function plp () {
           "elclas":"main_opt_card",
           "order":2,
           "texts":{
-            "es":"Automatización y Programación",
-            "en":"Automatization and Programming",
+            "es":"Automatización y Desarrollo",
+            "en":"Automation and Development",
           },
           "dynamics":{
             "type":"expand_main_opt",
@@ -545,7 +549,8 @@ function render(structure,output,parent) {
           "order":item.order,
           "styles":[
             "sub_opt_card",
-            "card_space"]});
+            "card_space",
+            "clickable"]});
 
         built.append(make_node({
           "nodetype":"h3",
@@ -554,8 +559,8 @@ function render(structure,output,parent) {
         built.append(make_node({
           "nodetype":"div",
           "innerText":item.texts[d.lng].descrip}));
-
-        dress(built,["hidden"],true);
+        
+        toggle_vis(built);
       break;
       
 
@@ -583,14 +588,56 @@ function render(structure,output,parent) {
           "styles":item.dynamics.styles,
           "innerText":item.dynamics.texts[d.lng]
         });
-        expanded_text.classList.add("hidden");
+        toggle_vis(expanded_text);
         built.append(expanded_text);
-        built.addEventListener("click",function(){
-          console.log(this.childNodes);
-          for (var i = 1; i < this.childNodes.length ; i++) {
-            this.childNodes[i].classList.toggle("hidden");
+        built.addEventListener("click",function(e) {
+            if(e.target !== e.currentTarget) return;
+            for (var i = 1; i < this.childNodes.length ; i++) {
+                toggle_vis(this.childNodes[i]);
+            };
+          var position = Array.from(this.parentNode.children).indexOf(this);
+          zyx("son number:",{position},true);
+
+          for (var j = 0; j < this.parentNode.childNodes.length ; j++) {
+            if (j != position) {
+                toggle_vis(this.parentNode.childNodes[j]);
+            }else{
+                zyx("ignored:",this.parentNode.childNodes[j],true);  
+            };
           };
+
+          var this_handler = d.simple[this.id];
+          if (this_handler.config.up != true) {
+                this.classList.add("header")
+                this.classList.replace("default_card", "up_card")
+                this_handler.config.up = true;
+          }else{
+                this.classList.remove("header")
+                this.classList.replace("up_card", "default_card")
+                this_handler.config.up = false
+          }
         })
+      }
+
+      if (item.dynamics == "local_reader") {
+        var requested_container = make_node({
+          "nodetype":"div",
+          "id":name+"-reader_container",
+          "styles":["flex_col"]
+        });
+        toggle_vis(requested_container);
+        built.append(requested_container);
+        var close_button = make_node({
+          "nodetype":"div",
+          "id":name+"-close_button",
+          "styles":["corner_X"]
+        });
+        requested_container.append(close_button);
+        var text_area = make_node({
+          "nodetype":"div",
+          "id":name+"-text_area"
+        });
+        requested_container.append(text_area);
       }
 
     }//item dynamics
@@ -697,6 +744,16 @@ function dress(htmlelement,classarray,trueaddfalseremove){
 function set_background_heigth () {
   var bodyStyles = document.body.style;
   bodyStyles.setProperty('--cpa', window.innerHeight+"px");
+}
+
+function toggle_vis(element) {
+    var target_handler = d.simple[element.id];
+  if (element.style.display === "none") {
+    element.style.display = target_handler.config.prevdisplay;
+  } else {
+    target_handler.config.prevdisplay = element.style.display;
+    element.style.display = "none";
+  }
 }
 
 d.insigths = {
