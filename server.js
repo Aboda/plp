@@ -155,7 +155,13 @@ https.createServer(options, (req, res) => {
         log_JSON(incomming_params);
         var service_kit = allowed_hosts[incomming_params.headers.host];
         if (service_kit != undefined) {
-            service_kit(req,res);
+            try{
+                service_kit(req,res);
+            }catch(err){
+                res.writeHead(500);
+                res.end("error disparado intentando service_kit:\n"+JSON.stringify({err,incomming_params}));
+            }
+            
         }else{
             res.writeHead(500);
             res.end("solicitud de host desoconocido:\n"+JSON.stringify(incomming_params));    
