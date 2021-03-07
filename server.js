@@ -17,7 +17,7 @@ const options = {
 };
 
 var allowed_hosts = {
-    "demian.app": function () {
+    "demian.app": function (req,res) {
         /* single page apps domain, check specific and send */
         if (method == "GET") {
             switch (url) {
@@ -35,7 +35,7 @@ var allowed_hosts = {
             };
         };
     },
-    "profesional.demian.app": function () {
+    "profesional.demian.app": function (req,res) {
         /* self promotion page possible employer especific flair */
         if (method == "GET") {
             switch (url) {
@@ -53,7 +53,7 @@ var allowed_hosts = {
             };
         };
     },
-    "www.demian.app": function () {
+    "www.demian.app": function (req,res) {
         /* general blog pertaining to the domain applications */
         if (method == "GET") {
             switch (url) {
@@ -71,7 +71,7 @@ var allowed_hosts = {
             };
         };
     },
-    "remansonocturno.com": function () {
+    "remansonocturno.com": function (req,res) {
         /* sideblog main domain, perhaps the members section */
         if (method == "GET") {
             switch (url) {
@@ -89,7 +89,7 @@ var allowed_hosts = {
             };
         };
     },
-    "www.remansonocturno.com": function () {
+    "www.remansonocturno.com": function (req,res) {
         /* sideblog blog */
         if (method == "GET") {
             switch (url) {
@@ -107,7 +107,7 @@ var allowed_hosts = {
             };
         };
     },
-    "34.123.254.52": function () {
+    "34.123.254.52": function (req,res) {
         /* send links to proper fronts */
         if (method == "GET") {
             switch (url) {
