@@ -6,8 +6,8 @@ After=network.target
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
 Restart=always
-User=maingatenode
-Group=publicface
+User=nobody
+Group=nogroup
 WorkingDirectory=/home/andthenbeyond/
 ExecStart=/usr/bin/node /home/andthenbeyond/sitiopersonal/server.js
 StartLimitIntervalSec=1
