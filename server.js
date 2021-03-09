@@ -166,17 +166,17 @@ https.createServer(options, (req, res) => {
 
         if (service_kit != undefined) {
             try{
-                call_report.sk = true;
+                call_report.sk_found = true;
                 service_kit(req,res,call_report);
             }catch(err){
-                call_report.sk = "error: service kit no encontrado";
+                call_report.sk = "error disparado intentando service_kit:\n";
                 log_JSON(call_report);
 
                 res.writeHead(500);
                 res.end("error disparado intentando service_kit:\n"+JSON.stringify({"error":err,"call_report":call_report}));
             }            
         }else{
-            call_report.sk = false;
+            call_report.sk_found = false;
             log_JSON(call_report);
 
             res.writeHead(500);
