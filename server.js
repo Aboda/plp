@@ -113,7 +113,7 @@ var allowed_hosts = {
             switch (req.url) {
                 case "/whoscalling/":
                     res.writeHead(200);
-                    res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
+                    res.end("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
@@ -142,8 +142,6 @@ https.createServer(options, (req, res) => {
             ip_found_in = "headers[x-forwarded-for]";
         };
 
-        log_JSON(incomming_params);
-
         var incomming_params = {
             "ip":caller_ip,
             "ip_found_in": ip_found_in,
@@ -151,6 +149,8 @@ https.createServer(options, (req, res) => {
             "url": req.url,
             "headers": req.headers,
         };        
+
+        log_JSON(incomming_params);
         
         var service_kit = allowed_hosts[incomming_params.headers.host];
 
