@@ -19,8 +19,8 @@ const options = {
 var allowed_hosts = {
     "demian.app": function (req,res) {
         /* single page apps domain, check specific and send */
-        if (method == "GET") {
-            switch (url) {
+        if (req.method == "GET") {
+            switch (req.url) {
                 case "/whoscalling/":
                     res.writeHead(200);
                     res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
@@ -37,8 +37,8 @@ var allowed_hosts = {
     },
     "profesional.demian.app": function (req,res) {
         /* self promotion page possible employer especific flair */
-        if (method == "GET") {
-            switch (url) {
+        if (req.method == "GET") {
+            switch (req.url) {
                 case "/whoscalling/":
                     res.writeHead(200);
                     res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
@@ -55,8 +55,8 @@ var allowed_hosts = {
     },
     "www.demian.app": function (req,res) {
         /* general blog pertaining to the domain applications */
-        if (method == "GET") {
-            switch (url) {
+        if (req.method == "GET") {
+            switch (req.url) {
                 case "/whoscalling/":
                     res.writeHead(200);
                     res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
@@ -73,8 +73,8 @@ var allowed_hosts = {
     },
     "remansonocturno.com": function (req,res) {
         /* sideblog main domain, perhaps the members section */
-        if (method == "GET") {
-            switch (url) {
+        if (req.method == "GET") {
+            switch (req.url) {
                 case "/whoscalling/":
                     res.writeHead(200);
                     res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
@@ -91,8 +91,8 @@ var allowed_hosts = {
     },
     "www.remansonocturno.com": function (req,res) {
         /* sideblog blog */
-        if (method == "GET") {
-            switch (url) {
+        if (req.method == "GET") {
+            switch (req.url) {
                 case "/whoscalling/":
                     res.writeHead(200);
                     res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
@@ -109,8 +109,8 @@ var allowed_hosts = {
     },
     "34.123.254.52": function (req,res) {
         /* send links to proper fronts */
-        if (method == "GET") {
-            switch (url) {
+        if (req.method == "GET") {
+            switch (req.url) {
                 case "/whoscalling/":
                     res.writeHead(200);
                     res.end ("datos recibidos en GET:\n"+JSON.stringify(incomming_params));
@@ -130,17 +130,15 @@ var allowed_hosts = {
 
 https.createServer(options, (req, res) => {
     try {
-        //easy bindings to request elements
-        const { method, url, headers, connection } = req;
         
         //assert caller ip address if knowable
         var ip_found_in;
         var caller_ip;
-        if (connection.remoteAddress != undefined) {
-            caller_ip = connection.remoteAddress;
+        if (req.connection.remoteAddress != undefined) {
+            caller_ip = req.connection.remoteAddress;
             ip_found_in = "connection.remoteAddress";
-        }else if (headers["x-forwarded-for"] != undefined) {
-            caller_ip = headers["x-forwarded-for"];
+        }else if (req.headers["x-forwarded-for"] != undefined) {
+            caller_ip = req.headers["x-forwarded-for"];
             ip_found_in = "headers[x-forwarded-for]";
         };
 
@@ -149,9 +147,9 @@ https.createServer(options, (req, res) => {
         var incomming_params = {
             "ip":caller_ip,
             "ip_found_in": ip_found_in,
-            "method": method,
-            "url": url,
-            "headers": headers,
+            "method": req.method,
+            "url": req.url,
+            "headers": req.headers,
         };        
         
         var service_kit = allowed_hosts[incomming_params.headers.host];
