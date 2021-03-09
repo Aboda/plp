@@ -18,8 +18,8 @@ const options = {
 
 var allowed_hosts = {
     "demian.app": function (req,res,rep) {
-        call_report.allowed_touch = "demian.app";
-        log_JSON(call_report);
+        rep.allowed_touch = "demian.app";
+        log_JSON(rep);
         /* single page apps domain, check specific and send */
         if (req.method == "GET") {
             switch (req.url) {
@@ -38,8 +38,8 @@ var allowed_hosts = {
         };
     },
     "profesional.demian.app": function (req,res,rep) {
-        call_report.allowed_touch = "profesional.demian.app";
-        log_JSON(call_report);
+        rep.allowed_touch = "profesional.demian.app";
+        log_JSON(rep);
         /* self promotion page possible employer especific flair */
         if (req.method == "GET") {
             switch (req.url) {
@@ -58,8 +58,8 @@ var allowed_hosts = {
         };
     },
     "www.demian.app": function (req,res,rep) {
-        call_report.allowed_touch = "www.demian.app";
-        log_JSON(call_report);
+        rep.allowed_touch = "www.demian.app";
+        log_JSON(rep);
         /* general blog pertaining to the domain applications */
         if (req.method == "GET") {
             switch (req.url) {
@@ -78,8 +78,8 @@ var allowed_hosts = {
         };
     },
     "remansonocturno.com": function (req,res,rep) {
-        call_report.allowed_touch = "remansonocturno.com";
-        log_JSON(call_report);
+        rep.allowed_touch = "remansonocturno.com";
+        log_JSON(rep);
         /* sideblog main domain, perhaps the members section */
         if (req.method == "GET") {
             switch (req.url) {
@@ -98,8 +98,8 @@ var allowed_hosts = {
         };
     },
     "www.remansonocturno.com": function (req,res,rep) {
-        call_report.allowed_touch = "www.remansonocturno.com";
-        log_JSON(call_report);
+        rep.allowed_touch = "www.remansonocturno.com";
+        log_JSON(rep);
         /* sideblog blog */
         if (req.method == "GET") {
             switch (req.url) {
@@ -118,8 +118,8 @@ var allowed_hosts = {
         };
     },
     "34.123.254.52": function (req,res,rep) {
-        call_report.allowed_touch = "34.123.254.52";
-        log_JSON(call_report);
+        rep.allowed_touch = "34.123.254.52";
+        log_JSON(rep);
         /* send links to proper fronts */
         if (req.method == "GET") {
             switch (req.url) {
@@ -169,7 +169,8 @@ https.createServer(options, (req, res) => {
                 call_report.sk_found = true;
                 service_kit(req,res,call_report);
             }catch(err){
-                call_report.sk = "error disparado intentando service_kit:\n";
+                call_report.sk = "error disparado intentando service_kit:";
+                call_report.error = err;
                 log_JSON(call_report);
 
                 res.writeHead(500);
