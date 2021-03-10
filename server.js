@@ -16,6 +16,67 @@ const options = {
     cert: fs.readFileSync("/home/andthenbeyond/tls/fullchain.pem")
 };
 
+const html_base_creator = function (options) {
+    //decides wheter to add google analytics tracking to the html
+    if (options.ganalytics == undefined) {
+        options.ganalytics = false;
+    };
+    
+    if (options.ganalytics == false) {
+
+    }else if (options.ganalytics == true) {
+        //requires the google tag for the property to be provided
+
+    }
+    
+    //decides wheter to add facebook sdk to the html
+    if (options.facebooksdk == undefined) {options.facebooksdk = false;}
+
+    if (options.facebooksdk == false) {
+
+    }else if (options.facebooksdk == true) {
+        //requires the facebook app code to track
+        
+    }
+
+    //decides the languaje in which the page will be presented
+    if (options.languaje == undefined) {options.languaje = "es";}
+
+    if (options.languaje == "es") {
+
+    } else if (options.languaje == "en") {
+        
+    }
+
+    //decides the css file that will be served with the page
+    if (options.css == undefined) {options.css = "404";}
+
+    if (options.languaje == "404") {
+
+    } else if (options.languaje == "plp") {
+        
+    }
+
+    //builds the initial body html, this is the answer to the SPAP sharing issue and why we came to node instead of a only browser solution.
+    //i am under the impression that the service worker will do what is currently done by node. and we will have the best of both worlds.
+    if (options.html == undefined) {options.html = "404";}
+
+    if (options.languaje == "404") {
+
+    } else if (options.languaje == "plp") {
+        
+    }
+
+    //decides the homebrew javascript added to the page
+    if (options.js == undefined) {options.js = false;}
+
+    if (options.languaje == false) {
+
+    } else if (options.languaje == "plp") {
+        
+    }
+}
+
 var allowed_hosts = {
     "demian.app": function (req,res,rep) {
         rep.allowed_touch = "demian.app";
@@ -32,6 +93,10 @@ var allowed_hosts = {
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
                 break;
                 default:
+                    var options = {
+
+                    };
+                    html_base_creator(options);
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
             };
