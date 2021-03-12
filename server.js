@@ -1,82 +1,122 @@
+//Carga de modulos usados por el servidor
 const fs = require("fs");
 const https = require("https");
 const url = require("url");
 
+//Configuración del output general de loggeo a un archivo en el SO
 const do_log = true;
-var log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", {flags : "a"});
-
+const log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", {flags : "a"});
 const log_JSON = function (log_stringifieable) {
     if (do_log == true) {
         log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
     };
 };
 
+/*
+Configuración del servidor https
+Configurado a "tener poca paciencia" no recuerda sesiones y ofrece restricciónes de 5 10 y 20 segundos para transmitir headers, contenido y para considerar una conexión muerta respectivamente
+Lo anterior sumado a un modelo de entrega de pocas llamadas pretende reducir la huella de memoria que es el recurso más limitado de la computadora gratuita
+*/
 const options = {
     key: fs.readFileSync("/home/andthenbeyond/tls/privkey.pem"),
-    cert: fs.readFileSync("/home/andthenbeyond/tls/fullchain.pem")
+    cert: fs.readFileSync("/home/andthenbeyond/tls/fullchain.pem"),
+    maxCachedSessions: 0,
+    headersTimeout: 5000,
+    requestTimeout: 10000,
+    timeout:20000
 };
 
+/*
+    Esta herramienta construye el html a entregar en función de parámetros optativos
+    de ser invocado sin parámetros, devuelve un 404
+*/
 const html_base_creator = function (options) {
-    //decides wheter to add google analytics tracking to the html
-    if (options.ganalytics == undefined) {
-        options.ganalytics = false;
-    };
-    
-    if (options.ganalytics == false) {
-
-    }else if (options.ganalytics == true) {
-        //requires the google tag for the property to be provided
-
-    }
-    
-    //decides wheter to add facebook sdk to the html
-    if (options.facebooksdk == undefined) {options.facebooksdk = false;}
-
-    if (options.facebooksdk == false) {
-
-    }else if (options.facebooksdk == true) {
-        //requires the facebook app code to track
-        
-    }
+    var ph = "<!DOCTYPE html>";
 
     //decides the languaje in which the page will be presented
-    if (options.languaje == undefined) {options.languaje = "es";}
-
     if (options.languaje == "es") {
-
-    } else if (options.languaje == "en") {
-        
+        ph =  ph +"<html lang='es-MX'></html>";
+    } else {
+        ph =  ph + "<html lang='en-US'></html>";          
     }
 
+    ph = ph + "<head>";
+
+    //decides wheter to add google analytics tracking to the html
+    if (options.ganalytics == true) {
+        //requires the google tag for the property to be provided
+        ph = ph + "<script async src='https://www.googletagmanager.com/gtag/js?id='"+options.gtag+"'></script>";
+        ph = ph + "<script>";
+        ph = ph + "window.dataLayer = window.dataLayer || [];";
+        ph = ph + "function gtag(){dataLayer.push(arguments);}";
+        ph = ph + "gtag('js', new Date());";
+        ph = ph + "gtag('config', '"+options.gtag+"');";
+        ph = ph + "</script>";
+    }
+
+    if (options.title == "undefined") {options.title = "404:No localizado"}
+    ph = ph + "<title>"+options.title+"</title>";
+
+    ph = ph + "<base target='_top'><meta charset='UTF-8'>";
+    ph = ph + "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+    ph = ph + "<link href='https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap' rel='stylesheet'></link>";
+    ph = ph + "</head>";
+    
     //decides the css file that will be served with the page
     if (options.css == undefined) {options.css = "404";}
 
-    if (options.languaje == "404") {
+    if (options.css == "404") {
 
-    } else if (options.languaje == "plp") {
+    } else if (options.css == "plp") {
         
     }
 
-    //builds the initial body html, this is the answer to the SPAP sharing issue and why we came to node instead of a only browser solution.
-    //i am under the impression that the service worker will do what is currently done by node. and we will have the best of both worlds.
+    ph = ph + "<body>";
+
+    //decides wheter to add facebook sdk to the html
+    if (options.facebooksdk == undefined) {options.facebooksdk = false;}
+
+    if (options.facebooksdk == true) {
+        //requires the facebook app code
+        ph = ph + "<script>";
+        ph = ph + "window.fbAsyncInit = function() {";
+        ph = ph + "FB.init({";
+        ph = ph + "appId            : '"+options.fbid+"',";
+        ph = ph + "autoLogAppEvents : true,";
+        ph = ph + "xfbml            : true,";
+        ph = ph + "version          : 'v10.0'";
+        ph = ph + "});";
+        ph = ph + "};";
+        ph = ph + "</script>";
+        ph = ph + "<script async defer crossorigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'></script>";
+    }
+
+    /*
+        builds the initial body html, this is the answer to the SPAP sharing issue and why we came to node instead of a only browser solution.
+        i am under the impression that the service worker will do what is currently done by node. and we will have the best of both worlds.
+    */
     if (options.html == undefined) {options.html = "404";}
 
-    if (options.languaje == "404") {
+    if (options.html == "404") {
 
-    } else if (options.languaje == "plp") {
+    } else if (options.html == "plp") {
         
     }
+
+    ph = ph + "</body>";
 
     //decides the homebrew javascript added to the page
     if (options.js == undefined) {options.js = false;}
-
-    if (options.languaje == false) {
-
-    } else if (options.languaje == "plp") {
+    if (options.js == "plp") {
         
     }
+
+    ph = ph + "</html>";
+
+    return ph;
 }
 
+//Este es el ruteador, considera el dominio/subdominio primero y luego la URL antes de tomar acción
 var allowed_hosts = {
     "demian.app": function (req,res,rep) {
         rep.allowed_touch = "demian.app";
@@ -90,15 +130,24 @@ var allowed_hosts = {
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/general/casa.ico"));
                 break;
                 default:
+               
                     var options = {
-
+                        "title":"PLP:Demian",
+                        "ganalytics":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "facebooksdk":true,
+                        "fbid":"2076681439269297",
+                        "css":"plp",
+                        "html":"plp",
+                        "js":"plp",
+                        "languaje":assert_lng(req.headers["accept-language"])
                     };
-                    html_base_creator(options);
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+                    
+                    res.end(html_base_creator(options));
             };
         };
     },
@@ -114,7 +163,7 @@ var allowed_hosts = {
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/general/escritorio.ico"));
                 break;
                 default:
                     res.writeHead(200);
@@ -134,7 +183,7 @@ var allowed_hosts = {
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/general/blog.ico"));
                 break;
                 default:
                     res.writeHead(200);
@@ -154,7 +203,7 @@ var allowed_hosts = {
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/general/remanso.ico"));
                 break;
                 default:
                     res.writeHead(200);
@@ -174,7 +223,7 @@ var allowed_hosts = {
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/general/remanso.ico"));
                 break;
                 default:
                     res.writeHead(200);
@@ -188,23 +237,18 @@ var allowed_hosts = {
         /* send links to proper fronts */
         if (req.method == "GET") {
             switch (req.url) {
-                case "/whoscalling/":
-                    res.writeHead(200);
-                    res.end("datos recibidos en GET:\n"+JSON.stringify(rep));
-                break;
-                case "/favicon.ico":
-                    res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/favicon.ico"));
-                break;
                 default:
-                    res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+                    var options = {
+                        "languaje":assert_lng(req.headers["accept-language"])
+                    };
+                    res.writeHead(404);
+                    res.end(html_base_creator(options));
             };
         };
     }
 }
 
-
+// este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
 https.createServer(options, (req, res) => {
     try {
         
@@ -222,6 +266,7 @@ https.createServer(options, (req, res) => {
         var service_kit = allowed_hosts[req.headers.host];
 
         var call_report = {
+            "time":new Date().toNumber(),
             "ip":caller_ip,
             "ip_found_in": ip_found_in,
             "method": req.method,
@@ -249,8 +294,19 @@ https.createServer(options, (req, res) => {
             res.end("solicitud de host desoconocido:\n"+JSON.stringify(call_report));    
         }
     } catch (err) {
-        //catch and send errors back to caller
+        //cacha errores y los reenvía al invocador
         res.writeHead(500);
         res.end("error disparado en main server try:\n"+JSON.stringify({"error":err,"call_report":call_report}));
     };
 }).listen(443);
+
+function assert_lng(acclngstr) {
+    //procesar header "accept-language":"en-US,en;q=0.9,es;q=0.8,gl;q=0.7"
+    var es_pos = acclngstr.indexOf("es");
+    var en_pos = acclngstr.indexOf("en");
+    if (en_pos != -1 && en_pos < es_pos){
+        return "en";
+    }else if (es_pos != -1 && es_pos < en_pos) {
+        return "es";
+    }
+}
