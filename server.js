@@ -54,7 +54,7 @@ const html_base_creator = function (options) {
         ph = ph + "</script>";
     }
 
-    if (options.title == "undefined") {options.title = "404:No localizado"}
+    if (options.title == undefined) {options.title = "No Especificado"}
     ph = ph + "<title>"+options.title+"</title>";
 
     ph = ph + "<base target='_top'><meta charset='UTF-8'>";
@@ -64,18 +64,10 @@ const html_base_creator = function (options) {
     
     //decides the css file that will be served with the page
     if (options.css == undefined) {options.css = "404";}
-
-    if (options.css == "404") {
-
-    } else if (options.css == "plp") {
-        
-    }
-
+    ph = ph + "<style>"+fs.readFileSync("/home/andthenbeyond/sitiopersonal/css/"+options.css+".css")+"</style>";
     ph = ph + "<body>";
 
     //decides wheter to add facebook sdk to the html
-    if (options.facebooksdk == undefined) {options.facebooksdk = false;}
-
     if (options.facebooksdk == true) {
         //requires the facebook app code
         ph = ph + "<script>";
@@ -96,20 +88,19 @@ const html_base_creator = function (options) {
         i am under the impression that the service worker will do what is currently done by node. and we will have the best of both worlds.
     */
     if (options.html == undefined) {options.html = "404";}
-
-    if (options.html == "404") {
-
-    } else if (options.html == "plp") {
-        
-    }
+    ph = ph + fs.readFileSync("/home/andthenbeyond/sitiopersonal/html/"+options.html+".html");
 
     ph = ph + "</body>";
 
     //decides the homebrew javascript added to the page
-    if (options.js == undefined) {options.js = false;}
-    if (options.js == "plp") {
-        
+    if (options.js != undefined) {
+        ph = ph + "<script>";
+        for (modules of options.js) {
+            ph = ph + fs.readFileSync("/home/andthenbeyond/sitiopersonal/js/"+options.js+".js");
+        }
+        ph = ph + "</script>";
     }
+
 
     ph = ph + "</html>";
 
@@ -130,19 +121,18 @@ var allowed_hosts = {
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/general/casa.ico"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/plp.ico"));
                 break;
-                default:
-               
+                default:               
                     var options = {
                         "title":"PLP:Demian",
                         "ganalytics":true,
                         "gtag":"G-6MEPN29LZG",
                         "facebooksdk":true,
                         "fbid":"2076681439269297",
-                        "css":"plp",
-                        "html":"plp",
-                        "js":"plp",
+                        "css":"demian",
+                        "html":"demian",
+                        "js":"demian",
                         "languaje":assert_lng(req.headers["accept-language"])
                     };
                     res.writeHead(200);
@@ -173,6 +163,7 @@ var allowed_hosts = {
     },
     "www.demian.app": function (req,res,rep) {
         rep.allowed_touch = "www.demian.app";
+        rep.path = "/home/andthenbeyond/sitiopersonal/www/";
         log_JSON(rep);
         /* general blog pertaining to the domain applications */
         if (req.method == "GET") {
@@ -193,6 +184,7 @@ var allowed_hosts = {
     },
     "remansonocturno.com": function (req,res,rep) {
         rep.allowed_touch = "remansonocturno.com";
+        rep.path = "/home/andthenbeyond/sitiopersonal/remansonocturno/";
         log_JSON(rep);
         /* sideblog main domain, perhaps the members section */
         if (req.method == "GET") {
@@ -213,34 +205,43 @@ var allowed_hosts = {
     },
     "www.remansonocturno.com": function (req,res,rep) {
         rep.allowed_touch = "www.remansonocturno.com";
+        rep.path = "/home/andthenbeyond/sitiopersonal/remansonocturno/www/";
         log_JSON(rep);
         /* sideblog blog */
         if (req.method == "GET") {
             switch (req.url) {
-                case "/whoscalling/":
-                    res.writeHead(200);
-                    res.end ("datos recibidos en GET:\n"+JSON.stringify(rep));
-                break;
                 case "/favicon.ico":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/general/remanso.ico"));
+                    res.end(fs.readFileSync(rep.path + "remanso.ico"));
+                break;
+                case "/":
+                    var crafted_html = html_base_creator({
+                        "title":"Blog:Remanso Nocturno",
+                        "path":rep.path,
+                        "page":"Index",
+                        "languaje":assert_lng(req.headers["accept-language"])
+                    });
+                    res.writeHead(200);
+                    res.end(crafted_html);
                 break;
                 default:
+                    var crafted_html = html_base_creator({
+                        "title":"404:Remanso Nocturno",
+                        "page":"404",
+                        "languaje":assert_lng(req.headers["accept-language"])
+                    });
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/theserverisalie.html"));
+                    res.end(crafted_html);
             };
         };
     },
     "34.123.254.52": function (req,res,rep) {
-        rep.allowed_touch = "34.123.254.52";
         log_JSON(rep);
         /* send links to proper fronts */
         if (req.method == "GET") {
             switch (req.url) {
                 default:
-                    var options = {
-                        "languaje":assert_lng(req.headers["accept-language"])
-                    };
+                    var options = {"languaje":assert_lng(req.headers["accept-language"])};
                     res.writeHead(404);
                     res.end(html_base_creator(options));
             };
