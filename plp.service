@@ -10,7 +10,7 @@ User=nobody
 Group=nogroup
 WorkingDirectory=/home/andthenbeyond/
 ExecStart=/usr/bin/node /home/andthenbeyond/sitiopersonal/server.js
-StartLimitIntervalSec=1
+StartLimitInterval=1
 StartLimitBurst=1
 
 [Install]
