@@ -297,7 +297,8 @@ https.createServer(options, (req, res) => {
     } catch (err) {
         //cacha errores y los reenvía al invocador
         res.writeHead(500);
-        res.end("error disparado en main server try:\n"+JSON.stringify({"error":err,"call_report":call_report}));
+        var report = "error disparado en main server try, reporte:\n"+JSON.stringify(rep)+"\nerror:\n"+JSON.stringify(rep);
+        res.end(report);
     };
 }).listen(443);
 
