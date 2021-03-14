@@ -33,7 +33,7 @@ var allowed_hosts = {
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
-                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/plp.ico"));
+                    res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/casa.ico"));
                 break;
                 default: 
                     var options = {
