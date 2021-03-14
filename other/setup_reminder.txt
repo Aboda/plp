@@ -14,10 +14,12 @@
     getcap /bin/node
 
 8.- daemonization of node process to remain up while the computer is up*
-    a) from home folder after manual file upload
+    a) from virtual machine after .service file upload
         sudo cp -f /home/andthenbeyond/sitiopersonal/plp.service /etc/systemd/system/plp.service
     
     b) daemonization controls
+        systemctl status plp.service
+
         sudo systemctl daemon-reload
         sudo systemctl start plp.service
         sudo systemctl stop plp.service
@@ -26,7 +28,6 @@
         sudo systemctl enable plp.service
         sudo systemctl disable plp.service
         sudo systemctl reenable plp.service
-        systemctl status plp.service
     
     c) read operating .service
         cat /etc/systemd/system/plp.service
@@ -47,13 +48,11 @@
         gcloud source repos clone sitiopersonal --project=bi-cloud-db-core
 
     e) update changes in the future 
-        (from virtual machine folder: sitiopersonal) git pull origin master
-        (from cloud shell) 
-        node webmaster/infra/bundler.js
-        gcloud config set project bi-cloud-db-core
-        gcloud compute scp /home/andthenbeyond/sitiopersonal/theserverisalie.html fearsome:/home/andthenbeyond/sitiopersonal/theserverisalie.html --zone=us-central1-a --project="bi-cloud-db-core"
+        (from virtual machine folder: sitiopersonal) 
+        git pull origin master
 
-        
+        (update a single file from cloud shell) 
+        gcloud compute scp /home/andthenbeyond/sitiopersonal/server.js fearsome:/home/andthenbeyond/sitiopersonal/server.js --zone=us-central1-a --project="bi-cloud-db-core"
 
     f) how to run node from cloud shell
     /usr/bin/node /home/andthenbeyond/sitiopersonal/bundler.js
