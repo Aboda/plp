@@ -30,7 +30,7 @@ https.createServer(server_options, (req, res) => {
     try {
         var rep = {
             "service_no":simple_counter,
-            "time":new Date().now(),
+            "time":new Date().getTime(),
             "step":"rep_creation",
             "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
             "host":req.headers.host,
@@ -79,7 +79,7 @@ function log_JSON (log_stringifieable) {
 };
 
 function tag_out (rep) {
-    rep.time = new Date().now() - rep.time;
+    rep.time = new Date().getTime() - rep.time;
     log_JSON(rep);
 }
 
