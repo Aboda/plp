@@ -297,7 +297,7 @@ https.createServer(server_options, (req, res) => {
                 rep.error = err;
                 tag_out(rep);
                 res.writeHead(500);
-                res.end(rep);
+                res.end(JSON.stringify(rep));
             }            
         }
     } catch (err) {
@@ -305,7 +305,7 @@ https.createServer(server_options, (req, res) => {
         console.log(err);
         rep.error = err;
         res.writeHead(500);
-        res.end(rep);
+        res.end(JSON.stringify(rep));
     };
 }).listen(443);
 
