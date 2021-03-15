@@ -18,7 +18,7 @@ function check_load_params () {
     }  
   }else{
     //default languaje to indicated in base html if no parameter is provided
-    ao.lng = document.documentElement.lang.substr(0,1);
+    ao.lng = document.documentElement.lang.substr(0,2);
     zyx("check_load_params:","no search string",true);
   }
 }
