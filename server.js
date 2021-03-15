@@ -104,8 +104,10 @@ var allowed_hosts = {
         if (req.method == "GET") {
             switch (req.url) {
                 case "/whoscalling/":
+                    rep.task = "requester data show";
+                    rep.headers = req.headers;
                     res.writeHead(200);
-                    res.end ("datos recibidos en GET:\n"+JSON.stringify(rep));
+                    res.end (rep);
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
