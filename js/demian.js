@@ -391,7 +391,7 @@ function render(structure,output,parent) {
           "id":name,
           "order":item.order,
           "styles":item.styles,
-          "innerText":item.texts[d.lng]});
+          "innerText":item.texts[ao.lng]});
       break;
 
       case "main_opt_card":
@@ -401,7 +401,7 @@ function render(structure,output,parent) {
           "id":name,
           "order":item.order,
           "styles":["default_card","card_space"],
-          "innerText":item.texts[d.lng],
+          "innerText":item.texts[ao.lng],
           "dynamics":item.dynamics
         });
         
@@ -419,11 +419,11 @@ function render(structure,output,parent) {
 
         built.append(make_node({
           "nodetype":"h3",
-          "innerText":item.texts[d.lng].title}));
+          "innerText":item.texts[ao.lng].title}));
 
         built.append(make_node({
           "nodetype":"div",
-          "innerText":item.texts[d.lng].descrip}));
+          "innerText":item.texts[ao.lng].descrip}));
         
         toggle_vis(built);
       break;
@@ -437,9 +437,9 @@ function render(structure,output,parent) {
 
       if (item.dynamics.type == "set_languaje") {
         built.addEventListener("click",function(){
-          var item = d.simple[this.id];
-          d.lng = item.config.dynamics.value;
-          var section_cont = d.simple[item.node.parentNode.id]
+          var item = ao.simple[this.id];
+          ao.lng = item.config.dynamics.value;
+          var section_cont = ao.simple[item.node.parentNode.id]
           section_cont.kill();
           page_base();
           plp();
@@ -451,7 +451,7 @@ function render(structure,output,parent) {
           "nodetype":"div",
           "id":name+"-extra_content",
           "styles":item.dynamics.styles,
-          "innerText":item.dynamics.texts[d.lng]
+          "innerText":item.dynamics.texts[ao.lng]
         });
         toggle_vis(expanded_text);
         built.append(expanded_text);
@@ -471,7 +471,7 @@ function render(structure,output,parent) {
             };
           };
 
-          var this_handler = d.simple[this.id];
+          var this_handler = ao.simple[this.id];
           if (this_handler.config.up != true) {
                 this.classList.add("header")
                 this.classList.replace("default_card", "up_card")
@@ -513,9 +513,9 @@ function render(structure,output,parent) {
     output.append(built);
 
     if (parent != undefined) {
-      d.simple[name].parent = parent;
+      ao.simple[name].parent = parent;
     }else{
-      d.simple[name].parent = false;
+      ao.simple[name].parent = false;
     };
 
     if (item.cnt != undefined) {
