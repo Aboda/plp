@@ -30,7 +30,7 @@ https.createServer(server_options, (req, res) => {
     try {
         var rep = {
             "service_no":simple_counter,
-            "time":new Date().toNumber(),
+            "time":new Date().now(),
             "step":"rep_creation",
             "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
             "host":req.headers.host,
@@ -65,7 +65,7 @@ https.createServer(server_options, (req, res) => {
         }
     } catch (err) {
         //cacha errores y los reenvía al invocador
-        console.log(err)
+        console.log(err);
         rep.error = err;
         res.writeHead(500);
         res.end(rep);
@@ -79,7 +79,7 @@ function log_JSON (log_stringifieable) {
 };
 
 function tag_out (rep) {
-    rep.time = new Date().toNumber() - rep.time;
+    rep.time = new Date().now() - rep.time;
     log_JSON(rep);
 }
 
