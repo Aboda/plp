@@ -5,6 +5,10 @@ html, body {
     width: 100vw;
     margin: 0;
 }
+div{
+    margin: 1.2em;
+    padding: 1.2em;
+}
 .container {
     display: flex;
     flex-flow: column;
@@ -16,13 +20,8 @@ html, body {
 .display {
     display: flex;
     flex-flow: column;
-    background-color: black;
 }
 .message {
     display: flex;
-    color: white;
     font-size: 200%;
-}
-.a {
-    background-color: white;
 }
