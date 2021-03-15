@@ -9,10 +9,10 @@ const log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", 
 
 /*
 Configuración del servidor https
-Configurado a "tener poca paciencia" no recuerda sesiones y ofrece restricciónes de 5 10 y 20 segundos para transmitir headers, contenido y para considerar una conexión muerta respectivamente
+modo "poca paciencia" no recuerda sesiones y ofrece restricciónes de 5 10 y 20 segundos para transmitir headers, contenido y para considerar una conexión muerta respectivamente
 Lo anterior sumado a un modelo de entrega de pocas llamadas pretende reducir la huella de memoria que es el recurso más limitado de la computadora gratuita
 */
-const options = {
+const server_options = {
     key: fs.readFileSync("/home/andthenbeyond/tls/privkey.pem"),
     cert: fs.readFileSync("/home/andthenbeyond/tls/fullchain.pem"),
     maxCachedSessions: 0,
@@ -21,14 +21,19 @@ const options = {
     timeout:20000
 };
 
+/*counts the number of activations and provides a ticket no*/
+var simple_counter = 0;
+
 // este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
-https.createServer(options, (req, res) => {
+https.createServer(server_options, (req, res) => {
+        simple_counter++
     try {
         var rep = {
-            "step":"creation",
+            "service_no":simple_counter,
+            "step":"rep_creation",
+            "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
             "host":req.headers.host,
-            "url":req.url,
-            "ip":req.connection.remoteAddress
+            "url":req.url            
         }
 
         try{
@@ -42,7 +47,7 @@ https.createServer(options, (req, res) => {
         }
 
         if (service_kit == undefined) {
-            rep.error = "el servidor no cuenta con un paquete de atención para el host solicitado";
+            rep.error = "no_sk_for_host";
             log_JSON(rep);
             res.writeHead(404);
             res.end(rep);
@@ -52,7 +57,7 @@ https.createServer(options, (req, res) => {
                 log_JSON(rep);
                 service_kit(req,res,rep);
             }catch(err){
-                rep.error = "ejecutando service kit";
+                rep.error = err;
                 log_JSON(rep);
                 res.writeHead(500);
                 res.end(rep);
@@ -60,7 +65,7 @@ https.createServer(options, (req, res) => {
         }
     } catch (err) {
         //cacha errores y los reenvía al invocador
-        rep.error = "error disparado en main server try";
+        rep.error = err;
         res.writeHead(500);
         res.end(rep);
     };
@@ -80,6 +85,15 @@ function assert_lng(acclngstr) {
         return "en";
     }else if (es_pos != -1 && es_pos < en_pos) {
         return "es";
+    }
+}
+
+function clean_ipv6_trail_if_present(ipv6stringshowingipv4) {
+    var ipv6_trail_position = ipv6stringshowingipv4.indexOf("::ffff:");
+    if (ipv6_trail_position != -1) {
+        return ipv6stringshowingipv4.substr(12);
+    }else{
+        return ipv6stringshowingipv4;
     }
 }
 
