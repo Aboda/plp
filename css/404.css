@@ -15,10 +15,14 @@ html, body {
 }
 .display {
     display: flex;
+    flex-flow: column;
     background-color: black;
 }
 .message {
     display: flex;
     color: white;
     font-size: 200%;
+}
+.a {
+    background-color: white;
 }
