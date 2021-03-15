@@ -222,16 +222,16 @@ var allowed_hosts = {
         };
     },
     "34.123.254.52": function (req,res,rep) {
+        rep.error = "addressed to public ip woth no indication of target host, this ip serves múltiple domains"
         log_JSON(rep);
         /* send links to proper fronts */
         if (req.method == "GET") {
             switch (req.url) {
                 default:
                     var options = {
-                        "languaje":assert_lng(req.headers["accept-language"]),
-                        "title":"No configured service",
+                        "title":"400:No Domain",
                         "css":"404",
-                        "html":"404"
+                        "html":"pubip_404"
                     };
                     res.writeHead(404);
                     res.end(html_base_creator(options));
