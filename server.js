@@ -208,6 +208,7 @@ https.createServer(options, (req, res) => {
         }else{
             try{
                 rep.step = "sk_execution";
+                log_JSON(rep);
                 service_kit(req,res,rep);
             }catch(err){
                 rep.error = "ejecutando service kit";
