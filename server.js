@@ -107,7 +107,7 @@ var allowed_hosts = {
                     rep.task = "requester data show";
                     rep.headers = req.headers;
                     res.writeHead(200);
-                    res.end (rep);
+                    res.end (JSON.stringify(rep));
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
