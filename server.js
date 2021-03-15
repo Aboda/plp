@@ -220,8 +220,8 @@ var allowed_hosts = {
                 case "/":
                     var options = {
                         "title":"Blog:Remanso Nocturno",
-                        "css":"blog_remanso",
-                        "html":"remanso",
+                        "css":"remanso",
+                        "html":"blog_remanso",
                     };
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
