@@ -21,6 +21,68 @@ const options = {
     timeout:20000
 };
 
+// este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
+https.createServer(options, (req, res) => {
+    try {
+        var rep = {
+            "step":"creation",
+            "host":req.headers.host,
+            "url":req.url,
+            "ip":req.connection.remoteAddress
+        }
+
+        try{
+            rep.step = "sk_assignation";
+            var service_kit = allowed_hosts[req.headers.host];
+        } catch (err) {
+            rep.error = "error asignando service kit";
+            log_JSON(rep);
+            res.writeHead(500);
+            res.end(rep);
+        }
+
+        if (service_kit == undefined) {
+            rep.error = "el servidor no cuenta con un paquete de atención para el host solicitado";
+            log_JSON(rep);
+            res.writeHead(404);
+            res.end(rep);
+        }else{
+            try{
+                rep.step = "sk_execution";
+                log_JSON(rep);
+                service_kit(req,res,rep);
+            }catch(err){
+                rep.error = "ejecutando service kit";
+                log_JSON(rep);
+                res.writeHead(500);
+                res.end(rep);
+            }            
+        }
+    } catch (err) {
+        //cacha errores y los reenvía al invocador
+        rep.error = "error disparado en main server try";
+        res.writeHead(500);
+        res.end(rep);
+    };
+}).listen(443);
+
+function log_JSON (log_stringifieable) {
+    if (do_log == true) {
+        log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
+    };
+};
+
+function assert_lng(acclngstr) {
+    //procesar header "accept-language":"en-US,en;q=0.9,es;q=0.8,gl;q=0.7"
+    var es_pos = acclngstr.indexOf("es");
+    var en_pos = acclngstr.indexOf("en");
+    if (en_pos != -1 && en_pos < es_pos){
+        return "en";
+    }else if (es_pos != -1 && es_pos < en_pos) {
+        return "es";
+    }
+}
+
 //Este es el ruteador, considera el dominio/subdominio primero y luego la URL antes de tomar acción
 var allowed_hosts = {
     "demian.app": function (req,res,rep) {
@@ -141,8 +203,8 @@ var allowed_hosts = {
                 case "/":
                     var crafted_html = html_base_creator({
                         "title":"Blog:Remanso Nocturno",
-                        "path":rep.path,
-                        "page":"Index",
+                        "css":"remanso",
+                        "html":"remanso",
                         "languaje":assert_lng(req.headers["accept-language"])
                     });
                     res.writeHead(200);
@@ -160,7 +222,6 @@ var allowed_hosts = {
         };
     },
     "34.123.254.52": function (req,res,rep) {
-        rep.step = "34.123.254.52 sk received request"
         log_JSON(rep);
         /* send links to proper fronts */
         if (req.method == "GET") {
@@ -168,10 +229,9 @@ var allowed_hosts = {
                 default:
                     var options = {
                         "languaje":assert_lng(req.headers["accept-language"]),
-                        "title":"specify domain",
-                        "css":"remanso",
-                        "html":"remanso",
-                        "js":"remanso"
+                        "title":"No configured service",
+                        "css":"404",
+                        "html":"404"
                     };
                     res.writeHead(404);
                     res.end(html_base_creator(options));
@@ -180,67 +240,6 @@ var allowed_hosts = {
     }
 }
 
-// este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
-https.createServer(options, (req, res) => {
-    try {
-        var rep = {
-            "step":"creation",
-            "host":req.headers.host,
-            "url":req.url,
-            "ip":req.connection.remoteAddress
-        }
-
-        try{
-            rep.step = "sk_assignation";
-            var service_kit = allowed_hosts[req.headers.host];
-        } catch (err) {
-            rep.error = "error asignando service kit";
-            log_JSON(rep);
-            res.writeHead(500);
-            res.end(rep);
-        }
-
-        if (service_kit == undefined) {
-            rep.error = "el servidor no cuenta con un paquete de atención para el host solicitado";
-            log_JSON(rep);
-            res.writeHead(404);
-            res.end(rep);
-        }else{
-            try{
-                rep.step = "sk_execution";
-                log_JSON(rep);
-                service_kit(req,res,rep);
-            }catch(err){
-                rep.error = "ejecutando service kit";
-                log_JSON(rep);
-                res.writeHead(500);
-                res.end(rep);
-            }            
-        }
-    } catch (err) {
-        //cacha errores y los reenvía al invocador
-        rep.error = "error disparado en main server try";
-        res.writeHead(500);
-        res.end(rep);
-    };
-}).listen(443);
-
-function log_JSON (log_stringifieable) {
-    if (do_log == true) {
-        log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
-    };
-};
-
-function assert_lng(acclngstr) {
-    //procesar header "accept-language":"en-US,en;q=0.9,es;q=0.8,gl;q=0.7"
-    var es_pos = acclngstr.indexOf("es");
-    var en_pos = acclngstr.indexOf("en");
-    if (en_pos != -1 && en_pos < es_pos){
-        return "en";
-    }else if (es_pos != -1 && es_pos < en_pos) {
-        return "es";
-    }
-}
 
 function html_base_creator (options) {
     log_JSON(options);
