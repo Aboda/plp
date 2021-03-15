@@ -65,6 +65,7 @@ https.createServer(server_options, (req, res) => {
         }
     } catch (err) {
         //cacha errores y los reenvía al invocador
+        console.log(err)
         rep.error = err;
         res.writeHead(500);
         res.end(rep);
