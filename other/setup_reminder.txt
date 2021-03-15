@@ -68,5 +68,10 @@
     c) expanding a certificate
     sudo certbot certonly --cert-name demian.app -d demian.app -d www.demian.app -d profesional.demian.app -d remansonocturno.com -d www.remansonocturno.com
 
-12.- Check active server logs (cloudshell reads vm)
+12.- Check active server logs 
+    (cloudshell reads vm)
     gcloud compute scp fearsome:/home/andthenbeyond/din/server_log.txt /home/andthenbeyond/server_log.txt --zone=us-central1-a --project="bi-cloud-db-core"
+    (see in vm ssh)
+    cat /home/andthenbeyond/din/server_log.txt
+    (eliminate in vm ssh)
+    rm /home/andthenbeyond/din/server_log.txt

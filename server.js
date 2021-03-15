@@ -91,7 +91,7 @@ function assert_lng(acclngstr) {
 function clean_ipv6_trail_if_present(ipv6stringshowingipv4) {
     var ipv6_trail_position = ipv6stringshowingipv4.indexOf("::ffff:");
     if (ipv6_trail_position != -1) {
-        return ipv6stringshowingipv4.substr(12);
+        return ipv6stringshowingipv4.substr(7);
     }else{
         return ipv6stringshowingipv4;
     }
