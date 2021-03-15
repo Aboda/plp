@@ -1,8 +1,7 @@
-
 var ao = {};
 function zyx(tag,thing,show){
     var default_history_length_limit = 100;
-    ost(ao,history,[]);
+    ost(ao,"history",[]);
     ao.history.push([tag,thing,show]);
     if (show){console.log(tag,thing);};
     if (ao.history.length > default_history_length_limit){
@@ -66,18 +65,18 @@ function make_node(qq) {
     if (qq.maxWidth != undefined) {node.style.maxWidth = qq.maxWidth;};
     if (qq.styles != undefined) {dress(node,qq.styles,true)};
     ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function(){
-      var handler = d.simple[this.config.id].node.remove();
-      delete d.simple[this.config.id];
+      var handler = ao.simple[this.config.id].node.remove();
+      delete ao.simple[this.config.id];
     }});
-    zyx("node created",d.simple[qq.id],false);
+    zyx("node created",ao.simple[qq.id],false);
     return node;
 }
 function aint_got_no_id(some_config_obj){
   ost(ao,"counters",{});
   ost(ao.counters,"id",0);
   if (some_config_obj.id == undefined){
-    some_config_obj.id = "aid-"+d.counters.id;
-    d.counters.id++;
+    some_config_obj.id = "aid-"+ao.counters.id;
+    ao.counters.id++;
   };
 }
 function dress(htmlelement,classarray,trueaddfalseremove){
@@ -92,7 +91,7 @@ function dress(htmlelement,classarray,trueaddfalseremove){
 }
 function toggle_vis(element) {
     var default_initial_display_state = "flex";
-    var target_handler = d.simple[element.id];
+    var target_handler = ao.simple[element.id];
   if (element.style.display === "none") {
       if (target_handler.config.prevdisplay != undefined) {
         element.style.display = target_handler.config.prevdisplay;

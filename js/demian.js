@@ -1,12 +1,8 @@
 
 window.onload = function () {
   check_load_params ();
-  if (d.lng == undefined) {
-    elige_lenguaje();
-  }else{
-    page_base();
-    plp();
-  }
+  page_base();
+  plp();
 }
 
 function check_load_params () {
@@ -17,7 +13,7 @@ function check_load_params () {
       var required_languaje = window.location.search.substring(window.location.search.indexOf("lng")+4,window.location.search.indexOf("lng")+6);
       zyx("check_load_params languaje requested:",required_languaje,true);
       if (required_languaje == "en" || required_languaje == "es") {
-        d.lng = required_languaje;
+        ao.lng = required_languaje;
       }
     }  
   }else{
