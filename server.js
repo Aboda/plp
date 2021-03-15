@@ -49,7 +49,7 @@ var allowed_hosts = {
                         "facebooksdk":true,
                         "fbid":"2076681439269297",
                         "css":"demian",
-                        "html":"demian",
+                        "html":"cliente_demian",
                         "js":"demian"
                     };
                     if (req.headers["accept-language"] != undefined) {
@@ -94,7 +94,7 @@ var allowed_hosts = {
                         "facebooksdk":true,
                         "fbid":"2076681439269297",
                         "css":"demian",
-                        "html":"demian",
+                        "html":"portfolio_demian",
                         "js":"demian"
                     };
                     if (req.headers["accept-language"] != undefined) {
@@ -139,7 +139,7 @@ var allowed_hosts = {
                         "facebooksdk":true,
                         "fbid":"2076681439269297",
                         "css":"demian",
-                        "html":"demian",
+                        "html":"blog_demian",
                         "js":"demian"
                     };
                     if (req.headers["accept-language"] != undefined) {
@@ -180,7 +180,7 @@ var allowed_hosts = {
                     var options = {
                         "title":"Miembros: Remanso Nocturno",
                         "css":"remanso",
-                        "html":"remanso",
+                        "html":"cliente_remanso",
                         "js":"remanso"
                     };
                     if (req.headers["accept-language"] != undefined) {
@@ -220,7 +220,7 @@ var allowed_hosts = {
                 case "/":
                     var options = {
                         "title":"Blog:Remanso Nocturno",
-                        "css":"remanso",
+                        "css":"blog_remanso",
                         "html":"remanso",
                     };
                     if (req.headers["accept-language"] != undefined) {
