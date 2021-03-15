@@ -50,6 +50,7 @@
     e) update changes in the future 
         (from virtual machine folder: sitiopersonal) 
         git pull origin master
+        git push -u origin master
 
         (update a single file from cloud shell) 
         gcloud compute scp /home/andthenbeyond/sitiopersonal/server.js fearsome:/home/andthenbeyond/sitiopersonal/server.js --zone=us-central1-a --project="bi-cloud-db-core"
