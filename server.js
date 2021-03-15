@@ -94,7 +94,7 @@ var allowed_hosts = {
                         "fbid":"2076681439269297",
                         "css":"demian",
                         "html":"portfolio_demian",
-                        "js":"demian"
+                        "js":["framework","demian"]
                     };
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
@@ -178,8 +178,7 @@ var allowed_hosts = {
                     var options = {
                         "title":"Miembros: Remanso Nocturno",
                         "css":"remanso",
-                        "html":"cliente_remanso",
-                        "js":"remanso"
+                        "html":"cliente_remanso"
                     };
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
