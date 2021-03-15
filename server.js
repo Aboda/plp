@@ -49,8 +49,7 @@ var allowed_hosts = {
                         "facebooksdk":true,
                         "fbid":"2076681439269297",
                         "css":"demian",
-                        "html":"cliente_demian",
-                        "js":"demian"
+                        "html":"cliente_demian"
                     };
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
@@ -139,8 +138,7 @@ var allowed_hosts = {
                         "facebooksdk":true,
                         "fbid":"2076681439269297",
                         "css":"demian",
-                        "html":"blog_demian",
-                        "js":"demian"
+                        "html":"blog_demian"
                     };
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
@@ -260,7 +258,7 @@ var allowed_hosts = {
         tag_out(rep);
     }
 }
-log_JSON({"timestamp":new Date(),"status":"allowed hosts donw, creating server"});
+log_JSON({"timestamp":new Date(),"status":"allowed hosts done, creating server"});
 // este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
 https.createServer(server_options, (req, res) => {
         simple_counter++
@@ -321,14 +319,18 @@ function tag_out (rep) {
     log_JSON(rep);
 }
 
-function assert_lng(acclngstr) {
+function assert_lng (acclngstr) {
+    var default_lang = "en";
     //procesar header "accept-language":"en-US,en;q=0.9,es;q=0.8,gl;q=0.7"
     var es_pos = acclngstr.indexOf("es");
     var en_pos = acclngstr.indexOf("en");
+
     if (en_pos != -1 && en_pos < es_pos){
         return "en";
     }else if (es_pos != -1 && es_pos < en_pos) {
         return "es";
+    }else{
+        return default_lang;
     }
 }
 
