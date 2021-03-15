@@ -30,6 +30,7 @@ https.createServer(server_options, (req, res) => {
     try {
         var rep = {
             "service_no":simple_counter,
+            "time":new Date().toNumber(),
             "step":"rep_creation",
             "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
             "host":req.headers.host,
@@ -41,24 +42,23 @@ https.createServer(server_options, (req, res) => {
             var service_kit = allowed_hosts[req.headers.host];
         } catch (err) {
             rep.error = "error asignando service kit";
-            log_JSON(rep);
+            tag_out(rep);
             res.writeHead(500);
             res.end(rep);
         }
 
         if (service_kit == undefined) {
             rep.error = "no_sk_for_host";
-            log_JSON(rep);
+            tag_out(rep);
             res.writeHead(404);
             res.end(rep);
         }else{
             try{
                 rep.step = "sk_execution";
-                log_JSON(rep);
                 service_kit(req,res,rep);
             }catch(err){
                 rep.error = err;
-                log_JSON(rep);
+                tag_out(rep);
                 res.writeHead(500);
                 res.end(rep);
             }            
@@ -76,6 +76,11 @@ function log_JSON (log_stringifieable) {
         log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
     };
 };
+
+function tag_out (rep) {
+    rep.time = new Date().toNumber() - rep.time;
+    log_JSON(rep);
+}
 
 function assert_lng(acclngstr) {
     //procesar header "accept-language":"en-US,en;q=0.9,es;q=0.8,gl;q=0.7"
@@ -108,10 +113,12 @@ var allowed_hosts = {
                     rep.headers = req.headers;
                     res.writeHead(200);
                     res.end (JSON.stringify(rep));
+                    tag_out(rep);
                 break;
                 case "/favicon.ico":
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/casa.ico"));
+                    tag_out(rep);
                 break;
                 case "/":
                     var options = {
@@ -129,12 +136,12 @@ var allowed_hosts = {
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
+                    tag_out(rep);
                 break;
                 default: 
                     rep.error = "no case for url in domain";
                     rep.action = "logging and sending 404";
                     rep.headers = req.headers;
-                    log_JSON(rep);
                     var options = {
                         "title":"404:Demian",
                         "html":"404_demian",
@@ -145,6 +152,7 @@ var allowed_hosts = {
                     };
                     res.writeHead(404);
                     res.end(html_base_creator(options));
+                    tag_out(rep);
             };
         };
     },
@@ -155,6 +163,7 @@ var allowed_hosts = {
                 case "/favicon.ico":
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/escritorio.ico"));
+                    tag_out(rep);
                 break;
                 case "/":
                     var options = {
@@ -172,12 +181,12 @@ var allowed_hosts = {
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
+                    tag_out(rep);
                 break;
                 default:
                     rep.error = "no case for url in domain";
                     rep.action = "logging and sending 404";
                     rep.headers = req.headers;
-                    log_JSON(rep);
                     var options = {
                         "title":"404:Demian",
                         "html":"404_demian",
@@ -188,6 +197,7 @@ var allowed_hosts = {
                     };
                     res.writeHead(404);
                     res.end(html_base_creator(options));
+                    tag_out(rep);
             };
         };
     },
@@ -198,6 +208,7 @@ var allowed_hosts = {
                 case "/favicon.ico":
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/blog.ico"));
+                    tag_out(rep);
                 break;
                 case "/":
                     var options = {
@@ -215,12 +226,12 @@ var allowed_hosts = {
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
+                    tag_out(rep);
                 break;
                 default:
                     rep.error = "no case for url in domain";
                     rep.action = "logging and sending 404";
                     rep.headers = req.headers;
-                    log_JSON(rep);
                     var options = {
                         "title":"404:Demian",
                         "html":"404_demian",
@@ -231,6 +242,7 @@ var allowed_hosts = {
                     };
                     res.writeHead(404);
                     res.end(html_base_creator(options));
+                    tag_out(rep);
             };
         };
     },
@@ -241,6 +253,7 @@ var allowed_hosts = {
                 case "/favicon.ico":
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/remanso.ico"));
+                    tag_out(rep);
                 break;
                 case "/":
                     var options = {
@@ -253,13 +266,13 @@ var allowed_hosts = {
                         options.languaje = assert_lng(req.headers["accept-language"])
                     };
                     res.writeHead(200);
-                    res.end(html_base_creator(options));    
+                    res.end(html_base_creator(options));
+                    tag_out(rep); 
                 break;
                 default:
                     rep.error = "no case for url in domain";
                     rep.action = "logging and sending 404";
                     rep.headers = req.headers;
-                    log_JSON(rep);
                     var options = {
                         "title":"404:Remanso Nocturno",
                         "html":"404_remanso",
@@ -270,6 +283,7 @@ var allowed_hosts = {
                     };
                     res.writeHead(404);
                     res.end(html_base_creator(options));
+                    tag_out(rep);
             };
         };
     },
@@ -280,6 +294,7 @@ var allowed_hosts = {
                 case "/favicon.ico":
                     res.writeHead(200);
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/remanso.ico"));
+                    tag_out(rep);
                 break;
                 case "/":
                     var options = {
@@ -292,12 +307,12 @@ var allowed_hosts = {
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
+                    tag_out(rep);
                 break;
                 default:
                     rep.error = "no case for url in domain";
                     rep.action = "logging and sending 404";
                     rep.headers = req.headers;
-                    log_JSON(rep);
                     var options = {
                         "title":"404:Remanso Nocturno",
                         "html":"404_remanso",
@@ -308,6 +323,7 @@ var allowed_hosts = {
                     };
                     res.writeHead(404);
                     res.end(html_base_creator(options));
+                    tag_out(rep);
             };
         };
     },
@@ -315,18 +331,17 @@ var allowed_hosts = {
         rep.error = "call to public ip without domain";
         rep.action = "logging and closing";
         rep.headers = req.headers;
-        log_JSON(rep);
         res.writeHead(400);
         res.end({"error":{
             "cause":"call addressed to server public ip with no indication of target host, this ip serves múltiple domains",
             "solution":"address domains demian.app or remansonocturno.com to be serviced"}
         });
+        tag_out(rep);
     }
 }
 
 
 function html_base_creator (options) {
-    log_JSON(options);
     var ph = "<!DOCTYPE html>";
 
     if (options.languaje == "es") {
