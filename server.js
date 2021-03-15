@@ -22,7 +22,7 @@ const server_options = {
 
 /*counts the number of activations and provides a ticket no*/
 var simple_counter = 0;
-
+log_JSON({"timestamp":new Date(),"status":"safe start finished, declaring allowed hosts"});
 //Este es el ruteador, considera el dominio/subdominio primero y luego la URL antes de tomar acción
 var allowed_hosts = {
     "demian.app": function (req,res,rep) {
@@ -260,7 +260,7 @@ var allowed_hosts = {
         tag_out(rep);
     }
 }
-
+log_JSON({"timestamp":new Date(),"status":"allowed hosts donw, creating server"});
 // este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
 https.createServer(server_options, (req, res) => {
         simple_counter++
