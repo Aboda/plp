@@ -1,7 +1,6 @@
 //Carga de modulos usados por el servidor
 const fs = require("fs");
 const https = require("https");
-const url = require("url");
 
 //Configuración del output general de loggeo a un archivo en el SO
 const do_log = true;
@@ -23,85 +22,6 @@ const server_options = {
 
 /*counts the number of activations and provides a ticket no*/
 var simple_counter = 0;
-
-// este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
-https.createServer(server_options, (req, res) => {
-        simple_counter++
-    try {
-        var rep = {
-            "service_no":simple_counter,
-            "time":new Date().getTime(),
-            "step":"rep_creation",
-            "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
-            "host":req.headers.host,
-            "url":req.url            
-        }
-
-        try{
-            rep.step = "sk_assignation";
-            var service_kit = allowed_hosts[req.headers.host];
-        } catch (err) {
-            rep.error = "error asignando service kit";
-            tag_out(rep);
-            res.writeHead(500);
-            res.end(rep);
-        }
-
-        if (service_kit == undefined) {
-            rep.error = "no_sk_for_host";
-            tag_out(rep);
-            res.writeHead(404);
-            res.end(rep);
-        }else{
-            try{
-                rep.step = "sk_execution";
-                service_kit(req,res,rep);
-            }catch(err){
-                rep.error = err;
-                tag_out(rep);
-                res.writeHead(500);
-                res.end(rep);
-            }            
-        }
-    } catch (err) {
-        //cacha errores y los reenvía al invocador
-        console.log(err);
-        rep.error = err;
-        res.writeHead(500);
-        res.end(rep);
-    };
-}).listen(443);
-
-function log_JSON (log_stringifieable) {
-    if (do_log == true) {
-        log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
-    };
-};
-
-function tag_out (rep) {
-    rep.time = new Date().getTime() - rep.time;
-    log_JSON(rep);
-}
-
-function assert_lng(acclngstr) {
-    //procesar header "accept-language":"en-US,en;q=0.9,es;q=0.8,gl;q=0.7"
-    var es_pos = acclngstr.indexOf("es");
-    var en_pos = acclngstr.indexOf("en");
-    if (en_pos != -1 && en_pos < es_pos){
-        return "en";
-    }else if (es_pos != -1 && es_pos < en_pos) {
-        return "es";
-    }
-}
-
-function clean_ipv6_trail_if_present(ipv6stringshowingipv4) {
-    var ipv6_trail_position = ipv6stringshowingipv4.indexOf("::ffff:");
-    if (ipv6_trail_position != -1) {
-        return ipv6stringshowingipv4.substr(7);
-    }else{
-        return ipv6stringshowingipv4;
-    }
-}
 
 //Este es el ruteador, considera el dominio/subdominio primero y luego la URL antes de tomar acción
 var allowed_hosts = {
@@ -341,6 +261,85 @@ var allowed_hosts = {
     }
 }
 
+// este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
+https.createServer(server_options, (req, res) => {
+        simple_counter++
+    try {
+        var rep = {
+            "service_no":simple_counter,
+            "timestamp":new Date().getTime(),
+            "step":"rep_creation",
+            "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
+            "host":req.headers.host,
+            "url":req.url            
+        }
+
+        try{
+            rep.step = "sk_assignation";
+            var service_kit = allowed_hosts[req.headers.host];
+        } catch (err) {
+            rep.error = "error asignando service kit";
+            tag_out(rep);
+            res.writeHead(500);
+            res.end(rep);
+        }
+
+        if (service_kit == undefined) {
+            rep.error = "no_sk_for_host";
+            tag_out(rep);
+            res.writeHead(404);
+            res.end(rep);
+        }else{
+            try{
+                rep.step = "sk_execution";
+                service_kit(req,res,rep);
+            }catch(err){
+                rep.error = err;
+                tag_out(rep);
+                res.writeHead(500);
+                res.end(rep);
+            }            
+        }
+    } catch (err) {
+        //cacha errores y los reenvía al invocador
+        console.log(err);
+        rep.error = err;
+        res.writeHead(500);
+        res.end(rep);
+    };
+}).listen(443);
+
+function log_JSON (log_stringifieable) {
+    if (do_log == true) {
+        log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
+    };
+};
+
+function tag_out (rep) {
+    rep.step = "released";
+    rep.duration = new Date().getTime() - rep.timestamp;
+    log_JSON(rep);
+}
+
+function assert_lng(acclngstr) {
+    //procesar header "accept-language":"en-US,en;q=0.9,es;q=0.8,gl;q=0.7"
+    var es_pos = acclngstr.indexOf("es");
+    var en_pos = acclngstr.indexOf("en");
+    if (en_pos != -1 && en_pos < es_pos){
+        return "en";
+    }else if (es_pos != -1 && es_pos < en_pos) {
+        return "es";
+    }
+}
+
+function clean_ipv6_trail_if_present(ipv6stringshowingipv4) {
+    var ipv6_trail_position = ipv6stringshowingipv4.indexOf("::ffff:");
+    if (ipv6_trail_position != -1) {
+        return ipv6stringshowingipv4.substr(7);
+    }else{
+        return ipv6stringshowingipv4;
+    }
+}
 
 function html_base_creator (options) {
     var ph = "<!DOCTYPE html>";
@@ -385,7 +384,7 @@ function html_base_creator (options) {
         ph = ph + "<script async defer crossorigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'></script>";
     }
     if (options.html == undefined) {options.html = "404";}
-    ph = ph + fs.readFileSync("/home/andthenbeyond/sitiopersonal/html/"+options.html+".html");
+    ph = ph + fs.readFileSync("/home/andthenbeyond/sitiopersonal/html/"+options.languaje+"/"+options.html+".html");
     ph = ph + "</body>";
     if (options.js != undefined) {
         ph = ph + "<script>";
