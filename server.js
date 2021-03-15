@@ -390,7 +390,7 @@ function html_base_creator (options) {
     if (options.js != undefined) {
         ph = ph + "<script>";
         for (modules of options.js) {
-            ph = ph + fs.readFileSync("/home/andthenbeyond/sitiopersonal/js/"+options.js+".js");
+            ph = ph + fs.readFileSync("/home/andthenbeyond/sitiopersonal/js/"+modules+".js");
         }
         ph = ph + "</script>";
     }
