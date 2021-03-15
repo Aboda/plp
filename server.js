@@ -242,6 +242,7 @@ function assert_lng(acclngstr) {
 }
 
 function html_base_creator (options) {
+    log_JSON(options);
     var ph = "<!DOCTYPE html>";
 
     if (options.languaje == "es") {
