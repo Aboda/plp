@@ -243,7 +243,7 @@ log_JSON({"timestamp":new Date(),"status":"allowed hosts done, creating server"}
 https.createServer(server_options, (req, res) => {
         simple_counter++
     try {
-        const sectionedurl = new URL(req.url, req.headers.host);
+        const sectionedurl = new URL(req.url, "https://"+req.headers.host+"/");
 
         var rep = {
             "service_no":simple_counter,
