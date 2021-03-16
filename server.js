@@ -231,10 +231,10 @@ var allowed_hosts = {
         rep.action = "logging and closing";
         rep.headers = req.headers;
         res.writeHead(400);
-        res.end({"error":{
+        res.end(JSON.stringify({"error":{
             "cause":"call addressed to server public ip with no indication of target host, this ip serves múltiple domains",
             "solution":"address domains demian.app or remansonocturno.com to be serviced"}
-        });
+        }));
         tag_out(rep);
     }
 }
