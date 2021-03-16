@@ -48,7 +48,7 @@ var allowed_hosts = {
                         "css":"index"
                     }
                     if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
+                        options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
@@ -65,7 +65,7 @@ var allowed_hosts = {
                     "html":"cliente_demian"
                 };
                 if (req.headers["accept-language"] != undefined) {
-                    options.languaje = assert_lng(req.headers["accept-language"])
+                    options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                 };
                 res.writeHead(200);
                 res.end(html_base_creator(options));
@@ -89,7 +89,7 @@ var allowed_hosts = {
                         "css":"index"
                     }
                     if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
+                        options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
@@ -105,7 +105,7 @@ var allowed_hosts = {
                         "js":["framework","demian"]
                     };
                     if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
+                        options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
@@ -129,7 +129,7 @@ var allowed_hosts = {
                         "css":"index"
                     };
                     if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
+                        options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
@@ -144,7 +144,7 @@ var allowed_hosts = {
                         "html":"blog_demian"
                     };
                     if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
+                        options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
@@ -168,7 +168,7 @@ var allowed_hosts = {
                         "css":"index"
                     };
                     if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
+                        options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
@@ -181,7 +181,7 @@ var allowed_hosts = {
                         "html":"cliente_remanso"
                     };
                     if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
+                        options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
@@ -205,7 +205,7 @@ var allowed_hosts = {
                         "css":"index"
                     }
                     if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
+                        options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
@@ -218,7 +218,7 @@ var allowed_hosts = {
                         "html":"blog_remanso",
                     };
                     if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
+                        options.languaje = assert_lng(req.headers["accept-language"],rep.search)
                     };
                     res.writeHead(200);
                     res.end(html_base_creator(options));
@@ -253,7 +253,7 @@ https.createServer(server_options, (req, res) => {
             "host":req.headers.host,
             "url":req.url,
             "search": sectionedurl.search,
-            "sectionedurl": sectionedurl.href
+            "pathname": sectionedurl.pathname
         }
 
         try{
@@ -303,20 +303,32 @@ function tag_out (rep) {
     log_JSON(rep);
 }
 
-function assert_lng (acclngstr) {
+function assert_lng (acclngstr,searchstring) {
     var default_lang = "en";
+    var chosen_lang;
     //procesar header "accept-language":"en-US,en;q=0.9,es;q=0.8,gl;q=0.7"
     var es_pos = acclngstr.indexOf("es");
     var en_pos = acclngstr.indexOf("en");
-
     if (en_pos != -1 && en_pos < es_pos){
-        return "en";
+        chosen_lang = "en";
     }else if (es_pos != -1 && es_pos < en_pos) {
-        return "es";
+        chosen_lang = "es";
     }else{
-        return default_lang;
+        chosen_lang = default_lang;
     }
+    //procesar parámetro ?lng=es
+    if (searchstring != "") {
+        if (searchstring.includes("lng")) {
+            var required_languaje = searchstring.substring(window.location.search.indexOf("lng")+4,searchstring.indexOf("lng")+6);
+            if (required_languaje == "en" || required_languaje == "es") {
+                chosen_lang = required_languaje;
+            }
+        }  
+    }
+    return chosen_lang;
 }
+
+
 
 function clean_ipv6_trail_if_present(ipv6stringshowingipv4) {
     var ipv6_trail_position = ipv6stringshowingipv4.indexOf("::ffff:");

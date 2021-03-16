@@ -7,21 +7,12 @@ window.onload = function () {
 
 function check_load_params () {
   zyx("loaded url",window.location,true);
+  ao.lng = document.documentElement.lang.substr(0,2);
   if (window.location.search.length > 0) {
     zyx("check_load_params search string:",window.location.search,true);
-    if (window.location.search.includes("lng")) {
-      var required_languaje = window.location.search.substring(window.location.search.indexOf("lng")+4,window.location.search.indexOf("lng")+6);
-      zyx("check_load_params languaje requested:",required_languaje,true);
-      if (required_languaje == "en" || required_languaje == "es") {
-        ao.lng = required_languaje;
-      }
-    }  
   }else{
-    //default languaje to indicated in base html if no parameter is provided
-    ao.lng = document.documentElement.lang.substr(0,2);
     zyx("check_load_params:","no search string",true);
   }
-  document.body.childNodes
 }
 
 function elige_lenguaje () {
