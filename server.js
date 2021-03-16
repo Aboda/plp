@@ -319,7 +319,7 @@ function assert_lng (acclngstr,searchstring) {
     //procesar parámetro ?lng=es
     if (searchstring != "") {
         if (searchstring.includes("lng")) {
-            var required_languaje = searchstring.substring(window.location.search.indexOf("lng")+4,searchstring.indexOf("lng")+6);
+            var required_languaje = searchstring.substring(searchstring.indexOf("lng")+4,searchstring.indexOf("lng")+6);
             if (required_languaje == "en" || required_languaje == "es") {
                 chosen_lang = required_languaje;
             }
@@ -327,8 +327,6 @@ function assert_lng (acclngstr,searchstring) {
     }
     return chosen_lang;
 }
-
-
 
 function clean_ipv6_trail_if_present(ipv6stringshowingipv4) {
     var ipv6_trail_position = ipv6stringshowingipv4.indexOf("::ffff:");
