@@ -252,7 +252,8 @@ https.createServer(server_options, (req, res) => {
             "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
             "host":req.headers.host,
             "url":req.url,
-            "searchParams": sectionedurl.searchParams
+            "searchParams": sectionedurl.searchParams,
+            "sectionedurl": sectionedurl.href
         }
 
         try{
