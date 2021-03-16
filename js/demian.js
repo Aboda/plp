@@ -21,6 +21,7 @@ function check_load_params () {
     ao.lng = document.documentElement.lang.substr(0,2);
     zyx("check_load_params:","no search string",true);
   }
+  document.body.childNodes
 }
 
 function elige_lenguaje () {

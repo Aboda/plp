@@ -41,16 +41,12 @@ var allowed_hosts = {
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/casa.ico"));
                     tag_out(rep);
                 break;
-                case "/":
+                case "/Index.html":
                     var options = {
-                        "title":"Aplicacion:Demian",
-                        "ganalytics":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "facebooksdk":true,
-                        "fbid":"2076681439269297",
-                        "css":"demian",
-                        "html":"cliente_demian"
-                    };
+                        "title":"Index:Demian",
+                        "html":"Index_demian",
+                        "css":"index"
+                    }
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
                     };
@@ -59,20 +55,21 @@ var allowed_hosts = {
                     tag_out(rep);
                 break;
                 default: 
-                    rep.error = "no case for url in domain";
-                    rep.action = "logging and sending 404";
-                    rep.headers = req.headers;
-                    var options = {
-                        "title":"404:Demian",
-                        "html":"404_demian",
-                        "css":"404"
-                    }
-                    if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
-                    };
-                    res.writeHead(404);
-                    res.end(html_base_creator(options));
-                    tag_out(rep);
+                var options = {
+                    "title":"Aplicacion:Demian",
+                    "ganalytics":true,
+                    "gtag":"G-6MEPN29LZG",
+                    "facebooksdk":true,
+                    "fbid":"2076681439269297",
+                    "css":"demian",
+                    "html":"cliente_demian"
+                };
+                if (req.headers["accept-language"] != undefined) {
+                    options.languaje = assert_lng(req.headers["accept-language"])
+                };
+                res.writeHead(200);
+                res.end(html_base_creator(options));
+                tag_out(rep);                    
             };
         };
     },
@@ -85,17 +82,12 @@ var allowed_hosts = {
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/escritorio.ico"));
                     tag_out(rep);
                 break;
-                case "/":
+                case "/Index.html":
                     var options = {
-                        "title":"Blog:Demian",
-                        "ganalytics":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "facebooksdk":true,
-                        "fbid":"2076681439269297",
-                        "css":"demian",
-                        "html":"portfolio_demian",
-                        "js":["framework","demian"]
-                    };
+                        "title":"Index:Demian",
+                        "html":"Index_demian",
+                        "css":"index"
+                    }
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
                     };
@@ -104,18 +96,18 @@ var allowed_hosts = {
                     tag_out(rep);
                 break;
                 default:
-                    rep.error = "no case for url in domain";
-                    rep.action = "logging and sending 404";
-                    rep.headers = req.headers;
                     var options = {
-                        "title":"404:Demian",
-                        "html":"404_demian",
-                        "css":"404"
-                    }
+                        "title":"PLP:Demian",
+                        "ganalytics":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "css":"demian",
+                        "html":"portfolio_demian",
+                        "js":["framework","demian"]
+                    };
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
                     };
-                    res.writeHead(404);
+                    res.writeHead(200);
                     res.end(html_base_creator(options));
                     tag_out(rep);
             };
@@ -130,15 +122,11 @@ var allowed_hosts = {
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/blog.ico"));
                     tag_out(rep);
                 break;
-                case "/":
+                case "/Index.html":
                     var options = {
-                        "title":"Blog:Demian",
-                        "ganalytics":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "facebooksdk":true,
-                        "fbid":"2076681439269297",
-                        "css":"demian",
-                        "html":"blog_demian"
+                        "title":"Index:Demian",
+                        "html":"Index_demian",
+                        "css":"index"
                     };
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
@@ -148,18 +136,17 @@ var allowed_hosts = {
                     tag_out(rep);
                 break;
                 default:
-                    rep.error = "no case for url in domain";
-                    rep.action = "logging and sending 404";
-                    rep.headers = req.headers;
                     var options = {
-                        "title":"404:Demian",
-                        "html":"404_demian",
-                        "css":"404"
+                        "title":"Blog:Demian",
+                        "ganalytics":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "css":"demian",
+                        "html":"blog_demian"
                     };
                     if (req.headers["accept-language"] != undefined) {
                         options.languaje = assert_lng(req.headers["accept-language"])
                     };
-                    res.writeHead(404);
+                    res.writeHead(200);
                     res.end(html_base_creator(options));
                     tag_out(rep);
             };
@@ -174,7 +161,20 @@ var allowed_hosts = {
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/remanso.ico"));
                     tag_out(rep);
                 break;
-                case "/":
+                case "/Index.html":
+                    var options = {
+                        "title":"Index:Remanso Nocturno",
+                        "html":"Index_remanso",
+                        "css":"index"
+                    };
+                    if (req.headers["accept-language"] != undefined) {
+                        options.languaje = assert_lng(req.headers["accept-language"])
+                    };
+                    res.writeHead(200);
+                    res.end(html_base_creator(options));
+                    tag_out(rep);
+                break;
+                default:
                     var options = {
                         "title":"Miembros: Remanso Nocturno",
                         "css":"remanso",
@@ -186,22 +186,6 @@ var allowed_hosts = {
                     res.writeHead(200);
                     res.end(html_base_creator(options));
                     tag_out(rep); 
-                break;
-                default:
-                    rep.error = "no case for url in domain";
-                    rep.action = "logging and sending 404";
-                    rep.headers = req.headers;
-                    var options = {
-                        "title":"404:Remanso Nocturno",
-                        "html":"404_remanso",
-                        "css":"404"
-                    };
-                    if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
-                    };
-                    res.writeHead(404);
-                    res.end(html_base_creator(options));
-                    tag_out(rep);
             };
         };
     },
@@ -214,7 +198,20 @@ var allowed_hosts = {
                     res.end(fs.readFileSync("/home/andthenbeyond/sitiopersonal/other/uni/remanso.ico"));
                     tag_out(rep);
                 break;
-                case "/":
+                case "/Index.html":
+                    var options = {
+                        "title":"Index:Remanso Nocturno",
+                        "html":"Index_remanso",
+                        "css":"index"
+                    }
+                    if (req.headers["accept-language"] != undefined) {
+                        options.languaje = assert_lng(req.headers["accept-language"])
+                    };
+                    res.writeHead(200);
+                    res.end(html_base_creator(options));
+                    tag_out(rep);
+                break;
+                default:
                     var options = {
                         "title":"Blog:Remanso Nocturno",
                         "css":"remanso",
@@ -224,22 +221,6 @@ var allowed_hosts = {
                         options.languaje = assert_lng(req.headers["accept-language"])
                     };
                     res.writeHead(200);
-                    res.end(html_base_creator(options));
-                    tag_out(rep);
-                break;
-                default:
-                    rep.error = "no case for url in domain";
-                    rep.action = "logging and sending 404";
-                    rep.headers = req.headers;
-                    var options = {
-                        "title":"404:Remanso Nocturno",
-                        "html":"404_remanso",
-                        "css":"404"
-                    }
-                    if (req.headers["accept-language"] != undefined) {
-                        options.languaje = assert_lng(req.headers["accept-language"])
-                    };
-                    res.writeHead(404);
                     res.end(html_base_creator(options));
                     tag_out(rep);
             };
