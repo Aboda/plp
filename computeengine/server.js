@@ -1,9 +1,9 @@
 // Carga de modulos usados por el servidor
 const fs = require("fs");
 const https = require("https");
-const plp = require("/home/andthenbeyond/sitiopersonal/computeengine/routerplp.js");
-const ren = require("/home/andthenbeyond/sitiopersonal/computeengine/routerren.js");
-const rf = require("/home/andthenbeyond/sitiopersonal/computeengine/resourcefaker.js");
+const plp = require("./routerplp.js");
+const ren = require("./routerren.js");
+const rf = require("./resourcefaker.js");
 // Configuración del output general de loggeo a un archivo en el SO, está en su propia carpeta y es de escritura pública
 const do_log = true;
 const log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", {flags : "a"});

@@ -1,5 +1,5 @@
 /* single page apps domain, check specific and send */
-var route = (req,res,rep,rf) => {
+exports.route = (req,res,rep,rf) => {
     const domain_map = {
         "demian.app":{
             "meta":{
