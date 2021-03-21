@@ -9,7 +9,7 @@ Restart=always
 User=nobody
 Group=nogroup
 WorkingDirectory=/home/andthenbeyond/
-ExecStart=/usr/bin/node /home/andthenbeyond/sitiopersonal/server.js
+ExecStart=/usr/bin/node /home/andthenbeyond/sitiopersonal/computeengine/server.js
 StartLimitInterval=3
 StartLimitBurst=1
 
