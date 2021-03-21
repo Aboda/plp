@@ -251,7 +251,7 @@ exports.route = (req,res,rep,rf) => {
                     "html":hc
                 }
                 res.writeHead(200);
-                res.end(rf(options));
+                res.end(rf.craft(options));
             }
         },
         "/robots.txt":{
@@ -262,7 +262,7 @@ exports.route = (req,res,rep,rf) => {
                     "target":"https://www.remansonocturno.com/sitemap.xml"
                 }
                 res.writeHead(200);
-                res.end(rf(options));
+                res.end(rf.craft(options));
             }
         },
         "/sitemap.txt":{
@@ -273,7 +273,7 @@ exports.route = (req,res,rep,rf) => {
                     "domain_map":domain_map
                 }
                 res.writeHead(200);
-                res.end(rf(options));
+                res.end(rf.craft(options));
             }
         }
     };
@@ -302,7 +302,7 @@ exports.route = (req,res,rep,rf) => {
                             "html":"<h1>"+domain_or_subdomain.routes[rep.pathname].meta.short[rep.languaje]+"</h1>"
                         }
                         res.writeHead(200);
-                        res.end(rf(options));
+                        res.end(rf.craft(options));
                         served = true;
                         break;
                     }
@@ -318,7 +318,7 @@ exports.route = (req,res,rep,rf) => {
                             "html":"<h1>"+languajed_errors[rep.languaje]+"</h1>"
                         }
                         res.writeHead(404);
-                        res.end(rf(options));
+                        res.end(rf.craft(options));
                         served = true;
                         break;
                     }                    

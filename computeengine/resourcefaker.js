@@ -1,5 +1,5 @@
 
-(options) => {
+exports.craft = (options) => {
     if (options.type == "html") {
         var ph = "<!DOCTYPE html>\n";
         if (options.languaje == "es") {
