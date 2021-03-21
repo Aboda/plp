@@ -24,6 +24,7 @@ const server_options = {
 };
 // Usado para asociar la solicitud con su ruteador de dominio correcto
 const valid_domains = {"demian.app":plp,"remansonocturno.com":ren};
+console.log(valid_domains);
 // Cuenta el número de llamadas recibidas desde el arranque del servidor
 var simple_counter = 0;
 // Este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
