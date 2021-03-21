@@ -71,7 +71,7 @@ exports.route = (req,res,rep,rf,fs) => {
     const domain_wide = {
         "/favicon.ico":{
             "action":"direct_file",
-            "path":"/home/andthenbeyond/sitiopersonal/cloudbucket/sha/blog.ico"
+            "path":"/home/andthenbeyond/sitiopersonal/computeengine/blog.ico"
         },
         "/index.html":{
             "action":"calculate",
