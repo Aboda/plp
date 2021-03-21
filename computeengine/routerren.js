@@ -1,5 +1,5 @@
 /* blog with social area */
-exports.route = (req,res,rep,rf) => {
+exports.route = (req,res,rep,rf,fs) => {
     var served = false;
 
     const title_langopts = {
