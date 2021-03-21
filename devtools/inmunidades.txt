@@ -1,0 +1,26 @@
+This system is immune to:
+
+
+https://owasp.org/www-community/attacks/Path_Traversal
+
+    We do not use any automated fileserver, every call is screened for precise options and discarded if it does not conform
+ej. https://demian.app/index.html, https://www.demian.app/index.html and https://profesional.demian.app/index.html is a precise match check on the server
+in a first step it identifies the domain and the requested resource
+if the domain is valid it checks agains a finite and safe table of resources by precise string comparison for /index.html as the resource
+finally it serves a resource based on additional parameters like the prefferred languaje headers from a javascript that assembles the content
+
+any additional parameter will be ignored or result in a 404
+so https://demian.app/index.html?param=val#stuff:things@objects will only address the /index.html and ignore the rest while
+https://demian.app/../index.html will result in a 404
+there are no resources available other than those explicitly specified in the server file
+
+https://owasp.org/www-community/attacks/SQL_Injection
+
+    We do not use sql and we do not pass user input to any evaluable field in the pure javascript environment.
+More often than not the process is to have an object with specific preset options to which the input is compared
+Second most common scenario are switches, there is very little sentence analysis or any other free input method.
+
+Cross site scripting
+
+"non-validated user-supplied data included in the resulting page without proper HTML encoding"
+this has to be a clause that we are ever aware of, in user input fields there must not be any amount of html sintax

@@ -1,0 +1,4 @@
+# Group 1
+User-agent: *
+Allow: /
+Sitemap: https://www.demian.app/sitemap.xml

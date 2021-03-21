@@ -1,0 +1,49 @@
+Google SDK commands involved in habilitating a basic front server with google cloud functions as backend.
+-- setup reminder: where the Compute Engine and the Cloud Bucket already exist, the dev environment is a physical computer with windows, google sdk, visual studio code, node and git the server is a micro f1 with ubuntu, google sdk, certbot, node and git.
+
+At this point in time we already have a Let´sEncrypt certificate for 2 domains and 3 subdomains which we will use to deploy a few projects.
+
+Cloud Bucket
+  content that will be read by the google cloud functions
+  experience says this content cannot be expected to update immediately perhaps due to CDNs (even when "deactivated")
+  the main use for this is storage of static contents
+
+Cloud functions
+  this is expected to assemble the html for each request
+  it is domain especific and will hold in the function definition most of its templates
+  it will read from cloud buckets when necessary for non time sensitive tasks
+  it will receive user especific information provided by the node server on initial evaluation
+
+Compute Engine
+  trough domain centered handling functions route all requests to cloud functions and pipe its responses back
+  measure and control the thoroughput of this task as measured control of it is the key to asses growth needs
+  in special scenarios, store or read information from the cloud bucket regarding state beyond current execution
+  consider yourself one of many possible nodes and work in awareness of eventual consistency
+
+Dev Tools
+  Node is also working on the dev computer, you can automate code handing with .js scripts local to the dev environment
+  Consider creating an ordered way to make notes regarding the development, with the idea of graphing out your work
+  For the previous idea you could learn to pull data from git to build timelines or what not
+
+Cloud Repositories
+  It is intended to store the entire project save for:
+    TSL information - this is handled in the actual server computer on a folder next to the project and to which the project has read access
+    Log information - this is handled in the actual server computer on a folder next to the project and to which the project has write access
+    (these are different folders)
+    Media - this is handled by a Google Cloud Bucket   
+    
+    
+
+Why all of this ?
+
+While in the current state of development it might be a better idea to only work in the VM and "ignore" all the cloud tools.
+
+However I think that I can aspire to create not a barebones window into the internet but instead a solid base for future endeavors.
+
+If I am to become a manager for great complex software structures I can´t shy away from the complexities of cloud development.
+
+There is a hard limit on what you can do on a vertically scaling system, on top of the extraordinarily premium cost that might come along with it.
+
+If my work is to be more than a prototype, I need to understand more about the capabilities of the most modern tools and their contrast to traditional methodology.
+
+So I am taking this leap of faith to learn and do something with that knowledge. 
