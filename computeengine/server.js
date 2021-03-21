@@ -52,7 +52,7 @@ https.createServer(server_options, (req, res) => {
             if (req.headers.host.indexOf(domain) != -1) {
                 found = true;
                 rep.step = "out_to_router";
-                valid_domains[domain](req,res,rep,rf);
+                valid_domains[domain].route(req,res,rep,rf);
                 rep.step = "complete_without_errors";
                 tag_out(rep);
                 break;

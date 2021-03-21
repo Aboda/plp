@@ -1,5 +1,5 @@
 /* blog with social area */
-(req,res,rep,rf) => {
+var route = (req,res,rep,rf) => {
     var served = false;
 
     const title_langopts = {
