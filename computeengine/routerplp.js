@@ -295,7 +295,7 @@ exports.route = (req,res,rep,rf) => {
         if (served != true) {
             for (var domain_or_subdomain in domain_map) {
                 if (rep.host == domain_or_subdomain) {
-                    if (domain_or_subdomain.routes[rep.pathname] != undefined) {
+                    if (domain_map[domain_or_subdomain].routes[rep.pathname] != undefined) {
                         const options = {
                             "type":"html",
                             "languaje":rep.languaje,
