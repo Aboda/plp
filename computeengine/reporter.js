@@ -10,11 +10,11 @@ exports.spawn = () => {
             this.rep_sh = this.rep_sh + "<div>Decided languaje: "+rep.languaje+"</div>\n";
             this.rep_sh = this.rep_sh + "<div>Requested host: "+rep.host+"</div>\n";
             this.rep_sh = this.rep_sh + "<div>Method: "+rep.method+"</div>\n";
-            action_no++
+            this.action_no++
         },
         "tag": function (tag) {
-            this.rep_sh = this.rep_sh + "<div>proc_tag "+action_no+" : "+tag+"</div>\n";
-            action_no++
+            this.rep_sh = this.rep_sh + "<div>proc_tag "+this.action_no+" : "+tag+"</div>\n";
+            this.action_no++
         },
         "end_by_error": function (tagstring,rf) {
             return rf.craft({
