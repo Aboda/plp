@@ -15,7 +15,7 @@
 
 8.- daemonization of node process to remain up while the computer is up*
     a) from virtual machine after .service file upload
-        sudo cp -f /home/andthenbeyond/sitiopersonal/plp.service /etc/systemd/system/plp.service
+        sudo cp -f /home/andthenbeyond/sitiopersonal/computeengine/plp.service /etc/systemd/system/plp.service
     
     b) daemonization controls
         systemctl status plp.service

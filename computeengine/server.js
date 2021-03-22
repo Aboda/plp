@@ -59,8 +59,6 @@ https.createServer(server_options, (req, res) => {
             }
         }
         if (found == false) {
-            rep.no_service = true;
-            rep.headers = req.headers;
             const html_langopts = {
                 "es":"<p>Si no eres redirigido en cinco segundos, <a href='https://profesional.demian.app/'>haz click aqui</a>.</p>",
                 "en":"<p>If you are not redirected in five seconds, <a href='https://profesional.demian.app/'>click here</a>.</p>"
@@ -72,29 +70,34 @@ https.createServer(server_options, (req, res) => {
                 "delay":5,
                 "target":"https://profesional.demian.app",
                 "languaje":rep.languaje,
-                "html":html_langopts[rep.languaje]
+                "html":html_langopts[rep.languaje],
+                "robo":false
             }
             res.writeHead(300);
-            res.end(rf(options));
-            rep.step = "redirect_to_property";
+            res.end(rf.craft(options));
+            rep.step = "no_domain_match_redirect";
+            rep.headers = req.headers;
             tag_out(rep);
         }        
         //cacha errores y los reenvía al invocador
     } catch (err) {
         //se agrega el error al reporte de loggeo
-        rep.error = err;
+        rep.error = JSON.stringify(err);
         //se agregan los cabezales al reporte de loggeo
         rep.headers = req.headers;
-        //indica paso para fácil búsqueda
-        rep.step = "";
+        //se avisa de un error interno en el servidor
+        res.writeHead(500);
+        //se devuelve el reporte junto con el error
+        res.end(rf.craft({
+            "type":"html",
+            "title":"500",
+            "robo":false,
+            "html":"<p>Error procesando solicitud, revise URL e intente de nuevo</p>"
+        }));
         //marca duración de la atención y loggea en os de ser verdadera la variable do_log
         tag_out(rep);
         //para alimentar stdout o cuando se está ejecutando el proceso manualmente    
         console.log(rep);
-        //se avisa de un error interno en el servidor
-        res.writeHead(500);
-        //se devuelve el reporte junto con el error
-        res.end(JSON.stringify(rep));
     };
 }).listen(443);
 //loggea JSON a un archivo en el os si el parámetro global está activado
