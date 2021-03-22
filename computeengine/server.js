@@ -4,6 +4,7 @@ const https = require("https");
 const plp = require("./routerplp.js");
 const ren = require("./routerren.js");
 const rf = require("./resourcefaker.js");
+const porter = require("./reporter.js");
 // Configuración del output general de loggeo a un archivo en el SO, está en su propia carpeta y es de escritura pública
 const do_log = true;
 const log_file = fs.createWriteStream("/home/andthenbeyond/din/server_log.txt", {flags : "a"});
@@ -47,12 +48,15 @@ https.createServer(server_options, (req, res) => {
             "search": sectionedurl.search.toLowerCase(),
             "pathname": sectionedurl.pathname.toLowerCase()
         }
+        var html_error_reporter = porter.spawn();
+        html_error_reporter.start(rep);
         var found = false;
         for (domain in valid_domains) {
             if (req.headers.host.indexOf(domain) != -1) {
                 found = true;
                 rep.step = "out_to_router";
-                valid_domains[domain].route(req,res,rep,rf,fs);
+                html_error_reporter.tag("out_to_router");
+                valid_domains[domain].route(req,res,rep,rf,fs,html_error_reporter);
                 rep.step = "complete_without_errors";
                 tag_out(rep);
                 break;
@@ -88,12 +92,7 @@ https.createServer(server_options, (req, res) => {
         //se avisa de un error interno en el servidor
         res.writeHead(500);
         //se devuelve el reporte junto con el error
-        res.end(rf.craft({
-            "type":"html",
-            "title":"500",
-            "robo":false,
-            "html":"<p>Error procesando solicitud, revise URL e intente de nuevo</p>"
-        }));
+        res.end(html_error_reporter.end_by_error("general_error_catcher",rf));
         //marca duración de la atención y loggea en os de ser verdadera la variable do_log
         tag_out(rep);
         //para alimentar stdout o cuando se está ejecutando el proceso manualmente    

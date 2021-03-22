@@ -286,7 +286,8 @@ const domain_wide = {
     }
 };
 
-exports.route = (req,res,rep,rf,fs) => {
+exports.route = (req,res,rep,rf,fs,porter) => {
+    porter.tag("demian.app router catch");
     var served = false;
     if (req.method == "GET") {
        if (served != true) {
@@ -302,6 +303,7 @@ exports.route = (req,res,rep,rf,fs) => {
         */
             for (var dom_wide_opt in domain_wide) {
                 if (rep.pathname == dom_wide_opt) {
+                    porter.tag("catched on domain wide");
                     if (domain_wide[rep.pathname].action == "calculate") {
                         domain_wide[rep.pathname].formula(domain_map)
                     }else if (domain_wide[rep.pathname].action == "direct_file") {
@@ -312,10 +314,12 @@ exports.route = (req,res,rep,rf,fs) => {
                     break;
                 }
             }
+            porter.tag("failed domain_wide catch");
         }
         if (served != true) {
             for (var domain_or_subdomain in domain_map) {
                 if (rep.host == domain_or_subdomain) {
+                    porter.tag("catched on domain_or_subdomain");
                     /*
                         este es el lugar donde se lanzará la evaluación del recurso solicitado cuando este sea una url o bien de los parámetros específicos de búsqueda
                         de momento solo está configurado para mostrar lo que se encuentra en el domain_map que en realidad está destinado para el indice sitemaps y robots
@@ -350,6 +354,7 @@ exports.route = (req,res,rep,rf,fs) => {
                     }                    
                 }
             }
+            porter.tag("failed_domains_catch");
         }
     }
 }
