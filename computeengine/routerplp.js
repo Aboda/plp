@@ -237,7 +237,10 @@ const domain_wide = {
             var hc = "<h1>PLP:Demian</h1>\n";
 
             for (var domnsub in domain_map.routes) {
+                porter.tag("checking: "+domnsub);
+                porter.tag("domain_map.routes[domnsub].meta.index: "+domain_map.routes[domnsub].meta.index);
                 if (domain_map.routes[domnsub].meta.index == true) {
+                    porter.tag("building: "+domnsub);
                     hc = hc + "<div>\n";
                     hc = hc + domain_map.routes[domnsub].meta.short[rep.languaje]+"\n";
                     hc = hc + "<a href='"+domain_map.routes[domnsub].meta.loc+"'>"+domain_map.routes[domnsub].meta.loc+"</a>\n";
