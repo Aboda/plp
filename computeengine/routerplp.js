@@ -3,19 +3,21 @@ exports.route = (req,res,rep,rf,fs) => {
     var served = false;
     const domain_map = {
         "demian.app":{
-            "meta":{
-                "short":{
-                    "es":"Plataforma de aplicaciones",
-                    "en":"Application platform"
-                },
-                "loc":"https://demian.app/",
-                "updfreq":"daily",
-                "sitemap":true,
-                "index":true,
-                "robots":true,
-                "priority":0.3
-            },
             "routes":{
+                "/":{
+                    "meta":{
+                        "short":{
+                            "es":"Plataforma de aplicaciones",
+                            "en":"Application platform"
+                        },
+                        "loc":"https://demian.app/",
+                        "updfreq":"daily",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.3
+                    },
+                },
                 "conavi":{
                     "meta":{
                         "short":{
@@ -103,59 +105,67 @@ exports.route = (req,res,rep,rf,fs) => {
             }
         },
         "www.demian.app":{
-            "meta":{
-                "short":{
-                    "es":"Blog de tecnología",
-                    "en":"Tech blog"
-                },
-                "loc":"https://demian.app/",
-                "updfreq":"weekly",
-                "sitemap":true,
-                "index":true,
-                "robots":true,
-                "priority":0.6
-            },
             "routes":{
+                "/":{
+                    "meta":{
+                        "short":{
+                            "es":"Blog de tecnología",
+                            "en":"Tech blog"
+                        },
+                        "loc":"https://demian.app/",
+                        "updfreq":"weekly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.6
+                    }
+                },
                 "estat":{
-                    "short":{
-                        "es":"Contenido estático del blog",
-                        "en":"Blog static content"
-                    },
-                    "loc":"https://www.demian.app/estat/",
-                    "updfreq":"weekly",
-                    "sitemap":true,
-                    "index":true,
-                    "robots":true,
-                    "priority":0.5
+                    "meta":{
+                        "short":{
+                            "es":"Contenido estático del blog",
+                            "en":"Blog static content"
+                        },
+                        "loc":"https://www.demian.app/estat/",
+                        "updfreq":"weekly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5
+                    }
                 },
                 "dinam":{
-                    "short":{
-                        "es":"Contenido dinámico del blog",
-                        "en":"Blog dynamic content"
-                    },
-                    "loc":"https://www.demian.app/dinam/",
-                    "updfreq":"always",
-                    "sitemap":true,
-                    "index":true,
-                    "robots":true,
-                    "priority":0.4
-                },
+                    "meta":{
+                        "short":{
+                            "es":"Contenido dinámico del blog",
+                            "en":"Blog dynamic content"
+                        },
+                        "loc":"https://www.demian.app/dinam/",
+                        "updfreq":"always",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.4
+                    }                    
+                }
             }
         },
         "profesional.demian.app":{
-            "meta":{
-                "short":{
-                    "es":"Portafolio laboratorio personal",
-                    "en":"Personal lab portfolio"
-                },
-                "loc":"https://demian.app/",
-                "updfreq":"monthly",
-                "sitemap":true,
-                "index":true,
-                "robots":true,
-                "priority":0.6
-            },
             "routes":{
+                "/":{
+                    "meta":{
+                        "short":{
+                            "es":"Portafolio laboratorio personal",
+                            "en":"Personal lab portfolio"
+                        },
+                        "loc":"https://demian.app/",
+                        "updfreq":"monthly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.6
+                    }
+                },
                 "google":{
                     "meta":{
                         "short":{
@@ -279,27 +289,34 @@ exports.route = (req,res,rep,rf,fs) => {
     };
     
     if (req.method == "GET") {
-        for (var dom_wide_opt in domain_wide) {
-            if (rep.pathname == dom_wide_opt) {
-                if (domain_wide[rep.pathname].action == "calculate") {
-                    domain_wide[rep.pathname].formula(domain_map)
-                }else if (domain_wide[rep.pathname].action == "direct_file") {
-                    res.writeHead(200);
-                    res.end(fs.readFileSync(domain_wide[rep.pathname].path));
+        if (served != true) {
+            for (var dom_wide_opt in domain_wide) {
+                if (rep.pathname == dom_wide_opt) {
+                    if (domain_wide[rep.pathname].action == "calculate") {
+                        domain_wide[rep.pathname].formula(domain_map)
+                    }else if (domain_wide[rep.pathname].action == "direct_file") {
+                        res.writeHead(200);
+                        res.end(fs.readFileSync(domain_wide[rep.pathname].path));
+                    }
+                    served = true;
+                    break;
                 }
-                served = true;
-                break;
             }
         }
 
         if (served != true) {
             for (var domain_or_subdomain in domain_map) {
                 if (rep.host == domain_or_subdomain) {
+                    /*
+                        este es el lugar donde se lanzará la evaluación del recurso solicitado cuando este sea una url o bien de los parámetros específicos de búsqueda
+                        de momento solo está configurado para mostrar lo que se encuentra en el domain_map que en realidad está destinado para el indice sitemaps y robots
+                        pero en lo que se hacen las páginas pruebo así que se pueda hacer la entrega y evaluación segmentada.
+                    */
                     if (domain_map[domain_or_subdomain].routes[rep.pathname] != undefined) {
                         const options = {
                             "type":"html",
                             "languaje":rep.languaje,
-                            "html":"<h1>"+domain_or_subdomain.routes[rep.pathname].meta.short[rep.languaje]+"</h1>"
+                            "html":"<h1>"+domain_map[domain_or_subdomain].routes[rep.pathname].meta.short[rep.languaje]+"</h1>"
                         }
                         res.writeHead(200);
                         res.end(rf.craft(options));
