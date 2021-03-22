@@ -1,5 +1,6 @@
 exports.spawn = () => {
     return {
+        "action_no":0,
         "rep_sh":"",
         "start": function (rep) {
             this.rep_sh = this.rep_sh + "<div>Service number: "+rep.service_no+"</div>\n";
@@ -9,9 +10,11 @@ exports.spawn = () => {
             this.rep_sh = this.rep_sh + "<div>Decided languaje: "+rep.languaje+"</div>\n";
             this.rep_sh = this.rep_sh + "<div>Requested host: "+rep.host+"</div>\n";
             this.rep_sh = this.rep_sh + "<div>Method: "+rep.method+"</div>\n";
+            action_no++
         },
         "tag": function (tag) {
-            this.rep_sh = this.rep_sh + "<div>proc_tag: "+tag+"</div>\n";
+            this.rep_sh = this.rep_sh + "<div>proc_tag "+action_no+" : "+tag+"</div>\n";
+            action_no++
         },
         "end_by_error": function (tagstring,rf) {
             return rf.craft({
