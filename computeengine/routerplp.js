@@ -290,6 +290,7 @@ exports.route = (req,res,rep,rf,fs,porter) => {
     porter.tag("demian.app router catch");
     var served = false;
     if (req.method == "GET") {
+        porter.tag("router GET route");
        if (served != true) {
         /*
             para llegar a este punto se ha validado el domain como demian.app, solicitudes a este o sus subdominios www y profesional reciben respuestas
@@ -301,6 +302,7 @@ exports.route = (req,res,rep,rf,fs,porter) => {
             domain wide se habilita inicialmente de forma tentativa para lograr que todos los dominios y subdominios conduzcan a un indice central.
             conforme sub indices más precisos se construyan se tendrá que cambiar la lógica para ellos, pero robots y sitemap pueden permanecer en esta dinamica
         */
+            porter.tag("testing domain_wide catch");
             for (var dom_wide_opt in domain_wide) {
                 if (rep.pathname == dom_wide_opt) {
                     porter.tag("catched on domain wide");
