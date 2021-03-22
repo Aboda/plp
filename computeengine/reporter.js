@@ -16,7 +16,12 @@ exports.spawn = () => {
             this.rep_sh = this.rep_sh + "<div>proc_tag "+this.action_no+" : "+tag+"</div>\n";
             this.action_no++
         },
+        "insert": function (html) {
+            this.rep_sh = this.rep_sh + html + "\n";
+            this.action_no++
+        },
         "end_by_error": function (tagstring,rf) {
+            this.rep_sh = this.rep_sh + "<div>end_tag: "+tagstring+"</div>\n";
             return rf.craft({
                 "type":"html",
                 "title":"porter",

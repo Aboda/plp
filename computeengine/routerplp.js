@@ -245,7 +245,9 @@ const domain_wide = {
                 }
             }
 
-            porter.tag("index cycles completed")
+            porter.tag("index cycles completed");
+            
+            porter.insert(hc);
 
             const options = {
                 "type":"html",
@@ -253,7 +255,7 @@ const domain_wide = {
                 "title":"PLP:Demian",
                 "html":hc
             }
-            
+
             res.writeHead(200);
             res.end(rf.craft(options));
         }
