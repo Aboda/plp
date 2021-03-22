@@ -233,34 +233,27 @@ const domain_wide = {
     "/index.html":{
         "action":"calculate",
         "formula": (domain_map,res,rf,porter) => {
-            porter.tag("executing index formula")
+            porter.tag("executing index formula");
             var hc = "<h1>PLP:Demian</h1>\n";
-            for (var domnsub in domain_map) {
-                if (domain_map[domnsub].meta.index == true) {
+
+            for (var domnsub in domain_map.routes) {
+                if (domain_map.routes[domnsub].meta.index == true) {
                     hc = hc + "<div>\n";
-                    hc = hc + domain_map[domnsub].meta.short[rep.languaje]+"\n";
-                    hc = hc + "<a href='"+domain_map[domnsub].meta.loc+"'>"+domain_map[domnsub].meta.loc+"</a>\n";
+                    hc = hc + domain_map.routes[domnsub].meta.short[rep.languaje]+"\n";
+                    hc = hc + "<a href='"+domain_map.routes[domnsub].meta.loc+"'>"+domain_map.routes[domnsub].meta.loc+"</a>\n";
                     hc = hc + "</div>\n";
-                }                    
-                if (domain_map[domnsub].routes != undefined) {
-                    porter.tag("subroutes found on "+domnsub);
-                    for (var sub_route in domain_map[domnsub].routes) {
-                        if (domain_map[domnsub].routes[sub_route].meta.index == true) {
-                            hc = hc + "<div>\n";
-                            hc = hc + domain_map[domnsub].routes[sub_route].meta.short[rep.languaje]+"\n";
-                            hc = hc + "<a href='"+domain_map[domnsub].routes[sub_route].meta.loc+"'>"+domain_map[domnsub].routes[sub_route].meta.loc+"</a>\n";
-                            hc = hc + "</div>\n";
-                        }
-                    }
                 }
             }
+
             porter.tag("index cycles completed")
+
             const options = {
                 "type":"html",
                 "languaje":rep.languaje,
                 "title":"PLP:Demian",
                 "html":hc
             }
+            
             res.writeHead(200);
             res.end(rf.craft(options));
         }
