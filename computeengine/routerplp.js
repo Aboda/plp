@@ -232,7 +232,8 @@ const domain_wide = {
     },
     "/index.html":{
         "action":"calculate",
-        "formula": (domain_map,res,rf) => {
+        "formula": (domain_map,res,rf,porter) => {
+            porter.tag("executing index formula")
             var hc = "<h1>PLP:Demian</h1>\n";
             for (var domnsub in domain_map) {
                 if (domain_map[domnsub].meta.index == true) {
@@ -242,6 +243,7 @@ const domain_wide = {
                     hc = hc + "</div>\n";
                 }                    
                 if (domain_map[domnsub].routes != undefined) {
+                    porter.tag("subroutes found on "+domnsub);
                     for (var sub_route in domain_map[domnsub].routes) {
                         if (domain_map[domnsub].routes[sub_route].meta.index == true) {
                             hc = hc + "<div>\n";
@@ -252,6 +254,7 @@ const domain_wide = {
                     }
                 }
             }
+            porter.tag("index cycles completed")
             const options = {
                 "type":"html",
                 "languaje":rep.languaje,
@@ -264,7 +267,7 @@ const domain_wide = {
     },
     "/robots.txt":{
         "action":"calculate",
-        "formula": (domain_map,res,rf) => {
+        "formula": (domain_map,res,rf,porter) => {
             const options = {
                 "type":"robots",
                 "target":"https://www.remansonocturno.com/sitemap.xml"
@@ -275,7 +278,7 @@ const domain_wide = {
     },
     "/sitemap.xml":{
         "action":"calculate",
-        "formula": (domain_map,res,rf) => {
+        "formula": (domain_map,res,rf,porter) => {
             const options = {
                 "type":"sitemap",
                 "domain_map":domain_map
@@ -308,7 +311,7 @@ exports.route = (req,res,rep,rf,fs,porter) => {
                     porter.tag("catched on domain wide");
                     if (domain_wide[rep.pathname].action == "calculate") {
                         porter.tag("working calculation for "+rep.pathname);
-                        domain_wide[rep.pathname].formula(domain_map,res,rf)
+                        domain_wide[rep.pathname].formula(domain_map,res,rf,porter)
                     }else if (domain_wide[rep.pathname].action == "direct_file") {
                         porter.tag("working calculation");
                         res.writeHead(200);
