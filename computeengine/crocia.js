@@ -738,9 +738,10 @@ function valid_resource (easyurl,domain_tree) {
         return true;
     };
     var adjusted = adjust_path(easyurl.pathname);
-    if (easyurl.pathname == "index.html" ||
-        easyurl.pathname == "robots.txt" ||
-        easyurl.pathname == "sitemap.xml" ){
+    if (adjusted == "favicon.ico" ||
+        adjusted == "index.html" ||
+        adjusted == "robots.txt" ||
+        adjusted == "sitemap.xml" ){
         return true;
     };
     if (domain_tree[easyurl.host].astra[easyurl.pathname] != undefined) {
