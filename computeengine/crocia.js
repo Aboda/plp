@@ -804,13 +804,15 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     */
     var hc = "<h1>"+common_messages.index[chosen_lng] +
     root_dom.meta.cool[chosen_lng]+"</h1>\n";
-    
+
     for (var entry in party_members) {
+        hc = hc + "handbrake 1";
         if (domain_name == entry) {
             hc = hc + index_div(party_members[entry].meta,chosen_lng,true);
         }else{
             hc = hc + index_div(party_members[entry].meta,chosen_lng);
         }
+        hc = hc + "handbrake 2";
         for (var route in party_members[entry].astra) {
             hc = hc + index_div(party_members[entry].astra[route].meta,chosen_lng);
         }
