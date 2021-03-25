@@ -58,7 +58,6 @@ exports.html = (options,chosen_lng) => {
     if (options.css != undefined) {
         ph = ph + "<style>\n";
         for (modules of options.css) {
-            console.log("cargando modulo css\n",modules);
             ph = ph + modules+"\n";
         }
         ph = ph + "</style>\n";
@@ -79,13 +78,13 @@ exports.html = (options,chosen_lng) => {
         ph = ph + "<script async defer crossorigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'></script>\n";
     }
     if (options.html != undefined) {
+        console.log("cargando modulo html\n",options.html);
         ph = ph + options.html;
     }
     ph = ph + "</body>\n";
     if (options.js != undefined) {
         ph = ph + "<script>\n";
         for (modules of options.js) {
-            console.log("cargando modulo js\n",modules);
             ph = ph + modules+"\n";
         }
         ph = ph + "</script>\n";
