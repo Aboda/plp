@@ -609,6 +609,10 @@ const common_messages = {
     "index":{
         "es":"<p class='color_contrast_2'>Indice del dominio:</p>\n",
         "en":"<p class='color_contrast_2'>Domain index:</p>\n"
+    },
+    "here":{
+        "es":"Usted está aquí\n",
+        "en":"You are here\n"
     }
 }
 /*
@@ -806,13 +810,11 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     root_dom.meta.cool[chosen_lng]+"</h1>\n";
 
     for (var entry in party_members) {
-        hc = hc + "handbrake 1";
         if (domain_name == entry) {
             hc = hc + index_div(party_members[entry].meta,chosen_lng,true);
         }else{
             hc = hc + index_div(party_members[entry].meta,chosen_lng);
         }
-        hc = hc + "handbrake 2";
         for (var route in party_members[entry].astra) {
             hc = hc + index_div(party_members[entry].astra[route].meta,chosen_lng);
         }
@@ -821,10 +823,11 @@ function build_index(domain_tree,domain_name,chosen_lng) {
 }
 
 function index_div (object_meta,chosen_lng,mark) {
-    var dc;
+    var dc = "";
     if (object_meta.index == true) {
         if (mark == true){
             dc = dc + "<div class='color_contrast_2'>\n";
+            dc = dc + common_messages.here[chosen_lng]+"\n";
         }else{
             dc = dc + "<div>\n";
         }        
