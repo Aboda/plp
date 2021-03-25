@@ -11,6 +11,15 @@ exports.clean_ipv6_trail_if_present = (ipv6stringshowingipv4) => {
         return ipv6stringshowingipv4;
     }
 }
+exports.adjust_path = (pathname) => {
+    if (pathname[pathname.length -1] == "/") {
+        pathname = pathname.substring(0,pathname.length -1);
+    }
+    if (pathname[0] == "/") {
+        pathname = pathname.substring(1,adjusted.length)
+    }
+    return pathname;
+}
 //Crea html + css + js con convenciones y opciones indicadas
 exports.html = (options,chosen_lng) => {
     /*

@@ -657,6 +657,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         var served = false;
         var chosen_domain = domain_tree[req.headers.host];
         var crafted_content;
+        var adjusted_path = akhenon.adjust_path(easyurl.pathname);
         if (chosen_domain != undefined && easyurl.pathname == "/") {
             var options = akhenon.copy_obj(chosen_domain.intra);
             options.languaje = chosen_lng; 
@@ -665,11 +666,11 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             served = true;
             finish_request (res,200,akhenon.html(options));
         };
-        if (chosen_domain != undefined && easyurl.pathname == "/favicon.ico") {
+        if (chosen_domain != undefined && adjusted_path == "favicon.ico") {
             served = true;
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
         };
-        if (chosen_domain != undefined && easyurl.pathname == "/index.html") {
+        if (chosen_domain != undefined && adjusted_path == "index.html") {
             crafted_content = build_index(chosen_domain,chosen_lng);
             var options = {
                 "html":crafted_content,
@@ -690,12 +691,12 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             finish_request (res,200,akhenon.html(options));
         };
         
-        if (chosen_domain != undefined && easyurl.pathname == "/sitemap.xml") {
+        if (chosen_domain != undefined && adjusted_path == "sitemap.xml") {
             served = true;
             finish_request (res,200,akhenon.sitemap(chosen_domain));
         };
 
-        if (chosen_domain != undefined && easyurl.pathname == "/robots.txt") {
+        if (chosen_domain != undefined && adjusted_path == "robots.txt") {
             served = true;
             finish_request (res,200,akhenon.robots(target));
         };
@@ -723,11 +724,13 @@ function valid_host (req,domain_tree) {
         return false
     };
 }
+
 function valid_resource (easyurl,domain_tree) {
-    console.log(easyurl.host,easyurl.pathname);
     if (easyurl.pathname == "/") {
         return true;
     };
+    var adjusted = akhenon.adjust_path(easyurl.pathname);
+    console.log({adjusted});
     if (domain_tree[easyurl.host].astra[easyurl.pathname] != undefined) {
         return true;
     };
