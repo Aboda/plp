@@ -724,12 +724,20 @@ function valid_host (req,domain_tree) {
         return false
     };
 }
-
+function adjust_path (pathname) {
+    if (pathname[pathname.length -1] == "/") {
+        pathname = pathname.substring(0,pathname.length -1);
+    }
+    if (pathname[0] == "/") {
+        pathname = pathname.substring(1,adjusted.length)
+    }
+    return pathname;
+}
 function valid_resource (easyurl,domain_tree) {
     if (easyurl.pathname == "/") {
         return true;
     };
-    var adjusted = akhenon.adjust_path(easyurl.pathname);
+    var adjusted = adjust_path(easyurl.pathname);
     console.log({adjusted});
     if (domain_tree[easyurl.host].astra[easyurl.pathname] != undefined) {
         return true;
