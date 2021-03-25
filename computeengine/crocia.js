@@ -729,7 +729,7 @@ function adjust_path (pathname) {
         pathname = pathname.substring(0,pathname.length -1);
     }
     if (pathname[0] == "/") {
-        pathname = pathname.substring(1,adjusted.length)
+        pathname = pathname.substring(1,pathname.length)
     }
     return pathname;
 }
