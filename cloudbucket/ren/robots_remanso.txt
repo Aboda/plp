@@ -1,4 +1,0 @@
-# Group 1
-User-agent: *
-Allow: /
-Sitemap: https://www.remansonocturno.com/sitemap.xml
