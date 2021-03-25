@@ -600,6 +600,7 @@ exports.set_cache_n_init = (cache) => {
         }
     }
 }
+
 //Mensajes html comúnes de fácil acceso
 const common_messages = {
     "javascript_disclaimer":{
@@ -615,12 +616,12 @@ const common_messages = {
         "en":"<p class='color_contrast_3'>You are here</p>\n"
     }
 }
+
 /*
     Informa a robots.txt, sitemap.xml e index.html
     Informa a akhenon respecto a la página base a servir (pre js) y carga el css y js pertinente indicado en la lista
     Está cargado a memoria como los fragmentos de cache
 */
-
 exports.gatekeep = (req,res,akhenon,simple_counter) => {
     /*
         Esta primera sección evalua la solicitud para garantizar que hay contenidos
@@ -829,7 +830,7 @@ function index_div (object_meta,chosen_lng,mark) {
             dc = dc + "<div class='color_contrast_2'>\n";
             dc = dc + common_messages.here[chosen_lng];
         }else{
-            dc = dc + "<div>\n";
+            dc = dc + "<div class='color_contrast_1'>\n";
         }        
         dc = dc + object_meta.short[chosen_lng]+"\n";
         dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
