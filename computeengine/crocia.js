@@ -611,8 +611,8 @@ const common_messages = {
         "en":"<p class='color_contrast_2'>Domain index:</p>\n"
     },
     "here":{
-        "es":"Usted está aquí\n",
-        "en":"You are here\n"
+        "es":"<p class='color_contrast_3'>Usted está aquí</p>\n",
+        "en":"<p class='color_contrast_3'>You are here</p>\n"
     }
 }
 /*
@@ -827,7 +827,7 @@ function index_div (object_meta,chosen_lng,mark) {
     if (object_meta.index == true) {
         if (mark == true){
             dc = dc + "<div class='color_contrast_2'>\n";
-            dc = dc + common_messages.here[chosen_lng]+"\n";
+            dc = dc + common_messages.here[chosen_lng];
         }else{
             dc = dc + "<div>\n";
         }        
