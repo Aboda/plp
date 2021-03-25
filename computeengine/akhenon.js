@@ -58,6 +58,7 @@ exports.html = (options,chosen_lng) => {
     if (options.css != undefined) {
         ph = ph + "<style>\n";
         for (modules of options.css) {
+            console.log(modules.toString());
             ph = ph + modules.toString()+"\n";
         }
         ph = ph + "</style>\n";
@@ -84,6 +85,7 @@ exports.html = (options,chosen_lng) => {
     if (options.js != undefined) {
         ph = ph + "<script>\n";
         for (modules of options.js) {
+            console.log(modules.toString());
             ph = ph + modules.toString()+"\n";
         }
         ph = ph + "</script>\n";
