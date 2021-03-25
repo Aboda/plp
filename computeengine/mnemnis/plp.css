@@ -1,9 +1,9 @@
 .color_contrast_1{
-    background-color:white;
-    color:black;
+    background-color:blue;
+    color:white;
 }
 .color_contrast_2{
-    background-color:blue;
+    background-color:white;
     color:black;
 }
 .color_contrast_3{
@@ -11,8 +11,8 @@
     color:black;
 }
 a:link{
-    color:white;
+    color: rgb(191, 255, 197);
 }
 a:visited{
-    color: gray;
+    color: rgb(191, 251, 255);
 }
