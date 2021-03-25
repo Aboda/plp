@@ -4,9 +4,15 @@
 }
 .color_contrast_2{
     background-color:blue;
-    color:white;
+    color:black;
 }
 .color_contrast_3{
     background-color:orange;
     color:black;
+}
+a:link{
+    color:white;
+}
+a:visited{
+    color: gray;
 }
