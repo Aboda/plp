@@ -724,6 +724,7 @@ function valid_host (req,domain_tree) {
     };
 }
 function valid_resource (easyurl,domain_tree) {
+    console.log(easyurl.host,easyurl.pathname);
     if (easyurl.pathname == "/") {
         return true;
     };
