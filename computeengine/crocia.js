@@ -2,23 +2,9 @@
     Este es en si el servidor
 */
 //Carga de recursos a memoria. 
-const resources_cache = {
-    "favicon":{
-        "blog":fs.readFileSync("./mnemnis/blog.ico"),
-        "casa":fs.readFileSync("./mnemnis/casa.ico"),
-        "desk":fs.readFileSync("./mnemnis/desk.ico")
-    },
-    "css":{
-        "bas":fs.readFileSync("./mnemnis/bas.css"),
-        "plp":fs.readFileSync("./mnemnis/plp.css"),
-        "ren":fs.readFileSync("./mnemnis/ren.css")
-    },
-    "js":{
-        "blog":fs.readFileSync("./mnemnis/blog.js"),
-        "ren":fs.readFileSync("./mnemnis/ren.js"),
-        "plp":fs.readFileSync("./mnemnis/plp.js"),
-        "framework":fs.readFileSync("./mnemnis/framework.js")
-    }
+var resources_cache = {}; 
+exports.set_cache = (cache) => {
+    resources_cache = cache
 }
 //Mensajes html comúnes de fácil acceso
 const common_messages = {

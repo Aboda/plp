@@ -26,6 +26,27 @@ const server_options = {
 };
 // Seriador del número de llamadas recibidas desde el arranque del servidor
 var simple_counter = 0;
+
+var cache = {
+    "favicon":{
+        "blog":fs.readFileSync("./mnemnis/blog.ico"),
+        "casa":fs.readFileSync("./mnemnis/casa.ico"),
+        "desk":fs.readFileSync("./mnemnis/desk.ico")
+    },
+    "css":{
+        "bas":fs.readFileSync("./mnemnis/bas.css"),
+        "plp":fs.readFileSync("./mnemnis/plp.css"),
+        "ren":fs.readFileSync("./mnemnis/ren.css")
+    },
+    "js":{
+        "blog":fs.readFileSync("./mnemnis/blog.js"),
+        "ren":fs.readFileSync("./mnemnis/ren.js"),
+        "plp":fs.readFileSync("./mnemnis/plp.js"),
+        "framework":fs.readFileSync("./mnemnis/framework.js")
+    }
+}
+
+crocia.set_cache(cache);
 // Este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
 https.createServer(server_options, (req, res) => {
         //Abre el try global para avisar de cualquier error si no hay un catch más específico

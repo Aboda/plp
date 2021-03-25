@@ -116,7 +116,6 @@ exports.sitemap = (options) => {
     ph = ph + "</urlset>";
     return ph;
 }
-
 exports.robots = (target) => {
     var ph = "# Group 1\n";
     ph = ph + "User-agent: *\n";
@@ -124,7 +123,6 @@ exports.robots = (target) => {
     ph = ph + "Sitemap: "+target;
     return ph;
 }
-
 exports.teller = () => {
     return {
         "action_no":0,
