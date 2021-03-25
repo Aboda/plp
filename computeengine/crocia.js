@@ -731,15 +731,18 @@ function adjust_path (pathname) {
     if (pathname[0] == "/") {
         pathname = pathname.substring(1,pathname.length)
     }
-    return pathname;
+    return pathname.toLowerCase();
 }
 function valid_resource (easyurl,domain_tree) {
     if (easyurl.pathname == "/") {
         return true;
     };
     var adjusted = adjust_path(easyurl.pathname);
-    console.log("host:\n",easyurl.host);
-    console.log("valor ajustado:\n",adjusted);
+    if (easyurl.pathname == "index.html" ||
+        easyurl.pathname == "robots.txt" ||
+        easyurl.pathname == "sitemap.xml" ){
+        return true;
+    };
     if (domain_tree[easyurl.host].astra[easyurl.pathname] != undefined) {
         return true;
     };
