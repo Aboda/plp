@@ -738,7 +738,7 @@ function valid_resource (easyurl,domain_tree) {
         return true;
     };
     var adjusted = adjust_path(easyurl.pathname);
-    console.log({adjusted});
+    console.log("valor ajustado:\n",adjusted);
     if (domain_tree[easyurl.host].astra[easyurl.pathname] != undefined) {
         return true;
     };
