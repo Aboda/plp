@@ -9,6 +9,10 @@ exports.set_cache_n_init = (cache) => {
     domain_tree = {
         "remansonocturno.com": {
             "meta":{
+                "cool":{
+                    "es":"Remanso Nocturno",
+                    "en":"Nocturnal Haven"
+                },
                 "short":{
                     "es":"Red social de creadores",
                     "en":"Creators social network"
@@ -21,7 +25,8 @@ exports.set_cache_n_init = (cache) => {
                 "priority":0.0,
                 "lastmod":"2021-03-22",
                 "favicon":"casa",
-                "acronimo":"ren"
+                "acronimo":"ren",
+                "root_domain":true
             },
             "intra":{
                 "ganalitycs":true,
@@ -176,6 +181,10 @@ exports.set_cache_n_init = (cache) => {
         },
         "demian.app":{
             "meta":{
+                "cool":{
+                    "es":"Portafolio Laboratorio Personal",
+                    "en":"Personal Lab Portfolio"
+                },
                 "short":{
                     "es":"Plataforma de aplicaciones",
                     "en":"Application platform"
@@ -187,7 +196,8 @@ exports.set_cache_n_init = (cache) => {
                 "robots":true,
                 "priority":0.3,
                 "favicon":"desk",
-                "acronimo":"plp"
+                "acronimo":"plp",
+                "root_domain":true
             },
             "intra":{
                 "facebooksdk":true,
@@ -597,8 +607,8 @@ const common_messages = {
         "en":"<p class='color_contrast_3'>This platform is entirely coded in javascript, if you are only seeing this, something went wrong.</p>"
     },
     "index":{
-        "es":"<p class='color_contrast_2'>Indice del dominio</p>",
-        "en":"<p class='color_contrast_2'>Domain index</p>"
+        "es":"<p class='color_contrast_2'>Indice del dominio:</p>\n",
+        "en":"<p class='color_contrast_2'>Domain index:</p>\n"
     }
 }
 /*
@@ -671,7 +681,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
         };
         if (chosen_domain != undefined && adjusted_path == "index.html") {
-            crafted_content = build_index(chosen_domain,chosen_lng);
+            crafted_content = build_index(domain_tree,req.headers.host,chosen_lng);
             var options = {
                 "html":crafted_content,
                 "languaje":chosen_lng,
@@ -757,8 +767,20 @@ function valid_method (method,easyurl,domain_tree) {
     };    
 }
 
-function build_index(chosen_domain,chosen_lng) {
-    /*
+function build_index(domain_tree,domain_name,chosen_lng) {
+    let chosen_domain = domain_tree[domain_name];
+    let acronym = chosen_domain.meta.acronimo;
+    let root_dom;
+    let party_members = {};
+    for (var entry in domain_tree) {
+        if (domain_tree[entry].meta.acronimo == acronym) {
+            party_members[entry] = domain_tree[entry]
+            if (domain_tree[entry].meta.root_domain == true) {
+                root_dom = domain_tree[entry];
+            }    
+        }
+    }
+    /*  
         Modo de operación:
 
         Cada elemento cuenta con 3 componentes
@@ -766,30 +788,43 @@ function build_index(chosen_domain,chosen_lng) {
         automatización de robots y sitemap, en este caso la cre
         ación del indice es un acto semejante pero más complejo
 
-        "intra" es utilizado para renderear la página en cuestión
-        en caso de ser solicitada
+        "intra" es utilizado para renderear la página en cuesti
+        ón en caso de ser solicitada
 
-        "astra" contiene las subrutas dentro del dominio, las que 
-        a su vez cuentan con esta segmentación en ellas. 
+        "astra" contiene las subrutas dentro del dominio, las q
+        ue a su vez cuentan con esta segmentación en ellas. 
 
         dom o subdom -> detalles -> ruta_l1 -> detalles
-        Significativo -> contenido - > significativo -> contenido
+        Significativo -> contenido - > significativo -> conteni
+        do
 
-        el objetivo es leer en cada nivel el meta, decidir si se 
-        le crea entrada en este indice al elemento e introducirlo
+        el objetivo es leer en cada nivel el meta, decidir si s
+        e le crea entrada en este indice al elemento e introduc
+        irlo
     */
-    var hc = "<h1>"+common_messages.index[chosen_lng]+"</h1>\n";
-    hc = hc + index_div(chosen_domain.meta,chosen_lng);
-    for (var route in chosen_domain.astra) {
-        hc = hc + index_div(chosen_domain.astra[route].meta,chosen_lng);
+    var hc = "<h1>"+common_messages.index[chosen_lng] +
+    root_dom.meta.cool[chosen_lng]+"</h1>\n";
+    for (var entry in party_members) {
+        if (domain_name == entry) {
+            hc = hc + index_div(party_members[entry].meta,chosen_lng,true);
+        }else{
+            hc = hc + index_div(party_members[entry].meta,chosen_lng);
+        }
+        for (var route in party_members[entry].astra) {
+            hc = hc + index_div(party_members[entry].astra[route].meta,chosen_lng);
+        }
     }
     return hc
 }
 
-function index_div (object_meta,chosen_lng) {
+function index_div (object_meta,chosen_lng,mark) {
     var dc;
     if (object_meta.index == true) {
-        dc = dc + "<div>\n";
+        if (mark == true){
+            dc = dc + "<div class='color_contrast_2'>\n";
+        }else{
+            dc = dc + "<div>\n";
+        }        
         dc = dc + object_meta.short[chosen_lng]+"\n";
         dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
         dc = dc + "</div>\n";
