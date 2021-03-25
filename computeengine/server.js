@@ -46,7 +46,7 @@ var cache = {
     }
 }
 
-crocia.set_cache(cache);
+crocia.set_cache_n_init(cache);
 // Este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
 https.createServer(server_options, (req, res) => {
         //Abre el try global para avisar de cualquier error si no hay un catch más específico
