@@ -34,15 +34,15 @@ var cache = {
         "desk":fs.readFileSync("./mnemnis/desk.ico")
     },
     "css":{
-        "bas":fs.readFileSync("./mnemnis/bas.css"),
-        "plp":fs.readFileSync("./mnemnis/plp.css"),
-        "ren":fs.readFileSync("./mnemnis/ren.css")
+        "bas":fs.readFileSync("./mnemnis/bas.css").toString(),
+        "plp":fs.readFileSync("./mnemnis/plp.css").toString(),
+        "ren":fs.readFileSync("./mnemnis/ren.css").toString()
     },
     "js":{
-        "blog":fs.readFileSync("./mnemnis/blog.js"),
-        "ren":fs.readFileSync("./mnemnis/ren.js"),
-        "plp":fs.readFileSync("./mnemnis/plp.js"),
-        "framework":fs.readFileSync("./mnemnis/framework.js")
+        "blog":fs.readFileSync("./mnemnis/blog.js").toString(),
+        "ren":fs.readFileSync("./mnemnis/ren.js").toString(),
+        "plp":fs.readFileSync("./mnemnis/plp.js").toString(),
+        "framework":fs.readFileSync("./mnemnis/framework.js").toString()
     }
 }
 
