@@ -1,3 +1,4 @@
+console.log("cargando portafolio laboratorio personal");
 window.onload = () => {
-    console.log("Bienvenido al archivo javascript del portafolio laboratorio personal");
+    window.document.body.classList.add("color_contrast_1");
 }

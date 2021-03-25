@@ -1,3 +1,4 @@
+console.log("cargando remanso nocturno");
 window.onload = () => {
-    console.log("Bienvenido al archivo javascript de remanso nocturno");
+    window.document.body.classList.add("color_contrast_1");
 }

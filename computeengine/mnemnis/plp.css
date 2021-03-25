@@ -1,18 +1,18 @@
 .color_contrast_1{
-    background-color:blue;
-    color:white;
-}
-.color_contrast_2{
     background-color:white;
     color:black;
+}
+.color_contrast_2{
+    background-color:blue;
+    color:white;
 }
 .color_contrast_3{
     background-color:orange;
     color:black;
 }
-a:link{
+.inv_li:link{
     color: rgb(191, 255, 197);
 }
-a:visited{
+.inv_li:visited{
     color: rgb(248, 191, 255);
 }

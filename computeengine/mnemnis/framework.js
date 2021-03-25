@@ -1,9 +1,6 @@
 /*
   This section is the global housemade framework
 */
-window.onload = () => {
-  console.log("Bienvenido al archivo javascript con el framework html");
-}
 var ao = {};
 function zyx(tag,thing,show){
     var default_history_length_limit = 100;

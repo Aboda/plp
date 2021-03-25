@@ -753,13 +753,14 @@ function valid_resource (easyurl,domain_tree) {
         return true;
     };
     var adjusted = adjust_path(easyurl.pathname);
+    console.log({adjusted});
     if (adjusted == "favicon.ico" ||
         adjusted == "index.html" ||
         adjusted == "robots.txt" ||
         adjusted == "sitemap.xml" ){
         return true;
     };
-    if (domain_tree[easyurl.host].astra[easyurl.pathname] != undefined) {
+    if (domain_tree[easyurl.host].astra[adjusted] != undefined) {
         return true;
     };
     return false;
@@ -830,10 +831,14 @@ function index_div (object_meta,chosen_lng,mark) {
             dc = dc + "<div class='color_contrast_2'>\n";
             dc = dc + common_messages.here[chosen_lng];
         }else{
-            dc = dc + "<div class='color_contrast_1'>\n";
-        }        
+            dc = dc + "<div>\n";
+        }     
         dc = dc + object_meta.short[chosen_lng]+"\n";
-        dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
+        if (mark == true){
+            dc = dc + "<a class='inv_li' href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
+        }else{
+            dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
+        }
         dc = dc + "</div>\n";
     }
     return dc;
