@@ -659,7 +659,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             options.languaje = chosen_lng; 
             options.title = options.title[chosen_lng];
             served = true;
-            options.html = ["<h1>"+chosen_domain.meta.short+[chosen_lng]+"</h1>"];
+            options.html = ["<h1>"+chosen_domain.meta.short[chosen_lng]+"</h1>"];
             finish_request (res,200,akhenon.html(options));
             return;
         }else{
