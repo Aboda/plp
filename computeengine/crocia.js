@@ -383,7 +383,7 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Blog de tecnología",
                     "en":"Tech blog"
                 },
-                "loc":"https://demian.app/",
+                "loc":"https://www.demian.app/",
                 "updfreq":"weekly",
                 "sitemap":true,
                 "index":true,
@@ -466,7 +466,7 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Portafolio laboratorio personal",
                     "en":"Personal lab portfolio"
                 },
-                "loc":"https://demian.app/",
+                "loc":"https://profesional.demian.app/",
                 "updfreq":"monthly",
                 "sitemap":true,
                 "index":true,
@@ -712,8 +712,17 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         };
 
         if (chosen_domain != undefined && adjusted_path == "robots.txt") {
+            let acronym = chosen_domain.meta.acronimo;
+            let root_dom_name;
+            for (var entry in domain_tree) {
+                if (domain_tree[entry].meta.acronimo == acronym) {
+                    if (domain_tree[entry].meta.root_domain == true) {
+                        root_dom_name = entry;
+                    }
+                }
+            }
             served = true;
-            finish_request (res,200,akhenon.robots(target));
+            finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
         };
         
         if (served == false) {
