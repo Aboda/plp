@@ -768,7 +768,7 @@ function valid_resource (easyurl,domain_tree) {
             return true;
         };
     }else{
-        if (domain_tree[easyurl.host].astra[as_array[1]] != undefined) {
+        if (domain_tree[easyurl.host].astra[as_array[0]] != undefined) {
             return true;
         };
     }
