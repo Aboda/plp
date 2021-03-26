@@ -114,19 +114,34 @@ function site_entry (d) {
     return entry;
 }
 
-exports.sitemap = (options) => {
+exports.sitemap = (domain_tree,domain_name) => {
+    let chosen_domain = domain_tree[domain_name];
+    let acronym = chosen_domain.meta.acronimo;
+    let root_dom;
+    let party_members = {};
+    for (let entry in domain_tree) {
+        if (domain_tree[entry].meta.acronimo == acronym) {
+            party_members[entry] = domain_tree[entry]
+            if (domain_tree[entry].meta.root_domain == true) {
+                root_dom = domain_tree[entry];
+            }    
+        }
+    }
     var ph = "<?xml version='1.0' encoding='UTF-8'?>\n";
     ph = ph + "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>\n";
-    ph = ph + site_entry(options.meta);
-    for (var route in options.astra) {
-        var d = options.astra[route].meta;
-        if (d.sitemap == true) {
-            ph = ph + site_entry(d);
-        }
+    for (let options of party_members) {
+        ph = ph + site_entry(options.meta);
+        for (var route in options.astra) {
+            var d = options.astra[route].meta;
+            if (d.sitemap == true) {
+                ph = ph + site_entry(d);
+            }
+        }        
     }
     ph = ph + "</urlset>";
     return ph;
 }
+
 exports.robots = (target) => {
     var ph = "# Group 1\n";
     ph = ph + "User-agent: *\n";

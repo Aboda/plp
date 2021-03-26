@@ -745,7 +745,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
 
         if (req.headers.host == "www."+root_dom_name && sitemap_trigger == true) {
             served = true;
-            finish_request (res,200,akhenon.sitemap(chosen_domain));
+            finish_request (res,200,akhenon.sitemap(domain_tree,req.headers.host));
             return;
         };
 
