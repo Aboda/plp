@@ -60,7 +60,7 @@ https.createServer(server_options, (req, res) => {
         //se avisa de un error interno en el servidor
         res.writeHead(500);
         //se devuelve el reporte junto con el error
-        res.end(akhenon.html({"title":"500","robot":false,"html":"<h1>Error 500</h1><br><p>Report of the error has been stored for future analisis</p>"}));
+        res.end(akhenon.html({"title":"500","robot":false,"html":["<h1>Error 500</h1><br><p>Report of the error has been stored for future analisis</p>"]}));
         log_JSON({
             "service_no":simple_counter,
             "error":err,
