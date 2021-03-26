@@ -653,21 +653,52 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         let crafted_content;
         let adjusted_path = akhenon.adjust_path(easyurl.pathname);
         let as_array;
-        if (adjusted_path.indexOf("/") != -1 && adjusted_path.indexOf("/") != 0) {
-            as_array = adjusted_path.split("/");
-        }
-        if (chosen_domain != undefined && easyurl.pathname == "/") {
+
+        if (easyurl.pathname == "/") {
             let options = akhenon.copy_obj(chosen_domain.intra);
             options.languaje = chosen_lng; 
             options.title = options.title[chosen_lng];
             served = true;
+            options.html = ["<h1>"+chosen_domain.meta.short+[chosen_lng]+"</h1>"];
             finish_request (res,200,akhenon.html(options));
+            break;
+        }else{
+            if (adjusted_path.indexOf("/") != -1) {
+                as_array = adjusted_path.split("/");
+            };
         };
-        if (chosen_domain != undefined && (adjusted_path == "favicon.ico" || as_array[1] == "favicon.ico")) {
+
+        let favicon_trigger;
+
+        if (as_array != undefined) {
+            if (as_array[1] == "favicon.ico") {
+                favicon_trigger = true;
+            };
+        }else{
+            if (adjusted_path == "favicon.ico") {
+                favicon_trigger = true;
+            };            
+        };
+
+        if (favicon_trigger) {
             served = true;
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
+            break;
         };
-        if (chosen_domain != undefined && (adjusted_path == "index.html" || as_array[1] == "index.html")) {
+
+        let index_trigger;
+        
+        if (as_array != undefined) {
+            if (as_array[1] == "index.html") {
+                index_trigger = true;
+            };
+        }else{
+            if (adjusted_path == "index.html") {
+                index_trigger = true;
+            };            
+        };
+
+        if (index_trigger) {
             crafted_content = build_index(domain_tree,req.headers.host,chosen_lng);
             let options = {
                 "html":[crafted_content],
@@ -679,17 +710,19 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             if (chosen_domain.meta.ganalitycs == true) {
                 options.ganalitycs = true;
                 options.gtag = chosen_domain.meta.gtag;
-            }
+            };
             if (chosen_domain.meta.facebooksdk == true) {
                 options.facebooksdk = true;
                 options.fbid = chosen_domain.meta.fbid;
-            }
+            };
             served = true;
             finish_request (res,200,akhenon.html(options));
+            break;
         };
 
         let acronym = chosen_domain.meta.acronimo;
         let root_dom_name;
+
         for (let entry in domain_tree) {
             if (domain_tree[entry].meta.acronimo == acronym) {
                 if (domain_tree[entry].meta.root_domain == true) {
@@ -698,14 +731,40 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             }
         }
         
-        if (chosen_domain == "www."+root_dom_name && (adjusted_path == "sitemap.xml" || as_array[1] == "sitemap.xml")) {
-            served = true;
-            finish_request (res,200,akhenon.sitemap(chosen_domain));
+        let sitemap_trigger;
+
+        if (as_array != undefined) {
+            if (as_array[1] == "sitemap.xml") {
+                sitemap_trigger = true;
+            };
+        }else{
+            if (adjusted_path == "sitemap.xml") {
+                sitemap_trigger = true;
+            };            
         };
 
-        if (chosen_domain != undefined && (adjusted_path == "robots.txt" || as_array[1] == "robots.txt")) {
+        if (chosen_domain == "www."+root_dom_name && sitemap_trigger) {
+            served = true;
+            finish_request (res,200,akhenon.sitemap(chosen_domain));
+            break;
+        };
+
+        let robots_trigger;
+
+        if (as_array != undefined) {
+            if (as_array[1] == "robots.txt") {
+                robots_trigger = true;
+            };
+        }else{
+            if (adjusted_path == "robots.txt") {
+                robots_trigger = true;
+            };            
+        };
+
+        if (robots_trigger) {
             served = true;
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
+            break;
         };
         
         if (served == false) {
@@ -717,8 +776,9 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
                 "js":chosen_domain.intra.js
             };
             finish_request (res,200,akhenon.html(options));
+            break;
         };
-    }
+    };
 }
 function finish_request (res,code,content) {
     res.writeHead(code);
@@ -750,7 +810,9 @@ function valid_resource (easyurl,domain_tree) {
     if (adjusted.indexOf("/") != -1) {
         as_array = adjusted.split("/");
     }
+
     console.log({adjusted,as_array});
+
     if (as_array == undefined){
         if (adjusted == "favicon.ico" ||
             adjusted == "index.html" ||
