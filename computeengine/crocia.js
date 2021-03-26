@@ -36,8 +36,7 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Home: Nocturnal Haven",
                 },
                 "css":[resources_cache.css.bas,resources_cache.css.ren],
-                "js":[resources_cache.js.framework,resources_cache.js.ren],
-                "html":common_messages.javascript_disclaimer
+                "js":[resources_cache.js.framework,resources_cache.js.ren]
             },
             "astra":{
                 "omno":{
@@ -63,8 +62,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Community: Nocturnal Haven"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.ren],
-                        "js":[resources_cache.js.framework,resources_cache.js.ren],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.ren]
                     }
                 },
                 "umno":{
@@ -90,8 +88,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Profile: Nocturnal Haven"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.ren],
-                        "js":[resources_cache.js.framework,resources_cache.js.ren],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.ren]
                     }
                 }
             }
@@ -119,8 +116,7 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Blog: Nocturnal Haven"
                 },
                 "css":[resources_cache.css.bas,resources_cache.css.ren],
-                "js":[resources_cache.js.framework,resources_cache.js.ren],
-                "html":common_messages.javascript_disclaimer
+                "js":[resources_cache.js.framework,resources_cache.js.ren]
             },
             "astra":{
                 "estat":{
@@ -146,8 +142,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Static: Nocturnal Haven"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.ren],
-                        "js":[resources_cache.js.framework,resources_cache.js.ren],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.ren]
                     }                
                 },
                 "dinam":{
@@ -173,8 +168,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Dynamic: Nocturnal Haven"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.ren],
-                        "js":[resources_cache.js.framework,resources_cache.js.ren],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.ren]
                     }                   
                 }
             }
@@ -209,8 +203,7 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Platform:PLP"
                 },
                 "css":[resources_cache.css.bas,resources_cache.css.plp],
-                "js":[resources_cache.js.framework,resources_cache.js.plp],
-                "html":common_messages.javascript_disclaimer
+                "js":[resources_cache.js.framework,resources_cache.js.plp]
             },
             "astra":{
                 "conavi":{
@@ -236,8 +229,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Tools and Challenges:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 },
                 "sedatu":{
@@ -263,8 +255,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Social Programs:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 },
                 "olmoazul":{
@@ -290,8 +281,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Food shop:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 },
                 "tomauno":{
@@ -317,8 +307,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"DVD Leaser:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 },
                 "somema":{
@@ -344,8 +333,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"SOmeMA:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 },
                 "narrar":{
@@ -371,8 +359,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Storyteller:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 }
             }
@@ -400,8 +387,7 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Blog:PLP"
                 },
                 "css":[resources_cache.css.bas,resources_cache.css.plp],
-                "js":[resources_cache.js.framework,resources_cache.js.plp],
-                "html":common_messages.javascript_disclaimer
+                "js":[resources_cache.js.framework,resources_cache.js.plp]
             },
             "astra":{
                 "estat":{
@@ -427,8 +413,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Static:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 },
                 "dinam":{
@@ -454,8 +439,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Dynamic:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }                
                 }
             }
@@ -483,8 +467,7 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Home:PLP"
                 },
                 "css":[resources_cache.css.bas,resources_cache.css.plp],
-                "js":[resources_cache.js.framework,resources_cache.js.plp],
-                "html":common_messages.javascript_disclaimer
+                "js":[resources_cache.js.framework,resources_cache.js.plp]
             },
             "astra":{
                 "google":{
@@ -510,8 +493,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Google T&T:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 },
                 "facebook":{
@@ -537,8 +519,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Facebook T&T:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 },
                 "web":{
@@ -564,8 +545,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Web T&T:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 },
                 "office":{
@@ -592,8 +572,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Office T&T:PLP"
                         },
                         "css":[resources_cache.css.bas,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp],
-                        "html":common_messages.javascript_disclaimer
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 }
             }
@@ -677,7 +656,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             var options = akhenon.copy_obj(chosen_domain.intra);
             options.languaje = chosen_lng; 
             options.title = options.title[chosen_lng];
-            options.html = options.html[chosen_lng];
+            options.html = [options.html[chosen_lng]];
             served = true;
             finish_request (res,200,akhenon.html(options));
         };
@@ -688,7 +667,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         if (chosen_domain != undefined && adjusted_path == "index.html") {
             crafted_content = build_index(domain_tree,req.headers.host,chosen_lng);
             var options = {
-                "html":crafted_content,
+                "html":[crafted_content],
                 "languaje":chosen_lng,
                 "title":"ind:"+chosen_domain.meta.acronimo,
                 "css":chosen_domain.intra.css,
@@ -727,7 +706,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         
         if (served == false) {
             var options = {
-                "html":"En construcción",
+                "html":["<h1>En construcción</h1>"],
                 "languaje":chosen_lng,
                 "title":"mis:"+chosen_domain.meta.acronimo,
                 "css":chosen_domain.intra.css,
