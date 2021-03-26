@@ -673,6 +673,15 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         var chosen_domain = domain_tree[req.headers.host];
         var crafted_content;
         var adjusted_path = akhenon.adjust_path(easyurl.pathname);
+        let acronym = chosen_domain.meta.acronimo;
+        let root_dom_name;
+        for (var entry in domain_tree) {
+            if (domain_tree[entry].meta.acronimo == acronym) {
+                if (domain_tree[entry].meta.root_domain == true) {
+                    root_dom_name = entry;
+                }
+            }
+        }
         if (chosen_domain != undefined && easyurl.pathname == "/") {
             var options = akhenon.copy_obj(chosen_domain.intra);
             options.languaje = chosen_lng; 
@@ -706,21 +715,12 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             finish_request (res,200,akhenon.html(options));
         };
         
-        if (chosen_domain != undefined && adjusted_path == "sitemap.xml") {
+        if (chosen_domain == "www."+root_dom_name && adjusted_path == "sitemap.xml") {
             served = true;
             finish_request (res,200,akhenon.sitemap(chosen_domain));
         };
 
         if (chosen_domain != undefined && adjusted_path == "robots.txt") {
-            let acronym = chosen_domain.meta.acronimo;
-            let root_dom_name;
-            for (var entry in domain_tree) {
-                if (domain_tree[entry].meta.acronimo == acronym) {
-                    if (domain_tree[entry].meta.root_domain == true) {
-                        root_dom_name = entry;
-                    }
-                }
-            }
             served = true;
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
         };
