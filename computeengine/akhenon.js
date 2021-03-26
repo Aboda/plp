@@ -149,6 +149,7 @@ exports.robots = (target) => {
     ph = ph + "Sitemap: "+target;
     return ph;
 }
+
 exports.teller = () => {
     return {
         "action_no":0,

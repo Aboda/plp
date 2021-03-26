@@ -811,7 +811,7 @@ function valid_resource (easyurl,domain_tree) {
         as_array = adjusted.split("/");
     }
 
-    console.log({adjusted,as_array});
+    console.log(easyurl.host,{adjusted,as_array});
 
     if (as_array == undefined){
         if (adjusted == "favicon.ico" ||
