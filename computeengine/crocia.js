@@ -742,16 +742,37 @@ function valid_resource (easyurl,domain_tree) {
         return true;
     };
     var adjusted = adjust_path(easyurl.pathname);
-    console.log({adjusted});
-    if (adjusted == "favicon.ico" ||
-        adjusted == "index.html" ||
-        adjusted == "robots.txt" ||
-        adjusted == "sitemap.xml" ){
-        return true;
-    };
-    if (domain_tree[easyurl.host].astra[adjusted] != undefined) {
-        return true;
-    };
+    var as_array;
+    if (adjusted.indexOf("/") != -1) {
+        as_array = adjusted.split("/");
+    }
+    console.log({adjusted,as_array});
+    if (as_array == undefined){
+        if (adjusted == "favicon.ico" ||
+            adjusted == "index.html" ||
+            adjusted == "robots.txt" ||
+            adjusted == "sitemap.xml" ){
+            return true;
+        };
+    }else{
+        if (as_array[1] == "favicon.ico" ||
+            as_array[1] == "index.html" ||
+            as_array[1] == "robots.txt" ||
+            as_array[1] == "sitemap.xml" ){
+            return true;
+        };
+    }
+    
+    if (as_array == undefined){
+        if (domain_tree[easyurl.host].astra[adjusted] != undefined) {
+            return true;
+        };
+    }else{
+        if (domain_tree[easyurl.host].astra[as_array[1]] != undefined) {
+            return true;
+        };
+    }
+
     return false;
 }
 function valid_method (method,easyurl,domain_tree) {
