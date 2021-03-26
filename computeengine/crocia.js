@@ -606,12 +606,12 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         Esta primera sección evalua la solicitud para garantizar que hay contenidos
         programados para su atención
     */
-    var iferror = akhenon.teller();
+    let iferror = akhenon.teller();
     iferror.tag("Gatekeepr start number "+simple_counter+" succesful, evaluating");
     const easyurl = new URL(req.url, "https://"+req.headers.host+"/");
     const chosen_lng = akhenon.assert_lng(req.headers["accept-language"],easyurl.search);
     iferror.tag("URL auto eval complete, Manual eval begining");
-    var do_serve = false;
+    let do_serve = false;
     if (valid_host(req,domain_tree)) {
         iferror.tag("¡Domain entry found!, validating resource...");
         if (valid_resource(easyurl,domain_tree)) {
@@ -648,24 +648,28 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
        En caso contrario el chequeo fallado indicará al solicitante detalles sanitizados
     */
     if (do_serve) {
-        var served = false;
-        var chosen_domain = domain_tree[req.headers.host];
-        var crafted_content;
-        var adjusted_path = akhenon.adjust_path(easyurl.pathname);
+        let served = false;
+        let chosen_domain = domain_tree[req.headers.host];
+        let crafted_content;
+        let adjusted_path = akhenon.adjust_path(easyurl.pathname);
+        let as_array;
+        if (adjusted_path.indexOf("/") != -1 && adjusted_path.indexOf("/") != 0) {
+            as_array = adjusted_path.split("/");
+        }
         if (chosen_domain != undefined && easyurl.pathname == "/") {
-            var options = akhenon.copy_obj(chosen_domain.intra);
+            let options = akhenon.copy_obj(chosen_domain.intra);
             options.languaje = chosen_lng; 
             options.title = options.title[chosen_lng];
             served = true;
             finish_request (res,200,akhenon.html(options));
         };
-        if (chosen_domain != undefined && adjusted_path == "favicon.ico") {
+        if (chosen_domain != undefined && (adjusted_path == "favicon.ico" || as_array[1] == "favicon.ico")) {
             served = true;
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
         };
-        if (chosen_domain != undefined && adjusted_path == "index.html") {
+        if (chosen_domain != undefined && (adjusted_path == "index.html" || as_array[1] == "index.html")) {
             crafted_content = build_index(domain_tree,req.headers.host,chosen_lng);
-            var options = {
+            let options = {
                 "html":[crafted_content],
                 "languaje":chosen_lng,
                 "title":"ind:"+chosen_domain.meta.acronimo,
@@ -686,26 +690,26 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
 
         let acronym = chosen_domain.meta.acronimo;
         let root_dom_name;
-        for (var entry in domain_tree) {
+        for (let entry in domain_tree) {
             if (domain_tree[entry].meta.acronimo == acronym) {
                 if (domain_tree[entry].meta.root_domain == true) {
                     root_dom_name = entry;
                 }
             }
         }
-
-        if (chosen_domain == "www."+root_dom_name && adjusted_path == "sitemap.xml") {
+        
+        if (chosen_domain == "www."+root_dom_name && (adjusted_path == "sitemap.xml" || as_array[1] == "sitemap.xml")) {
             served = true;
             finish_request (res,200,akhenon.sitemap(chosen_domain));
         };
 
-        if (chosen_domain != undefined && adjusted_path == "robots.txt") {
+        if (chosen_domain != undefined && (adjusted_path == "robots.txt" || as_array[1] == "robots.txt")) {
             served = true;
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
         };
         
         if (served == false) {
-            var options = {
+            let options = {
                 "html":["<h1>En construcción</h1>"],
                 "languaje":chosen_lng,
                 "title":"mis:"+chosen_domain.meta.acronimo,
@@ -741,8 +745,8 @@ function valid_resource (easyurl,domain_tree) {
     if (easyurl.pathname == "/") {
         return true;
     };
-    var adjusted = adjust_path(easyurl.pathname);
-    var as_array;
+    let adjusted = adjust_path(easyurl.pathname);
+    let as_array;
     if (adjusted.indexOf("/") != -1) {
         as_array = adjusted.split("/");
     }
@@ -788,7 +792,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     let acronym = chosen_domain.meta.acronimo;
     let root_dom;
     let party_members = {};
-    for (var entry in domain_tree) {
+    for (let entry in domain_tree) {
         if (domain_tree[entry].meta.acronimo == acronym) {
             party_members[entry] = domain_tree[entry]
             if (domain_tree[entry].meta.root_domain == true) {
@@ -818,16 +822,16 @@ function build_index(domain_tree,domain_name,chosen_lng) {
         e le crea entrada en este indice al elemento e introduc
         irlo
     */
-    var hc = "<h1>"+common_messages.index[chosen_lng] +
+        let hc = "<h1>"+common_messages.index[chosen_lng] +
     root_dom.meta.cool[chosen_lng]+"</h1>\n";
 
-    for (var entry in party_members) {
+    for (let entry in party_members) {
         if (domain_name == entry) {
             hc = hc + index_div(party_members[entry].meta,chosen_lng,true);
         }else{
             hc = hc + index_div(party_members[entry].meta,chosen_lng);
         }
-        for (var route in party_members[entry].astra) {
+        for (let route in party_members[entry].astra) {
             hc = hc + index_div(party_members[entry].astra[route].meta,chosen_lng);
         }
     }
@@ -835,7 +839,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
 }
 
 function index_div (object_meta,chosen_lng,mark) {
-    var dc = "";
+    let dc = "";
     if (object_meta.index == true) {
         if (mark == true){
             dc = dc + "<div class='color_contrast_2'>\n";
