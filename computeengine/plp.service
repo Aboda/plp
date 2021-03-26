@@ -8,7 +8,7 @@ Environment=NODE_ENV=production
 Restart=always
 User=nobody
 Group=nogroup
-WorkingDirectory=/home/andthenbeyond/
+WorkingDirectory=/home/andthenbeyond/sitiopersonal/computeengine/
 ExecStart=/usr/bin/node /home/andthenbeyond/sitiopersonal/computeengine/server.js
 StartLimitInterval=3
 StartLimitBurst=1
