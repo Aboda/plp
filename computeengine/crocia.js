@@ -743,7 +743,9 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             };            
         };
 
-        if (chosen_domain == "www."+root_dom_name && sitemap_trigger) {
+        console.log("sitemap trigger: "+sitemap_trigger);
+        
+        if (chosen_domain == "www."+root_dom_name && sitemap_trigger == true) {
             served = true;
             finish_request (res,200,akhenon.sitemap(chosen_domain));
             return;
