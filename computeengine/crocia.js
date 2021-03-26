@@ -656,7 +656,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             var options = akhenon.copy_obj(chosen_domain.intra);
             options.languaje = chosen_lng; 
             options.title = options.title[chosen_lng];
-            options.html = [options.html[chosen_lng]];
             served = true;
             finish_request (res,200,akhenon.html(options));
         };
@@ -694,7 +693,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
                 }
             }
         }
-        
+
         if (chosen_domain == "www."+root_dom_name && adjusted_path == "sitemap.xml") {
             served = true;
             finish_request (res,200,akhenon.sitemap(chosen_domain));
