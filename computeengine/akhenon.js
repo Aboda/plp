@@ -129,10 +129,10 @@ exports.sitemap = (domain_tree,domain_name) => {
     }
     var ph = "<?xml version='1.0' encoding='UTF-8'?>\n";
     ph = ph + "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>\n";
-    for (let options of party_members) {
-        ph = ph + site_entry(options.meta);
-        for (var route in options.astra) {
-            var d = options.astra[route].meta;
+    for (let options in party_members) {
+        ph = ph + site_entry(party_members[options].meta);
+        for (var route in party_members[options].astra) {
+            var d = party_members[options].astra[route].meta;
             if (d.sitemap == true) {
                 ph = ph + site_entry(d);
             }
