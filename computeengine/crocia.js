@@ -216,8 +216,8 @@ exports.set_cache_n_init = (cache) => {
                 "conavi":{
                     "meta":{
                         "short":{
-                            "es":"Challenges and Tools 2019 and 2020",
-                            "en":"Retos y herramientas 2019 y 2020"
+                            "es":"Retos y herramientas 2019 y 2020",
+                            "en":"Challenges and Tools 2019 and 2020"
                         },
                         "loc":"https://demian.app/conavi/",
                         "updfreq":"yearly",
@@ -645,7 +645,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
                 finish_request (res,404,akhenon.html({
                     "title":"404",
                     "robot":false,
-                    "html":iferror.end()
+                    "html":[iferror.end()]
                 }));
             };
         }else{
@@ -653,7 +653,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             finish_request (res,404,akhenon.html({
                 "title":"404",
                 "robot":false,      
-                "html":iferror.end()
+                "html":[iferror.end()]
             }));
         };
     }else{
@@ -661,7 +661,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         finish_request (res,404,akhenon.html({
             "title":"404",
             "robot":false,
-            "html":iferror.end()
+            "html":[iferror.end()]
         }));
     };
     /*
@@ -673,15 +673,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         var chosen_domain = domain_tree[req.headers.host];
         var crafted_content;
         var adjusted_path = akhenon.adjust_path(easyurl.pathname);
-        let acronym = chosen_domain.meta.acronimo;
-        let root_dom_name;
-        for (var entry in domain_tree) {
-            if (domain_tree[entry].meta.acronimo == acronym) {
-                if (domain_tree[entry].meta.root_domain == true) {
-                    root_dom_name = entry;
-                }
-            }
-        }
         if (chosen_domain != undefined && easyurl.pathname == "/") {
             var options = akhenon.copy_obj(chosen_domain.intra);
             options.languaje = chosen_lng; 
@@ -721,6 +712,15 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         };
 
         if (chosen_domain != undefined && adjusted_path == "robots.txt") {
+            let acronym = chosen_domain.meta.acronimo;
+            let root_dom_name;
+            for (var entry in domain_tree) {
+                if (domain_tree[entry].meta.acronimo == acronym) {
+                    if (domain_tree[entry].meta.root_domain == true) {
+                        root_dom_name = entry;
+                    }
+                }
+            }
             served = true;
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
         };
@@ -758,6 +758,7 @@ function adjust_path (pathname) {
     return pathname.toLowerCase();
 }
 function valid_resource (easyurl,domain_tree) {
+    console.log(easyurl.pathname);
     if (easyurl.pathname == "/") {
         return true;
     };

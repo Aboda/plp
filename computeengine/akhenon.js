@@ -87,8 +87,9 @@ exports.html = (options,chosen_lng) => {
         ph = ph + "<script async defer crossorigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'></script>\n";
     }
     if (options.html != undefined) {
-        console.log("cargando modulo html\n",options.html);
-        ph = ph + options.html;
+        for (var html_block of options.html) {
+            ph = ph + html_block+"\n";
+        }        
     }
     ph = ph + "</body>\n";
     if (options.js != undefined) {
