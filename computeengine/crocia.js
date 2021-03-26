@@ -661,7 +661,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             served = true;
             options.html = ["<h1>"+chosen_domain.meta.short+[chosen_lng]+"</h1>"];
             finish_request (res,200,akhenon.html(options));
-            break;
+            return;
         }else{
             if (adjusted_path.indexOf("/") != -1) {
                 as_array = adjusted_path.split("/");
@@ -683,7 +683,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         if (favicon_trigger) {
             served = true;
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
-            break;
+            return;
         };
 
         let index_trigger;
@@ -717,7 +717,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             };
             served = true;
             finish_request (res,200,akhenon.html(options));
-            break;
+            return;
         };
 
         let acronym = chosen_domain.meta.acronimo;
@@ -746,7 +746,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         if (chosen_domain == "www."+root_dom_name && sitemap_trigger) {
             served = true;
             finish_request (res,200,akhenon.sitemap(chosen_domain));
-            break;
+            return;
         };
 
         let robots_trigger;
@@ -764,7 +764,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         if (robots_trigger) {
             served = true;
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
-            break;
+            return;
         };
         
         if (served == false) {
@@ -776,9 +776,9 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
                 "js":chosen_domain.intra.js
             };
             finish_request (res,200,akhenon.html(options));
-            break;
+            return;
         };
-    };
+    }
 }
 function finish_request (res,code,content) {
     res.writeHead(code);
