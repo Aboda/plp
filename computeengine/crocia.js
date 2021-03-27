@@ -648,7 +648,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
        En caso contrario el chequeo fallado indicará al solicitante detalles sanitizados
     */
     if (do_serve) {
-        let served = false;
         let chosen_domain = domain_tree[req.headers.host];
         let crafted_content;
         let adjusted_path = akhenon.adjust_path(easyurl.pathname);
@@ -658,7 +657,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             let options = akhenon.copy_obj(chosen_domain.intra);
             options.languaje = chosen_lng; 
             options.title = options.title[chosen_lng];
-            served = true;
             options.html = ["<h1>"+chosen_domain.meta.short[chosen_lng]+"</h1>"];
             finish_request (res,200,akhenon.html(options));
             return;
@@ -681,7 +679,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         };
 
         if (favicon_trigger) {
-            served = true;
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
             return;
         };
@@ -715,7 +712,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
                 options.facebooksdk = true;
                 options.fbid = chosen_domain.meta.fbid;
             };
-            served = true;
             finish_request (res,200,akhenon.html(options));
             return;
         };
@@ -762,22 +758,19 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         };
 
         if (robots_trigger) {
-            served = true;
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
             return;
         };
         
-        if (served == false) {
-            let options = {
-                "html":["<h1>En construcción</h1>"],
-                "languaje":chosen_lng,
-                "title":"mis:"+chosen_domain.meta.acronimo,
-                "css":chosen_domain.intra.css,
-                "js":chosen_domain.intra.js
-            };
-            finish_request (res,200,akhenon.html(options));
-            return;
+        let options = {
+            "html":["<h1>En construcción</h1>"],
+            "languaje":chosen_lng,
+            "title":"mis:"+chosen_domain.meta.acronimo,
+            "css":chosen_domain.intra.css,
+            "js":chosen_domain.intra.js
         };
+        finish_request (res,200,akhenon.html(options));
+        return;    
     }
 }
 function finish_request (res,code,content) {
@@ -801,7 +794,6 @@ function adjust_path (pathname) {
     return pathname.toLowerCase();
 }
 function valid_resource (easyurl,domain_tree) {
-    console.log(easyurl.pathname);
     if (easyurl.pathname == "/") {
         return true;
     };
@@ -810,8 +802,6 @@ function valid_resource (easyurl,domain_tree) {
     if (adjusted.indexOf("/") != -1) {
         as_array = adjusted.split("/");
     }
-
-    console.log(easyurl.host,{adjusted,as_array});
 
     if (as_array == undefined){
         if (adjusted == "favicon.ico" ||
@@ -880,8 +870,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
         Significativo -> contenido - > significativo -> conteni
         do
 
-        el objetivo es leer en cada nivel el meta, decidir si s
-        e le crea entrada en este indice al elemento e introduc
+        el objetivo es leer en cada nivel el meta, e introduc
         irlo
     */
         let hc = "<h1>"+common_messages.index[chosen_lng] +

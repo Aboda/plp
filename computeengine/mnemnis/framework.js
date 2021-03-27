@@ -106,3 +106,12 @@ function toggle_vis(element) {
     element.style.display = "none";
   }
 }
+
+function left_hand_menu(){
+  document.body.append(make_node({
+    "nodetype":"div",
+    "innerText":"Ancho: "+window.innerWidth + "\nLargo: "+window.innerHeight
+  }))
+}
+
+left_hand_menu();
