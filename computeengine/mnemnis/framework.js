@@ -139,7 +139,7 @@ function left_hand_menu(details){
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["sidemenu_collapsed"]
+    "styles":["sidemenu_displayed"]
   })
   document.body.append(crafted_device);
   var icon = make_node({
@@ -153,7 +153,7 @@ function left_hand_menu(details){
       "id":"smbo-"+buttons[chosen_lng],
       "nodetype":"div",
       "innerText":buttons[chosen_lng],
-      "styles":["menu_option_collapsed"]
+      "styles":["menu_option_displayed"]
     })
     crafted_device.append(entry);
   }

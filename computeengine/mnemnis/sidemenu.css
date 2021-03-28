@@ -17,6 +17,8 @@ div {
     top:0;
     left:0;
     width: 100dw;
+    background-color: gray;
+    color: black;
 }
 .sidemenu_collapsed {
     position: absolute;
