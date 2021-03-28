@@ -136,18 +136,20 @@ let details = [
   }
 ]
 
-function left_hand_menu(details){
+function left_hand_menu(details) {
   var chosen_lng = document.documentElement.lang.slice(0,2);
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
     "styles":["sidemenu_displayed"]
   })
+  crafted_device.setAttribute("width",window.innerWidth);
+  crafted_device.setAttribute("heigth",window.innerHeight);
   document.body.append(crafted_device);
   var icon = make_node({
     "id":"sidemenu_icon",
     "nodetype":"p",
-    "innerText":String.fromCharCode("&#9965;"),
+    "innerText":String.fromCharCode("9965"),
     "styles":["sidemenu_icon"]
   })
   crafted_device.append(icon);

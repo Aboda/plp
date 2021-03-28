@@ -18,7 +18,6 @@ div {
     display: flex;
     top:0;
     left:0;
-    width: 100dw;
     background-color: gray;
     color: black;
 }
@@ -27,11 +26,9 @@ div {
     display:  flex;
     top:0;
     left:0;
-    width: 5dw;
 }
 .menu_option_displayed{
     display: flex;
-    width: 100%;
 }
 .menu_option_collapsed{
     display: none;
@@ -42,21 +39,17 @@ div {
         display:  flex;
         top:0;
         left:0;
-        width: 50dw;
     }
     .sidemenu_collapsed {
         position: absolute;
         display: flex;
         top:0;
         left:0;
-        width: 10dw;
     }
     .menu_option_displayed{
         display: flex;
-        width: 100%;
     }
     .menu_option_collapsed{
         display: none;
-        width: 70%;
     }
 }
