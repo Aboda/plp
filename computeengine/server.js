@@ -34,9 +34,9 @@ var cache = {
         "desk":fs.readFileSync("./mnemnis/desk.ico")
     },
     "css":{
-        "bas":fs.readFileSync("./mnemnis/bas.css").toString(),
         "plp":fs.readFileSync("./mnemnis/plp.css").toString(),
-        "ren":fs.readFileSync("./mnemnis/ren.css").toString()
+        "ren":fs.readFileSync("./mnemnis/ren.css").toString(),
+        "sidemenu":fs.readFileSync("./mnemnis/sidemenu.css").toString()
     },
     "js":{
         "blog":fs.readFileSync("./mnemnis/blog.js").toString(),
