@@ -141,7 +141,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["sticky_block"],
+    "styles":["sidemenu_container"],
     "state":"collapsed"
   })
   document.body.append(crafted_device);
@@ -172,34 +172,29 @@ function sidemenu_toggle(what) {
   var big_letter = ao.simple.sidemenu_icon;
   big_letter.node.classList.toggle("color_contrast_2");
   big_letter.node.classList.toggle("color_contrast_3");
-  sidemenu.node.classList.toggle("sticky_block");
-  sidemenu.node.classList.toggle("expanded_menu");
   if (sidemenu.config.state == "collapsed"){
     //graceful_flow(sidemenu.node,2,"come_in","expanded_menu");
     sidemenu.config.state = "expanded"
+    sidemenu.node.classList.toggle("sticky_block");
     for (var ma_me_op in ao.main_menu) {
       ao.main_menu[ma_me_op].node.classList.remove("hide_away");
-      ao.main_menu[ma_me_op].node.classList.add("side_option_on");
+      ao.main_menu[ma_me_op].node.classList.add("trigger_grow_in");
     }
   }else if (sidemenu.config.state == "expanded"){
     //graceful_flow(sidemenu.node,2,"go_away","sticky_block");
     sidemenu.config.state = "collapsed"
+    sidemenu.node.classList.toggle("expanded_menu");
     for (var ma_me_op in ao.main_menu) {
-      ao.main_menu[ma_me_op].node.classList.add("side_option_off");
-      ao.main_menu[ma_me_op].node.classList.remove("side_option_on");
+      ao.main_menu[ma_me_op].node.classList.add("trigger_grow_out");
+      ao.main_menu[ma_me_op].node.classList.remove("trigger_grow_in");
       let affected = ao.main_menu[ma_me_op].node;
       setTimeout(function(){
-        affected.classList.remove("side_option_off");
+        affected.classList.remove("trigger_grow_out");
         affected.classList.add("hide_away");
       }, 1000,affected);
     }
   };
 };
-
-function graceful_flow(affected,duration,immediate,final){
-  setTimeout(function(){affected.classList.add(immediate)}, 0,affected);
-  setTimeout(function(){affected.classList.add(final)}, duration * 1000,affected);
-}
 
 window.onload = () => {
   left_hand_menu(details);

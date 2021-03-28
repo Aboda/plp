@@ -13,45 +13,38 @@ html, body {
 .big_letter{
     font-size: 150%;
 }
+.sidemenu_container {
+    position: sticky;
+    display: flex;
+}
 @keyframes slide_out {
     0%   {
-        top: 5vh; height: 90vh; left: 5vw; width: 100%;
+        top: 5vh; height: 50vh; left: 5vw; width: 50vw;
     }
     100% {
         top: 5vh; height: 10vh; left: 5vw; width: 10vw;
     }
 }
-.sticky_block {
-    position: sticky;
-    
-    top: 5vh;
-    height: 10vh;
-
-    left: 5vw;
-    width: 10vw;
-
-    animation: slide_out 1s;
+.trigger_slide_out {
+    animation: slide_out 1s forwards; 
 }
 @keyframes slide_in {
     0%   {
-       top: 5vh; height: 10vh; left: 5vw; width: 10vw;
+        top: 5vh; height: 10vh; left: 5vw; width: 10vw;
     }
     100% {
         top: 5vh; height: 90vh; left: 5vw; width: 100%;
     }
 }
-.expanded_menu {
-    position: sticky;
-    
-    top: 5vh;
-    height: 90vh;
-
-    left: 0px;
-    width: 100%;
-
-    animation: slide_in 1s;
+.trigger_slide_in {
+    animation: slide_in 1s forwards;
 }
-@keyframes fade_in {
+
+.sidemenu_option{
+    display: flex;
+
+}
+@keyframes grow_in {
     0%   {
         top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
     }
@@ -59,22 +52,10 @@ html, body {
         top: 1vh; height: 3vh; left: 0vw; width: 70%; margin: 1em; padding: 1em;
     }
 }
-.side_option_on{
-    display: flex;
-
-    top: 1vh; 
-    height: 3vh; 
-    
-    left: 0vw; 
-    width: 70%; 
-    
-    margin: 1em; 
-    padding: 1em;
-
-    animation: fade_in 1s;
+.trigger_grow_in{
+    animation: grow_in 1s forwards;
 }
-
-@keyframes fade_out {
+@keyframes grow_out {
     0%   {
         top: 1vh; height: 3vh; left: 0w; width: 70%; margin: 1em; padding: 1em;
     }
@@ -82,19 +63,8 @@ html, body {
         top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
     }
 }
-.side_option_off{
-    display: flex;
-
-    top: 0vh; 
-    height: 0vh; 
-    
-    left: 0vw; 
-    width: 0vw; 
-    
-    margin: 0em; 
-    padding: 0em;
-
-    animation: fade_out 1s;
+.trigger_grow_out{
+    animation: fade_out 1s forwards;
 }
 .hide_away {
     display: none;
