@@ -40,6 +40,7 @@ html, body {
     animation: slide_in 1s forwards;
 }
 .sidemenu_option {
+    display: none;
     flex-flow: column;
     justify-content: center;
     align-items: center;
