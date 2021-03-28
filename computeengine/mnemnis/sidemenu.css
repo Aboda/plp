@@ -42,37 +42,18 @@ html, body {
 
 @keyframes slide_in {
     0%   {
-        position: sticky; top: 5vh; height: 10vh; left: 5vw; width: 10vw; background: gray;
+        top: 5vh; height: 10vh; left: 5vw; width: 10vw;
     }
     100% {
-        position:absolute; top: 0; height: 100vh; left: 0; width: 100vw; background: green;
+        top: 0; height: 100vh; left: 0; width: 100vw;
     }
 }
 
 @keyframes slide_out {
     0%   {
-        position:absolute; top: 0; height: 100vh; left: 0; width: 100vw; background: green;
+        top: 0; height: 100vh; left: 0; width: 100vw;
     }
     100% {
-        position: sticky; top: 5vh; height: 10vh; left: 5vw; width: 10vw; background: gray;
-    }
-}
-
-@media only screen and (min-width: 420px) {
-    .sticky_block {
-        position:absolute;
-        top: 20px;
-        left: 5px;
-        width: 33px;
-        height: 33px;
-        animation: slide_out 3s;
-    }
-    .expanded_thing {
-        position:absolute;
-        top: 5px;
-        left: 5px;
-        width: 350px;
-        height: 500px;
-        animation: slide_in 3s;
+        top: 5vh; height: 10vh; left: 5vw; width: 10vw;
     }
 }
