@@ -38,9 +38,11 @@ html, body {
     font-size: 150%;
 }
 .side_option_on{
+    top: 1vh; height: 3vh; left: 1vw; width: 88vw; margin: 1em; padding: 1em;
     animation: fade_in 1s;
 }
 .side_option_off{
+    top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
     animation: fade_out 1s;
 }
 @keyframes slide_in {
