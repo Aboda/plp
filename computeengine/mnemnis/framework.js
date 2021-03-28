@@ -160,8 +160,8 @@ function left_hand_menu(details) {
       "styles":["color_contrast_2"]
     })
     ost(ao,"main_menu",{});
-    ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
     toggle_vis(entry);
+    ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
     crafted_device.append(entry);
   }
   icon.addEventListener("click",(e) => {sidemenu_toggle(e)});
@@ -179,6 +179,7 @@ function sidemenu_toggle(what) {
     //graceful_flow(sidemenu.node,2,"come_in","expanded_menu");
     sidemenu.config.state = "expanded"
     for (var ma_me_op in ao.main_menu) {
+      toggle_vis(entry);
       ao.main_menu[ma_me_op].node.classList.add("side_option_on")
       ao.main_menu[ma_me_op].node.classList.remove("side_option_off")
     }
@@ -188,6 +189,7 @@ function sidemenu_toggle(what) {
     for (var ma_me_op in ao.main_menu) {
       ao.main_menu[ma_me_op].node.classList.add("side_option_off")
       ao.main_menu[ma_me_op].node.classList.remove("side_option_on")
+      setTimeout(function(){toggle_vis(entry)}, 1000,entry);
     }
   };
 };
