@@ -17,6 +17,7 @@ html, body {
     position: sticky;
     top: 5vh;
     left: 5vw; 
+    height: 10vh; width: 10vw;
 }
 @keyframes slide_out {
     0%   {
@@ -41,9 +42,14 @@ html, body {
 .trigger_slide_in {
     animation: slide_in 1s both;
 }
-
+.hide_away {
+    display: none;
+}
 .sidemenu_option{
     display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
 }
 @keyframes grow_in {
     0%   {
@@ -67,9 +73,7 @@ html, body {
 .trigger_grow_out{
     animation: fade_out 1s forwards;
 }
-.hide_away {
-    display: none;
-}
+
 
 
 
