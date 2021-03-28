@@ -173,17 +173,18 @@ function sidemenu_toggle(what) {
   sidemenu.node.classList.toggle("sticky_block");
   sidemenu.node.classList.toggle("expanded_menu");
   if (sidemenu.config.state == "collapsed"){
-    graceful_flow(sidemenu.node,2,"come_in","expanded_menu");
+    //graceful_flow(sidemenu.node,2,"come_in","expanded_menu");
+
     sidemenu.config.state = "expanded"
   }else if (sidemenu.config.state == "expanded"){
-    graceful_flow(sidemenu.node,2,"go_away","sticky_block");
+    //graceful_flow(sidemenu.node,2,"go_away","sticky_block");
     sidemenu.config.state = "collapsed"
   };
 };
 
 function graceful_flow(affected,duration,immediate,final){
-  setTimeout(function(affected){affected.classList.add(immediate)}, 0,affected);
-  setTimeout(function(affected){affected.classList.add(final)}, duration * 1000,affected);
+  setTimeout(function(){affected.classList.add(immediate)}, 0,affected);
+  setTimeout(function(){affected.classList.add(final)}, duration * 1000,affected);
 }
 
 window.onload = () => {

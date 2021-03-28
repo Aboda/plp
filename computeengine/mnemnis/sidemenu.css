@@ -18,6 +18,7 @@ html, body {
 
     left: 5vw;
     width: 10vw;
+    margin: 0;
 }
 .come_in{
     animation: slide_in 2s;
@@ -36,13 +37,21 @@ html, body {
 }
 
 @keyframes slide_in {
-    0%   {top: 0px; left: 0px; background: gray;}
-    100% {top: 100px; left: 150px; background: green;}
+    0%   {
+        position: sticky; top: 5vh; height: 10vh; left: 5vw; width: 10vw; background: gray;
+    }
+    100% {
+        position:absolute; top: 0; height: 100vh; left: 0; width: 100vw; background: green;
+    }
 }
 
 @keyframes slide_out {
-    0%   {top: 100px; left: 150px; background: green;}
-    100% {top: 0px; left: 0px; background: gray;}
+    0%   {
+        position:absolute; top: 0; height: 100vh; left: 0; width: 100vw; background: green;
+    }
+    100% {
+        position: sticky; top: 5vh; height: 10vh; left: 5vw; width: 10vw; background: gray;
+    }
 }
 
 @media only screen and (min-width: 420px) {
