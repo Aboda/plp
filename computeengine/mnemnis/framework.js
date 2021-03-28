@@ -170,7 +170,7 @@ function sidemenu_toggle(what) {
   sidemenu.node.classList.toggle("expanded_menu");
 }
 
-window.onload = {
+window.onload = () => {
   left_hand_menu(details);
   //hard_ini();
 }
