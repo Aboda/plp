@@ -147,7 +147,7 @@ function left_hand_menu(details){
   var icon = make_node({
     "id":"sidemenu_icon",
     "nodetype":"p",
-    "innerText":"&#9965;",
+    "innerText":String.fromCharCode("&#9965;"),
     "styles":["sidemenu_icon"]
   })
   crafted_device.append(icon);
