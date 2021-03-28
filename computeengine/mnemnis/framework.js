@@ -191,7 +191,7 @@ function sidemenu_toggle(what) {
       setTimeout(function(){
         affected.classList.remove("side_option_off");
         affected.classList.add("hide_away");
-      }, 1,affected);
+      }, 1000,affected);
     }
   };
 };
