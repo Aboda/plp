@@ -45,19 +45,19 @@ html, body {
 }
 @keyframes slide_in {
     0%   {
-        top: 5vh; height: 10vh; left: 5vw; width: 10vw;
+       display:flex; top: 5vh; height: 10vh; left: 5vw; width: 10vw;
     }
     100% {
-        top: 5vh; height: 90vh; left: 5vw; width: 90vw;
+        display:flex; top: 5vh; height: 90vh; left: 5vw; width: 90vw;
     }
 }
 
 @keyframes slide_out {
     0%   {
-        top: 5vh; height: 90vh; left: 5vw; width: 90vw;
+        display:flex; top: 5vh; height: 90vh; left: 5vw; width: 90vw;
     }
     100% {
-        top: 5vh; height: 10vh; left: 5vw; width: 10vw;
+        display:none; top: 5vh; height: 10vh; left: 5vw; width: 10vw;
     }
 }
 

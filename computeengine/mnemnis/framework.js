@@ -161,7 +161,7 @@ function left_hand_menu(details) {
     })
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
-    //toggle_vis(entry);
+    toggle_vis(entry);
     crafted_device.append(entry);
   }
   icon.addEventListener("click",(e) => {sidemenu_toggle(e)});
