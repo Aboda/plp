@@ -143,8 +143,8 @@ function left_hand_menu(details) {
     "nodetype":"div",
     "styles":["sidemenu_displayed"]
   })
-  crafted_device.styles.width = window.innerWidth;
-  crafted_device.styles.height = window.innerHeight;
+  crafted_device.style.width = window.innerWidth;
+  crafted_device.style.height = window.innerHeight;
   document.body.append(crafted_device);
   var icon = make_node({
     "id":"sidemenu_icon",
