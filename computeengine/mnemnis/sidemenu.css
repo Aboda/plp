@@ -32,7 +32,7 @@ html, body {
     }
 }
 .trigger_slide_out {
-    animation: slide_out 1s both; 
+    animation: slide_out 1s forwards; 
 }
 @keyframes slide_in {
     0%   {
@@ -43,7 +43,7 @@ html, body {
     }
 }
 .trigger_slide_in {
-    animation: slide_in 1s both;
+    animation: slide_in 1s forwards;
 }
 
 .sidemenu_option{
@@ -71,7 +71,7 @@ html, body {
     }
 }
 .trigger_grow_in{
-    animation: grow_in 1s both;
+    animation: grow_in 1s forwards;
 }
 @keyframes grow_out {
     0%   {
@@ -93,7 +93,7 @@ html, body {
     }
 }
 .trigger_grow_out{
-    animation: grow_out 1s both;
+    animation: grow_out 1s forwards;
 }
 
 
