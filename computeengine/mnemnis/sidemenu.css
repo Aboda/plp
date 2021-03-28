@@ -50,16 +50,20 @@ html, body {
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    opacity: 0.0;
+    margin: 0em; 
+    padding: 0em;
+
 }
 @keyframes grow_in {
     0%   {
         display: flex;
         opacity: 0.0;
-        width: 0%; 
         margin: 0em; 
         padding: 0em;
     }
     100% {
+        display: flex;
         opacity: 1.0;
         width: 100%; 
         margin: 1em; 
@@ -71,12 +75,14 @@ html, body {
 }
 @keyframes grow_out {
     0%   {
+        display: flex;
         opacity: 1.0;
         width: 100%; 
         margin: 1em; 
         padding: 1em;
     }
     99% {
+        display: flex;
         opacity: 0.0;
         width: 0%; 
         margin: 0em; 
@@ -87,7 +93,7 @@ html, body {
     }
 }
 .trigger_grow_out{
-    animation: fade_out 1s both;
+    animation: grow_out 1s both;
 }
 
 
