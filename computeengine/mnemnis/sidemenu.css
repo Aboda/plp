@@ -10,6 +10,17 @@ html, body {
     justify-content: center;
     align-items: center;
 }
+.big_letter{
+    font-size: 150%;
+}
+@keyframes slide_out {
+    0%   {
+        top: 5vh; height: 90vh; left: 5vw; width: 90vw;
+    }
+    100% {
+        top: 5vh; height: 10vh; left: 5vw; width: 10vw;
+    }
+}
 .sticky_block {
     position: sticky;
     
@@ -18,32 +29,8 @@ html, body {
 
     left: 5vw;
     width: 10vw;
-    margin: 0;
 
     animation: slide_out 1s;
-}
-.expanded_menu {
-    position: sticky;
-    
-    top: 5vh;
-    height: 90vh;
-
-    left: 5vw;
-    width: 90vw;
-    margin: 0;
-
-    animation: slide_in 1s;
-}
-.big_letter{
-    font-size: 150%;
-}
-.side_option_on{
-    top: 1vh; height: 3vh; left: 1vw; width: 88vw; margin: 1em; padding: 1em;
-    animation: fade_in 1s;
-}
-.side_option_off{
-    top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
-    animation: fade_out 1s;
 }
 @keyframes slide_in {
     0%   {
@@ -53,16 +40,17 @@ html, body {
         top: 5vh; height: 90vh; left: 5vw; width: 90vw;
     }
 }
+.expanded_menu {
+    position: sticky;
+    
+    top: 5vh;
+    height: 90vh;
 
-@keyframes slide_out {
-    0%   {
-        top: 5vh; height: 90vh; left: 5vw; width: 90vw;
-    }
-    100% {
-        top: 5vh; height: 10vh; left: 5vw; width: 10vw;
-    }
+    left: 5vw;
+    width: 90vw;
+
+    animation: slide_in 1s;
 }
-
 @keyframes fade_in {
     0%   {
         top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
@@ -70,6 +58,20 @@ html, body {
     100% {
         top: 1vh; height: 3vh; left: 1vw; width: 88vw; margin: 1em; padding: 1em;
     }
+}
+.side_option_on{
+    display: flex;
+
+    top: 1vh; 
+    height: 3vh; 
+    
+    left: 1vw; 
+    width: 88vw; 
+    
+    margin: 1em; 
+    padding: 1em;
+    
+    animation: fade_in 1s;
 }
 
 @keyframes fade_out {
@@ -80,3 +82,22 @@ html, body {
         top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
     }
 }
+.side_option_off{
+    display: none;
+
+    top: 0vh; 
+    height: 0vh; 
+    
+    left: 0vw; 
+    width: 0vw; 
+    
+    margin: 0em; 
+    padding: 0em;
+
+    animation: fade_out 1s;
+}
+
+
+
+
+
