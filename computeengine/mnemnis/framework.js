@@ -141,13 +141,15 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["sticky_block","color_contrast_2"]
+    "styles":["sticky_block"],
+    "state":"collapsed"
   })
   document.body.append(crafted_device);
   var icon = make_node({
     "id":"sidemenu_icon",
     "nodetype":"p",
-    "innerText":String.fromCharCode("9965")
+    "innerText":String.fromCharCode("9965"),
+    "styles":["big_letter","color_contrast_2"]
   })
   crafted_device.append(icon);
   for (var buttons of details) {
@@ -159,15 +161,29 @@ function left_hand_menu(details) {
     toggle_vis(entry);
     crafted_device.append(entry);
   }
-  crafted_device.addEventListener("click",(e) => {sidemenu_toggle(e)});
+  icon.addEventListener("click",(e) => {sidemenu_toggle(e)});
 }
 
 function sidemenu_toggle(what) {
   console.log(what);
-  console.log(this);
-  var sidemenu = ao.simple.sidemenu
+  var sidemenu = ao.simple.sidemenu;
+  var big_letter = ao.simple.sidemenu_icon;
+  big_letter.node.classList.toggle("color_contrast_2");
+  big_letter.node.classList.toggle("color_contrast_3");
   sidemenu.node.classList.toggle("sticky_block");
   sidemenu.node.classList.toggle("expanded_menu");
+  if (sidemenu.config.state == "collapsed"){
+    graceful_flow(sidemenu.node,2,"come_in","expanded_menu");
+    sidemenu.config.state = "expanded"
+  }else if (sidemenu.config.state == "expanded"){
+    graceful_flow(sidemenu.node,2,"go_away","sticky_block");
+    sidemenu.config.state = "collapsed"
+  };
+};
+
+function graceful_flow(affected,duration,immediate,final){
+  setTimeout(function(affected){affected.classList.add(immediate)}, 0);
+  setTimeout(function(affected){affected.classList.add(final)}, duration * 1000);
 }
 
 window.onload = () => {
