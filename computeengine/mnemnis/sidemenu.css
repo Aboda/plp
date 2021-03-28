@@ -76,13 +76,15 @@ html, body {
 
 @keyframes fade_out {
     0%   {
-        display: flex; top: 1vh; height: 3vh; left: 1vw; width: 88vw; margin: 1em; padding: 1em;
+        top: 1vh; height: 3vh; left: 1vw; width: 88vw; margin: 1em; padding: 1em;
     }
     100% {
-        display: none; top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
+        top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
     }
 }
 .side_option_off{
+    display: flex;
+
     top: 0vh; 
     height: 0vh; 
     
@@ -94,7 +96,9 @@ html, body {
 
     animation: fade_out 1s;
 }
-
+.hide_away {
+    display: none;
+}
 
 
 

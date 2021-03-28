@@ -157,7 +157,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[chosen_lng],
       "nodetype":"div",
       "innerText":buttons[chosen_lng],
-      "styles":["color_contrast_2","side_option_off"]
+      "styles":["color_contrast_2","hide_away"]
     })
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
@@ -178,8 +178,8 @@ function sidemenu_toggle(what) {
     //graceful_flow(sidemenu.node,2,"come_in","expanded_menu");
     sidemenu.config.state = "expanded"
     for (var ma_me_op in ao.main_menu) {
+      ao.main_menu[ma_me_op].node.classList.remove("hide_away");
       ao.main_menu[ma_me_op].node.classList.add("side_option_on");
-      ao.main_menu[ma_me_op].node.classList.remove("side_option_off");
     }
   }else if (sidemenu.config.state == "expanded"){
     //graceful_flow(sidemenu.node,2,"go_away","sticky_block");
@@ -187,6 +187,11 @@ function sidemenu_toggle(what) {
     for (var ma_me_op in ao.main_menu) {
       ao.main_menu[ma_me_op].node.classList.add("side_option_off");
       ao.main_menu[ma_me_op].node.classList.remove("side_option_on");
+      let affected = ao.main_menu[ma_me_op].node;
+      setTimeout(function(){
+        affected.classList.remove("side_option_off");
+        affected.classList.add("hide_away");
+      }, 1,affected);
     }
   };
 };
