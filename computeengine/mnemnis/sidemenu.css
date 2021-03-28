@@ -4,52 +4,52 @@ html, body {
     width: 100vw;
     margin: 0;
 }
-div {
+.default {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
 }
-.sidemenu_icon{
-    font-size: 150%;
+.sticky_block {
+    position: sticky;
+    top: 20px;
+    width: 33px;
+    height: 33px;
+    animation: slide_out 3s;
 }
-.sidemenu_displayed {
-    position: absolute;
-    display: flex;
-    top:0;
-    left:0;
-    background-color: gray;
-    color: black;
+.expanded_menu {
+    position:absolute;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    animation: slide_in 3s;
 }
-.sidemenu_collapsed {
-    position: absolute;
-    display:  flex;
-    top:0;
-    left:0;
+
+@keyframes slide_in {
+    0%   {top: 0px; left: 0px; background: gray;}
+    100% {top: 100px; left: 150px; background: green;}
 }
-.menu_option_displayed{
-    display: flex;
+
+@keyframes slide_out {
+    0%   {top: 100px; left: 150px; background: green;}
+    100% {top: 0px; left: 0px; background: gray;}
 }
-.menu_option_collapsed{
-    display: none;
-}
+
 @media only screen and (min-width: 420px) {
-    .sidemenu_displayed {
-        position: absolute;
-        display:  flex;
-        top:0;
-        left:0;
+    .sticky_block {
+        position:absolute;
+        top: 20px;
+        left: 5px;
+        width: 33px;
+        height: 33px;
+        animation: slide_out 3s;
     }
-    .sidemenu_collapsed {
-        position: absolute;
-        display: flex;
-        top:0;
-        left:0;
-    }
-    .menu_option_displayed{
-        display: flex;
-    }
-    .menu_option_collapsed{
-        display: none;
+    .expanded_thing {
+        position:absolute;
+        top: 5px;
+        left: 5px;
+        width: 350px;
+        height: 500px;
+        animation: slide_in 3s;
     }
 }

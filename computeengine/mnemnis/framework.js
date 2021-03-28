@@ -141,29 +141,36 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["sidemenu_displayed"]
+    "styles":["sticky_block","color_contrast_2"]
   })
-  crafted_device.style.width = window.innerWidth;
-  crafted_device.style.height = window.innerHeight;
   document.body.append(crafted_device);
   var icon = make_node({
     "id":"sidemenu_icon",
     "nodetype":"p",
-    "innerText":String.fromCharCode("9965"),
-    "styles":["sidemenu_icon"]
+    "innerText":String.fromCharCode("9965")
   })
   crafted_device.append(icon);
   for (var buttons of details) {
     var entry = make_node({
       "id":"smbo-"+buttons[chosen_lng],
       "nodetype":"div",
-      "innerText":buttons[chosen_lng],
-      "styles":["menu_option_displayed"]
+      "innerText":buttons[chosen_lng]
     })
+    toggle_vis(entry);
     crafted_device.append(entry);
   }
-  crafted_device.addEventListener("click",console.log(this.id));
+  crafted_device.addEventListener("click",sidemenu_toggle());
 }
 
+function sidemenu_toggle(what) {
+  console.log(what);
+  console.log(this);
+  var sidemenu = ao.simple.sidemenu
+  sidemenu.node.classList.toggle("sticky_block");
+  sidemenu.node.classList.toggle("expanded_menu");
+}
 
-left_hand_menu(details);
+window.onload = {
+  left_hand_menu(details);
+  //hard_ini();
+}
