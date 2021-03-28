@@ -159,7 +159,7 @@ function left_hand_menu(details) {
     toggle_vis(entry);
     crafted_device.append(entry);
   }
-  crafted_device.addEventListener("click",sidemenu_toggle());
+  crafted_device.addEventListener("click",() => {sidemenu_toggle(this)});
 }
 
 function sidemenu_toggle(what) {
