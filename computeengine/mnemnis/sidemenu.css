@@ -45,36 +45,36 @@ html, body {
 }
 @keyframes slide_in {
     0%   {
-       display:flex; top: 5vh; height: 10vh; left: 5vw; width: 10vw;
+       top: 5vh; height: 10vh; left: 5vw; width: 10vw;
     }
     100% {
-        display:flex; top: 5vh; height: 90vh; left: 5vw; width: 90vw;
+        top: 5vh; height: 90vh; left: 5vw; width: 90vw;
     }
 }
 
 @keyframes slide_out {
     0%   {
-        display:flex; top: 5vh; height: 90vh; left: 5vw; width: 90vw;
+        top: 5vh; height: 90vh; left: 5vw; width: 90vw;
     }
     100% {
-        display:none; top: 5vh; height: 10vh; left: 5vw; width: 10vw;
+        top: 5vh; height: 10vh; left: 5vw; width: 10vw;
     }
 }
 
 @keyframes fade_in {
     0%   {
-        top: 0vh; height: 0vh; left: 0vw; width: 0vw;
+        display:flex; top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
     }
     100% {
-        top: 1vh; height: 3vh; left: 1vw; width: 88vw;
+        display:flex; top: 1vh; height: 3vh; left: 1vw; width: 88vw; margin: 1em; padding: 1em;
     }
 }
 
 @keyframes fade_out {
     0%   {
-        top: 1vh; height: 3vh; left: 1vw; width: 88vw;
+        display:flex; top: 1vh; height: 3vh; left: 1vw; width: 88vw; margin: 1em; padding: 1em;
     }
     100% {
-        top: 0vh; height: 0vh; left: 0vw; width: 0vw;
+        display:none; top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
     }
 }
