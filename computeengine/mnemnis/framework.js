@@ -182,8 +182,8 @@ function sidemenu_toggle(what) {
 };
 
 function graceful_flow(affected,duration,immediate,final){
-  setTimeout(function(affected){affected.classList.add(immediate)}, 0);
-  setTimeout(function(affected){affected.classList.add(final)}, duration * 1000);
+  setTimeout(function(affected){affected.classList.add(immediate)}, 0,affected);
+  setTimeout(function(affected){affected.classList.add(final)}, duration * 1000,affected);
 }
 
 window.onload = () => {
