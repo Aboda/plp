@@ -11,7 +11,7 @@ html, body {
     align-items: center;
 }
 .big_letter{
-    font-size: 150%;
+    font-size: 200%;
 }
 .sidemenu_container {
     position: sticky;
@@ -19,16 +19,16 @@ html, body {
     left: 2vw; 
     margin: 1em;
     padding: 1em;
-    height: 5vh; 
-    width: 5vw;
+    height: 10vh; 
+    width: 10vw;
 }
 @keyframes slide_out {
     0%   {
-        height: 75vh; width: 75vw;
+        height: 80vh; width: 80vw;
         
     }
     100% {
-        height: 5vh; width: 5vw;
+        height: 10vh; width: 10vw;
     }
 }
 .trigger_slide_out {
@@ -36,45 +36,58 @@ html, body {
 }
 @keyframes slide_in {
     0%   {
-        height: 5vh; width: 5vw;
+        height: 10vh; width: 10vw;
     }
     100% {
-        height: 75vh; width: 75vw;
+        height: 80vh; width: 80vw;
     }
 }
 .trigger_slide_in {
     animation: slide_in 1s both;
 }
-.hide_away {
-    display: none;
-}
 .sidemenu_option{
-    display: flex;
+    display: none;
     flex-flow: column;
     justify-content: center;
     align-items: center;
 }
 @keyframes grow_in {
     0%   {
-        top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
+        display: flex;
+        opacity: 0.0;
+        width: 0%; 
+        margin: 0em; 
+        padding: 0em;
     }
     100% {
-        top: 1vh; height: 3vh; left: 0vw; width: 70%; margin: 1em; padding: 1em;
+        opacity: 1.0;
+        width: 100%; 
+        margin: 1em; 
+        padding: 1em;
     }
 }
 .trigger_grow_in{
-    animation: grow_in 1s forwards;
+    animation: grow_in 1s both;
 }
 @keyframes grow_out {
     0%   {
-        top: 1vh; height: 3vh; left: 0w; width: 70%; margin: 1em; padding: 1em;
+        opacity: 1.0;
+        width: 100%; 
+        margin: 1em; 
+        padding: 1em;
+    }
+    99% {
+        opacity: 0.0;
+        width: 0%; 
+        margin: 0em; 
+        padding: 0em;
     }
     100% {
-        top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
+        display: none;        
     }
 }
 .trigger_grow_out{
-    animation: fade_out 1s forwards;
+    animation: fade_out 1s both;
 }
 
 

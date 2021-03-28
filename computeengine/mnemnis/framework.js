@@ -167,7 +167,6 @@ function left_hand_menu(details) {
 }
 
 function sidemenu_toggle(what) {
-  console.log(what);
   var sidemenu = ao.simple.sidemenu;
   var big_letter = ao.simple.sidemenu_icon;
   big_letter.node.classList.toggle("color_contrast_2");
@@ -176,24 +175,20 @@ function sidemenu_toggle(what) {
     sidemenu.config.state = "expanded";
     sidemenu.node.classList.remove("trigger_slide_out");
     sidemenu.node.classList.add("trigger_slide_in");
-    /*
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.remove("hide_away");
+      affected.classList.remove("trigger_grow_out");
       affected.classList.add("trigger_grow_in");
     }
-    */
   }else if (sidemenu.config.state == "expanded"){
     sidemenu.config.state = "collapsed"
     sidemenu.node.classList.remove("trigger_slide_in");
     sidemenu.node.classList.add("trigger_slide_out");
-    /*
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
       affected.classList.remove("trigger_grow_in");
       affected.classList.add("trigger_grow_out");
     };
-    */
   };
 };
 
