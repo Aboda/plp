@@ -39,11 +39,12 @@ html, body {
 .trigger_slide_in {
     animation: slide_in 1s forwards;
 }
-.sidemenu_option {
+.hidden_sidemenu_option {
     display: none;
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    animation: grow_out 1s forwards;
 }
 @keyframes grow_out {
     0%  {
@@ -53,25 +54,23 @@ html, body {
         margin: 1em; 
         padding: 1em;
     }
-    99% {
-        display: flex;
+    100% {
+        display: none;
         opacity: 0.0;
         width: 0%; 
         margin: 0em; 
-        padding: 0em;
-    }
-    100% {
-        display: none;        
+        padding: 0em;      
     }
 }
-.trigger_grow_out{
-    animation: grow_out 1s forwards;
+.shown_sidemenu_option {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    animation: grow_in 1s forwards;
 }
 @keyframes grow_in {
     0%   {
-        display: none;
-    }
-    1%   {
         display: flex;
         opacity: 0.0;
         margin: 0em; 
@@ -84,9 +83,6 @@ html, body {
         margin: 1em; 
         padding: 1em;
     }
-}
-.trigger_grow_in{
-    animation: grow_in 1s forwards;
 }
 
 
