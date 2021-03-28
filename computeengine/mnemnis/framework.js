@@ -175,24 +175,25 @@ function sidemenu_toggle(what) {
   if (sidemenu.config.state == "collapsed"){
     //graceful_flow(sidemenu.node,2,"come_in","expanded_menu");
     sidemenu.config.state = "expanded"
-    sidemenu.node.classList.toggle("sticky_block");
     for (var ma_me_op in ao.main_menu) {
-      ao.main_menu[ma_me_op].node.classList.remove("hide_away");
-      ao.main_menu[ma_me_op].node.classList.add("trigger_grow_in");
+      let affected = ao.main_menu[ma_me_op].node;
+      affected.classList.remove("hide_away");
+      affected.classList.add("trigger_grow_in");
+      setTimeout(function() {
+        affected.classList.remove("trigger_grow_in");
+      }, 1000,affected);
     }
   }else if (sidemenu.config.state == "expanded"){
     //graceful_flow(sidemenu.node,2,"go_away","sticky_block");
     sidemenu.config.state = "collapsed"
-    sidemenu.node.classList.toggle("expanded_menu");
     for (var ma_me_op in ao.main_menu) {
-      ao.main_menu[ma_me_op].node.classList.add("trigger_grow_out");
-      ao.main_menu[ma_me_op].node.classList.remove("trigger_grow_in");
       let affected = ao.main_menu[ma_me_op].node;
+      affected.classList.add("trigger_grow_out");
       setTimeout(function(){
         affected.classList.remove("trigger_grow_out");
         affected.classList.add("hide_away");
       }, 1000,affected);
-    }
+    };
   };
 };
 
