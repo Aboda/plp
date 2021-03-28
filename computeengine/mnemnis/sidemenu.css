@@ -21,8 +21,6 @@ html, body {
     margin: 0;
 
     animation: slide_out 1s;
-    background-color: grey;
-    color:white
 }
 .expanded_menu {
     position: sticky;
@@ -35,7 +33,7 @@ html, body {
     margin: 0;
 
     animation: slide_in 1s;
-    background-color: rgb(8, 20, 0);
+    background-color: rgb(21, 51, 1);
     color:white
 }
 .big_letter{
