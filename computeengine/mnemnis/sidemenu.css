@@ -4,12 +4,6 @@ html, body {
     width: 100vw;
     margin: 0;
 }
-.default {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-}
 .big_letter{
     font-size: 200%;
 }
@@ -45,12 +39,32 @@ html, body {
 .trigger_slide_in {
     animation: slide_in 1s forwards;
 }
-
-.sidemenu_option{
-    display: none;
+.sidemenu_option {
     flex-flow: column;
     justify-content: center;
     align-items: center;
+}
+@keyframes grow_out {
+    0%  {
+        display: flex;
+        opacity: 1.0;
+        width: 100%; 
+        margin: 1em; 
+        padding: 1em;
+    }
+    99% {
+        display: flex;
+        opacity: 0.0;
+        width: 0%; 
+        margin: 0em; 
+        padding: 0em;
+    }
+    100% {
+        display: none;        
+    }
+}
+.trigger_grow_out{
+    animation: grow_out 1s forwards;
 }
 @keyframes grow_in {
     0%   {
@@ -72,28 +86,6 @@ html, body {
 }
 .trigger_grow_in{
     animation: grow_in 1s forwards;
-}
-@keyframes grow_out {
-    0%   {
-        display: flex;
-        opacity: 1.0;
-        width: 100%; 
-        margin: 1em; 
-        padding: 1em;
-    }
-    99% {
-        display: flex;
-        opacity: 0.0;
-        width: 0%; 
-        margin: 0em; 
-        padding: 0em;
-    }
-    100% {
-        display: none;        
-    }
-}
-.trigger_grow_out{
-    animation: grow_out 1s forwards;
 }
 
 

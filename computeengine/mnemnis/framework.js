@@ -157,7 +157,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[chosen_lng],
       "nodetype":"div",
       "innerText":buttons[chosen_lng],
-      "styles":["color_contrast_2","trigger_grow_out"]
+      "styles":["sidemenu_option","trigger_grow_out"]
     })
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
