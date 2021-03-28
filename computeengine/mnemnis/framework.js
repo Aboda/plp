@@ -170,14 +170,13 @@ function sidemenu_toggle(what) {
   var big_letter = ao.simple.sidemenu_icon;
   big_letter.node.classList.toggle("color_contrast_2");
   big_letter.node.classList.toggle("color_contrast_3");
-  sidemenu.node.classList.toggle("sticky_block");
-  sidemenu.node.classList.toggle("expanded_menu");
+  //sidemenu.node.classList.toggle("sticky_block");
+  //sidemenu.node.classList.toggle("expanded_menu");
   if (sidemenu.config.state == "collapsed"){
-    //graceful_flow(sidemenu.node,2,"come_in","expanded_menu");
-
+    graceful_flow(sidemenu.node,2,"come_in","expanded_menu");
     sidemenu.config.state = "expanded"
   }else if (sidemenu.config.state == "expanded"){
-    //graceful_flow(sidemenu.node,2,"go_away","sticky_block");
+    graceful_flow(sidemenu.node,2,"go_away","sticky_block");
     sidemenu.config.state = "collapsed"
   };
 };
