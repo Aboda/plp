@@ -26,9 +26,13 @@ html, body {
     animation: slide_in 2s;
 }
 .expanded_menu {
-    position:absolute;
-    height: 100vh;
-    width: 100vw;
+    position: sticky;
+    
+    top: 5vh;
+    height: 90vh;
+
+    left: 5vw;
+    width: 90vw;
     margin: 0;
 
     animation: slide_in 2s;
