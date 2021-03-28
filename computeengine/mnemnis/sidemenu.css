@@ -16,6 +16,9 @@ html, body {
 .sidemenu_container {
     position: sticky;
     display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
 }
 @keyframes slide_out {
     0%   {
@@ -42,7 +45,6 @@ html, body {
 
 .sidemenu_option{
     display: flex;
-
 }
 @keyframes grow_in {
     0%   {
