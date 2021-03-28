@@ -56,7 +56,7 @@ html, body {
         top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
     }
     100% {
-        top: 1vh; height: 3vh; left: 0vw; width: 85vw; margin: 1em; padding: 1em;
+        top: 1vh; height: 3vh; left: 0vw; width: 100%; margin: 1em; padding: 1em;
     }
 }
 .side_option_on{
@@ -66,7 +66,7 @@ html, body {
     height: 3vh; 
     
     left: 0vw; 
-    width: 85vw; 
+    width: 100%; 
     
     margin: 1em; 
     padding: 1em;
@@ -76,7 +76,7 @@ html, body {
 
 @keyframes fade_out {
     0%   {
-        top: 1vh; height: 3vh; left: 0w; width: 85vw; margin: 1em; padding: 1em;
+        top: 1vh; height: 3vh; left: 0w; width: 100%; margin: 1em; padding: 1em;
     }
     100% {
         top: 0vh; height: 0vh; left: 0vw; width: 0vw; margin: 0em; padding: 0em;
