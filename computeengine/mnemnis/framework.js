@@ -157,7 +157,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[chosen_lng],
       "nodetype":"div",
       "innerText":buttons[chosen_lng],
-      "styles":["sidemenu_option","trigger_grow_out"]
+      "styles":["hidden_sidemenu_option","color_contrast_2"]
     })
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
@@ -177,8 +177,8 @@ function sidemenu_toggle(what) {
     sidemenu.node.classList.add("trigger_slide_in");
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.remove("trigger_grow_out");
-      affected.classList.add("trigger_grow_in");
+      affected.classList.toggle("hidden_sidemenu_option");
+      affected.classList.toggle("shown_sidemenu_option");
     }
   }else if (sidemenu.config.state == "expanded"){
     sidemenu.config.state = "collapsed"
@@ -186,8 +186,8 @@ function sidemenu_toggle(what) {
     sidemenu.node.classList.add("trigger_slide_out");
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.remove("trigger_grow_in");
-      affected.classList.add("trigger_grow_out");
+      affected.classList.toggle("hidden_sidemenu_option");
+      affected.classList.toggle("shown_sidemenu_option");
     };
   };
 };
