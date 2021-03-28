@@ -10,7 +10,9 @@ div {
     justify-content: center;
     align-items: center;
 }
-
+.sidemenu_icon{
+    font-size: 150%;
+}
 .sidemenu_displayed {
     position: absolute;
     display: flex;
