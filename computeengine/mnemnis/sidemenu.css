@@ -50,7 +50,7 @@ html, body {
     width: 0vw;
     z-index: -10;
     margin: 0em;
-    animation: option_slide_out 1s both;
+    animation: option_slide_out 1s;
 }
 .shown_sidemenu_option {
     position: sticky;
@@ -64,7 +64,10 @@ html, body {
     width: 95vw;
     z-index: 10;
     margin: 1em;
-    animation: option_slide_in 1s both;
+    animation: option_slide_in 1s;
+}
+.disappear{
+    display:none;
 }
 @keyframes option_slide_out {
     0%   {
@@ -72,12 +75,12 @@ html, body {
         
     }
     100% {
-        height: 0vh; width: 0vw; margin: 0em; display:none;
+        height: 0vh; width: 0vw; margin: 0em;
     }
 }
 @keyframes option_slide_in {
     0%   {
-        height: 0vh; width: 0vw; margin: 0em; display:flex;
+        height: 0vh; width: 0vw; margin: 0em;
     }
     100% {
         height: 8h; width: 95vw; margin: 1em;
