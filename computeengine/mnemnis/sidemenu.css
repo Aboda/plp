@@ -9,8 +9,8 @@ html, body {
 }
 .sidemenu_container_collapsed {
     position: sticky;
-    top: 0vh;
-    left: 0vw; 
+    top: 5vh;
+    left: 5vw; 
     height: 10vh; 
     width: 12vw;
     z-index: 10;
