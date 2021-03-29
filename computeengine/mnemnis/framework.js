@@ -109,34 +109,7 @@ function toggle_vis(element) {
   }
 }
 
-let details = [
-  {
-    "es":"Entretenimiento",
-    "en":"Entertainment"
-  },
-  {
-    "es":"Reflexión",
-    "en":"Reflection"
-  },
-  {
-    "es":"Trabajo",
-    "en":"Work"
-  },
-  {
-    "es":"Preferencias",
-    "en":"Preferences"
-  },
-  {
-    "es":"Perfil",
-    "en":"Profile"
-  },
-  {
-    "es":"Ayuda",
-    "en":"Help"  
-  }
-]
-
-function left_hand_menu(details) {
+function left_hand_menu(left_menu) {
   var chosen_lng = document.documentElement.lang.slice(0,2);
   var crafted_device = make_node({
     "id":"sidemenu",
@@ -157,7 +130,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[chosen_lng],
       "nodetype":"div",
       "innerText":buttons[chosen_lng],
-      "styles":["disappear"]
+      "styles":["disappear","color_contrast_2"]
     })
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);

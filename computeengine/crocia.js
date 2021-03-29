@@ -11,7 +11,7 @@ exports.set_cache_n_init = (cache) => {
             "meta":{
                 "cool":{
                     "es":"Remanso Nocturno",
-                    "en":"Nocturnal Haven"
+                    "en":"Nocturnal Remanse"
                 },
                 "short":{
                     "es":"Red social de creadores",
@@ -33,7 +33,7 @@ exports.set_cache_n_init = (cache) => {
                 "gtag":"UA-116485229-1",
                 "title":{
                     "es":"Inicio: Remanso Nocturno",
-                    "en":"Home: Nocturnal Haven",
+                    "en":"Home: Nocturnal Remanse",
                 },
                 "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
                 "js":[resources_cache.js.framework,resources_cache.js.ren]
@@ -59,7 +59,7 @@ exports.set_cache_n_init = (cache) => {
                         "gtag":"UA-116485229-1",
                         "title":{
                             "es":"Comunidad: Remanso Nocturno",
-                            "en":"Community: Nocturnal Haven"
+                            "en":"Community: Nocturnal Remanse"
                         },
                         "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
                         "js":[resources_cache.js.framework,resources_cache.js.ren]
@@ -85,7 +85,7 @@ exports.set_cache_n_init = (cache) => {
                         "gtag":"UA-116485229-1",
                         "title":{
                             "es":"Perfil: Remanso Nocturno",
-                            "en":"Profile: Nocturnal Haven"
+                            "en":"Profile: Nocturnal Remanse"
                         },
                         "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
                         "js":[resources_cache.js.framework,resources_cache.js.ren]
@@ -113,7 +113,7 @@ exports.set_cache_n_init = (cache) => {
                 "gtag":"UA-116485229-1",
                 "title":{
                     "es":"Blog: Remanso Nocturno",
-                    "en":"Blog: Nocturnal Haven"
+                    "en":"Blog: Nocturnal Remanse"
                 },
                 "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
                 "js":[resources_cache.js.framework,resources_cache.js.ren]
@@ -139,7 +139,7 @@ exports.set_cache_n_init = (cache) => {
                         "gtag":"UA-116485229-1",
                         "title":{
                             "es":"Estáticos: Remanso Nocturno",
-                            "en":"Static: Nocturnal Haven"
+                            "en":"Static: Nocturnal Remanse"
                         },
                         "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
                         "js":[resources_cache.js.framework,resources_cache.js.ren]
@@ -165,7 +165,7 @@ exports.set_cache_n_init = (cache) => {
                         "gtag":"UA-116485229-1",
                         "title":{
                             "es":"Dinámicos: Remanso Nocturno",
-                            "en":"Dynamic: Nocturnal Haven"
+                            "en":"Dynamic: Nocturnal Remanse"
                         },
                         "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
                         "js":[resources_cache.js.framework,resources_cache.js.ren]
@@ -359,6 +359,30 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Storyteller:PLP"
                         },
                         "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.plp]
+                    }
+                },
+                "info":{
+                    "meta":{
+                        "short":{
+                            "es":"Información de Plataforma",
+                            "en":"Platform Information"
+                        },
+                        "loc":"https://demian.app/info/",
+                        "updfreq":"weekly",
+                        "sitemap":false,
+                        "index":false,
+                        "robots":false,
+                        "priority":0.0,
+                        "favicon":"desk",
+                        "acronimo":"dem"
+                    },
+                    "intra":{
+                        "title":{
+                            "es":"Info:Demian",
+                            "en":"Info:Demian"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.edgy],
                         "js":[resources_cache.js.framework,resources_cache.js.plp]
                     }
                 }
