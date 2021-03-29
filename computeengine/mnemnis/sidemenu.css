@@ -40,7 +40,7 @@ html, body {
     animation: slide_in 1s forwards;
 }
 .hidden_sidemenu_option {
-    display: none;
+    display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
@@ -54,12 +54,15 @@ html, body {
         margin: 1em; 
         padding: 1em;
     }
-    100% {
-        display: none;
+    99% {
+        display: flex;
         opacity: 0.0;
         width: 0%; 
         margin: 0em; 
         padding: 0em;      
+    }
+    100%{
+        display: none;
     }
 }
 .shown_sidemenu_option {
