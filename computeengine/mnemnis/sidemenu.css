@@ -11,10 +11,10 @@ html, body {
     position: sticky;
     top: 0vh;
     left: 0vw; 
-    height: 8vh; 
-    width: 8vw;
+    height: 10vh; 
+    width: 12vw;
     z-index: 10;
-    animation: slide_out 1s;
+    animation: container_slide_out 1s;
 }
 .sidemenu_container_expanded {
     position: sticky;
@@ -23,20 +23,20 @@ html, body {
     height: 100vh; 
     width: 100vw;
     z-index: 10;
-    animation: slide_in 1s;
+    animation: container_slide_in 1s;
 }
-@keyframes slide_out {
+@keyframes container_slide_out {
     0%   {
         height: 100vh; width: 100vw;
         
     }
     100% {
-        height: 8vh; width: 8vw;
+        height: 10vh; width: 12vw;
     }
 }
-@keyframes slide_in {
+@keyframes container_slide_in {
     0%   {
-        height: 8vh; width: 8vw;
+        height: 10vh; width: 12vw;
     }
     100% {
         height: 100h; width: 100vw;
@@ -46,22 +46,34 @@ html, body {
     position: sticky;
     top: 0vh;
     left: 0vw; 
-    height: 8vh; 
-    width: 8vw;
+    height: 0vh; 
+    width: 0vw;
     z-index: -10;
-    animation: slide_out 1s;
+    animation: option_slide_out 1s;
 }
 .shown_sidemenu_option {
     position: sticky;
     top: 0vh;
     left: 0vw; 
-    height: 100vh; 
-    width: 100vw;
+    height: 10vh; 
+    width: 70vw;
     z-index: 10;
-    animation: slide_in 1s;
+    animation: option_slide_in 1s;
 }
-
-
-
-
-
+@keyframes option_slide_out {
+    0%   {
+        height: 10vh; width: 70vw;
+        
+    }
+    100% {
+        height: 0vh; width: 0vw;
+    }
+}
+@keyframes option_slide_in {
+    0%   {
+        height: 0vh; width: 0vw;
+    }
+    100% {
+        height: 10h; width: 70vw;
+    }
+}

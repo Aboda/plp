@@ -148,7 +148,7 @@ function left_hand_menu(details) {
   var icon = make_node({
     "id":"sidemenu_icon",
     "nodetype":"p",
-    "innerText":String.fromCharCode("9965"),
+    "innerText":" "+String.fromCharCode("9965")+" ",
     "styles":["big_letter","color_contrast_2"]
   })
   crafted_device.append(icon);
@@ -187,6 +187,7 @@ function sidemenu_toggle(what) {
     sidemenu.config.state = "collapsed"
     sidemenu.node.classList.toggle("sidemenu_container_expanded");
     sidemenu.node.classList.toggle("sidemenu_container_collapsed");
+
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
       affected.classList.toggle("shown_sidemenu_option");
