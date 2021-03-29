@@ -144,7 +144,7 @@ function left_hand_menu(details) {
     "styles":["sidemenu_container_collapsed"],
     "state":"collapsed"
   })
-  document.body.insertBefore(crafted_device, document.body.childNodes[6]);
+  document.body.append(crafted_device);
   var icon = make_node({
     "id":"sidemenu_icon",
     "nodetype":"p",
