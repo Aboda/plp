@@ -72,7 +72,7 @@ html, body {
         
     }
     100% {
-        height: 0vh; width: 0vw; margin: 0em;
+        height: 0vh; width: 0vw; margin: 0em; display:none;
     }
 }
 @keyframes option_slide_in {
