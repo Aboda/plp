@@ -37,11 +37,32 @@ html, body {
 .trigger_slide_in {
     animation: slide_in 1s forwards;
 }
-.hidden_sidemenu_option {
-    display: none;
+
+
+.shown_sidemenu_option {
+    display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    animation: grow_in 1s forwards;
+}
+@keyframes grow_in {
+    0%   {
+        opacity: 0.0;
+        margin: 0em; 
+        padding: 0em;
+    }
+    100% {
+        opacity: 1.0;
+        width: 100%; 
+        margin: 1em; 
+        padding: 1em;
+    }
+}
+.hidden_sidemenu_option {
+    display: none;
+}
+.trigger_grow_out {
     animation: grow_out 1s forwards;
 }
 @keyframes grow_out {
@@ -63,28 +84,7 @@ html, body {
         display: none;
     }
 }
-.shown_sidemenu_option {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    animation: grow_in 1s forwards;
-}
-@keyframes grow_in {
-    0%   {
-        display: flex;
-        opacity: 0.0;
-        margin: 0em; 
-        padding: 0em;
-    }
-    100% {
-        display: flex;
-        opacity: 1.0;
-        width: 100%; 
-        margin: 1em; 
-        padding: 1em;
-    }
-}
+
 
 
 
