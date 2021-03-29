@@ -176,8 +176,3 @@ function sidemenu_toggle(what) {
 
   };
 };
-
-window.onload = () => {
-  left_hand_menu(details);
-  //hard_ini();
-};
