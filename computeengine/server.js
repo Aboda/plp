@@ -43,7 +43,8 @@ var cache = {
         "blog":fs.readFileSync("./mnemnis/blog.js").toString(),
         "ren":fs.readFileSync("./mnemnis/ren.js").toString(),
         "plp":fs.readFileSync("./mnemnis/plp.js").toString(),
-        "framework":fs.readFileSync("./mnemnis/framework.js").toString()
+        "framework":fs.readFileSync("./mnemnis/framework.js").toString(),
+        "info":fs.readFileSync("./mnemnis/info.js").toString()
     }
 }
 
