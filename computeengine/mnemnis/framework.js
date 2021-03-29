@@ -109,8 +109,7 @@ function toggle_vis(element) {
     element.style.display = "none";
   }
 }
-
-function left_hand_menu(left_menu) {
+function left_hand_menu(details) {
   var chosen_lng = document.documentElement.lang.slice(0,2);
   var crafted_device = make_node({
     "id":"sidemenu",
@@ -137,42 +136,36 @@ function left_hand_menu(left_menu) {
     ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
     crafted_device.append(entry);
   }
-  icon.addEventListener("click",(e) => {sidemenu_toggle(e)});
+  icon.addEventListener("click",() => {sidemenu_toggle()});
 }
-
-function sidemenu_toggle(what) {
+function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
   var big_letter = ao.simple.sidemenu_icon;
   big_letter.node.classList.toggle("color_contrast_2");
   big_letter.node.classList.toggle("color_contrast_3");
-
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
     sidemenu.node.classList.toggle("sidemenu_container_collapsed");
     sidemenu.node.classList.toggle("sidemenu_container_expanded");
-
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
       affected.classList.toggle("disappear");
       affected.classList.toggle("shown_sidemenu_option");
     }
-
   }else if (sidemenu.config.state == "expanded"){
     sidemenu.config.state = "collapsed"
     sidemenu.node.classList.toggle("sidemenu_container_expanded");
     sidemenu.node.classList.toggle("sidemenu_container_collapsed");
-
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
       affected.classList.toggle("shown_sidemenu_option");
       affected.classList.toggle("hidden_sidemenu_option");
       setTimeout(function(){
-         if (affected.classList.contains("hidden_sidemenu_option")){
+        if (affected.classList.contains("hidden_sidemenu_option")){
           affected.classList.toggle("hidden_sidemenu_option");
           affected.classList.toggle("disappear");
-         }
-        }, 999,affected);
+        }
+      }, 999,affected);
     };
-
   };
 };

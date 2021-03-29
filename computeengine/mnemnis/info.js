@@ -32,9 +32,7 @@ let side_menu = [
             console.log("params_if_any "+params_if_any)
         }
     }
-]
-
-
+];
 
 window.onload = ()=>{
     left_hand_menu(side_menu);
