@@ -11,8 +11,6 @@ html, body {
     position: sticky;
     top: 2vh;
     left: 2vw; 
-    margin: 1em;
-    padding: 1em;
     height: 10vh; 
     width: 10vw;
 }
@@ -40,7 +38,7 @@ html, body {
     animation: slide_in 1s forwards;
 }
 .hidden_sidemenu_option {
-    display: flex;
+    display: none;
     flex-flow: column;
     justify-content: center;
     align-items: center;
