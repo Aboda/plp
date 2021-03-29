@@ -49,31 +49,37 @@ html, body {
     height: 0vh; 
     width: 0vw;
     z-index: -10;
+    margin: 0em;
     animation: option_slide_out 1s;
 }
 .shown_sidemenu_option {
     position: sticky;
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    justify-items: center;
     top: 0vh;
     left: 0vw; 
     height: 10vh; 
-    width: 70vw;
+    width: 95vw;
     z-index: 10;
+    margin: 1em;
     animation: option_slide_in 1s;
 }
 @keyframes option_slide_out {
     0%   {
-        height: 10vh; width: 70vw;
+        height: 8vh; width: 95vw; margin: 1em;
         
     }
     100% {
-        height: 0vh; width: 0vw;
+        height: 0vh; width: 0vw; margin: 0em;
     }
 }
 @keyframes option_slide_in {
     0%   {
-        height: 0vh; width: 0vw;
+        height: 0vh; width: 0vw; margin: 0em;
     }
     100% {
-        height: 10h; width: 70vw;
+        height: 8h; width: 95vw; margin: 1em;
     }
 }
