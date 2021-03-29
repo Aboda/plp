@@ -176,27 +176,23 @@ function sidemenu_toggle(what) {
     sidemenu.config.state = "expanded";
     sidemenu.node.classList.toggle("sidemenu_container_collapsed");
     sidemenu.node.classList.toggle("sidemenu_container_expanded");
-    /*
+
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
       affected.classList.toggle("shown_sidemenu_option");
       affected.classList.toggle("hidden_sidemenu_option");
     }
-    */
+
   }else if (sidemenu.config.state == "expanded"){
     sidemenu.config.state = "collapsed"
     sidemenu.node.classList.toggle("sidemenu_container_expanded");
     sidemenu.node.classList.toggle("sidemenu_container_collapsed");
-    /*
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.toggle("trigger_grow_out");
-      setTimeout(function(){
-        affected.classList.toggle("shown_sidemenu_option");
-        affected.classList.toggle("hidden_sidemenu_option");
-        }, 1000);
+      affected.classList.toggle("shown_sidemenu_option");
+      affected.classList.toggle("hidden_sidemenu_option");
     };
-    */
+
   };
 };
 

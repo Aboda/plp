@@ -42,54 +42,24 @@ html, body {
         height: 100h; width: 100vw;
     }
 }
-
-
-.shown_sidemenu_option {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-    animation: grow_in 1s forwards;
-}
-@keyframes grow_in {
-    0%   {
-        opacity: 0.0;
-        margin: 0em; 
-        padding: 0em;
-    }
-    100% {
-        opacity: 1.0;
-        width: 100%; 
-        margin: 1em; 
-        padding: 1em;
-    }
-}
 .hidden_sidemenu_option {
-    display: none;
+    position: sticky;
+    top: 0vh;
+    left: 0vw; 
+    height: 8vh; 
+    width: 8vw;
+    z-index: -10;
+    animation: slide_out 1s;
 }
-.trigger_grow_out {
-    animation: grow_out 1s forwards;
+.shown_sidemenu_option {
+    position: sticky;
+    top: 0vh;
+    left: 0vw; 
+    height: 100vh; 
+    width: 100vw;
+    z-index: 10;
+    animation: slide_in 1s;
 }
-@keyframes grow_out {
-    0%  {
-        display: flex;
-        opacity: 1.0;
-        width: 100%; 
-        margin: 1em; 
-        padding: 1em;
-    }
-    99% {
-        display: flex;
-        opacity: 0.0;
-        width: 0%; 
-        margin: 0em; 
-        padding: 0em;      
-    }
-    100%{
-        display: none;
-    }
-}
-
 
 
 
