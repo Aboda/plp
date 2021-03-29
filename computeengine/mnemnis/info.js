@@ -5,6 +5,7 @@ let side_menu = [
         "en":"Development Progress",
         "go":(params_if_any)=>{
             console.log("click "+this.en)
+            console.log("params_if_any "+params_if_any)
         }
     },
     {
@@ -12,6 +13,7 @@ let side_menu = [
         "en":"Operational Statistics",
         "go":(params_if_any)=>{
             console.log("click "+this.en)
+            console.log("params_if_any "+params_if_any)
         }
     },
     {
@@ -19,6 +21,7 @@ let side_menu = [
         "en":"Users messages",
         "go":(params_if_any)=>{
             console.log("click "+this.en)
+            console.log("params_if_any "+params_if_any)
         }
     },
     {
@@ -26,8 +29,14 @@ let side_menu = [
         "en":"Control Interface",
         "go":(params_if_any)=>{
             console.log("click "+this.en)
+            console.log("params_if_any "+params_if_any)
         }
     }
 ]
 
-left_hand_menu(side_menu);
+
+
+window.onload = ()=>{
+    left_hand_menu(side_menu);
+    document.body.classList.add("background");
+};

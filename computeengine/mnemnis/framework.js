@@ -69,6 +69,7 @@ function make_node(qq) {
     if (qq.maxWidth != undefined) {node.style.maxWidth = qq.maxWidth;};
     if (qq.styles != undefined) {dress(node,qq.styles,true)};
     if (qq.path != undefined) {node.setAttribute("d", qq.path)};
+    if (qq.onClick != undefined) {node.addEventListener("click", qq.onClick)};
     ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function(){
       var handler = ao.simple[this.config.id].node.remove();
       delete ao.simple[this.config.id];

@@ -370,12 +370,12 @@ exports.set_cache_n_init = (cache) => {
                         },
                         "loc":"https://demian.app/info/",
                         "updfreq":"weekly",
-                        "sitemap":false,
-                        "index":false,
-                        "robots":false,
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
                         "priority":0.0,
                         "favicon":"desk",
-                        "acronimo":"dem"
+                        "acronimo":"plp"
                     },
                     "intra":{
                         "title":{
@@ -383,7 +383,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Info:Demian"
                         },
                         "css":[resources_cache.css.sidemenu,resources_cache.css.edgy],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
+                        "js":[resources_cache.js.framework,resources_cache.js.info]
                     }
                 }
             }
@@ -785,6 +785,18 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
             return;
         };
+
+        if (req.headers.host == "demian.app" && adjusted_path == "info") {
+            let options = {
+                "html":["<h1>Información de Plataforma</h1>"],
+                "languaje":chosen_lng,
+                "title":"info:plp",
+                "css":chosen_domain.intra.css,
+                "js":chosen_domain.intra.js
+            };
+            finish_request (res,200,akhenon.html(options));
+            return;    
+        }
         
         let options = {
             "html":["<h1>En construcción</h1>"],
