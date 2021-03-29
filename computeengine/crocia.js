@@ -901,13 +901,17 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     root_dom.meta.cool[chosen_lng]+"</h1>\n";
 
     for (let entry in party_members) {
-        if (domain_name == entry) {
-            hc = hc + index_div(party_members[entry].meta,chosen_lng,true);
-        }else{
-            hc = hc + index_div(party_members[entry].meta,chosen_lng);
-        }
-        for (let route in party_members[entry].astra) {
-            hc = hc + index_div(party_members[entry].astra[route].meta,chosen_lng);
+        if (party_members[entry].meta.index == true){
+            if (domain_name == entry) {
+                hc = hc + index_div(party_members[entry].meta,chosen_lng,true);
+            }else{
+                hc = hc + index_div(party_members[entry].meta,chosen_lng);
+            }
+            for (let route in party_members[entry].astra) {
+                if (party_members[entry].astra[route].meta.index == true){
+                    hc = hc + index_div(party_members[entry].astra[route].meta,chosen_lng);
+                }
+            }
         }
     }
     return hc
