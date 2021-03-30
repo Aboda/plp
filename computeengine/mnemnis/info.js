@@ -9,9 +9,9 @@ let side_menu = [
                 var data = JSON.parse(response);
                 console.log(data)
                 var new_entity = ost(ao,"focus",{
-                    "kill":()=>{
+                    "kill":function(){
                         console.log("set1");
-                        console.log(ao);
+                        console.log(ao.focus);
                         for (var item_name in ao.focus) {
                             ao.focus[item_name].kill();
                         }
@@ -20,9 +20,9 @@ let side_menu = [
                 if (new_entity != true) {
                     ao.focus.kill();
                     ao.focus = {
-                        "kill":()=>{
-                            console.log("set1");
-                            console.log(ao);
+                        "kill":function(){
+                            console.log("set2");
+                            console.log(ao.focus);
                             for (var item_name in ao.focus) {
                                 ao.focus[item_name].kill();
                             }
