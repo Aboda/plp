@@ -34,7 +34,27 @@ let side_menu = [
     }
 ];
 
+let hi_message = "Esta sección está diseñada para brindar una perspectiva compartible de progreso colectivo ";
+let hi_message = "respecto a los proyectos siendo trabajados o auxiliados.\nSi no sabes que es esto, quizas";
+let hi_message = "no deberías de estar aquí, pero si tienes curiosidad siempre puedes enviarme un mensaje";
+
+function say_hi () {
+    document.body.append(make_node({
+        "id":"the_guy_who_always_dies",
+        "nodetype":"p",
+        "innerText":hi_message
+    }));
+    document.body.append(make_node({
+        "id":"the_guy_who_always_dies_2",
+        "nodetype":"a",
+        "target":"https://demian.app/comentarios/",
+        "link_text":"Envíame un mensaje",
+        "title":"Formato de contacto directo"
+    }));
+}
+
 window.onload = ()=>{
-    left_hand_menu(side_menu);
     document.body.classList.add("background");
+    left_hand_menu(side_menu);
+    say_hi();
 };

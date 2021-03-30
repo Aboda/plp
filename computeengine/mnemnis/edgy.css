@@ -11,3 +11,7 @@
 .color_contrast_3{
     color:rgb(0,0,255);
 }
+.shown_sidemenu_option:hover{
+    color:rgb(0,255,0);
+    text-decoration: underline overline rgb(255,0,0);
+}

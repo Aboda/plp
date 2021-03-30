@@ -69,7 +69,15 @@ function make_node(qq) {
     if (qq.maxWidth != undefined) {node.style.maxWidth = qq.maxWidth;};
     if (qq.styles != undefined) {dress(node,qq.styles,true)};
     if (qq.path != undefined) {node.setAttribute("d", qq.path)};
-    if (qq.onClick != undefined) {node.addEventListener("click", qq.onClick)};
+    if (qq.nodetype == "a") {
+      if (qq.link_text != undefined) {
+        node.append(document.createTextNode(qq.link_text))
+      }else{
+        node.append(document.createTextNode(qq.target))
+      }
+      a.href = qq.target;
+      if (qq.title != undefined) {a.title = qq.title;};
+    };
     ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function(){
       var handler = ao.simple[this.config.id].node.remove();
       delete ao.simple[this.config.id];
