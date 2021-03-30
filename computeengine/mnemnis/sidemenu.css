@@ -59,6 +59,9 @@ html, body {
 .shown_sidemenu_option {
     position: sticky;
     display: flex;
+    flex-flow: column;
+    align-content: center;
+    justify-items: center;
     top: 0vh;
     left: 0vw; 
     height: 10vh; 
