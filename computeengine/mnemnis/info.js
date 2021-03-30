@@ -6,11 +6,12 @@ let side_menu = [
             had_it_comming();
             sidemenu_toggle();
             fetch_file("https://demian.app/info/progress",(response)=>{
-                console.log(response)
                 var data = JSON.parse(response);
                 console.log(data)
                 var new_entity = ost(ao,"focus",{
                     "kill":()=>{
+                        console.log("set1");
+                        console.log(ao);
                         for (var item_name in ao.focus) {
                             ao.focus[item_name].kill();
                         }
@@ -20,6 +21,8 @@ let side_menu = [
                     ao.focus.kill();
                     ao.focus = {
                         "kill":()=>{
+                            console.log("set1");
+                            console.log(ao);
                             for (var item_name in ao.focus) {
                                 ao.focus[item_name].kill();
                             }
