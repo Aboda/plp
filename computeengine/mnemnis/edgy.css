@@ -11,9 +11,6 @@
 .color_contrast_3{
     color:rgb(0,0,255);
 }
-.shown_sidemenu_option:hover{
-    transform: scale(1.2);
-}
 .progress_card{
     display: flex;
     flex-flow: row;
@@ -39,4 +36,15 @@
     border-color:brown;
     border-style: outset;
     border-width: .2em;
+}
+.report_container{
+    display:flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;    
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
 }

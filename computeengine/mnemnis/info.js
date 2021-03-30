@@ -6,11 +6,11 @@ let side_menu = [
             had_it_comming();
             sidemenu_toggle();
             fetch_file("https://demian.app/info/progress",(response)=>{
-                var data = JSON.parse(response);
+                let data = JSON.parse(response);
                 console.log(data)
-                var new_entity = ost(ao,"focus",{
+                let new_entity = ost(ao,"focus",{
                     "kill": function() {
-                        for (var item_name in ao.focus) {
+                        for (let item_name in ao.focus) {
                             if (item_name != "kill") {
                                 ao.focus[item_name].kill();
                             };
@@ -19,57 +19,88 @@ let side_menu = [
                 });
                 if (new_entity != true) {
                     ao.focus.kill();
-                };                
-                var container = make_node({
+                };
+
+                let container = make_node({
                     "id":"the_guy_who_always_dies",
-                    "nodetype":"div"
-                },ao.focus)
+                    "nodetype":"div",
+                    "styles":["report_container"]
+                },ao.focus);
                 document.body.append(container);
-                for (var entry in data){
-                    var card = make_node({
+
+                var orphans = {};
+
+                for (let entry in data){
+                    let root_card = make_node({
                         "nodetype":"div",
                         "styles":["progress_card"]
                     },ao.focus);
-                    container.append(card);
+                    if (data[entry].meta.root_domain) {
+                        container.append(root_card);
+                    } else {
+                        orphans[entry] = root_card;
+                    };
                     
-                    var title = make_node({
-                        "nodetype":"p",
+                    let root_info_container = make_node({
+                        "nodetype":"div",
+                        "styles":["sub_container"]
+                    },ao.focus);
+                    root_card.append(root_info_container);
+
+                    let short = make_node({
+                        "nodetype":"div",
+                        "innerText": data[entry].meta.short
+                    },ao.focus);
+                    root_info_container.append(short);
+
+                    let domain = make_node({
+                        "nodetype":"div",
                         "innerText": entry
                     },ao.focus);
-                    card.append(title);
+                    root_info_container.append(domain);
 
-                    var progress = make_node({
-                        "nodetype":"p",
-                        "innerText": data[entry].meta.priority
-                    },ao.focus);
-                    card.append(progress);
+                    if (data[entry].meta.etapa != undefined) {
+                        let stage = make_node({
+                            "nodetype":"div",
+                            "innerText": data[entry].meta.etapa
+                        },ao.focus);
+                        root_info_container.append(stage);
+                    }
 
-                    if (data[entry].astra != undefined){
-                        var sub_container = make_node({
+                    if (data[entry].astra != undefined) {
+                        let sub_container = make_node({
                             "nodetype":"div",
                             "styles":["sub_container"]
                         },ao.focus);
-                        card.append(sub_container);
-                        for (var route in data[entry].astra){
-                            var sub_card = make_node({
+                        root_card.append(sub_container);
+
+                        for (let route in data[entry].astra){
+                            let ezr = data[entry].astra[route];
+                            let sub_card = make_node({
                                 "nodetype":"div",
-                                "styles":["sub_progress_card"]
+                                "styles":["sub_container"]
                             },ao.focus);
                             sub_container.append(sub_card);
-                            var sub_route = make_node({
-                                "nodetype":"p",
-                                "innerText": route
+                            let sub_route = make_node({
+                                "nodetype":"div",
+                                "innerText": ezr.meta.short
                             },ao.focus);
                             sub_card.append(sub_route);
     
-                            var sub_progress = make_node({
-                                "nodetype":"p",
-                                "innerText": data[entry].astra[route].meta.priority
+                            let sub_progress = make_node({
+                                "nodetype":"div",
+                                "innerText": route
                             },ao.focus);
                             sub_card.append(sub_progress);
-                            
-                        };
 
+                            if (ezr.meta.etapa != undefined) {
+                                let stage = make_node({
+                                    "nodetype":"div",
+                                    "innerText": ezr.meta.etapa
+                                },ao.focus);
+                                sub_card.append(stage);
+                            }
+                        };
                     };
                 };
             });

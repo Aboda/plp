@@ -80,7 +80,6 @@ function make_node(qq,container) {
     };
     ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function() {
       let that_who_will_die = this.node.id;
-      console.log("deleted"+that_who_will_die);
       this.node.remove();
       delete ao.simple[that_who_will_die];
     }});

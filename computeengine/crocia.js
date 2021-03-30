@@ -191,7 +191,8 @@ exports.set_cache_n_init = (cache) => {
                 "priority":0.3,
                 "favicon":"desk",
                 "acronimo":"plp",
-                "root_domain":true
+                "root_domain":true,
+                "etapa":"Desarrollo"
             },
             "intra":{
                 "facebooksdk":true,
