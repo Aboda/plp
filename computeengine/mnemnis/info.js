@@ -97,21 +97,21 @@ function complicated_ass_card_1(data){
             root_card = make_node({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["progress_card","color_contrast_1","display_flex"]
+                "styles":["loved_flex","pad_1"]
             },ao.focus);
             parents.push(entry);
         } else {
             root_card = make_node({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["progress_card","color_contrast_2","display_flex"]
+                "styles":["loved_flex","pad_1"]
             },ao.focus);
         };
         container.append(root_card);
         
         let root_info_container = make_node({
             "nodetype":"div",
-            "styles":["sub_container","loved_flex"]
+            "styles":["loved_flex","pad_1"]
         },ao.focus);
         root_card.append(root_info_container);
 
@@ -146,7 +146,7 @@ function complicated_ass_card_1(data){
         if (data[entry].astra != undefined) {
             let sub_container = make_node({
                 "nodetype":"div",
-                "styles":["sub_container","loved_flex"]
+                "styles":["loved_flex","pad_1"]
             },ao.focus);
             root_card.append(sub_container);
 
@@ -154,7 +154,7 @@ function complicated_ass_card_1(data){
                 let ezr = data[entry].astra[route];
                 let sub_card = make_node({
                     "nodetype":"div",
-                    "styles":["sub_container","color_contrast_3","loved_flex"]
+                    "styles":["loved_flex","pad_1"]
                 },ao.focus);
                 sub_container.append(sub_card);
                 let sub_route = make_node({
@@ -179,18 +179,8 @@ function complicated_ass_card_1(data){
             };
         };
     };
-    /*
-    for (let entry in orphans) {
-        for (let acknowledge of parents) {
-            if (entry.indexOf(acknowledge) != -1) {
-                ao.simple[acknowledge].node.append(orphans[entry]);
-                delete orphans[entry];
-                break;
-            };
-        };
-    };
-    */
-}
+};
+
 window.onload = ()=>{
     document.body.classList.add("background");
     left_hand_menu(side_menu);
