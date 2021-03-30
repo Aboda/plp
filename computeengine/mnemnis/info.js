@@ -51,7 +51,10 @@ function say_hi () {
         "styles":["color_contrast_1"]
     }));
 }
-
+function had_it_comming() {
+    ao.simple["the_guy_who_always_dies"].kill()
+    ao.simple["the_guy_who_always_dies_2"].kill()
+}
 window.onload = ()=>{
     document.body.classList.add("background");
     left_hand_menu(side_menu);
