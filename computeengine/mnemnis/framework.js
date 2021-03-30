@@ -78,9 +78,10 @@ function make_node(qq,container) {
       node.href = qq.target;
       if (qq.title != undefined) {node.title = qq.title;};
     };
-    ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function(){
-      var handler = ao.simple[this.config.id].node.remove();
-      delete ao.simple[this.config.id];
+    ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function() {
+      let that_who_will_die = this.node.id;
+      ao.simple[that_who_will_die].node.remove();
+      delete ao.simple[that_who_will_die];
     }});
     if (container != undefined){container[qq.id] = ao.simple[qq.id];};
     zyx("node created",ao.simple[qq.id],false);
