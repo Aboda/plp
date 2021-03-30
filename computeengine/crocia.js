@@ -797,6 +797,13 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             finish_request (res,200,akhenon.html(options));
             return;    
         }
+
+        if (req.headers.host == "demian.app" && 
+            as_array[0] == "info" && 
+            as_array[1] == "progress" &&
+            req.headers.referer == "https://demian.app/info/") {
+                finish_request (res,200,domain_tree);
+        }
         
         let options = {
             "html":["<h1>En construcción</h1>"],
