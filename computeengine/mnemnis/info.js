@@ -10,13 +10,22 @@ let side_menu = [
                 console.log(data)
                 var pre_existing = ost(ao,"focus",{
                     "mass_kill":()=>{
-                        console.log("mas kill summoned");
-                        console.log(this);
+                        for (var item_name in ao.focus) {
+                            ao.focus[item_name].kill();
+                        }
                     }
                 });
                 if (pre_existing == false) {
                     ao.focus.mass_kill();
+                    ost(ao,"focus",{
+                        "mass_kill":()=>{
+                            for (var item_name in ao.focus) {
+                                ao.focus[item_name].kill();
+                            }
+                        }
+                    });
                 }
+                
                 var container = make_node({
                     "id":"the_guy_who_always_dies",
                     "nodetype":"div"
