@@ -71,12 +71,12 @@ function make_node(qq) {
     if (qq.path != undefined) {node.setAttribute("d", qq.path)};
     if (qq.nodetype == "a") {
       if (qq.link_text != undefined) {
-        node.append(document.createTextNode(qq.link_text))
+        node.append(document.createTextNode(qq.link_text));
       }else{
-        node.append(document.createTextNode(qq.target))
-      }
-      a.href = qq.target;
-      if (qq.title != undefined) {a.title = qq.title;};
+        node.append(document.createTextNode(qq.target));
+      };
+      node.href = qq.target;
+      if (qq.title != undefined) {node.title = qq.title;};
     };
     ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function(){
       var handler = ao.simple[this.config.id].node.remove();
