@@ -7,7 +7,6 @@ let side_menu = [
             sidemenu_toggle();
             fetch_file("https://demian.app/info/progress",(response)=>{
                 let data = JSON.parse(response);
-                let chosen_lng = document.documentElement.lang.slice(0,2);
                 console.log(data)
                 let new_entity = ost(ao,"focus",{
                     "kill": function() {
@@ -21,110 +20,7 @@ let side_menu = [
                 if (new_entity != true) {
                     ao.focus.kill();
                 };
-
-                let container = make_node({
-                    "id":"the_guy_who_always_dies",
-                    "nodetype":"div",
-                    "styles":["report_container"]
-                },ao.focus);
-                document.body.append(container);
-
-                let orphans = {};
-                let parents = [];
-
-                for (let entry in data) {
-                    let root_card = make_node({
-                        "id":entry,
-                        "nodetype":"div",
-                        "styles":["progress_card"]
-                    },ao.focus);
-                    if (data[entry].meta.root_domain) {
-                        parents.push(entry);
-                        container.append(root_card);
-                    } else {
-                        orphans[entry] = root_card;
-                    };
-                    
-                    let root_info_container = make_node({
-                        "nodetype":"div",
-                        "styles":["sub_container"]
-                    },ao.focus);
-                    root_card.append(root_info_container);
-
-                    let short = make_node({
-                        "nodetype":"div",
-                        "innerText": data[entry].meta.short[chosen_lng]
-                    },ao.focus);
-                    root_info_container.append(short);
-                    if (data[entry].meta.root_domain) {
-                        let domain = make_node({
-                            "nodetype":"div",
-                            "innerText": "Domain: "+entry
-                        },ao.focus);
-                        root_info_container.append(domain);
-                    }else{
-                        let domain = make_node({
-                            "nodetype":"div",
-                            "innerText": "Subdomain: "+entry
-                        },ao.focus);
-                        root_info_container.append(domain);
-                    }
-                    
-
-                    if (data[entry].meta.etapa != undefined) {
-                        let stage = make_node({
-                            "nodetype":"div",
-                            "innerText": data[entry].meta.etapa[chosen_lng]
-                        },ao.focus);
-                        root_info_container.append(stage);
-                    }
-
-                    if (data[entry].astra != undefined) {
-                        let sub_container = make_node({
-                            "nodetype":"div",
-                            "styles":["sub_container"]
-                        },ao.focus);
-                        root_card.append(sub_container);
-
-                        for (let route in data[entry].astra){
-                            let ezr = data[entry].astra[route];
-                            let sub_card = make_node({
-                                "nodetype":"div",
-                                "styles":["sub_container"]
-                            },ao.focus);
-                            sub_container.append(sub_card);
-                            let sub_route = make_node({
-                                "nodetype":"div",
-                                "innerText": ezr.meta.short[chosen_lng]
-                            },ao.focus);
-                            sub_card.append(sub_route);
-    
-                            let sub_progress = make_node({
-                                "nodetype":"div",
-                                "innerText": "Route: "+route
-                            },ao.focus);
-                            sub_card.append(sub_progress);
-
-                            if (ezr.meta.etapa != undefined) {
-                                let stage = make_node({
-                                    "nodetype":"div",
-                                    "innerText": ezr.meta.etapa[chosen_lng]
-                                },ao.focus);
-                                sub_card.append(stage);
-                            }
-                        };
-                    };
-                };
-
-                for (let entry in orphans) {
-                    for (let acknowledge of parents) {
-                        if (entry.indexOf(acknowledge) != -1) {
-                            ao.simple[acknowledge].node.append(orphans[entry]);
-                            delete orphans[entry];
-                            break;
-                        };
-                    };
-                };
+                complicated_ass_card_1(data);
             });
         }
     },
@@ -182,6 +78,118 @@ function had_it_comming() {
     if (ao.simple["the_guy_who_always_dies_2"] != undefined) {
         ao.simple["the_guy_who_always_dies_2"].kill()
     }
+}
+
+function complicated_ass_card_1(data){
+    let chosen_lng = document.documentElement.lang.slice(0,2);
+    let container = make_node({
+        "id":"the_guy_who_always_dies",
+        "nodetype":"div",
+        "styles":["report_container","loved_flex"]
+    },ao.focus);
+    document.body.append(container);
+
+    let parents = [];
+
+    for (let entry in data) {
+        let root_card;
+        if (data[entry].meta.root_domain) {
+            root_card = make_node({
+                "id":entry,
+                "nodetype":"div",
+                "styles":["progress_card","color_contrast_1","display_flex"]
+            },ao.focus);
+            parents.push(entry);
+        } else {
+            root_card = make_node({
+                "id":entry,
+                "nodetype":"div",
+                "styles":["progress_card","color_contrast_2","display_flex"]
+            },ao.focus);
+        };
+        container.append(root_card);
+        
+        let root_info_container = make_node({
+            "nodetype":"div",
+            "styles":["sub_container","loved_flex"]
+        },ao.focus);
+        root_card.append(root_info_container);
+
+        let short = make_node({
+            "nodetype":"div",
+            "innerText": data[entry].meta.short[chosen_lng]
+        },ao.focus);
+        root_info_container.append(short);
+
+        if (data[entry].meta.root_domain) {
+            let domain = make_node({
+                "nodetype":"div",
+                "innerText": "Domain: "+entry
+            },ao.focus);
+            root_info_container.append(domain);
+        }else{
+            let domain = make_node({
+                "nodetype":"div",
+                "innerText": "Subdomain: "+entry
+            },ao.focus);
+            root_info_container.append(domain);
+        }        
+
+        if (data[entry].meta.etapa != undefined) {
+            let stage = make_node({
+                "nodetype":"div",
+                "innerText": data[entry].meta.etapa[chosen_lng]
+            },ao.focus);
+            root_info_container.append(stage);
+        }
+
+        if (data[entry].astra != undefined) {
+            let sub_container = make_node({
+                "nodetype":"div",
+                "styles":["sub_container","loved_flex"]
+            },ao.focus);
+            root_card.append(sub_container);
+
+            for (let route in data[entry].astra){
+                let ezr = data[entry].astra[route];
+                let sub_card = make_node({
+                    "nodetype":"div",
+                    "styles":["sub_container","display_flex"]
+                },ao.focus);
+                sub_container.append(sub_card);
+                let sub_route = make_node({
+                    "nodetype":"div",
+                    "innerText": ezr.meta.short[chosen_lng]
+                },ao.focus);
+                sub_card.append(sub_route);
+
+                let sub_progress = make_node({
+                    "nodetype":"div",
+                    "innerText": "Route: "+route
+                },ao.focus);
+                sub_card.append(sub_progress);
+
+                if (ezr.meta.etapa != undefined) {
+                    let stage = make_node({
+                        "nodetype":"div",
+                        "innerText": ezr.meta.etapa[chosen_lng]
+                    },ao.focus);
+                    sub_card.append(stage);
+                }
+            };
+        };
+    };
+    /*
+    for (let entry in orphans) {
+        for (let acknowledge of parents) {
+            if (entry.indexOf(acknowledge) != -1) {
+                ao.simple[acknowledge].node.append(orphans[entry]);
+                delete orphans[entry];
+                break;
+            };
+        };
+    };
+    */
 }
 window.onload = ()=>{
     document.body.classList.add("background");

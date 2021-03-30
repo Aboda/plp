@@ -3,39 +3,41 @@
     color:rgb(255,255,255);
 }
 .color_contrast_1{
+    background-color:rgb(0,0,0);
     color:rgb(0,255,0);
 }
 .color_contrast_2{
+    background-color:rgb(0,0,0);
     color:rgb(255,0,0);
 }
 .color_contrast_3{
+    background-color:rgb(0,0,0);
     color:rgb(0,0,255);
 }
-.report_container{
+.loved_flex{
     display:flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;    
 }
-.progress_card{
-    display: flex;
-    flex-flow: column;
+.display_flex{
+    display:flex;
+    flex-flow: row;
     align-items: center;
-    justify-content: center;
-    margin: 1em;
-    padding: 1em;
-    border-color:rgb(255,0,0);
-    border-style: inset;
-    border-width: .2em;
+    justify-content: center;    
+}
+.report_container{
+    border-style: solid;
+    border-color:rgb(255,255,255);
+    border-width:.5em;
+}
+.progress_card{
+    border-style: dotted;
+    border-color:rgb(255,255,255);
+    border-width:.5em;
 }
 .sub_container{
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    border-color:rgb(0,255,0);
-    margin: 1em;
-    padding: 1em;
     border-style: outset;
-    border-width: .2em;
+    border-color:rgb(255,255,255);
+    border-width:.5em;
 }
