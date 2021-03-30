@@ -802,7 +802,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             as_array[0] == "info" && 
             as_array[1] == "progress" &&
             req.headers.referer == "https://demian.app/info/") {
-                finish_request (res,200,domain_tree);
+                finish_request (res,200,JSON.stringify(domain_tree));
         }
         
         let options = {
