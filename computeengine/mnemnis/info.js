@@ -35,8 +35,8 @@ let side_menu = [
 ];
 
 let hi_message = "Esta sección está diseñada para brindar una perspectiva compartible de progreso colectivo ";
-let hi_message = "respecto a los proyectos siendo trabajados o auxiliados.\nSi no sabes que es esto, quizas";
-let hi_message = "no deberías de estar aquí, pero si tienes curiosidad siempre puedes enviarme un mensaje";
+hi_message = hi_message + "respecto a los proyectos siendo trabajados o auxiliados.\nSi no sabes que es esto, quizas";
+hi_message = hi_message + "no deberías de estar aquí, pero si tienes curiosidad siempre puedes enviarme un mensaje";
 
 function say_hi () {
     document.body.append(make_node({
