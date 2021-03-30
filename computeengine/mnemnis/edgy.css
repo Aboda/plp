@@ -16,11 +16,6 @@
     flex-flow: column;
     align-items: center;
     justify-content: center;    
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
 }
 .progress_card{
     display: flex;
