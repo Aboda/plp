@@ -97,14 +97,14 @@ function complicated_ass_card_1(data){
             root_card = make_node({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["loved_flex","pad_1","border"]
+                "styles":["loved_flex","pad_1","border","ancho"]
             },ao.focus);
             parents.push(entry);
         } else {
             root_card = make_node({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["loved_flex","pad_1","border"]
+                "styles":["loved_flex","pad_1","border","ancho"]
             },ao.focus);
         };
         container.append(root_card);
