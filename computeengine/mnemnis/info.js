@@ -7,6 +7,7 @@ let side_menu = [
             sidemenu_toggle();
             fetch_file("https://demian.app/info/progress",(response)=>{
                 let data = JSON.parse(response);
+                let chosen_lng = document.documentElement.lang.slice(0,2);
                 console.log(data)
                 let new_entity = ost(ao,"focus",{
                     "kill": function() {
@@ -49,7 +50,7 @@ let side_menu = [
 
                     let short = make_node({
                         "nodetype":"div",
-                        "innerText": data[entry].meta.short
+                        "innerText": data[entry].meta.short[chosen_lng]
                     },ao.focus);
                     root_info_container.append(short);
 
@@ -62,7 +63,7 @@ let side_menu = [
                     if (data[entry].meta.etapa != undefined) {
                         let stage = make_node({
                             "nodetype":"div",
-                            "innerText": data[entry].meta.etapa
+                            "innerText": data[entry].meta.etapa[chosen_lng]
                         },ao.focus);
                         root_info_container.append(stage);
                     }
@@ -83,7 +84,7 @@ let side_menu = [
                             sub_container.append(sub_card);
                             let sub_route = make_node({
                                 "nodetype":"div",
-                                "innerText": ezr.meta.short
+                                "innerText": ezr.meta.short[chosen_lng]
                             },ao.focus);
                             sub_card.append(sub_route);
     
@@ -96,7 +97,7 @@ let side_menu = [
                             if (ezr.meta.etapa != undefined) {
                                 let stage = make_node({
                                     "nodetype":"div",
-                                    "innerText": ezr.meta.etapa
+                                    "innerText": ezr.meta.etapa[chosen_lng]
                                 },ao.focus);
                                 sub_card.append(stage);
                             }
