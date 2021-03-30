@@ -38,9 +38,9 @@ exports.html = (options,chosen_lng) => {
     */
     var ph = "<!DOCTYPE html>\n";
     if (options.languaje == "es" || chosen_lng == "es") {
-        ph =  ph +"<html lang='es-MX'></html>\n";
+        ph =  ph +"<html lang='es-MX'>\n";
     } else {
-        ph =  ph + "<html lang='en-US'></html>\n";          
+        ph =  ph + "<html lang='en-US'>\n";          
     }
     ph = ph + "<head>\n";
     if (options.ganalytics == true) {

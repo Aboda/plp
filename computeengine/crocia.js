@@ -801,7 +801,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         if (req.headers.host == "demian.app" && 
             as_array[0] == "info" && 
             as_array[1] == "progress" &&
-            req.headers.referer == "https://demian.app/info/") {
+            akhenon.adjust_path(req.headers.referer) == "https://demian.app/info") {
                 var response = {};
                 for (var dom_name in domain_tree) {
                     var domain = domain_tree[dom_name];
