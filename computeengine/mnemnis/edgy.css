@@ -21,15 +21,18 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
+    border-color:rgb(0,0,255);
+    border-style: double;
+    border-width: .2em;
 }
 .progress_card{
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     align-items: center;
     justify-content: center;
     margin: .5em;
     padding: .5em;
-    border-color:orangered;
+    border-color:rgb(255,0,0);
     border-style: inset;
     border-width: .2em;
 }
@@ -38,7 +41,7 @@
     flex-flow: row;
     align-items: center;
     justify-content: center;
-    border-color:brown;
+    border-color:rgb(0,255,0);
     border-style: outset;
     border-width: .2em;
 }
