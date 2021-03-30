@@ -20,8 +20,8 @@ html, body {
     position: sticky;
     display: flex;
     flex-flow: column;
-    align-content: center;
-    justify-items: center;
+    align-items: center;
+    justify-content: center;
     top: 0vh;
     left: 0vw; 
     height: 100vh; 
@@ -60,12 +60,12 @@ html, body {
     position: sticky;
     display: flex;
     flex-flow: column;
-    align-content: center;
-    justify-items: center;
+    align-items: center;
+    justify-content: center;
     top: 0vh;
     left: 0vw; 
     height: 10vh; 
-    width: 95vw;
+    width: 80vw;
     z-index: 10;
     margin: 1em;
     border-color:brown;
@@ -78,7 +78,7 @@ html, body {
 }
 @keyframes option_slide_out {
     0%   {
-        height: 8vh; width: 95vw; margin: 1em;
+        height: 8vh; width: 80vw; margin: 1em;
         
     }
     100% {
@@ -90,6 +90,6 @@ html, body {
         height: 0vh; width: 0vw; margin: 0em;
     }
     100% {
-        height: 8vh; width: 95vw; margin: 1em;
+        height: 8vh; width: 80vw; margin: 1em;
     }
 }
