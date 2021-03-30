@@ -24,7 +24,13 @@
     border-style: inset;
     border-width: .2em;
 }
-.progress_card{
+.sub_container{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;    
+}
+.sub_progress_card{
     display: flex;
     flex-flow: row;
     align-items: center;

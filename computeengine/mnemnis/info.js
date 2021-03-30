@@ -49,24 +49,32 @@ let side_menu = [
                     },ao.focus);
                     card.append(progress);
 
-                    for (var route in data[entry].astra){
-                        var sub_card = make_node({
+                    if (data[entry].astra != undefined){
+                        var sub_container = make_node({
                             "nodetype":"div",
-                            "styles":["sub_progress_card"]
+                            "styles":["sub_container"]
                         },ao.focus);
-                        card.append(sub_card);
-                        var sub_route = make_node({
-                            "nodetype":"p",
-                            "innerText": route
-                        },ao.focus);
-                        sub_card.append(sub_route);
+                        card.append(sub_container);
+                        for (var route in data[entry].astra){
+                            var sub_card = make_node({
+                                "nodetype":"div",
+                                "styles":["sub_progress_card"]
+                            },ao.focus);
+                            sub_container.append(sub_card);
+                            var sub_route = make_node({
+                                "nodetype":"p",
+                                "innerText": route
+                            },ao.focus);
+                            sub_card.append(sub_route);
+    
+                            var sub_progress = make_node({
+                                "nodetype":"p",
+                                "innerText": data[entry].astra[route].meta.priority
+                            },ao.focus);
+                            sub_card.append(sub_progress);
+                            
+                        };
 
-                        var sub_progress = make_node({
-                            "nodetype":"p",
-                            "innerText": data[entry].astra[route].meta.priority
-                        },ao.focus);
-                        sub_card.append(sub_progress);
-                        
                     };
                 };
             });
