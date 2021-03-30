@@ -9,25 +9,16 @@ let side_menu = [
                 var data = JSON.parse(response);
                 console.log(data)
                 var new_entity = ost(ao,"focus",{
-                    "mass":{
-                        "kill": function(){
-                            for (var item_name in ao.focus) {
+                    "kill": function() {
+                        for (var item_name in ao.focus) {
+                            if (item_name != "kill") {
                                 ao.focus[item_name].kill();
-                            }
-                        }
+                            };
+                        };
                     }
                 });
                 if (new_entity != true) {
                     ao.focus.kill();
-                    ao.focus = {
-                        "mass":{
-                            "kill": function(){
-                                for (var item_name in ao.focus) {
-                                    ao.focus[item_name].kill();
-                                }
-                            }
-                        }
-                    }
                 };                
                 var container = make_node({
                     "id":"the_guy_who_always_dies",
