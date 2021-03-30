@@ -802,7 +802,18 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             as_array[0] == "info" && 
             as_array[1] == "progress" &&
             req.headers.referer == "https://demian.app/info/") {
-                finish_request (res,200,JSON.stringify(domain_tree));
+                var response = {};
+                for (var dom_name in domain_tree) {
+                    var domain = domain_tree[dom_name];
+                    response[dom_name] = {};
+                    response[dom_name].meta = domain.meta
+                    response[dom_name].astra = {};
+                    for (var routes in domain.astra) {
+                        response[dom_name].astra[routes] = {};
+                        response[dom_name].astra[routes].meta = domain.astra[routes].meta
+                    }
+                }
+                finish_request (res,200,JSON.stringify(response));
         }
         
         let options = {
