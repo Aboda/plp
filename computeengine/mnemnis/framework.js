@@ -174,7 +174,7 @@ function sidemenu_toggle() {
           affected.classList.toggle("hidden_sidemenu_option");
           affected.classList.toggle("disappear");
         }
-      }, 700,affected);
+      }, 999,affected);
     };
   };
 };

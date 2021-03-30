@@ -2,10 +2,18 @@ let side_menu = [
     {
         "es":"Progreso de Desarrollo",
         "en":"Development Progress",
-        "go":(params_if_any)=>{
-            sidemenu_toggle();
+        "go":()=>{
             had_it_comming();
-            console.log(params_if_any.target);
+            sidemenu_toggle();
+            let html_to_prop = "";
+            fetch_file("progress",(response)=>{
+                console.log(response)
+                document.body.append(make_node({
+                    "id":"the_guy_who_always_dies",
+                    "nodetype":"p",
+                    "innerText":JSON.stringify(response)
+                }))
+            });
         }
     },
     {
@@ -56,8 +64,10 @@ function say_hi () {
     }));
 }
 function had_it_comming() {
-    ao.simple["the_guy_who_always_dies"].kill()
-    ao.simple["the_guy_who_always_dies_2"].kill()
+    if (ao.simple["the_guy_who_always_dies"] != undefined) {
+        ao.simple["the_guy_who_always_dies"].kill()
+        ao.simple["the_guy_who_always_dies_2"].kill()
+    }    
 }
 window.onload = ()=>{
     document.body.classList.add("background");

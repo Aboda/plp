@@ -56,6 +56,15 @@ https.createServer(server_options, (req, res) => {
         //Cuenta la acción
         simple_counter++
         //Procesa la solicitud
+        log_JSON({
+            "service_no":simple_counter,
+            "timestamp":new Date(),
+            "caller_ip":akhenon.clean_ipv6_trail_if_present(req.connection.remoteAddress),
+            "host":req.headers.host,
+            "url":req.url,
+            "method":req.method,
+            "headers":req.headers
+        })
         crocia.gatekeep(req,res,akhenon,simple_counter);
         //Cacha errores y los loggea
     } catch (err) {
@@ -63,16 +72,6 @@ https.createServer(server_options, (req, res) => {
         res.writeHead(500);
         //se devuelve el reporte junto con el error
         res.end(akhenon.html({"title":"500","robot":false,"html":["<h1>Error 500</h1><br><p>Report of the error has been stored for future analisis</p>"]}));
-        log_JSON({
-            "service_no":simple_counter,
-            "error":err,
-            "timestamp":new Date().getTime(),
-            "caller_ip":akhenon.clean_ipv6_trail_if_present(req.connection.remoteAddress),
-            "host":req.headers.host,
-            "url":req.url,
-            "method":req.method,
-            "headers":req.headers
-        })
     };
 }).listen(443);
 // Si el parámetro global do_log está activado loggea un JSON recibido a un archivo en el SO y hace console.log
