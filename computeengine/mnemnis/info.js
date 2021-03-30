@@ -49,7 +49,7 @@ let side_menu = [
                     },ao.focus);
                     card.append(progress);
 
-                    for (var route in data[entry]){
+                    for (var route in data[entry].astra){
                         var sub_card = make_node({
                             "nodetype":"div",
                             "styles":["sub_progress_card"]
