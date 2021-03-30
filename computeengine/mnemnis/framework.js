@@ -138,7 +138,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[chosen_lng],
       "nodetype":"div",
       "innerText":buttons[chosen_lng],
-      "styles":["disappear","color_contrast_2"]
+      "styles":["disappear","color_contrast_1"]
     })
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
