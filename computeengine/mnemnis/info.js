@@ -39,7 +39,7 @@ let side_menu = [
                     
                     var title = make_node({
                         "nodetype":"p",
-                        "innerText": "<b>"+entry+"</b>"
+                        "innerText": entry
                     },ao.focus);
                     card.append(title);
 

@@ -14,3 +14,23 @@
 .shown_sidemenu_option:hover{
     text-decoration: overline underline rgb(255,0,0);
 }
+.progress_card{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+    border-color:orangered;
+    border-style: inset;
+    border-width: .2em;
+}
+.progress_card{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+    border-color:brown;
+    border-style: outset;
+    border-width: .2em;
+}
