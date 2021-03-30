@@ -37,13 +37,6 @@ var GET_counter = 0;
 var POST_counter = 0;
 var OTHER_counter = 0;
 
-var creation_counter = 0;
-var router_counter = 0;
-var complete_counter = 0;
-var redirect_counter = 0;
-
-var what_counter = 0;
-
 var demian_counter = 0;
 var demian2_counter = 0;
 var demian3_counter = 0;
@@ -53,6 +46,7 @@ var pubip_counter = 0;
 
 for (entry of string_array) {
     var manipulable = JSON.parse(entry)
+    console.log(manipulable);
 
     if (manipulable.method == "GET") {
         GET_counter++
@@ -75,29 +69,16 @@ for (entry of string_array) {
     } else {
         pubip_counter++
     }
-
-    if (manipulable.step == "rep_creation") {
-        GET_counter++
-    } else if (manipulable.step == "out_to_router") {
-        creation_counter++
-    } else if (manipulable.step == "complete_without_errors") {
-        router_counter++
-    }else if (manipulable.step == "redirect_to_property") {
-        complete_counter++
-    }else if (manipulable.step == "error_in_main_try") {
-        redirect_counter++
-    } else {
-        what_counter++
-    }
 }
 
 console.log({
     GET_counter,
     POST_counter,
     OTHER_counter,
-    creation_counter,
-    router_counter,
-    complete_counter,
-    redirect_counter,
-    what_counter
+    demian_counter,
+    demian2_counter,
+    demian3_counter,
+    remanso_counter,
+    remanso2_counter,
+    pubip_counter
 });
