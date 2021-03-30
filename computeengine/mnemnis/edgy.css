@@ -29,3 +29,13 @@
 .pad_1{
     padding: 1em;
 }
+.secondary{
+    font-size: 80%;
+    background-color: rgb(255,255,255,.1);
+    align-self: flex-end;
+}
+.border{
+    border-style: outset;
+    border-width: .3em;
+    border-color: grey;
+}

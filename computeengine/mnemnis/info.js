@@ -97,14 +97,14 @@ function complicated_ass_card_1(data){
             root_card = make_node({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["loved_flex","pad_1"]
+                "styles":["loved_flex","pad_1","border"]
             },ao.focus);
             parents.push(entry);
         } else {
             root_card = make_node({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["loved_flex","pad_1"]
+                "styles":["loved_flex","pad_1","border"]
             },ao.focus);
         };
         container.append(root_card);
@@ -146,7 +146,7 @@ function complicated_ass_card_1(data){
         if (data[entry].astra != undefined) {
             let sub_container = make_node({
                 "nodetype":"div",
-                "styles":["loved_flex","pad_1"]
+                "styles":["loved_flex","pad_1","secondary"]
             },ao.focus);
             root_card.append(sub_container);
 
