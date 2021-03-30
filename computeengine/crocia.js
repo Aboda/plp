@@ -791,8 +791,8 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
                 "html":["<h1>Información de Plataforma</h1>"],
                 "languaje":chosen_lng,
                 "title":"info:plp",
-                "css":chosen_domain.intra.css,
-                "js":chosen_domain.intra.js
+                "css":chosen_domain.astra.info.intra.css,
+                "js":chosen_domain.astra.info.intra.js
             };
             finish_request (res,200,akhenon.html(options));
             return;    
