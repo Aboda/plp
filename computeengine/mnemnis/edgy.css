@@ -12,7 +12,7 @@
     color:rgb(0,0,255);
 }
 .shown_sidemenu_option:hover{
-    text-decoration: overline underline rgb(255,0,0);
+    transform: scale(1.2);
 }
 .progress_card{
     display: flex;
