@@ -47,8 +47,8 @@ function say_hi () {
         "id":"the_guy_who_always_dies_2",
         "nodetype":"a",
         "target":"https://demian.app/comentarios/",
-        "link_text":"Envíame un mensaje (en construcción)",
-        "title":"Formato de contacto directo"
+        "link_text":"Formato de contacto directo",
+        "styles":["color_contrast_1"]
     }));
 }
 
