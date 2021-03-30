@@ -12,5 +12,5 @@
     color:rgb(0,0,255);
 }
 .shown_sidemenu_option:hover{
-    text-decoration: overline rgb(0,0,255) underline rgb(255,0,0);
+    text-decoration: overline underline rgb(255,0,0);
 }
