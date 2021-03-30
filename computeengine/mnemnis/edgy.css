@@ -21,27 +21,26 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    border-color:rgb(0,0,255);
-    border-style: double;
-    border-width: .2em;
 }
 .progress_card{
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
-    margin: .5em;
-    padding: .5em;
+    margin: 1em;
+    padding: 1em;
     border-color:rgb(255,0,0);
     border-style: inset;
     border-width: .2em;
 }
 .sub_container{
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     align-items: center;
     justify-content: center;
     border-color:rgb(0,255,0);
+    margin: 1em;
+    padding: 1em;
     border-style: outset;
     border-width: .2em;
 }
