@@ -79,6 +79,7 @@ function make_node(qq,container) {
       if (qq.title != undefined) {node.title = qq.title;};
     };
     ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function() {
+      console.log(this);
       let that_who_will_die = this.node.id;
       ao.simple[that_who_will_die].node.remove();
       delete ao.simple[that_who_will_die];
