@@ -154,7 +154,7 @@ function complicated_ass_card_1(data){
                 let ezr = data[entry].astra[route];
                 let sub_card = make_node({
                     "nodetype":"div",
-                    "styles":["sub_container","display_flex"]
+                    "styles":["sub_container","color_contrast_3","loved_flex"]
                 },ao.focus);
                 sub_container.append(sub_card);
                 let sub_route = make_node({

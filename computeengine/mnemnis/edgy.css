@@ -27,17 +27,23 @@
     justify-content: center;    
 }
 .report_container{
-    border-style: solid;
+    border-style: groove;
     border-color:rgb(255,255,255);
-    border-width:.5em;
+    border-width:.1em;
+    margin: .1em;
+    padding: .1em;
 }
 .progress_card{
     border-style: dotted;
     border-color:rgb(255,255,255);
-    border-width:.5em;
+    border-width:.1em;
+    margin: .1em;
+    padding: .1em;
 }
 .sub_container{
     border-style: outset;
     border-color:rgb(255,255,255);
-    border-width:.5em;
+    border-width:.1em;
+    margin: .1em;
+    padding: .1em;
 }
