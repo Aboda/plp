@@ -21,8 +21,8 @@ const server_options = {
     keepAliveTimeout: 0,
     headersTimeout: 1000,
     maxHeadersCount: 10,
-    requestTimeout: 2000,
-    timeout:3000
+    requestTimeout: 10000,
+    timeout:10000
 };
 // Seriador del número de llamadas recibidas desde el arranque del servidor
 var simple_counter = 0;
