@@ -32,7 +32,6 @@
 .secondary{
     font-size: 80%;
     background-color: rgb(255,255,255,.1);
-    align-self: flex-end;
 }
 .border{
     border-style: outset;
