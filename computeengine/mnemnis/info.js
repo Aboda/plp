@@ -29,14 +29,17 @@ let side_menu = [
                 },ao.focus);
                 document.body.append(container);
 
-                var orphans = {};
+                let orphans = {};
+                let parents = [];
 
-                for (let entry in data){
+                for (let entry in data) {
                     let root_card = make_node({
+                        "id":entry,
                         "nodetype":"div",
                         "styles":["progress_card"]
                     },ao.focus);
                     if (data[entry].meta.root_domain) {
+                        parents.push(entry);
                         container.append(root_card);
                     } else {
                         orphans[entry] = root_card;
@@ -53,12 +56,20 @@ let side_menu = [
                         "innerText": data[entry].meta.short[chosen_lng]
                     },ao.focus);
                     root_info_container.append(short);
-
-                    let domain = make_node({
-                        "nodetype":"div",
-                        "innerText": entry
-                    },ao.focus);
-                    root_info_container.append(domain);
+                    if (data[entry].meta.root_domain) {
+                        let domain = make_node({
+                            "nodetype":"div",
+                            "innerText": "Domain: "+entry
+                        },ao.focus);
+                        root_info_container.append(domain);
+                    }else{
+                        let domain = make_node({
+                            "nodetype":"div",
+                            "innerText": "Subdomain: "+entry
+                        },ao.focus);
+                        root_info_container.append(domain);
+                    }
+                    
 
                     if (data[entry].meta.etapa != undefined) {
                         let stage = make_node({
@@ -90,7 +101,7 @@ let side_menu = [
     
                             let sub_progress = make_node({
                                 "nodetype":"div",
-                                "innerText": route
+                                "innerText": "Route: "+route
                             },ao.focus);
                             sub_card.append(sub_progress);
 
@@ -101,6 +112,16 @@ let side_menu = [
                                 },ao.focus);
                                 sub_card.append(stage);
                             }
+                        };
+                    };
+                };
+
+                for (let entry in orphans) {
+                    for (let acknowledge of parents) {
+                        if (entry.indexOf(acknowledge) != -1) {
+                            ao.simple[acknowledge].node.append(orphans[entry]);
+                            delete orphans[entry];
+                            break;
                         };
                     };
                 };
