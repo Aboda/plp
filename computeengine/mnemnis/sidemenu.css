@@ -18,6 +18,10 @@ html, body {
 }
 .sidemenu_container_expanded {
     position: sticky;
+    display: flex;
+    flex-flow: column;
+    align-content: center;
+    justify-items: center;
     top: 0vh;
     left: 0vw; 
     height: 100vh; 
@@ -55,15 +59,15 @@ html, body {
 .shown_sidemenu_option {
     position: sticky;
     display: flex;
-    flex-flow: column;
-    align-content: center;
-    justify-items: center;
     top: 0vh;
     left: 0vw; 
     height: 10vh; 
     width: 95vw;
     z-index: 10;
     margin: 1em;
+    border-color:brown;
+    border-style: outset;
+    border-width: .2em;
     animation: option_slide_in 1s;
 }
 .disappear{
