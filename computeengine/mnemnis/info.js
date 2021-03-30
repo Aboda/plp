@@ -4,6 +4,7 @@ let side_menu = [
         "en":"Development Progress",
         "go":(params_if_any)=>{
             sidemenu_toggle();
+            had_it_comming();
             console.log(params_if_any.target);
         }
     },
@@ -12,6 +13,7 @@ let side_menu = [
         "en":"Operational Statistics",
         "go":(params_if_any)=>{
             sidemenu_toggle();
+            had_it_comming();
             console.log(params_if_any.target);
         }
     },
@@ -20,6 +22,7 @@ let side_menu = [
         "en":"Users messages",
         "go":(params_if_any)=>{
             sidemenu_toggle();
+            had_it_comming();
             console.log(params_if_any.target);
         }
     },
@@ -28,6 +31,7 @@ let side_menu = [
         "en":"Control Interface",
         "go":(params_if_any)=>{
             sidemenu_toggle();
+            had_it_comming();
             console.log(params_if_any.target);
         }
     }
