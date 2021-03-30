@@ -88,8 +88,10 @@ function say_hi () {
 function had_it_comming() {
     if (ao.simple["the_guy_who_always_dies"] != undefined) {
         ao.simple["the_guy_who_always_dies"].kill()
-        ao.simple["the_guy_who_always_dies_2"].kill()
     }    
+    if (ao.simple["the_guy_who_always_dies_2"] != undefined) {
+        ao.simple["the_guy_who_always_dies_2"].kill()
+    }
 }
 window.onload = ()=>{
     document.body.classList.add("background");
