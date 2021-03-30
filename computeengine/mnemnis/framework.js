@@ -22,7 +22,7 @@ function fetch_file(filename,callback) {
   };
   negotiator.send();
 }
-function make_node(qq) {
+function make_node(qq,container) {
     zyx("node requested",qq,false);
     ost(ao,"simple",{});
     aint_got_no_id(qq);
@@ -82,6 +82,7 @@ function make_node(qq) {
       var handler = ao.simple[this.config.id].node.remove();
       delete ao.simple[this.config.id];
     }});
+    if (container != undefined){container[qq.id] = ao.simple[qq.id];};
     zyx("node created",ao.simple[qq.id],false);
     return node;
 }

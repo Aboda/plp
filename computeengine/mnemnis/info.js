@@ -5,14 +5,36 @@ let side_menu = [
         "go":()=>{
             had_it_comming();
             sidemenu_toggle();
-            let html_to_prop = "";
             fetch_file("progress",(response)=>{
-                console.log(response)
-                document.body.append(make_node({
+                var data = JSON.parse(response);
+                console.log(data)
+                var pre_existing = ost(ao,"focus",{
+                    "mass_kill":()=>{
+                        console.log("mas kill summoned");
+                        console.log(this);
+                    }
+                });
+                if (pre_existing == false) {
+                    ao.focus.mass_kill();
+                }
+                var container = make_node({
                     "id":"the_guy_who_always_dies",
-                    "nodetype":"p",
-                    "innerText":JSON.stringify(response)
-                }))
+                    "nodetype":"div"
+                },ao.focus)
+                document.body.append(container);
+                for (var entry in data){
+                    var card = make_node({
+                        "nodetype":"div"
+                    },ao.focus);
+                    container.append(card);
+                    
+                    var title = make_node({
+                        "nodetype":"h3",
+                        "innerText": entry
+                    },ao.focus);
+                    card.append(title);
+                }
+                
             });
         }
     },
