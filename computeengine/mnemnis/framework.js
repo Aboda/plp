@@ -126,27 +126,27 @@ function left_hand_menu(details) {
     "nodetype":"div",
     "styles":["sidemenu_container_collapsed","background"],
     "state":"collapsed"
-  })
+  });
   document.body.append(crafted_device);
   var icon = make_node({
     "id":"sidemenu_icon",
     "nodetype":"p",
-    "innerText":" "+String.fromCharCode("9965")+" ",
+    "innerText":" "+String.fromCharCode("9775")+" ",
     "styles":["big_letter","color_contrast_2"]
-  })
+  });
   crafted_device.append(icon);
   for (var buttons of details) {
     var entry = make_node({
       "id":"smbo-"+buttons[chosen_lng],
       "nodetype":"div",
       "innerText":buttons[chosen_lng],
-      "styles":["disappear","color_contrast_1"]
-    })
+      "styles":["disappear","background"]
+    });
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
     entry.addEventListener("click",buttons.go);
     crafted_device.append(entry);
-  }
+  };
   icon.addEventListener("click",() => {sidemenu_toggle()});
 }
 function sidemenu_toggle() {
