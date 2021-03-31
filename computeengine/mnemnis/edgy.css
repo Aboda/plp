@@ -2,6 +2,9 @@
     background-color:rgb(0,0,0);
     color:rgb(255,255,255);
 }
+#sidemenu_icon{
+    background-color: transparent;
+}
 .color_contrast_1{
     color:rgb(0,255,0);
 }
