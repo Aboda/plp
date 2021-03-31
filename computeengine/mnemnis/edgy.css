@@ -2,6 +2,7 @@
     background-color:rgb(0,0,0);
     color:rgb(255,255,255);
 }
+
 .color_contrast_1{
     color:rgb(0,255,0);
 }
@@ -38,6 +39,6 @@
 .ancho{
     width: 100%;
 }
-#sidemenu_icon{
-    border-radius: 50%;
+.transparent {
+    background-color:transparent;
 }

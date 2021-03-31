@@ -124,7 +124,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["sidemenu_container_collapsed","background"],
+    "styles":["sidemenu_container_collapsed","transparent"],
     "state":"collapsed"
   });
   document.body.append(crafted_device);
@@ -154,10 +154,12 @@ function sidemenu_toggle() {
   var big_letter = ao.simple.sidemenu_icon;
   big_letter.node.classList.toggle("color_contrast_2");
   big_letter.node.classList.toggle("color_contrast_3");
+  sidemenu.node.classList.toggle("sidemenu_container_collapsed");
+  sidemenu.node.classList.toggle("sidemenu_container_expanded");
+  sidemenu.node.classList.toggle("transparent");
+  sidemenu.node.classList.toggle("background");
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
-    sidemenu.node.classList.toggle("sidemenu_container_collapsed");
-    sidemenu.node.classList.toggle("sidemenu_container_expanded");
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
       affected.classList.toggle("disappear");
@@ -165,8 +167,6 @@ function sidemenu_toggle() {
     }
   }else if (sidemenu.config.state == "expanded"){
     sidemenu.config.state = "collapsed"
-    sidemenu.node.classList.toggle("sidemenu_container_expanded");
-    sidemenu.node.classList.toggle("sidemenu_container_collapsed");
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
       affected.classList.toggle("shown_sidemenu_option");
