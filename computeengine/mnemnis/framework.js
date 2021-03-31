@@ -124,7 +124,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["sidemenu_container_collapsed"],
+    "styles":["sidemenu_container_collapsed","background"],
     "state":"collapsed"
   })
   document.body.append(crafted_device);
