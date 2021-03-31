@@ -130,7 +130,7 @@ function left_hand_menu(details) {
   document.body.append(crafted_device);
   var icon = make_node({
     "id":"sidemenu_icon",
-    "nodetype":"p",
+    "nodetype":"div",
     "innerText":" "+String.fromCharCode("9775")+" ",
     "styles":["big_letter","color_contrast_2"]
   });
