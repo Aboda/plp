@@ -1,1 +1,3 @@
-console.log("cargando portafolio laboratorio personal");
+/*
+    Este archivo se encarga de la identificación del usuario con la plataforma
+*/

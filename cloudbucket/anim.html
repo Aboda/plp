@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .sideways{
+                display: flex;
+                flex-flow: row wrap;
+            }
+            div {
+                display: flex;
+                flex-flow: column nowrap;
+                border-style: solid;
+                border-width: 1px;
+                border-color: black;
+                margin: .3em;
+                padding: .3em;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+        </head>
+    <body>
+    </body>
+    <script>
+        let h = 200;
+        let w = 200;
+        function make_interface() {
+            let counter = 0;
+            let start = [70,110,70,140,110,140,110,110];
+            let interface_container = document.createElement("div");
+            document.body.append(interface_container);
+
+            let svgNode = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svgNode.setAttributeNS(null, "viewBox", "0 0 "+h+" "+w);
+            svgNode.setAttributeNS(null, "width",w+"px");
+            svgNode.setAttributeNS(null, "height",h+"px");
+            let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.id = "line";
+            path.setAttributeNS(null, "d","M 70 110 C 70 140, 110 140, 110 110");
+            path.setAttributeNS(null, "stroke","black");
+            path.setAttributeNS(null, "fill","transparent");
+            svgNode.appendChild(path);
+            interface_container.appendChild(svgNode);
+
+            let controls_container = document.createElement("div");
+            controls_container.id = "control_container"
+            controls_container.classList.add("sideways");
+            for (let param of start){
+                counter ++;
+                let option_container = document.createElement("div");
+                
+                controls_container.append(option_container);
+                let value_input = document.createElement("input");
+                value_input.type = "number";
+                value_input.id = "p-"+counter;
+                value_input.value = param;
+                value_input.addEventListener("change",(e)=>{modify_path(e)});
+                option_container.append(value_input);
+                let random_valuer = document.createElement("button");
+                random_valuer.addEventListener("click",(e)=>{give_a_rand(e)});
+                random_valuer.innerText = "R";
+                option_container.append(random_valuer);
+            }
+            interface_container.appendChild(controls_container);
+
+        }
+        function modify_path () {
+            var target_line = document.getElementById("line");
+            var control_container = document.getElementById("control_container");
+            var item_counter = 0;
+            var new_d = "";
+            for (let node of control_container.childNodes){
+                node.childNodes[0].value
+                if (item_counter == 0){new_d = "M ";};
+                if (item_counter == 2){new_d = new_d+"C ";};
+                new_d = new_d+node.childNodes[0].value+" ";
+                item_counter++
+            }
+            target_line.setAttributeNS(null, "d",new_d);
+        };
+        function give_a_rand (event) {
+            event.target.parentNode.childNodes[0].value = rand_upto(200);
+            modify_path()
+        };
+        function rand_upto(upto) {
+            return Math.round(Math.random()*upto);
+        }
+
+        function line_loop(element){
+            var randout = rand_upto(2);
+            var value = Number(element.value);
+            switch (randout.toString()) {
+                case "1": 
+                    value = value + 1;
+                break;
+                case "2": 
+                    value = value - 1;
+                break;
+            }
+            if(value < 0){
+               value = value + 2;
+            }
+            if(value > h || element.value > w){
+                value = value - 2;
+            }
+            if (h/10 > value) {
+                value = value - 1;
+            }else if(h/10 < value){
+                value = value + 1;
+            }
+            element.value = value;
+        }
+        
+        function autorun(){
+            setTimeout(() => {
+                let container = document.getElementById("control_container");
+                for (let interface of container.childNodes) {
+                    line_loop(interface.childNodes[0]);
+                }
+                modify_path();
+                autorun();
+            },20);
+        }
+        window.onload = () => {
+            make_interface();
+            autorun();
+        }
+    </script>
+</html>

@@ -52,11 +52,168 @@ let side_menu = [
         }
     }
 ];
-
 let hi_message = "Esta sección está diseñada para brindar una perspectiva compartible de progreso colectivo ";
 hi_message = hi_message + "respecto a los proyectos siendo trabajados o auxiliados.\nSi no sabes que es esto, quizas ";
 hi_message = hi_message + "no deberías de estar aquí, pero si tienes curiosidad siempre puedes enviarme un mensaje:";
-
+let site_progress = {
+    "demian.app":{
+        "racional":{
+            "es":"Portal principal de aplicaciónes independientes, dummys, modelos y otras herramientas experimentales",
+            "en":"Main gateway for independant applications, dummys, models and other experimental tools"
+        },
+        "componentes":[
+            "sidemenu",
+            "login",
+            "display"
+        ]
+    },
+    "www.demian.app":{
+        "racional":{
+            "es":"Blog profesional y de tecnología",
+            "en":"Professional and Tech Blog"
+        },
+        "componentes":[
+            "sidemenu",
+            "display"
+        ]
+    },
+    "profesional.demian.app":{
+        "racional":{
+            "es":"Portafolio y venta de consultoría remota",
+            "en":"Portfolio and remote consultation point of sale"
+        },
+        "componentes":[
+            "sidemenu",
+            "login",
+            "display",
+            "scheduler",
+            "purchase"
+        ]
+    },
+    "remansonocturno.com":{
+        "racional":{
+            "es":"Red social de amantes y creadores de fantasía y ciencia ficción",
+            "en":"Social network of lovers and creators of science fictiona and fantasy"
+        },
+        "componentes":[
+            "sidemenu",
+            "login",
+            "display",
+            "profile",
+            "community",
+            "purchase",
+            "award"
+        ]
+    },
+    "www.remansonocturno.com":{
+        "racional":{
+            "es":"Blog de ficción y ciencia ficción",
+            "en":"Science fiction and fiction blog"
+        },
+        "componentes":[
+            "sidemenu",
+            "display"
+        ]
+    }
+}
+let modules_progress = {
+    "sidemenu":{
+        "racional":{
+            "es":"Iterface interactiva generalizada de navegación de plataforma",
+            "en":"General interactive interface for platform control"
+        },
+        "estado":{
+           "es":"En operación",
+           "en":"Operational"
+        },
+        "ver":1,
+        "residencia":"framework.js"
+    },
+    "login":{
+        "racional":{
+            "es":"Control de proceso de identificación humana",
+            "en":"Human identification control process"
+        },
+        "estado":{
+           "es":"Contemplada",
+           "en":"Contemplated"
+        },
+        "ver":0,
+        "residencia":"none"
+    },
+    "display":{
+        "racional":{
+            "es":"Herramienta de despliegue de contenidos estandarizada",
+            "en":"Standarized content display tool"
+        },
+        "estado":{
+           "es":"Contemplada",
+           "en":"Contemplated"
+        },
+        "ver":0,
+        "residencia":"none"
+    },
+    "scheduler":{
+        "racional":{
+            "es":"Interface de compra de tiempos finitos calendarizados",
+            "en":"Finite calendarized schedule purchase interface"
+        },
+        "estado":{
+           "es":"Contemplada",
+           "en":"Contemplated"
+        },
+        "ver":0,
+        "residencia":"none"
+    },
+    "purchase":{
+        "racional":{
+            "es":"Manejador de pagos",
+            "en":"Payment manager"
+        },
+        "estado":{
+           "es":"Contemplada",
+           "en":"Contemplated"
+        },
+        "ver":0,
+        "residencia":"none"
+    },
+    "profile":{
+        "racional":{
+            "es":"Interface del perfil del usuario",
+            "en":"User profile interface"
+        },
+        "estado":{
+           "es":"Contemplada",
+           "en":"Contemplated"
+        },
+        "ver":0,
+        "residencia":"none"
+    },
+    "community":{
+        "racional":{
+            "es":"Espacio de apreciación de la comunidad",
+            "en":"Community apreciation space"
+        },
+        "estado":{
+           "es":"Contemplado",
+           "en":"Contemplated"
+        },
+        "ver":0,
+        "residencia":"none"
+    },
+    "award":{
+        "racional":{
+            "es":"Sistema de recompensas de miembros de la red social",
+            "en":"Social network member awards system"
+        },
+        "estado":{
+           "es":"Contemplado",
+           "en":"Contemplated"
+        },
+        "ver":0,
+        "residencia":"none"
+    }
+}
 function say_hi () {
     document.body.append(make_node({
         "id":"the_guy_who_always_dies",
@@ -180,7 +337,6 @@ function complicated_ass_card_1(data){
         };
     };
 };
-
 window.onload = ()=>{
     document.body.classList.add("background");
     left_hand_menu(side_menu);

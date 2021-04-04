@@ -2,19 +2,20 @@
   This section is the global housemade framework
 */
 var ao = {};
+ao.lng = document.documentElement.lang.slice(0,2);
 function zyx(tag,thing,show){
     var default_history_length_limit = 100;
     ost(ao,"history",[]);
     ao.history.push([tag,thing,show]);
     if (show){console.log(tag,thing);};
-    while (ao.history.length > default_history_length_limit){
+    while (ao.history.length > default_history_length_limit) {
       ao.history.shift();
     }
 };
 function ost(object,newkey,content){if(object[newkey] == undefined){object[newkey] = content;return true;}else{return false;};}
-function fetch_file(filename,callback) {
+function fetch_file(resource,callback) {
   var negotiator = new XMLHttpRequest();
-  negotiator.open("GET",filename);
+  negotiator.open("GET",resource);
   negotiator.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           callback(this.responseText);
@@ -60,13 +61,19 @@ function make_node(qq,container) {
     };
     node = document.createElement(node);
     if (type != undefined) {node.type = type;};
-    if (qq.id != undefined) {node.id = qq.id;};
-    if (qq.innerText != undefined) {node.innerText = qq.innerText;};
-    if (qq.value != undefined) {node.value = qq.value;};
-    if (qq.for != undefined) {node.for = qq.for;};
-    if (qq.order != undefined) {node.style.order = qq.order;};
-    if (qq.width != undefined) {node.style.width = qq.width;};
-    if (qq.maxWidth != undefined) {node.style.maxWidth = qq.maxWidth;};
+    let pass = {
+      "id":true,
+      "innerText":true,
+      "value":true,
+      "for":true,
+      "order":true,
+      "width":true,
+      "maxWidth":true,
+      "title":true
+    }
+    for (let items in pass){
+      if (qq[items] != undefined) {node[items] = qq[items];};  
+    }
     if (qq.styles != undefined) {dress(node,qq.styles,true)};
     if (qq.path != undefined) {node.setAttribute("d", qq.path)};
     if (qq.nodetype == "a") {
@@ -76,7 +83,6 @@ function make_node(qq,container) {
         node.append(document.createTextNode(qq.target));
       };
       node.href = qq.target;
-      if (qq.title != undefined) {node.title = qq.title;};
     };
     ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function() {
       let that_who_will_die = this.node.id;
@@ -120,40 +126,41 @@ function toggle_vis(element) {
   }
 }
 function left_hand_menu(details) {
-  var chosen_lng = document.documentElement.lang.slice(0,2);
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["sidemenu_container_collapsed","transparent"],
-    "state":"collapsed"
-  });
-  document.body.append(crafted_device);
-  var icon = make_node({
+    "styles":["left_menu","go_away"],
+    "state":"absent"
+  });  
+  let men = {
+    "en":"Menu",
+    "es":"Menú"
+  };
+  let icon = make_node({
     "id":"sidemenu_icon",
     "nodetype":"div",
-    "innerText":" "+String.fromCharCode("9775")+" ",
-    "styles":["big_letter","color_contrast_2"]
+    "innerText":men[ao.lng],
+    "styles":["color_contrast_1"]
   });
   crafted_device.append(icon);
   for (var buttons of details) {
     var entry = make_node({
-      "id":"smbo-"+buttons[chosen_lng],
+      "id":"smbo-"+buttons[ao.lng],
       "nodetype":"div",
-      "innerText":buttons[chosen_lng],
-      "styles":["disappear","background"]
+      "innerText":buttons[ao.lng],
+      "styles":["color_contrast_2"]
     });
     ost(ao,"main_menu",{});
-    ost(ao.main_menu,buttons[chosen_lng],ao.simple["smbo-"+buttons[chosen_lng]]);
+    ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
     entry.addEventListener("click",buttons.go);
     crafted_device.append(entry);
   };
   icon.addEventListener("click",() => {sidemenu_toggle()});
+  
+  document.body.append(crafted_device);
 }
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
-  var big_letter = ao.simple.sidemenu_icon;
-  big_letter.node.classList.toggle("color_contrast_2");
-  big_letter.node.classList.toggle("color_contrast_3");
   sidemenu.node.classList.toggle("sidemenu_container_collapsed");
   sidemenu.node.classList.toggle("sidemenu_container_expanded");
   sidemenu.node.classList.toggle("transparent");
@@ -180,3 +187,42 @@ function sidemenu_toggle() {
     };
   };
 };
+
+let plane_manager = {
+  "holder":{},
+  "cre_pla":(resus) => {
+    let new_plane = {
+      "parts":{},
+      "para":resus
+    }
+    new_plane.node = make_node({"nodetype":div,"styles":["facet"]},new_plane.parts);
+    this.holder[resus.device] = new_plane;
+    return new_plane;
+  },
+  "pla_han":()=>{let count;for (let items in holder) {count++;};return count;},
+  "set_pos":(device_name,position)=>{
+    this.holder[device_name].para.z = position;
+    this.holder[device_name].node.style.zIndex = position;
+  },
+  "kil_vis":(device_name)=>{
+    this.holder[device_name].para.vis = "transparent";
+    this.holder[device_name].node.style.backgroundColor = rgb(0,0,0,0);
+    this.holder[device_name].node.style.color = rgb(0,0,0,0);
+  },
+  "res_vis":(device_name)=>{
+    this.holder[device_name].para.vis = "reset";
+    this.holder[device_name].node.style.backgroundColor = null;
+    this.holder[device_name].node.style.color = null;
+  }
+};
+
+function make_shapes (placehere,start,end) {
+  let contenedor = document.createElement("div");
+  contenedor.classList.add("shapes_cont");
+  placehere.append(contenedor);
+  for (let i = start; i < end; i++) {
+      let bloque = document.createElement("div");
+      bloque.innerText = String.fromCharCode(i);
+      contenedor.append(bloque);    
+  }
+}

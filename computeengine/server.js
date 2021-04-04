@@ -44,7 +44,12 @@ var cache = {
         "ren":fs.readFileSync("./mnemnis/ren.js").toString(),
         "plp":fs.readFileSync("./mnemnis/plp.js").toString(),
         "framework":fs.readFileSync("./mnemnis/framework.js").toString(),
-        "info":fs.readFileSync("./mnemnis/info.js").toString()
+        "info":fs.readFileSync("./mnemnis/info.js").toString(),
+        "demian_app":fs.readFileSync("./realmiu/demian_app.js").toString(),
+        "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
+        "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString(),
+        "en_construc":fs.readFileSync("./realmiu/en_construc.js").toString(),
+        "g_prods":fs.readFileSync("./realmiu/g_prods.js").toString()
     }
 }
 
@@ -55,7 +60,6 @@ https.createServer(server_options, (req, res) => {
     try {
         //Cuenta la acción
         simple_counter++
-        //Procesa la solicitud
         log_JSON({
             "service_no":simple_counter,
             "timestamp":new Date(),
@@ -63,14 +67,19 @@ https.createServer(server_options, (req, res) => {
             "host":req.headers.host,
             "url":req.url,
             "method":req.method,
-            "headers":req.headers
-        })
+        });
+        //Procesa la solicitud
         crocia.gatekeep(req,res,akhenon,simple_counter);
         //Cacha errores y los loggea
     } catch (err) {
+        log_JSON({
+            "service_no":simple_counter,
+            "error":err,
+            "headers":req.headers
+        })
         //se avisa de un error interno en el servidor
         res.writeHead(500);
-        //se devuelve el reporte junto con el error
+        //Se envia un html
         res.end(akhenon.html({"title":"500","robot":false,"html":["<h1>Error 500</h1><br><p>Report of the error has been stored for future analisis</p>"]}));
     };
 }).listen(443);

@@ -7,6 +7,438 @@ let domain_tree = {};
 exports.set_cache_n_init = (cache) => {
     resources_cache = cache
     domain_tree = {
+        "demian.app":{
+            "meta":{
+                "cool":{
+                    "es":"Portafolio Laboratorio Personal",
+                    "en":"Personal Lab Portfolio"
+                },
+                "short":{
+                    "es":"Plataforma de aplicaciones",
+                    "en":"Application platform"
+                },
+                "loc":"https://demian.app/",
+                "updfreq":"daily",
+                "sitemap":true,
+                "index":true,
+                "robots":true,
+                "priority":0.3,
+                "favicon":"desk",
+                "acronimo":"plp",
+                "root_domain":true,
+                "etapa":{
+                    "es":"Desarrollo",
+                    "en":"Desarrollo"
+                }
+            },
+            "intra":{
+                "facebooksdk":true,
+                "fbid":"2076681439269297",
+                "ganalitycs":true,
+                "gtag":"G-6MEPN29LZG",
+                "title":{
+                    "es":"Plataforma:PLP",
+                    "en":"Platform:PLP"
+                },
+                "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                "js":[resources_cache.js.framework,resources_cache.js.demian_app]
+            },
+            "astra":{
+                "conavi":{
+                    "meta":{
+                        "short":{
+                            "es":"Retos y herramientas 2019 y 2020",
+                            "en":"Challenges and Tools 2019 and 2020"
+                        },
+                        "loc":"https://demian.app/conavi/",
+                        "updfreq":"yearly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Retos y Herramientas:PLP",
+                            "en":"Tools and Challenges:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                },
+                "sedatu":{
+                    "meta":{
+                        "short":{
+                            "es":"Propuesta interactiva de operación de programas de gobierno",
+                            "en":"Interactive proposal for government program execution"
+                        },
+                        "loc":"https://demian.app/sedatu/",
+                        "updfreq":"yearly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.3,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Programas Sociales:PLP",
+                            "en":"Social Programs:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                },
+                "olmoazul":{
+                    "meta":{
+                        "short":{
+                            "es":"Tienda de platillos preparados en linea",
+                            "en":"Online prepared food shop"
+                        },
+                        "loc":"https://demian.app/olmoazul/",
+                        "updfreq":"monthly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Tienda de Comida:PLP",
+                            "en":"Food shop:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                },
+                "tomauno":{
+                    "meta":{
+                        "short":{
+                            "es":"Renta en linea de películas en DVD",
+                            "en":"Online DVD movie lease store"
+                        },
+                        "loc":"https://demian.app/tomauno/",
+                        "updfreq":"monthly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Rentador DVD:PLP",
+                            "en":"DVD Leaser:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                },
+                "somema":{
+                    "meta":{
+                        "short":{
+                            "es":"Herramientas de manejo de redes sociales",
+                            "en":"Social media management tools"
+                        },
+                        "loc":"https://demian.app/somema/",
+                        "updfreq":"weekly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"SOmeMA:PLP",
+                            "en":"SOmeMA:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                },
+                "narrar":{
+                    "meta":{
+                        "short":{
+                            "es":"Herramientas para narraciones",
+                            "en":"Storytelling tools"
+                        },
+                        "loc":"https://demian.app/narrar/",
+                        "updfreq":"weekly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Narrador:PLP",
+                            "en":"Storyteller:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                },
+                "info":{
+                    "meta":{
+                        "short":{
+                            "es":"Información de Plataforma",
+                            "en":"Platform Information"
+                        },
+                        "loc":"https://demian.app/info/",
+                        "updfreq":"weekly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.0,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "title":{
+                            "es":"Info:Demian",
+                            "en":"Info:Demian"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.edgy],
+                        "js":[resources_cache.js.framework,resources_cache.js.info]
+                    }
+                }
+            }
+        },
+        "www.demian.app":{
+            "meta":{
+                "short":{
+                    "es":"Blog de tecnología",
+                    "en":"Tech blog"
+                },
+                "loc":"https://www.demian.app/",
+                "updfreq":"weekly",
+                "sitemap":true,
+                "index":true,
+                "robots":true,
+                "priority":0.6,
+                "favicon":"blog",
+                "acronimo":"plp"
+            },
+            "intra":{
+                "ganalitycs":true,
+                "gtag":"G-6MEPN29LZG",
+                "title":{
+                    "es":"Blog:PLP",
+                    "en":"Blog:PLP"
+                },
+                "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                "js":[resources_cache.js.framework,resources_cache.js.www_demian_app]
+            },
+            "astra":{
+                "estat":{
+                    "meta":{
+                        "short":{
+                            "es":"Contenido estático del blog",
+                            "en":"Blog static content"
+                        },
+                        "loc":"https://www.demian.app/estat/",
+                        "updfreq":"weekly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "favicon":"blog",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Estáticos:PLP",
+                            "en":"Static:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                },
+                "dinam":{
+                    "meta":{
+                        "short":{
+                            "es":"Contenido dinámico del blog",
+                            "en":"Blog dynamic content"
+                        },
+                        "loc":"https://www.demian.app/dinam/",
+                        "updfreq":"always",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.4,
+                        "favicon":"blog",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Dinámicos:PLP",
+                            "en":"Dynamic:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }                
+                }
+            }
+        },
+        "profesional.demian.app":{
+            "meta":{
+                "short":{
+                    "es":"Portafolio laboratorio personal",
+                    "en":"Personal lab portfolio"
+                },
+                "loc":"https://profesional.demian.app/",
+                "updfreq":"monthly",
+                "sitemap":true,
+                "index":true,
+                "robots":true,
+                "priority":0.6,
+                "favicon":"desk",
+                "acronimo":"plp"
+            },
+            "intra":{
+                "ganalitycs":true,
+                "gtag":"G-6MEPN29LZG",
+                "title":{
+                    "es":"Inicio:PLP",
+                    "en":"Home:PLP"
+                },
+                "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                "js":[resources_cache.js.framework,resources_cache.js.profesional_demian_app]
+            },
+            "astra":{
+                "google":{
+                    "meta":{
+                        "short":{
+                            "es":"Herramientas y tecnologías google empleadas",
+                            "en":"Google tools and technologies employed",
+                        },
+                        "loc":"https://profesional.demian.app/google/",
+                        "updfreq":"monthly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Google H&T:PLP",
+                            "en":"Google T&T:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.g_prods]
+                    }
+                },
+                "facebook":{
+                    "meta":{
+                        "short":{
+                            "es":"Herramientas y tecnologías facebook empleadas",
+                            "en":"Facebook tools and technologies employed",
+                        },
+                        "loc":"https://profesional.demian.app/facebook/",
+                        "updfreq":"monthly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Facebook H&T:PLP",
+                            "en":"Facebook T&T:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                },
+                "web":{
+                    "meta":{
+                        "short":{
+                            "es":"Herramientas y tecnologías web empleadas",
+                            "en":"Web tools and technologies employed",
+                        },
+                        "loc":"https://profesional.demian.app/web/",
+                        "updfreq":"monthly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Web H&T:PLP",
+                            "en":"Web T&T:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                },
+                "office":{
+                    "meta":{
+                        "short":{
+                            "es":"Herramientas y tecnologías de oficina empleadas",
+                            "en":"Office tools and technologies employed",
+                        },
+                        "loc":"https://profesional.demian.app/office/",
+                        "updfreq":"monthly",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "priority":0.5,
+                        "lastmod":"2021-19-03",
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Office H&T:PLP",
+                            "en":"Office T&T:PLP"
+                        },
+                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                    }
+                }
+            }
+        },
         "remansonocturno.com": {
             "meta":{
                 "cool":{
@@ -170,438 +602,6 @@ exports.set_cache_n_init = (cache) => {
                         "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
                         "js":[resources_cache.js.framework,resources_cache.js.ren]
                     }                   
-                }
-            }
-        },
-        "demian.app":{
-            "meta":{
-                "cool":{
-                    "es":"Portafolio Laboratorio Personal",
-                    "en":"Personal Lab Portfolio"
-                },
-                "short":{
-                    "es":"Plataforma de aplicaciones",
-                    "en":"Application platform"
-                },
-                "loc":"https://demian.app/",
-                "updfreq":"daily",
-                "sitemap":true,
-                "index":true,
-                "robots":true,
-                "priority":0.3,
-                "favicon":"desk",
-                "acronimo":"plp",
-                "root_domain":true,
-                "etapa":{
-                    "es":"Desarrollo",
-                    "en":"Desarrollo"
-                }
-            },
-            "intra":{
-                "facebooksdk":true,
-                "fbid":"2076681439269297",
-                "ganalitycs":true,
-                "gtag":"G-6MEPN29LZG",
-                "title":{
-                    "es":"Plataforma:PLP",
-                    "en":"Platform:PLP"
-                },
-                "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                "js":[resources_cache.js.framework,resources_cache.js.plp]
-            },
-            "astra":{
-                "conavi":{
-                    "meta":{
-                        "short":{
-                            "es":"Retos y herramientas 2019 y 2020",
-                            "en":"Challenges and Tools 2019 and 2020"
-                        },
-                        "loc":"https://demian.app/conavi/",
-                        "updfreq":"yearly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Retos y Herramientas:PLP",
-                            "en":"Tools and Challenges:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "sedatu":{
-                    "meta":{
-                        "short":{
-                            "es":"Propuesta interactiva de operación de programas de gobierno",
-                            "en":"Interactive proposal for government program execution"
-                        },
-                        "loc":"https://demian.app/sedatu/",
-                        "updfreq":"yearly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.3,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Programas Sociales:PLP",
-                            "en":"Social Programs:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "olmoazul":{
-                    "meta":{
-                        "short":{
-                            "es":"Tienda de platillos preparados en linea",
-                            "en":"Online prepared food shop"
-                        },
-                        "loc":"https://demian.app/olmoazul/",
-                        "updfreq":"monthly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Tienda de Comida:PLP",
-                            "en":"Food shop:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "tomauno":{
-                    "meta":{
-                        "short":{
-                            "es":"Renta en linea de películas en DVD",
-                            "en":"Online DVD movie lease store"
-                        },
-                        "loc":"https://demian.app/tomauno/",
-                        "updfreq":"monthly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Rentador DVD:PLP",
-                            "en":"DVD Leaser:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "somema":{
-                    "meta":{
-                        "short":{
-                            "es":"Herramientas de manejo de redes sociales",
-                            "en":"Social media management tools"
-                        },
-                        "loc":"https://demian.app/somema/",
-                        "updfreq":"weekly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"SOmeMA:PLP",
-                            "en":"SOmeMA:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "narrar":{
-                    "meta":{
-                        "short":{
-                            "es":"Herramientas para narraciones",
-                            "en":"Storytelling tools"
-                        },
-                        "loc":"https://demian.app/narrar/",
-                        "updfreq":"weekly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Narrador:PLP",
-                            "en":"Storyteller:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "info":{
-                    "meta":{
-                        "short":{
-                            "es":"Información de Plataforma",
-                            "en":"Platform Information"
-                        },
-                        "loc":"https://demian.app/info/",
-                        "updfreq":"weekly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.0,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "title":{
-                            "es":"Info:Demian",
-                            "en":"Info:Demian"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.edgy],
-                        "js":[resources_cache.js.framework,resources_cache.js.info]
-                    }
-                }
-            }
-        },
-        "www.demian.app":{
-            "meta":{
-                "short":{
-                    "es":"Blog de tecnología",
-                    "en":"Tech blog"
-                },
-                "loc":"https://www.demian.app/",
-                "updfreq":"weekly",
-                "sitemap":true,
-                "index":true,
-                "robots":true,
-                "priority":0.6,
-                "favicon":"blog",
-                "acronimo":"plp"
-            },
-            "intra":{
-                "ganalitycs":true,
-                "gtag":"G-6MEPN29LZG",
-                "title":{
-                    "es":"Blog:PLP",
-                    "en":"Blog:PLP"
-                },
-                "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                "js":[resources_cache.js.framework,resources_cache.js.plp]
-            },
-            "astra":{
-                "estat":{
-                    "meta":{
-                        "short":{
-                            "es":"Contenido estático del blog",
-                            "en":"Blog static content"
-                        },
-                        "loc":"https://www.demian.app/estat/",
-                        "updfreq":"weekly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"blog",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Estáticos:PLP",
-                            "en":"Static:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "dinam":{
-                    "meta":{
-                        "short":{
-                            "es":"Contenido dinámico del blog",
-                            "en":"Blog dynamic content"
-                        },
-                        "loc":"https://www.demian.app/dinam/",
-                        "updfreq":"always",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.4,
-                        "favicon":"blog",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Dinámicos:PLP",
-                            "en":"Dynamic:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }                
-                }
-            }
-        },
-        "profesional.demian.app":{
-            "meta":{
-                "short":{
-                    "es":"Portafolio laboratorio personal",
-                    "en":"Personal lab portfolio"
-                },
-                "loc":"https://profesional.demian.app/",
-                "updfreq":"monthly",
-                "sitemap":true,
-                "index":true,
-                "robots":true,
-                "priority":0.6,
-                "favicon":"desk",
-                "acronimo":"plp"
-            },
-            "intra":{
-                "ganalitycs":true,
-                "gtag":"G-6MEPN29LZG",
-                "title":{
-                    "es":"Inicio:PLP",
-                    "en":"Home:PLP"
-                },
-                "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                "js":[resources_cache.js.framework,resources_cache.js.plp]
-            },
-            "astra":{
-                "google":{
-                    "meta":{
-                        "short":{
-                            "es":"Herramientas y tecnologías google empleadas",
-                            "en":"Google tools and technologies employed",
-                        },
-                        "loc":"https://profesional.demian.app/google/",
-                        "updfreq":"monthly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Google H&T:PLP",
-                            "en":"Google T&T:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "facebook":{
-                    "meta":{
-                        "short":{
-                            "es":"Herramientas y tecnologías facebook empleadas",
-                            "en":"Facebook tools and technologies employed",
-                        },
-                        "loc":"https://profesional.demian.app/facebook/",
-                        "updfreq":"monthly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Facebook H&T:PLP",
-                            "en":"Facebook T&T:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "web":{
-                    "meta":{
-                        "short":{
-                            "es":"Herramientas y tecnologías web empleadas",
-                            "en":"Web tools and technologies employed",
-                        },
-                        "loc":"https://profesional.demian.app/web/",
-                        "updfreq":"monthly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Web H&T:PLP",
-                            "en":"Web T&T:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
-                },
-                "office":{
-                    "meta":{
-                        "short":{
-                            "es":"Herramientas y tecnologías de oficina empleadas",
-                            "en":"Office tools and technologies employed",
-                        },
-                        "loc":"https://profesional.demian.app/office/",
-                        "updfreq":"monthly",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "lastmod":"2021-19-03",
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Office H&T:PLP",
-                            "en":"Office T&T:PLP"
-                        },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.plp]
-                    }
                 }
             }
         }
@@ -768,7 +768,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         };
 
         if (req.headers.host == "www."+root_dom_name && sitemap_trigger == true) {
-            served = true;
             finish_request (res,200,akhenon.sitemap(domain_tree,req.headers.host));
             return;
         };
@@ -790,7 +789,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             return;
         };
 
-        if (req.headers.host == "demian.app" && adjusted_path == "info") {
+        if (req.headers.host == "demian.app" && (adjusted_path == "info" || as_array[0] == "info")) {
             let options = {
                 "html":["<h1>Información de Plataforma</h1>"],
                 "languaje":chosen_lng,
@@ -818,17 +817,16 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
                     }
                 }
                 finish_request (res,200,JSON.stringify(response));
+            return;
         }
         
         let options = {
-            "html":["<h1>En construcción</h1>"],
+            "html":["<h1>Pendiente de programación de ruta en servidor</h1>"],
             "languaje":chosen_lng,
             "title":"mis:"+chosen_domain.meta.acronimo,
-            "css":chosen_domain.intra.css,
-            "js":chosen_domain.intra.js
         };
         finish_request (res,200,akhenon.html(options));
-        return;    
+        return;
     }
 }
 function finish_request (res,code,content) {
