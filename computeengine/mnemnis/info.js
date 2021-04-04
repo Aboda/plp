@@ -6,8 +6,15 @@ let side_menu = [
             had_it_comming();
             sidemenu_toggle();
             fetch_file("https://demian.app/info/progress",(response)=>{
-                let data = JSON.parse(response);
-                console.log(data)
+                console.log(response)    
+                try{
+                    let data = JSON.parse(response);
+                }catch (err){
+                    console.log(err)
+                    console.log(response)
+                }
+                    console.log(data)
+                
                 let new_entity = ost(ao,"focus",{
                     "kill": function() {
                         for (let item_name in ao.focus) {
