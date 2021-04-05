@@ -25,11 +25,11 @@
 }
 @keyframes in_mov {
     to {
-        top: 0dh;
+        height: 100dh;
     }
 }
 @keyframes out_mov {
     to {
-        top: 75dh;
+        height: 15dh;
     }
 }
