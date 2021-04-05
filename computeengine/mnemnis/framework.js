@@ -129,7 +129,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["left_menu"],
+    "styles":["left_menu","go_away"],
     "state":"collapsed"
   });  
   let men = {
