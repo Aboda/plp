@@ -47,3 +47,7 @@ There is a hard limit on what you can do on a vertically scaling system, on top 
 If my work is to be more than a prototype, I need to understand more about the capabilities of the most modern tools and their contrast to traditional methodology.
 
 So I am taking this leap of faith to learn and do something with that knowledge. 
+
+
+
+authentication, authorization, and auditing

@@ -173,7 +173,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"SOmeMA:PLP"
                         },
                         "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.fb_cm_login]
+                        "js":[resources_cache.js.framework,resources_cache.js.fb_cm_login,resources_cache.js.somema]
                     }
                 },
                 "narrar":{
@@ -856,10 +856,11 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         }        
         
         let options = {
-            "html":[common_messages.ruta_pendiente[chosen_lng]],
+            "html":[common_messages.ruta_pendiente[chosen_lng],"<p>host: "+req.headers.host+"</p>","<p>referer: "+req.headers.referer+", adjusted: "+akhenon.adjust_path(req.headers.referer)+"</p>","<p>"+JSON.stringify(as_array)+"</p>"],
             "languaje":chosen_lng,
             "title":"mis:"+chosen_domain.meta.acronimo,
         };
+        
         finish_request (res,200,akhenon.html(options));
         return;
     }

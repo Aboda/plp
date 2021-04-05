@@ -46,6 +46,7 @@ var cache = {
         "framework":fs.readFileSync("./mnemnis/framework.js").toString(),
         "info":fs.readFileSync("./mnemnis/info.js").toString(),
         "fb_cm_login":fs.readFileSync("./mnemnis/fb_cm_login.js").toString(),
+        "somema":fs.readFileSync("./mnemnis/somema.js").toString(),
         "demian_app":fs.readFileSync("./realmiu/demian_app.js").toString(),
         "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
         "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString(),
@@ -84,10 +85,9 @@ https.createServer(server_options, (req, res) => {
         res.end(akhenon.html({"title":"500","robot":false,"html":["<h1>Error 500</h1><br><p>Report of the error has been stored for future analisis</p>"]}));
     };
 }).listen(443);
-// Si el parámetro global do_log está activado loggea un JSON recibido a un archivo en el SO y hace console.log
+// Si el parámetro global do_log está activado loggea un JSON recibido a un archivo en el SO
 function log_JSON (log_stringifieable) {
     if (do_log == true) {
         log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
-        console.log(log_stringifieable);
     };
 };

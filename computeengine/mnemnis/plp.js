@@ -1,5 +1,5 @@
 /*
     Este archivo se encarga de la identificación del usuario con la plataforma
+
+    Probablemente se integre a framework.js
 */
-console.log("evaluating identity");
-console.log(document.cookie);
