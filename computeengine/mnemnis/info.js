@@ -6,8 +6,9 @@ let side_menu = [
             had_it_comming();
             sidemenu_toggle();
             fetch_file("https://demian.app/info/progress",(response)=>{
+                let data;
                 try{
-                    let data = JSON.parse(response);
+                    data = JSON.parse(response);
                     console.log(data);
                 }catch (err){
                     console.log("error parseando respuesta")
