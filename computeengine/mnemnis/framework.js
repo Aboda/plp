@@ -129,8 +129,8 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["left_menu","go_away"],
-    "state":"absent"
+    "styles":["left_menu"],
+    "state":"collapsed"
   });  
   let men = {
     "en":"Menu",
@@ -142,6 +142,7 @@ function left_hand_menu(details) {
     "innerText":men[ao.lng],
     "styles":["color_contrast_1"]
   });
+  icon.addEventListener("click",() => {sidemenu_toggle()});
   crafted_device.append(icon);
   for (var buttons of details) {
     var entry = make_node({
@@ -155,16 +156,14 @@ function left_hand_menu(details) {
     entry.addEventListener("click",buttons.go);
     crafted_device.append(entry);
   };
-  icon.addEventListener("click",() => {sidemenu_toggle()});
+
   
   document.body.append(crafted_device);
 }
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
-  sidemenu.node.classList.toggle("sidemenu_container_collapsed");
-  sidemenu.node.classList.toggle("sidemenu_container_expanded");
-  sidemenu.node.classList.toggle("transparent");
-  sidemenu.node.classList.toggle("background");
+  sidemenu.node.classList.toggle("come_in");
+  /*
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
@@ -186,6 +185,7 @@ function sidemenu_toggle() {
       }, 700,affected);
     };
   };
+  */
 };
 
 let plane_manager = {

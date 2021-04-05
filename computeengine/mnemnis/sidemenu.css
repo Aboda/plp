@@ -1,7 +1,9 @@
 *{font-family: 'Roboto Mono', monospace;text-align: center;}
 .left_menu {
-    position: sticky;
-    top: 0vh;
+    position: fixed;
+    left: -315px;
+    top: 0px;
+    width: 360px;
     z-index: 2;
 
     display: flex;
@@ -9,21 +11,11 @@
     align-items: center;
     justify-content: center;
 }
-.go_away {
-    animation: away_mov 1s forwards;
-}
-@keyframes away_mov {
-    to {
-        left: -100vw; 
-        width: 110vw;
-    }
-}
 .come_in {
     animation: in_mov 1s forwards;
 }
 @keyframes in_mov {
     to {
-        left: -10vw; 
-        width: 110vw;
+        left: 0px;
     }
 }
