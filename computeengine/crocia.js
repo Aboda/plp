@@ -621,6 +621,10 @@ const common_messages = {
     "here":{
         "es":"<p class='color_contrast_3'>Usted está aquí</p>\n",
         "en":"<p class='color_contrast_3'>You are here</p>\n"
+    },
+    "ruta_pendiente":{
+        "es":"<h1>Pendiente programación de ruta en servidor</h1>",
+        "en":"<h1>Pending route configuration in server</h1>"
     }
 }
 
@@ -789,7 +793,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             return;
         };
 
-        if (req.headers.host == "demian.app" && (adjusted_path == "info" || as_array[0] == "info")) {
+        if (req.headers.host == "demian.app" && adjusted_path == "info") {
             let options = {
                 "html":["<h1>Información de Plataforma</h1>"],
                 "languaje":chosen_lng,
@@ -801,27 +805,32 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             return;    
         }
 
-        if (req.headers.host == "demian.app" && 
-            as_array[0] == "info" && 
-            as_array[1] == "progress" &&
-            akhenon.adjust_path(req.headers.referer) == "https://demian.app/info") {
-                var response = {};
-                for (var dom_name in domain_tree) {
-                    var domain = domain_tree[dom_name];
-                    response[dom_name] = {};
-                    response[dom_name].meta = domain.meta
-                    response[dom_name].astra = {};
-                    for (var routes in domain.astra) {
-                        response[dom_name].astra[routes] = {};
-                        response[dom_name].astra[routes].meta = domain.astra[routes].meta
+        /*
+            Solo respuestas de múltiple nivel
+        */
+        if (as_array != undefined) {
+            if (req.headers.host == "demian.app" && 
+                as_array[0] == "info" && 
+                as_array[1] == "progress" &&
+                akhenon.adjust_path(req.headers.referer) == "https://demian.app/info") {
+                    var response = {};
+                    for (var dom_name in domain_tree) {
+                        var domain = domain_tree[dom_name];
+                        response[dom_name] = {};
+                        response[dom_name].meta = domain.meta
+                        response[dom_name].astra = {};
+                        for (var routes in domain.astra) {
+                            response[dom_name].astra[routes] = {};
+                            response[dom_name].astra[routes].meta = domain.astra[routes].meta
+                        }
                     }
-                }
-                finish_request (res,200,JSON.stringify(response));
-            return;
-        }
+                    finish_request (res,200,JSON.stringify(response));
+                return;
+            }
+        }        
         
         let options = {
-            "html":["<h1>Pendiente de programación de ruta en servidor</h1>"],
+            "html":common_messages.ruta_pendiente[chosen_lng],
             "languaje":chosen_lng,
             "title":"mis:"+chosen_domain.meta.acronimo,
         };
