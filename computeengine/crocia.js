@@ -834,11 +834,12 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         /*
             Solo respuestas de subrutas múltiple nivel
         */
+        let trimmed_referer = akhenon.adjust_path(akhenon.clear_query(req.headers.referer));
         if (as_array != undefined) {
             if (req.headers.host == "demian.app" && 
                 as_array[0] == "info" && 
                 as_array[1] == "progress" &&
-                akhenon.adjust_path(req.headers.referer) == "https://demian.app/info") {
+                trimmed_referer == "https://demian.app/info") {
                     var response = {};
                     for (var dom_name in domain_tree) {
                         var domain = domain_tree[dom_name];

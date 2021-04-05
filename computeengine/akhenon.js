@@ -20,6 +20,12 @@ exports.adjust_path = (pathname) => {
     }
     return pathname;
 }
+exports.clear_query = (pathname) => {
+    if (pathname.indexOf("?") !=  -1) {
+        pathname = pathname.substring(0,pathname.indexOf("?"));
+    }
+    return pathname;
+}
 //Crea html + css + js con convenciones y opciones indicadas
 exports.html = (options,chosen_lng) => {
     /*
