@@ -4,7 +4,7 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    height: 4em;
+    top: 90dh;
     z-index: 2;
     
     background-color: gray;
@@ -25,11 +25,11 @@
 }
 @keyframes in_mov {
     to {
-        height: fit-content;
+        top: 0px;
     }
 }
 @keyframes out_mov {
     to {
-        height: 4em;
+        top: 90dh;
     }
 }
