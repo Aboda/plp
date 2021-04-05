@@ -1,10 +1,13 @@
 *{font-family: 'Roboto Mono', monospace;text-align: center;}
 .left_menu {
     position: fixed;
-    left: -315px;
-    top: 0px;
-    width: 360px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 2em;
     z-index: 2;
+    
+    background-color: gray;
 
     display: flex;
     flex-flow: column;
@@ -16,6 +19,6 @@
 }
 @keyframes in_mov {
     to {
-        left: 0px;
+        height: 30em;
     }
 }

@@ -155,11 +155,10 @@ function left_hand_menu(details) {
     ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
     entry.addEventListener("click",buttons.go);
     crafted_device.append(entry);
-  };
-
-  
+  };  
   document.body.append(crafted_device);
 }
+
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
   sidemenu.node.classList.toggle("come_in");
@@ -187,42 +186,3 @@ function sidemenu_toggle() {
   };
   */
 };
-
-let plane_manager = {
-  "holder":{},
-  "cre_pla":(resus) => {
-    let new_plane = {
-      "parts":{},
-      "para":resus
-    }
-    new_plane.node = make_node({"nodetype":div,"styles":["facet"]},new_plane.parts);
-    this.holder[resus.device] = new_plane;
-    return new_plane;
-  },
-  "pla_han":()=>{let count;for (let items in holder) {count++;};return count;},
-  "set_pos":(device_name,position)=>{
-    this.holder[device_name].para.z = position;
-    this.holder[device_name].node.style.zIndex = position;
-  },
-  "kil_vis":(device_name)=>{
-    this.holder[device_name].para.vis = "transparent";
-    this.holder[device_name].node.style.backgroundColor = rgb(0,0,0,0);
-    this.holder[device_name].node.style.color = rgb(0,0,0,0);
-  },
-  "res_vis":(device_name)=>{
-    this.holder[device_name].para.vis = "reset";
-    this.holder[device_name].node.style.backgroundColor = null;
-    this.holder[device_name].node.style.color = null;
-  }
-};
-
-function make_shapes (placehere,start,end) {
-  let contenedor = document.createElement("div");
-  contenedor.classList.add("shapes_cont");
-  placehere.append(contenedor);
-  for (let i = start; i < end; i++) {
-      let bloque = document.createElement("div");
-      bloque.innerText = String.fromCharCode(i);
-      contenedor.append(bloque);    
-  }
-}
