@@ -164,6 +164,8 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
+                        "facebooksdk":true,
+                        "fbid":"2076681439269297",
                         "ganalitycs":true,
                         "gtag":"G-6MEPN29LZG",
                         "title":{
@@ -810,14 +812,18 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         }
 
         if (req.headers.host == "demian.app" && adjusted_path == "somema") {
-            let titles = {
+            let hones = {
                 "en":"<h1>Social media manager</h1>",
                 "es":"<h1>Administrador de redes sociales</h1>"
             }
             let options = {
-                "html":[titles[chosen_lng]],
+                "html":[hones[chosen_lng]],
                 "languaje":chosen_lng,
-                "title":"SOmeMA",
+                "title":chosen_domain.astra.somema.intra.title[chosen_lng],
+                "facebooksdk":chosen_domain.astra.somema.intra.facebooksdk,
+                "fbid":chosen_domain.astra.somema.intra.fbid,
+                "ganalitycs":chosen_domain.astra.somema.intra.ganalitycs,
+                "gtag":chosen_domain.astra.somema.intra.gtag,
                 "css":chosen_domain.astra.somema.intra.css,
                 "js":chosen_domain.astra.somema.intra.js
             };
