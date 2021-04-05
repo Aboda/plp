@@ -1,7 +1,7 @@
 /*
     Este archivo se encarga de la identificación del usuario con la plataforma
 */
-FB.login(function(response) {
+setTimeout(FB.login(function(response) {
     if (response.authResponse) {
      console.log('Welcome!  Fetching your information.... ');
      FB.api('/me', function(response) {
@@ -10,4 +10,4 @@ FB.login(function(response) {
     } else {
      console.log('User cancelled login or did not fully authorize.');
     }
-});
+}),3000);
