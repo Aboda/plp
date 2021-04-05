@@ -140,7 +140,7 @@ function left_hand_menu(details) {
     "id":"sidemenu_icon",
     "nodetype":"div",
     "innerText":men[ao.lng],
-    "styles":["color_contrast_1"]
+    "styles":["color_contrast_3"]
   });
   icon.addEventListener("click",() => {sidemenu_toggle()});
   crafted_device.append(icon);

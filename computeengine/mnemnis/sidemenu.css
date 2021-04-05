@@ -4,7 +4,7 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    top: 90dh;
+
     z-index: 2;
     
     background-color: gray;
@@ -15,7 +15,7 @@
     justify-content: center;
 }
 .come_in {
-    animation: in_mov 1s forwards;
+    animation: in_mov 2s forwards;
 }
 .go_away {
     animation: out_mov 1s forwards;
@@ -25,11 +25,11 @@
 }
 @keyframes in_mov {
     to {
-        top: 0px;
+        top: 0dh;
     }
 }
 @keyframes out_mov {
     to {
-        top: 90dh;
+        top: 75dh;
     }
 }
