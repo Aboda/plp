@@ -794,8 +794,12 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         };
 
         if (req.headers.host == "demian.app" && adjusted_path == "info") {
+            let titles = {
+                "en":"<h1>Platform Information</h1>",
+                "es":"<h1>Información de Plataforma</h1>"
+            }
             let options = {
-                "html":["<h1>Información de Plataforma</h1>"],
+                "html":[titles[chosen_lng]],
                 "languaje":chosen_lng,
                 "title":"info:plp",
                 "css":chosen_domain.astra.info.intra.css,
@@ -805,8 +809,24 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             return;    
         }
 
+        if (req.headers.host == "demian.app" && adjusted_path == "somema") {
+            let titles = {
+                "en":"<h1>Social media manager</h1>",
+                "es":"<h1>Administrador de redes sociales</h1>"
+            }
+            let options = {
+                "html":[titles[chosen_lng]],
+                "languaje":chosen_lng,
+                "title":"SOmeMA",
+                "css":chosen_domain.astra.somema.intra.css,
+                "js":chosen_domain.astra.somema.intra.js
+            };
+            finish_request (res,200,akhenon.html(options));
+            return;    
+        }
+
         /*
-            Solo respuestas de múltiple nivel
+            Solo respuestas de subrutas múltiple nivel
         */
         if (as_array != undefined) {
             if (req.headers.host == "demian.app" && 
