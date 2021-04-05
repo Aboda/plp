@@ -6,12 +6,13 @@ let side_menu = [
             had_it_comming();
             sidemenu_toggle();
             fetch_file("https://demian.app/info/progress",(response)=>{
-                console.log(response)    
                 try{
                     let data = JSON.parse(response);
                     console.log(data);
                 }catch (err){
+                    console.log("error parseando respuesta")
                     console.log(err)
+                    console.log("respuesta")
                     console.log(response)
                 }                
                 let new_entity = ost(ao,"focus",{
