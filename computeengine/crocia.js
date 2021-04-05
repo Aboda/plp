@@ -171,7 +171,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"SOmeMA:PLP"
                         },
                         "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.framework,resources_cache.js.fb_cm_login]
                     }
                 },
                 "narrar":{

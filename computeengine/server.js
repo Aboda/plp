@@ -45,6 +45,7 @@ var cache = {
         "plp":fs.readFileSync("./mnemnis/plp.js").toString(),
         "framework":fs.readFileSync("./mnemnis/framework.js").toString(),
         "info":fs.readFileSync("./mnemnis/info.js").toString(),
+        "fb_cm_login":fs.readFileSync("./mnemnis/fb_cm_login.js").toString(),
         "demian_app":fs.readFileSync("./realmiu/demian_app.js").toString(),
         "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
         "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString(),
