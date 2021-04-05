@@ -21,8 +21,8 @@ const server_options = {
     keepAliveTimeout: 0,
     headersTimeout: 1000,
     maxHeadersCount: 10,
-    requestTimeout: 10000,
-    timeout:10000
+    requestTimeout: 2000,
+    timeout:3000
 };
 // Seriador del número de llamadas recibidas desde el arranque del servidor
 var simple_counter = 0;
@@ -74,7 +74,7 @@ https.createServer(server_options, (req, res) => {
     } catch (err) {
         log_JSON({
             "service_no":simple_counter,
-            "error":err,
+            "error":err.stack,
             "headers":req.headers
         })
         //se avisa de un error interno en el servidor

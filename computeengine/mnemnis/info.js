@@ -9,12 +9,11 @@ let side_menu = [
                 console.log(response)    
                 try{
                     let data = JSON.parse(response);
+                    console.log(data);
                 }catch (err){
                     console.log(err)
                     console.log(response)
-                }
-                    console.log(data)
-                
+                }                
                 let new_entity = ost(ao,"focus",{
                     "kill": function() {
                         for (let item_name in ao.focus) {
