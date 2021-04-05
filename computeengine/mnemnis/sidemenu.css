@@ -4,7 +4,7 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    height: 2em;
+    height: 4em;
     z-index: 2;
     
     background-color: gray;
@@ -17,8 +17,19 @@
 .come_in {
     animation: in_mov 1s forwards;
 }
+.go_away {
+    animation: out_mov 1s forwards;
+}
+.hidden {
+    display: none;
+}
 @keyframes in_mov {
     to {
-        height: 30em;
+        height: fit-content;
+    }
+}
+@keyframes out_mov {
+    to {
+        height: 4em;
     }
 }

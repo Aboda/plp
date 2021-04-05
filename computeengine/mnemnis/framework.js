@@ -149,7 +149,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[ao.lng],
       "nodetype":"div",
       "innerText":buttons[ao.lng],
-      "styles":["color_contrast_2"]
+      "styles":["hidden"]
     });
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
@@ -162,27 +162,29 @@ function left_hand_menu(details) {
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
   sidemenu.node.classList.toggle("come_in");
-  /*
+  sidemenu.node.classList.toggle("go_away");
+  
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.toggle("disappear");
-      affected.classList.toggle("shown_sidemenu_option");
+      affected.classList.toggle("hidden");
+      affected.classList.toggle("color_contrast_2");
     }
   }else if (sidemenu.config.state == "expanded"){
     sidemenu.config.state = "collapsed"
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.toggle("shown_sidemenu_option");
-      affected.classList.toggle("hidden_sidemenu_option");
+      affected.classList.toggle("color_contrast_2");
+      affected.classList.toggle("hidden");
+      /*
       setTimeout(function(){
         if (affected.classList.contains("hidden_sidemenu_option")){
           affected.classList.toggle("hidden_sidemenu_option");
           affected.classList.toggle("disappear");
         }
       }, 700,affected);
+      */
     };
   };
-  */
 };
