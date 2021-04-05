@@ -830,7 +830,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         }        
         
         let options = {
-            "html":common_messages.ruta_pendiente[chosen_lng],
+            "html":[common_messages.ruta_pendiente[chosen_lng]],
             "languaje":chosen_lng,
             "title":"mis:"+chosen_domain.meta.acronimo,
         };
