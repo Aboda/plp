@@ -223,12 +223,13 @@ let modules_progress = {
     }
 }
 function say_hi () {
-    document.body.append(make_node({
+    let container = document.getElementById("from_home");
+    container.append(make_node({
         "id":"the_guy_who_always_dies",
         "nodetype":"p",
         "innerText":hi_message
     }));
-    document.body.append(make_node({
+    container.append(make_node({
         "id":"the_guy_who_always_dies_2",
         "nodetype":"a",
         "target":"https://demian.app/comentarios/",
@@ -252,7 +253,8 @@ function complicated_ass_card_1(data){
         "nodetype":"div",
         "styles":["report_container","loved_flex"]
     },ao.focus);
-    document.body.append(container);
+    let where = document.getElementById("from_home");
+    where.append(container);
 
     let parents = [];
 
