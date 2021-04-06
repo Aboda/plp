@@ -160,6 +160,7 @@ function left_hand_menu(details) {
   integrate_home_html();
 }
 function sidemenu_toggle() {
+  let sidemenu = ao.simple.sidemenu;
   let sidemenu_animation = {
     "target":"sidemenu",
     "type":"slide_left",
