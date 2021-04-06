@@ -229,8 +229,6 @@ function manual_animator (animator) {
         case "right":
           animator.run = (time,id) => {
             let power = ao.anima[id];
-            console.log("running right");
-            console.log(power);
             let go = check_duration(time,power);
             if (go) {
               linear_displacer(time,power);
@@ -242,8 +240,6 @@ function manual_animator (animator) {
         case "left":
           animator.run = (time,id) => {
             let power = ao.anima[id];
-            console.log("running left");
-            console.log(power);
             let go = check_duration(time,power);
             if (go) {
               linear_displacer(time,power);
@@ -261,9 +257,7 @@ function manual_animator (animator) {
       }  
     break;
   }
-  console.log("at_build");
-  console.log(animator);
-  animator.run(Date.now(),animator.id);
+  path_timer(animator);
 }
 /*
   Devuelve el número de milisegundos por frame
@@ -304,6 +298,7 @@ function check_duration (time,animator) {
   if (time - animator.start > animator.duration*1000) {
     clearInterval(ao.render[animator.id]);
     delete ao.render[animator.id];
+    delete ao.anima[animator.id];
     return false;
   }else{return true}
 };
