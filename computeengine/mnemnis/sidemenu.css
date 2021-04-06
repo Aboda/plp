@@ -1,7 +1,8 @@
 *{font-family: 'Roboto Mono', monospace;text-align: center;}
 .hidden {display: none;}
-.right{text-align: right;}
+.menubut {align-self: flex-end;}
 .manavbut {
+    width: 95%;
     background-color: darkred;
     color: white;
     border-style: outset;

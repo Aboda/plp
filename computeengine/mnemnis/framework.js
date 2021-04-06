@@ -140,7 +140,7 @@ function left_hand_menu(details) {
     "id":"sidemenu_icon",
     "nodetype":"div",
     "innerText":men[ao.lng],
-    "styles":["color_contrast_3","right"]
+    "styles":["menubut"]
   });
   icon.addEventListener("click",() => {sidemenu_toggle()});
   crafted_device.append(icon);
@@ -161,8 +161,8 @@ function left_hand_menu(details) {
 
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
-  sidemenu.node.classList.toggle("go_away");
-  sidemenu.node.classList.toggle("come_in");
+  sidemenu.node.classList.toggle("menu_go_away");
+  sidemenu.node.classList.toggle("menu_come_in");
   /*
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
