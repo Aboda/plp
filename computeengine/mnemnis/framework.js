@@ -219,7 +219,7 @@ function sidemenu_toggle() {
 }
 
 function manual_animator (animator) {
-  ost(ao,anima,{});
+  ost(ao,"anima",{});
   ao.anima[animator.id] = animator;
   animator.handler = ao.simple[animator.target];
   animator.start = Date.now();
