@@ -219,32 +219,36 @@ function sidemenu_toggle() {
 }
 
 function manual_animator (animator) {
+  ost(ao,anima,{});
+  ao.anima[animator.id] = animator;
   animator.handler = ao.simple[animator.target];
   animator.start = Date.now();
   switch (animator.type) {
     case "slide_y":
       switch (animator.direction) {
         case "right":
-          animator.run = (time) => {
-            console.log("running");
-            console.log(this);
-            let go = check_duration(time,this);
+          animator.run = (time,id) => {
+            let power = ao.anima[id];
+            console.log("running right");
+            console.log(power);
+            let go = check_duration(time,power);
             if (go) {
-              linear_displacer(time,this);
-              this.position = (this.initial + (this.current_frame * this.d_per_frame)).toString()+this.unit;
-              this.handler.node.style.left = this.position;
+              linear_displacer(time,power);
+              power.position = (power.initial + (power.current_frame * power.d_per_frame)).toString()+power.unit;
+              power.handler.node.style.left = power.position;
             }
           }
         break;
         case "left":
-          animator.run = (time) => {
-            console.log("running");
-            console.log(this);
-            let go = check_duration(time,this);
+          animator.run = (time,id) => {
+            let power = ao.anima[id];
+            console.log("running left");
+            console.log(power);
+            let go = check_duration(time,power);
             if (go) {
-              linear_displacer(time,this);
-              this.position = (this.initial + (this.current_frame * this.d_per_frame)).toString()+this.unit;
-              this.handler.node.style.left = this.position;
+              linear_displacer(time,power);
+              power.position = (power.initial + (power.current_frame * power.d_per_frame)).toString()+power.unit;
+              power.handler.node.style.left = power.position;
             }
           }
         break;
@@ -259,7 +263,7 @@ function manual_animator (animator) {
   }
   console.log("at_build");
   console.log(animator);
-  animator.run(Date.now());
+  animator.run(Date.now(),animator);
 }
 /*
   Devuelve el número de milisegundos por frame
@@ -278,7 +282,7 @@ function framerate(fps){
 function path_timer(animator){
   ost(ao,"render",{});
   ao.render[animator.id] = setInterval(function(){
-    animator.run(Date.now());
+    animator.run(Date.now(),animator.id);
   }, framerate(animator.fps),animator);
 }
 function integrate_home_html(){
