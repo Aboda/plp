@@ -216,9 +216,9 @@ function sidemenu_toggle() {
       //manual_animator(buttons_animation);
     };
   };
-};
+}
 
-function manual_animator(animator){
+function manual_animator (animator) {
   animator.handler = ao.simple[animator.target];
   animator.start = Date.now();
   switch (animator.type) {
@@ -255,7 +255,9 @@ function manual_animator(animator){
       }  
     break;
   }
-  console.log(animator)
+  console.log("at_build");
+  console.log(animator);
+  animator.run(Date.now());
 }
 /*
   Devuelve el número de milisegundos por frame
