@@ -160,27 +160,28 @@ function left_hand_menu(details) {
   integrate_home_html();
 }
 function sidemenu_toggle() {
-  let sidemenu = ao.simple.sidemenu;
-  let sidemenu_animation = {
-    "target":"sidemenu",
-    "type":"slide_y",
-    "initial":0,
-    "final":-13,
-    "unit":"em",
-    "fps":60,
-    "duration":1
-  }
-  aint_got_no_id(sidemenu_animation);
   let content_animation = {
     "target":"from_home",
     "type":"slide_y",
-    "initial":13,
-    "final":2,
+    "initial":2,
+    "final":13,
     "unit":"em",
     "fps":60,
     "duration":1
   }
   aint_got_no_id(content_animation);
+  let sidemenu_animation = {
+    "target":"sidemenu",
+    "type":"slide_y",
+    "initial":-13,
+    "final":2,
+    "unit":"em",
+    "fps":60,
+    "duration":1
+  }
+  aint_got_no_id(sidemenu_animation);
+
+  let sidemenu = ao.simple.sidemenu;
   if (sidemenu.config.state == "collapsed"){
     sidemenu_animation.direction = "right";
     manual_animator(sidemenu_animation);
@@ -243,7 +244,7 @@ function manual_animator (animator) {
             let go = check_duration(time,power);
             if (go) {
               linear_displacer(time,power);
-              power.position = (power.initial - (power.current_frame * power.d_per_frame)).toString()+power.unit;
+              power.position = (power.final - (power.current_frame * power.d_per_frame)).toString()+power.unit;
               power.handler.node.style.left = power.position;
             }
           }

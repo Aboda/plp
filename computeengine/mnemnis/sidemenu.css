@@ -1,23 +1,23 @@
 *{font-family: 'Roboto Mono', monospace;text-align: center;}
 .hidden {display: none;}
 .menubut {align-self: flex-end;}
+.app_container {
+    position: relative;
+    top: 0em;
+    z-index: 1;
+    left: 2em;
+}
 .menu_container {
     position: fixed;
     top: 10em;
     width: 15em;
-    left: 0em;
+    left: -13em;
     z-index: 2;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
     padding: .3em;
-}
-.app_container {
-    position: relative;
-    top: 0em;
-    z-index: 1;
-    left: 15em;
 }
 .menu_button {
     width: 95%;
