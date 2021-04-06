@@ -197,7 +197,7 @@ function sidemenu_toggle() {
         "duration":.2
       };
       aint_got_no_id(buttons_animation);
-      //manual_animator(buttons_animation);
+      manual_animator(buttons_animation);
     };
   }else if (sidemenu.config.state == "expanded"){
     sidemenu_animation.direction = "left";
@@ -214,7 +214,7 @@ function sidemenu_toggle() {
         "duration":.2
       };
       aint_got_no_id(buttons_animation);
-      //manual_animator(buttons_animation);
+      manual_animator(buttons_animation);
     };
   };
 }
