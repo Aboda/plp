@@ -166,8 +166,8 @@ function sidemenu_toggle() {
     "initial":2,
     "final":13,
     "unit":"em",
-    "fps":60,
-    "duration":1
+    "fps":50,
+    "duration":.8
   }
   aint_got_no_id(content_animation);
   let sidemenu_animation = {
@@ -176,13 +176,13 @@ function sidemenu_toggle() {
     "initial":-13,
     "final":2,
     "unit":"em",
-    "fps":60,
-    "duration":1
+    "fps":50,
+    "duration":.8
   }
   aint_got_no_id(sidemenu_animation);
 
   let sidemenu = ao.simple.sidemenu;
-  if (sidemenu.config.state == "collapsed"){
+  if (sidemenu.config.state == "collapsed") {
     sidemenu_animation.direction = "right";
     manual_animator(sidemenu_animation);
     content_animation.direction = "right";
@@ -191,14 +191,14 @@ function sidemenu_toggle() {
     for (var ma_me_op in ao.main_menu) {
       let buttons_animation = {
         "target":ma_me_op,
-        "type":"fade_down",
-        "direction":"forward",
-        "fps":12,
-        "duration":2
-      }
+        "type":"fade_color",
+        "direction":"up",
+        "fps":30,
+        "duration":.2
+      };
       aint_got_no_id(buttons_animation);
       //manual_animator(buttons_animation);
-    }
+    };
   }else if (sidemenu.config.state == "expanded"){
     sidemenu_animation.direction = "left";
     manual_animator(sidemenu_animation);
@@ -208,11 +208,11 @@ function sidemenu_toggle() {
     for (var ma_me_op in ao.main_menu) {
       let buttons_animation = {
         "target":ma_me_op,
-        "type":"fade_down",
-        "direction":"backward",
-        "fps":12,
-        "duration":2
-      }
+        "type":"fade_color",
+        "direction":"down",
+        "fps":30,
+        "duration":.2
+      };
       aint_got_no_id(buttons_animation);
       //manual_animator(buttons_animation);
     };
@@ -251,10 +251,26 @@ function manual_animator (animator) {
         break;
       }
     break;
-    case "fade_down":
+    case "fade_color":
       switch (animator.direction) {
-        case "forward":break;
-        case "backward":break;
+        case "up":
+          animator.run = (time,id) => {
+            let power = ao.anima[id];
+            let go = check_duration(time,power);
+            if (go) {
+              color_transit(time,power);
+            }
+          }
+        break;
+        case "down":
+          animator.run = (time,id) => {
+            let power = ao.anima[id];
+            let go = check_duration(time,power);
+            if (go) {
+              color_transit(time,power);
+            }
+          }
+        break;
       }  
     break;
   }
@@ -302,4 +318,10 @@ function check_duration (time,animator) {
     delete ao.anima[animator.id];
     return false;
   }else{return true}
+};
+function color_transit (time,animator) {
+  let node_c_styles = window.getComputedStyle(animator.handler.node, null);
+  let background = node_c_styles.getPropertyValue("background-color");
+  let color = node_c_styles.getPropertyValue("color");
+  console.log({background,color});
 };
