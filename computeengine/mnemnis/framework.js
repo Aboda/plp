@@ -263,7 +263,7 @@ function manual_animator (animator) {
   }
   console.log("at_build");
   console.log(animator);
-  animator.run(Date.now(),animator);
+  animator.run(Date.now(),animator.id);
 }
 /*
   Devuelve el número de milisegundos por frame
