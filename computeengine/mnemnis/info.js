@@ -251,7 +251,7 @@ function complicated_ass_card_1(data){
     let container = make_node({
         "id":"the_guy_who_always_dies",
         "nodetype":"div",
-        "styles":["report_container","loved_flex"]
+        "styles":["report_container","display_flex"]
     },ao.focus);
     let where = document.getElementById("from_home");
     where.append(container);
