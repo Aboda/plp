@@ -295,10 +295,10 @@ function integrate_home_html(){
 function linear_displacer(time,animator){
   animator.duration_ms = animator.duration * 1000;
   animator.frame_duration = framerate(animator.fps);
-  animator.predicted_frames = Math.floor(duration_ms/frame_duration);
+  animator.predicted_frames = Math.floor(animator.duration_ms/animator.frame_duration);
   animator.total_change = animator.final - animator.initial;
-  animator.d_per_frame = total_change/predicted_frames;
-  animator.current_frame = Math.floor((time - animator.start)/frame_duration);
+  animator.d_per_frame = animator.total_change/animator.predicted_frames;
+  animator.current_frame = Math.floor((time - animator.start)/animator.frame_duration);
 }
 function check_duration (time,animator) {
   if (time - animator.start > animator.duration*1000) {
