@@ -160,7 +160,7 @@ function left_hand_menu(details) {
 }
 function sidemenu_toggle() {
   let sidemenu = ao.simple.sidemenu;
-  let parent = sidemenu.node.parentNode();
+  let parent = sidemenu.node.parentNode;
   sidemenu.node.remove();
   parent.append(sidemenu.node);
   //var content = document.getElementById("from_home");
