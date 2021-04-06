@@ -162,8 +162,8 @@ function sidemenu_toggle() {
   let sidemenu = ao.simple.sidemenu;
   let content = document.getElementById("from_home");
   if (sidemenu.config.state == "collapsed"){
-    sidemenu.classList.remove("menu_container_initial");
-    sidemenu.classList.add("menu_container_activated");
+    sidemenu.node.classList.remove("menu_container_initial");
+    sidemenu.node.classList.add("menu_container_activated");
     content.classList.remove("app_container_initial");
     content.classList.add("app_container_activated");
     sidemenu.config.state = "expanded";
@@ -173,8 +173,8 @@ function sidemenu_toggle() {
       affected.classList.add("menu_button_activated");
     }
   }else if (sidemenu.config.state == "expanded"){
-    sidemenu.classList.remove("menu_container_activated");
-    sidemenu.classList.add("menu_container_initial");
+    sidemenu.node.classList.remove("menu_container_activated");
+    sidemenu.node.classList.add("menu_container_initial");
     content.classList.remove("app_container_activated");
     content.classList.add("app_container_initial");
     sidemenu.config.state = "collapsed"
