@@ -224,7 +224,7 @@ function manual_animator (animator) {
   switch (animator.type) {
     case "slide_y":
       switch (animator.direction) {
-        case "left":
+        case "right":
           animator.run = (time) => {
             console.log("running");
             console.log(this);
@@ -236,12 +236,14 @@ function manual_animator (animator) {
             }
           }
         break;
-        case "right":
+        case "left":
           animator.run = (time) => {
+            console.log("running");
+            console.log(this);
             let go = check_duration(time,this);
             if (go) {
               linear_displacer(time,this);
-              animator.position = (animator.final - (animator.current_frame * animator.d_per_frame)).toString()+animator.unit;
+              this.position = (this.initial + (this.current_frame * this.d_per_frame)).toString()+this.unit;
               this.handler.node.style.left = this.position;
             }
           }
