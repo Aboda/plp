@@ -129,7 +129,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["menu_container"],
+    "styles":["menu_container","color_contrast_3"],
     "state":"collapsed"
   });  
   let men = {
@@ -140,7 +140,7 @@ function left_hand_menu(details) {
     "id":"sidemenu_icon",
     "nodetype":"div",
     "innerText":men[ao.lng],
-    "styles":["menubut"]
+    "styles":["menubut","color_contrast_2"]
   });
   icon.addEventListener("click",() => {sidemenu_toggle()});
   crafted_device.append(icon);
@@ -149,7 +149,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[ao.lng],
       "nodetype":"div",
       "innerText":buttons[ao.lng],
-      "styles":["menu_button"]
+      "styles":["menu_button","color_contrast_1"]
     },ao.main_menu);
     ost(ao,"main_menu",{});
     entry.addEventListener("click",buttons.go);
