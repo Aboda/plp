@@ -50,13 +50,9 @@
         left: 0em;
     }
 }
-.menu_come_in {
-    animation: open_menu 2s forwards;
-    animation-direction: normal;
-}
-.menu_go_away {
-    animation: open_menu 2s forwards;
-    animation-direction: reverse;
+.menu_toggle {
+    animation: open_menu 2s both;
+    animation-direction:alternate;
 }
 .app_container_unchanging {
     position: relative;

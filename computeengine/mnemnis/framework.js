@@ -129,7 +129,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["menu_container_unchanging"],
+    "styles":["menu_container_unchanging","menu_toggle"],
     "state":"collapsed"
   });  
   let men = {
@@ -158,26 +158,20 @@ function left_hand_menu(details) {
     animate_and_remove(entry,"button_disappear",2);
   };  
   document.body.append(crafted_device);
-  animate_and_remove(crafted_device,"menu_go_away",2);
 }
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
   var content = document.getElementById("from_home");
+  sidemenu.classList.add("menu_toggle");
   if (sidemenu.config.state == "collapsed"){
-    animate_and_remove(sidemenu.node,"menu_come_in",2);
-    animate_and_remove(content,"app_make_way",2);
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      animate_and_remove(affected,"button_appear",2);
     }
   }else if (sidemenu.config.state == "expanded"){
-    animate_and_remove(sidemenu.node,"menu_go_away",2);
-    animate_and_remove(content,"app_come_in",2);
     sidemenu.config.state = "collapsed"
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      animate_and_remove(affected,"button_disappear",2);
     };
   };
 };
