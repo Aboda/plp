@@ -159,9 +159,11 @@ function left_hand_menu(details) {
   document.body.append(crafted_device);
 }
 function sidemenu_toggle() {
-  var sidemenu = ao.simple.sidemenu;
+  let sidemenu = ao.simple.sidemenu;
+  let parent = sidemenu.node.parentNode();
+  sidemenu.node.remove();
+  parent.append(sidemenu.node);
   //var content = document.getElementById("from_home");
-  sidemenu.node.style.animationPlayState = "running";
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
