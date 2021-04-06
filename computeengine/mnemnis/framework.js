@@ -163,6 +163,9 @@ function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
   sidemenu.node.classList.toggle("menu_go_away");
   sidemenu.node.classList.toggle("menu_come_in");
+  var content = document.getElementById("from_home");
+  content.classList.toggle("app_make_way");
+  content.classList.toggle("app_come_in");
   /*
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";

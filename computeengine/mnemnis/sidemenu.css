@@ -32,11 +32,11 @@
     }
 }
 .menu_come_in {
-    animation: stored_to_shown 2s forwards;
+    animation: open_menu 2s forwards;
     animation-direction: normal;
 }
 .menu_go_away {
-    animation: stored_to_shown 1s forwards;
+    animation: open_menu 1s forwards;
     animation-direction: reverse;
 }
 .app_container_unchanging {
