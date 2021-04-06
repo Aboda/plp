@@ -129,7 +129,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["menu_container_unchanging","menu_go_away"],
+    "styles":["menu_container_unchanging"],
     "state":"collapsed"
   });  
   let men = {
@@ -149,47 +149,42 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[ao.lng],
       "nodetype":"div",
       "innerText":buttons[ao.lng],
-      "styles":["menu_button_unchanging","button_disappear"]
+      "styles":["menu_button_unchanging"]
     });
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
     entry.addEventListener("click",buttons.go);
     crafted_device.append(entry);
+    animate_and_remove(entry,"button_disappear",2);
   };  
   document.body.append(crafted_device);
+  animate_and_remove(crafted_device,"menu_go_away",2);
 }
-
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
-  sidemenu.node.classList.toggle("menu_go_away");
-  sidemenu.node.classList.toggle("menu_come_in");
   var content = document.getElementById("from_home");
-  content.classList.toggle("app_come_in");
-  content.classList.toggle("app_make_way");
-  
   if (sidemenu.config.state == "collapsed"){
+    animate_and_remove(sidemenu.node,"menu_come_in",2);
+    animate_and_remove(content,"app_make_way",2);
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.toggle("button_appear");
-      affected.classList.toggle("button_disappear");
+      animate_and_remove(affected,"button_appear",2);
     }
   }else if (sidemenu.config.state == "expanded"){
+    animate_and_remove(sidemenu.node,"menu_go_away",2);
+    animate_and_remove(content,"app_come_in",2);
     sidemenu.config.state = "collapsed"
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.toggle("button_appear");
-      affected.classList.toggle("button_disappear");
-      
-      /*
-      setTimeout(function(){
-        if (affected.classList.contains("hidden_sidemenu_option")){
-          affected.classList.toggle("hidden_sidemenu_option");
-          affected.classList.toggle("disappear");
-        }
-      }, 700,affected);
-      */
+      animate_and_remove(affected,"button_disappear",2);
     };
   };
-  
 };
+
+function animate_and_remove(node_to_animate,animation_name,duration){
+  node_to_animate.classList.add(animation_name);
+  setTimeout(function(){
+    node_to_animate.classList.remove(animation_name);
+  }, (duration*1000)+100,node_to_animate);
+}
