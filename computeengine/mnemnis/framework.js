@@ -174,8 +174,8 @@ function sidemenu_toggle() {
   let content_animation = {
     "target":"from_home",
     "type":"slide_y",
-    "initial":2,
-    "final":13,
+    "initial":13,
+    "final":2,
     "unit":"em",
     "fps":60,
     "duration":1
