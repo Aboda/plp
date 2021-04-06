@@ -161,7 +161,7 @@ function left_hand_menu(details) {
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
   //var content = document.getElementById("from_home");
-  console.log(sidemenu.node.style.animationPlayState)
+  sidemenu.node.style.animationPlayState = "running";
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
