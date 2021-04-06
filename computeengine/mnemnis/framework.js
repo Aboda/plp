@@ -162,7 +162,8 @@ function left_hand_menu(details) {
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
   var content = document.getElementById("from_home");
-  sidemenu.classList.add("menu_toggle");
+  sidemenu.node.classList.add("menu_toggle");
+  
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
