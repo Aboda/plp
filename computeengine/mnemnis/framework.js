@@ -255,7 +255,7 @@ function manual_animator(animator){
       }  
     break;
   }
-  path_timer(animator);
+  console.log(animator)
 }
 /*
   Devuelve el número de milisegundos por frame
