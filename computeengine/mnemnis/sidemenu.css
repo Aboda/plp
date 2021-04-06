@@ -1,22 +1,41 @@
 *{font-family: 'Roboto Mono', monospace;text-align: center;}
 .hidden {display: none;}
 .menubut {align-self: flex-end;}
-.manavbut {
+.menu_button_unchanging {
     width: 95%;
-    background-color: darkred;
-    color: white;
-    border-style: outset;
-    border-color:darkslategray;
-    border-width: 3px;
     padding: .2em;
     margin: .2em;
+    border-width: 3px;
+}
+@keyframes appear_options {
+    from{
+        background-color: gray;
+        color: gray;
+        border-style: solid;
+        border-color:gray;
+    }
+    to{
+        background-color: darkred;
+        color: white;
+        border-style: outset;
+        border-color:darkslategray;
+    }
+}
+.button_appear{
+    animation: appear_options 3s forwards;
+    animation-direction: normal;
+}
+.button_disappear{
+    animation: appear_options 3s forwards;
+    animation-direction: reverse;
 }
 .menu_container_unchanging {
     position: fixed;
-    top: 0em;
+    top: 10em;
     width: 15em;
     z-index: 2;
     background-color: gray;
+    color: black;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -36,7 +55,7 @@
     animation-direction: normal;
 }
 .menu_go_away {
-    animation: open_menu 1s forwards;
+    animation: open_menu 2s forwards;
     animation-direction: reverse;
 }
 .app_container_unchanging {
@@ -57,6 +76,6 @@
     animation-direction: normal;
 }
 .app_come_in {
-    animation: displace_content 1s forwards;
+    animation: displace_content 2s forwards;
     animation-direction: reverse;
 }

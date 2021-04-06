@@ -149,7 +149,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[ao.lng],
       "nodetype":"div",
       "innerText":buttons[ao.lng],
-      "styles":["manavbut"]
+      "styles":["menu_button_unchanging","button_disappear"]
     });
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
@@ -167,28 +167,29 @@ function sidemenu_toggle() {
   content.classList.toggle("app_come_in");
   content.classList.toggle("app_make_way");
   
-  /*
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.toggle("hidden");
-      affected.classList.toggle("color_contrast_2");
+      affected.classList.toggle("button_appear");
+      affected.classList.toggle("button_disappear");
     }
   }else if (sidemenu.config.state == "expanded"){
     sidemenu.config.state = "collapsed"
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.toggle("color_contrast_2");
-      affected.classList.toggle("hidden");
-    
+      affected.classList.toggle("button_appear");
+      affected.classList.toggle("button_disappear");
+      
+      /*
       setTimeout(function(){
         if (affected.classList.contains("hidden_sidemenu_option")){
           affected.classList.toggle("hidden_sidemenu_option");
           affected.classList.toggle("disappear");
         }
       }, 700,affected);
+      */
     };
   };
-  */
+  
 };
