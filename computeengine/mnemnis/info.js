@@ -11,10 +11,10 @@ let side_menu = [
                     data = JSON.parse(response);
                     console.log(data);
                 }catch (err){
-                    console.log("error parseando respuesta")
-                    console.log(err)
-                    console.log("respuesta")
-                    console.log(response)
+                    console.log("error parseando respuesta");
+                    console.log(err);
+                    console.log("respuesta");
+                    console.log(response);
                 }                
                 let new_entity = ost(ao,"focus",{
                     "kill": function() {

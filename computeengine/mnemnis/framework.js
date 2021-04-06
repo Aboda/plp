@@ -150,9 +150,8 @@ function left_hand_menu(details) {
       "nodetype":"div",
       "innerText":buttons[ao.lng],
       "styles":["menu_button"]
-    });
+    },ao.main_menu);
     ost(ao,"main_menu",{});
-    ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
     entry.addEventListener("click",buttons.go);
     crafted_device.append(entry);
   };  
