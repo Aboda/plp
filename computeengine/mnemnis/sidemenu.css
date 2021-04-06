@@ -1,35 +1,32 @@
 *{font-family: 'Roboto Mono', monospace;text-align: center;}
-.left_menu {
+.initial_unchanging_qualities {
     position: fixed;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-
+    top: 0em;
+    width: 30em;
     z-index: 2;
-    
     background-color: gray;
-
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
+    padding: .3em;
+}
+@keyframes stored_to_shown {
+    from{
+        left: -25em;
+    }
+    to{
+        left: 0em;
+    }
 }
 .come_in {
-    animation: in_mov 2s forwards;
+    animation: stored_to_shown 2s forwards;
+    animation-direction: normal;
 }
 .go_away {
-    animation: out_mov 1s forwards;
+    animation: stored_to_shown 1s forwards;
+    animation-direction: reverse;
 }
 .hidden {
     display: none;
-}
-@keyframes in_mov {
-    to {
-        height: 100dh;
-    }
-}
-@keyframes out_mov {
-    to {
-        height: 15dh;
-    }
 }

@@ -129,7 +129,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["left_menu","go_away"],
+    "styles":["initial_unchanging_qualities","go_away"],
     "state":"collapsed"
   });  
   let men = {
@@ -161,8 +161,8 @@ function left_hand_menu(details) {
 
 function sidemenu_toggle() {
   var sidemenu = ao.simple.sidemenu;
-  sidemenu.node.classList.toggle("come_in");
   sidemenu.node.classList.toggle("go_away");
+  sidemenu.node.classList.toggle("come_in");
   /*
   if (sidemenu.config.state == "collapsed"){
     sidemenu.config.state = "expanded";
