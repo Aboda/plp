@@ -163,7 +163,7 @@ function sidemenu_toggle() {
   let sidemenu = ao.simple.sidemenu;
   let sidemenu_animation = {
     "target":"sidemenu",
-    "type":"slide_left",
+    "type":"slide_y",
     "initial":0,
     "final":-13,
     "unit":"em",
@@ -173,7 +173,7 @@ function sidemenu_toggle() {
   aint_got_no_id(sidemenu_animation);
   let content_animation = {
     "target":"from_home",
-    "type":"slide_right",
+    "type":"slide_y",
     "initial":2,
     "final":13,
     "unit":"em",
@@ -182,9 +182,9 @@ function sidemenu_toggle() {
   }
   aint_got_no_id(content_animation);
   if (sidemenu.config.state == "collapsed"){
-    sidemenu_animation.direction = "forward";
+    sidemenu_animation.direction = "right";
     manual_animator(sidemenu_animation);
-    content_animation.direction = "forward";
+    content_animation.direction = "right";
     manual_animator(content_animation);
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
@@ -199,9 +199,9 @@ function sidemenu_toggle() {
       //manual_animator(buttons_animation);
     }
   }else if (sidemenu.config.state == "expanded"){
-    sidemenu_animation.direction = "backward";
+    sidemenu_animation.direction = "left";
     manual_animator(sidemenu_animation);
-    content_animation.direction = "backward";
+    content_animation.direction = "left";
     manual_animator(content_animation);
     sidemenu.config.state = "collapsed"
     for (var ma_me_op in ao.main_menu) {
@@ -222,43 +222,21 @@ function manual_animator(animator){
   animator.handler = ao.simple[animator.target];
   animator.start = Date.now();
   switch (animator.type) {
-    case "slide_left":
+    case "slide_y":
       switch (animator.direction) {
-        case "forward":
+        case "left":
           animator.run = (time) => {
+            console.log("running");
+            console.log(this);
             let go = check_duration(time,this);
             if (go) {
               linear_displacer(time,this);
-              animator.position = (animator.initial + (animator.current_frame * animator.d_per_frame)).toString()+animator.unit;
+              this.position = (this.initial + (this.current_frame * this.d_per_frame)).toString()+this.unit;
               this.handler.node.style.left = this.position;
             }
           }
         break;
-        case "backward":
-          animator.run = (time) => {
-            let go = check_duration(time,this);
-            if (go) {
-              linear_displacer(time,this);
-              animator.position = (animator.final - (animator.current_frame * animator.d_per_frame)).toString()+animator.unit;
-              this.handler.node.style.left = this.position;
-            }
-          }
-        break;
-      }
-    break;
-    case "slide_right":
-      switch (animator.direction) {
-        case "forward":
-          animator.run = (time) => {
-            let go = check_duration(time,this);
-            if (go) {
-              linear_displacer(time,this);
-              animator.position = (animator.initial + (animator.current_frame * animator.d_per_frame)).toString()+animator.unit;
-              this.handler.node.style.left = this.position;
-            }
-          }
-        break;
-        case "backward":
+        case "right":
           animator.run = (time) => {
             let go = check_duration(time,this);
             if (go) {
