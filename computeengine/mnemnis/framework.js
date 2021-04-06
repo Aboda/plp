@@ -167,8 +167,8 @@ function sidemenu_toggle() {
     "initial":0,
     "final":-13,
     "unit":"em",
-    "fps":24,
-    "duration":2
+    "fps":60,
+    "duration":1
   }
   aint_got_no_id(sidemenu_animation);
   let content_animation = {
@@ -177,8 +177,8 @@ function sidemenu_toggle() {
     "initial":2,
     "final":13,
     "unit":"em",
-    "fps":24,
-    "duration":2
+    "fps":60,
+    "duration":1
   }
   aint_got_no_id(content_animation);
   if (sidemenu.config.state == "collapsed"){
@@ -243,7 +243,7 @@ function manual_animator (animator) {
             let go = check_duration(time,power);
             if (go) {
               linear_displacer(time,power);
-              power.position = (power.initial + (power.current_frame * power.d_per_frame)).toString()+power.unit;
+              power.position = (power.initial - (power.current_frame * power.d_per_frame)).toString()+power.unit;
               power.handler.node.style.left = power.position;
             }
           }
