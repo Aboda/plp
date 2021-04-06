@@ -93,7 +93,7 @@ exports.html = (options,chosen_lng) => {
         ph = ph + "<script async defer crossorigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'></script>\n";
     }
     if (options.html != undefined) {
-        ph = ph + "<div class='facet'>\n";
+        ph = ph + "<div class='facet app_container_unchanging'>\n";
         for (var html_block of options.html) {
             ph = ph + html_block+"\n";
         }        

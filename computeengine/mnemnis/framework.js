@@ -129,7 +129,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["initial_unchanging_qualities","go_away"],
+    "styles":["menu_container_unchanging","menu_go_away"],
     "state":"collapsed"
   });  
   let men = {
@@ -140,7 +140,7 @@ function left_hand_menu(details) {
     "id":"sidemenu_icon",
     "nodetype":"div",
     "innerText":men[ao.lng],
-    "styles":["color_contrast_3"]
+    "styles":["color_contrast_3","right"]
   });
   icon.addEventListener("click",() => {sidemenu_toggle()});
   crafted_device.append(icon);
@@ -149,7 +149,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[ao.lng],
       "nodetype":"div",
       "innerText":buttons[ao.lng],
-      "styles":["color_contrast_1"]
+      "styles":["manavbut"]
     });
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
