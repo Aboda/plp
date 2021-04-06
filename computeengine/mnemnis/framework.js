@@ -320,6 +320,7 @@ function check_duration (time,animator) {
   }else{return true}
 };
 function color_transit (time,animator) {
+  console.log({time,animator});
   let node_c_styles = window.getComputedStyle(animator.handler.node, null);
   let background = node_c_styles.getPropertyValue("background-color");
   let color = node_c_styles.getPropertyValue("color");
