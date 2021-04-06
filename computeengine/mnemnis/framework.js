@@ -155,7 +155,6 @@ function left_hand_menu(details) {
     ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
     entry.addEventListener("click",buttons.go);
     crafted_device.append(entry);
-    animate_and_remove(entry,"button_disappear",2);
   };  
   document.body.append(crafted_device);
 }
