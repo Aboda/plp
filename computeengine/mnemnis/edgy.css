@@ -1,18 +1,18 @@
 .background{
+    color:hsla(0, 100%, 100%, 1);
     background-color:hsla(0, 0%, 0%, 1);
-    color:hsla(360, 100%, 100%, 1);
 }
 .color_contrast_1{
-    color:rgb(0,255,0);
-    background-color: rgb(255,255,255,.1);
+    color:hsla(100, 100%, 36%, 1);
+    background-color: hsla(243, 50%, 10%, 1);
 }
 .color_contrast_2{
-    color:rgb(255,0,0);
-    background-color: rgb(255,255,255,.1);
+    color:hsla(245, 100%, 36%, 1);
+    background-color: hsla(45, 100%, 8%, 1);
 }
 .color_contrast_3{
-    color:rgb(0,0,255);
-    background-color: rgb(255,255,255,.1);
+    color:hsla(360, 100%, 36%, 1);
+    background-color: hsla(135, 100%, 6%, 1);
 }
 .border{
     border-style: outset;
