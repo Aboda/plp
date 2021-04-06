@@ -129,7 +129,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["menu_container_initial"],
+    "styles":["menu_container"],
     "state":"collapsed"
   });  
   let men = {
@@ -149,7 +149,7 @@ function left_hand_menu(details) {
       "id":"smbo-"+buttons[ao.lng],
       "nodetype":"div",
       "innerText":buttons[ao.lng],
-      "styles":["menu_button_initial"]
+      "styles":["menu_button"]
     });
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
@@ -157,31 +157,166 @@ function left_hand_menu(details) {
     crafted_device.append(entry);
   };  
   document.body.append(crafted_device);
+  integrate_home_html();
 }
 function sidemenu_toggle() {
-  let sidemenu = ao.simple.sidemenu;
-  let content = document.getElementById("from_home");
+  let sidemenu_animation = {
+    "target":"sidemenu",
+    "type":"slide_left",
+    "initial":0,
+    "final":-13,
+    "unit":"em",
+    "fps":24,
+    "duration":2
+  }
+  aint_got_no_id(sidemenu_animation);
+  let content_animation = {
+    "target":"from_home",
+    "type":"slide_right",
+    "initial":2,
+    "final":13,
+    "unit":"em",
+    "fps":24,
+    "duration":2
+  }
+  aint_got_no_id(content_animation);
   if (sidemenu.config.state == "collapsed"){
-    sidemenu.node.classList.remove("menu_container_initial");
-    sidemenu.node.classList.add("menu_container_activated");
-    content.classList.remove("app_container_initial");
-    content.classList.add("app_container_activated");
+    sidemenu_animation.direction = "forward";
+    manual_animator(sidemenu_animation);
+    content_animation.direction = "forward";
+    manual_animator(content_animation);
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
-      let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.remove("menu_button_initial");
-      affected.classList.add("menu_button_activated");
+      let buttons_animation = {
+        "target":ma_me_op,
+        "type":"fade_down",
+        "direction":"forward",
+        "fps":12,
+        "duration":2
+      }
+      aint_got_no_id(buttons_animation);
+      //manual_animator(buttons_animation);
     }
   }else if (sidemenu.config.state == "expanded"){
-    sidemenu.node.classList.remove("menu_container_activated");
-    sidemenu.node.classList.add("menu_container_initial");
-    content.classList.remove("app_container_activated");
-    content.classList.add("app_container_initial");
+    sidemenu_animation.direction = "backward";
+    manual_animator(sidemenu_animation);
+    content_animation.direction = "backward";
+    manual_animator(content_animation);
     sidemenu.config.state = "collapsed"
     for (var ma_me_op in ao.main_menu) {
-      let affected = ao.main_menu[ma_me_op].node;
-      affected.classList.remove("menu_button_activated");
-      affected.classList.add("menu_button_initial");
+      let buttons_animation = {
+        "target":ma_me_op,
+        "type":"fade_down",
+        "direction":"backward",
+        "fps":12,
+        "duration":2
+      }
+      aint_got_no_id(buttons_animation);
+      //manual_animator(buttons_animation);
     };
   };
+};
+
+function manual_animator(animator){
+  animator.handler = ao.simple[animator.target];
+  animator.start = Date.now();
+  switch (animator.type) {
+    case "slide_left":
+      switch (animator.direction) {
+        case "forward":
+          animator.run = (time) => {
+            let go = check_duration(time,this);
+            if (go) {
+              linear_displacer(time,this);
+              animator.position = (animator.initial + (animator.current_frame * animator.d_per_frame)).toString()+animator.unit;
+              this.handler.node.style.left = this.position;
+            }
+          }
+        break;
+        case "backward":
+          animator.run = (time) => {
+            let go = check_duration(time,this);
+            if (go) {
+              linear_displacer(time,this);
+              animator.position = (animator.final - (animator.current_frame * animator.d_per_frame)).toString()+animator.unit;
+              this.handler.node.style.left = this.position;
+            }
+          }
+        break;
+      }
+    break;
+    case "slide_right":
+      switch (animator.direction) {
+        case "forward":
+          animator.run = (time) => {
+            let go = check_duration(time,this);
+            if (go) {
+              linear_displacer(time,this);
+              animator.position = (animator.initial + (animator.current_frame * animator.d_per_frame)).toString()+animator.unit;
+              this.handler.node.style.left = this.position;
+            }
+          }
+        break;
+        case "backward":
+          animator.run = (time) => {
+            let go = check_duration(time,this);
+            if (go) {
+              linear_displacer(time,this);
+              animator.position = (animator.final - (animator.current_frame * animator.d_per_frame)).toString()+animator.unit;
+              this.handler.node.style.left = this.position;
+            }
+          }
+        break;
+      }
+    break;
+    case "fade_down":
+      switch (animator.direction) {
+        case "forward":break;
+        case "backward":break;
+      }  
+    break;
+  }
+  path_timer(animator);
+}
+/*
+  Devuelve el número de milisegundos por frame
+  a los fps´s solicitados
+*/
+function framerate(fps){
+  if (fps == undefined || fps == 0 || fps > 60) {
+    fps = 60;
+  }
+  return 1000/fps
+}
+/*
+  Coloca a animator en un ciclo cada n milisegundos 
+  entre mil y 16 deacuerdo al fps solicitado
+*/
+function path_timer(animator){
+  ost(ao,"render",{});
+  ao.render[animator.id] = setInterval(function(){
+    animator.run(Date.now());
+  }, framerate(animator.fps),animator);
+}
+function integrate_home_html(){
+  ao.simple.from_home = {"config":{"nodetype":"div"},"node":document.getElementById("from_home"),"kill":function() {
+    let that_who_will_die = this.node.id;
+    this.node.remove();
+    delete ao.simple[that_who_will_die];
+  }}
+}
+function linear_displacer(time,animator){
+  animator.duration_ms = animator.duration * 1000;
+  animator.frame_duration = framerate(animator.fps);
+  animator.predicted_frames = Math.floor(duration_ms/frame_duration);
+  animator.total_change = animator.final - animator.initial;
+  animator.d_per_frame = total_change/predicted_frames;
+  animator.current_frame = Math.floor((time - animator.start)/frame_duration);
+}
+function check_duration (time,animator) {
+  if (time - animator.start > animator.duration*1000) {
+    clearInterval(ao.render[animator.id]);
+    delete ao.render[animator.id];
+    return false;
+  }else{return true}
 };

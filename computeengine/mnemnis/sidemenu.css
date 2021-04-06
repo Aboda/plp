@@ -1,96 +1,31 @@
 *{font-family: 'Roboto Mono', monospace;text-align: center;}
 .hidden {display: none;}
 .menubut {align-self: flex-end;}
-
-.menu_container_initial {
+.menu_container {
     position: fixed;
     top: 10em;
     width: 15em;
+    left: 0em;
     z-index: 2;
-    background-color: white;
-    color: black;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
     padding: .3em;
-    animation: open_menu 2s forwards;
-    animation-direction:reverse;
 }
-.menu_container_activated {
-    position: fixed;
-    top: 10em;
-    width: 15em;
-    z-index: 2;
-    background-color: black;
+.app_container {
+    position: relative;
+    top: 0em;
+    z-index: 1;
+    left: 15em;
+}
+.menu_button {
+    width: 95%;
+    padding: .2em;
+    margin: .2em;
+    border-width: 3px;
+    background-color: darkred;
     color: white;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    padding: .3em;
-    animation: open_menu 2s forwards;
-    animation-direction:normal;
-}
-@keyframes open_menu {
-    from{
-        left: -13em;
-    }
-    to{
-        left: 0em;
-    }
-}
-
-.app_container_initial {
-    position: relative;
-    top: 0em;
-    z-index: 1;
-    animation: displace_content 2s forwards;
-    animation-direction:reverse;
-}
-.app_container_activated {
-    position: relative;
-    top: 0em;
-    z-index: 1;
-    animation: displace_content 2s forwards;
-    animation-direction:normal;
-}
-@keyframes displace_content {
-    from{
-        left: 2em;
-    }
-    to{
-        left: 15em;
-    }
-}
-
-.menu_button_initial {
-    width: 95%;
-    padding: .2em;
-    margin: .2em;
-    border-width: 3px;
-    animation: appear_options 2s forwards;
-    animation-direction:reverse;
-}
-.menu_button_activated {
-    width: 95%;
-    padding: .2em;
-    margin: .2em;
-    border-width: 3px;
-    animation: appear_options 2s forwards;
-    animation-direction:normal;
-}
-@keyframes appear_options {
-    from{
-        background-color: gray;
-        color: gray;
-        border-style: solid;
-        border-color:gray;
-    }
-    to{
-        background-color: darkred;
-        color: white;
-        border-style: outset;
-        border-color:darkslategray;
-    }
+    border-style: outset;
+    border-color:darkslategray;
 }
