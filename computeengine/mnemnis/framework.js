@@ -129,7 +129,7 @@ function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
     "nodetype":"div",
-    "styles":["menu_container"],
+    "styles":["menu_container_initial"],
     "state":"collapsed"
   });  
   let men = {
@@ -144,12 +144,12 @@ function left_hand_menu(details) {
   });
   icon.addEventListener("click",() => {sidemenu_toggle()});
   crafted_device.append(icon);
-  for (var buttons of details) {
-    var entry = make_node({
+  for (let buttons of details) {
+    let entry = make_node({
       "id":"smbo-"+buttons[ao.lng],
       "nodetype":"div",
       "innerText":buttons[ao.lng],
-      "styles":["menu_button"]
+      "styles":["menu_button_initial"]
     });
     ost(ao,"main_menu",{});
     ost(ao.main_menu,buttons[ao.lng],ao.simple["smbo-"+buttons[ao.lng]]);
@@ -160,19 +160,28 @@ function left_hand_menu(details) {
 }
 function sidemenu_toggle() {
   let sidemenu = ao.simple.sidemenu;
-  let parent = sidemenu.node.parentNode;
-  sidemenu.node.remove();
-  parent.append(sidemenu.node);
-  //var content = document.getElementById("from_home");
+  let content = document.getElementById("from_home");
   if (sidemenu.config.state == "collapsed"){
+    sidemenu.classList.remove("menu_container_initial");
+    sidemenu.classList.add("menu_container_activated");
+    content.classList.remove("app_container_initial");
+    content.classList.add("app_container_activated");
     sidemenu.config.state = "expanded";
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
+      affected.classList.remove("menu_button_initial");
+      affected.classList.add("menu_button_activated");
     }
   }else if (sidemenu.config.state == "expanded"){
+    sidemenu.classList.remove("menu_container_activated");
+    sidemenu.classList.add("menu_container_initial");
+    content.classList.remove("app_container_activated");
+    content.classList.add("app_container_initial");
     sidemenu.config.state = "collapsed"
     for (var ma_me_op in ao.main_menu) {
       let affected = ao.main_menu[ma_me_op].node;
+      affected.classList.remove("menu_button_activated");
+      affected.classList.add("menu_button_initial");
     };
   };
 };
