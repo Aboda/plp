@@ -1,11 +1,13 @@
 *{font-family: 'Roboto Mono', monospace;text-align: center;}
 .hidden {display: none;}
 .menubut {align-self: flex-end;}
-.menu_button_unchanging {
+.menu_button {
     width: 95%;
     padding: .2em;
     margin: .2em;
     border-width: 3px;
+    animation: appear_options 2s both;
+    animation-direction:alternate;
 }
 @keyframes appear_options {
     from{
@@ -21,15 +23,7 @@
         border-color:darkslategray;
     }
 }
-.button_appear{
-    animation: appear_options 3s forwards;
-    animation-direction: normal;
-}
-.button_disappear{
-    animation: appear_options 3s forwards;
-    animation-direction: reverse;
-}
-.menu_container_unchanging {
+.menu_container {
     position: fixed;
     top: 10em;
     width: 15em;
@@ -41,6 +35,8 @@
     align-items: center;
     justify-content: center;
     padding: .3em;
+    animation: open_menu 2s both;
+    animation-direction:alternate;
 }
 @keyframes open_menu {
     from{
@@ -50,14 +46,12 @@
         left: 0em;
     }
 }
-.menu_toggle {
-    animation: open_menu 2s both;
-    animation-direction:alternate;
-}
-.app_container_unchanging {
+.app_container {
     position: relative;
     top: 0em;
     z-index: 1;
+    animation: open_menu 2s both;
+    animation-direction:alternate;
 }
 @keyframes displace_content {
     from{
@@ -66,12 +60,4 @@
     to{
         left: 15em;
     }
-}
-.app_make_way {
-    animation: displace_content 2s forwards;
-    animation-direction: normal;
-}
-.app_come_in {
-    animation: displace_content 2s forwards;
-    animation-direction: reverse;
 }
