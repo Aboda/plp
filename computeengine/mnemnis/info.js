@@ -63,9 +63,12 @@ let side_menu = [
         }
     }
 ];
-let hi_message = "Esta sección está diseñada para brindar una perspectiva compartible de progreso colectivo ";
-hi_message = hi_message + "respecto a los proyectos siendo trabajados o auxiliados.\nSi no sabes que es esto, quizas ";
-hi_message = hi_message + "no deberías de estar aquí, pero si tienes curiosidad siempre puedes enviarme un mensaje:";
+
+let hi_message = {
+    "en":"Status de progreso para los diferentes frentes del proyecto plp",
+    "es":"Progress status for different fronts to the plp proyect",
+}
+
 let site_progress = {
     "demian.app":{
         "racional":{
@@ -230,7 +233,7 @@ function say_hi () {
     container.append(make_node({
         "id":"the_guy_who_always_dies",
         "nodetype":"p",
-        "innerText":hi_message
+        "innerText":hi_message[ao.lng]
     }));
     container.append(make_node({
         "id":"the_guy_who_always_dies_2",
