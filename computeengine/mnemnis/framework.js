@@ -257,7 +257,7 @@ function manual_animator (animator) {
             let power = ao.anima[id];
             let go = check_duration(time,power);
             if (go) {
-              color_transit(time,power);
+              from_to_gray(time,power);
             }
           }
         break;
@@ -266,7 +266,7 @@ function manual_animator (animator) {
             let power = ao.anima[id];
             let go = check_duration(time,power);
             if (go) {
-              color_transit(time,power);
+              from_to_gray(time,power);
             }
           }
         break;
@@ -295,21 +295,6 @@ function path_timer(animator){
     animator.run(Date.now(),animator.id);
   }, framerate(animator.fps),animator);
 }
-function integrate_home_html(){
-  ao.simple.from_home = {"config":{"nodetype":"div"},"node":document.getElementById("from_home"),"kill":function() {
-    let that_who_will_die = this.node.id;
-    this.node.remove();
-    delete ao.simple[that_who_will_die];
-  }}
-}
-function linear_displacer(time,animator){
-  animator.duration_ms = animator.duration * 1000;
-  animator.frame_duration = framerate(animator.fps);
-  animator.predicted_frames = Math.floor(animator.duration_ms/animator.frame_duration);
-  animator.total_change = animator.final - animator.initial;
-  animator.d_per_frame = animator.total_change/animator.predicted_frames;
-  animator.current_frame = Math.floor((time - animator.start)/animator.frame_duration);
-}
 function check_duration (time,animator) {
   if (time - animator.start > animator.duration*1000) {
     clearInterval(ao.render[animator.id]);
@@ -318,10 +303,40 @@ function check_duration (time,animator) {
     return false;
   }else{return true}
 };
-function color_transit (time,animator) {
-  console.log({time,animator});
-  let node_c_styles = window.getComputedStyle(animator.handler.node, null);
-  let background = node_c_styles.getPropertyValue("background-color");
-  let color = node_c_styles.getPropertyValue("color");
-  console.log({background,color});
+function linear_displacer(time,animator){
+  animator.duration_ms = animator.duration * 1000;
+  animator.frame_duration = framerate(animator.fps);
+  animator.predicted_frames = Math.floor(animator.duration_ms/animator.frame_duration);
+  animator.total_change = animator.final - animator.initial;
+  animator.d_per_frame = animator.total_change/animator.predicted_frames;
+  animator.current_frame = Math.floor((time - animator.start)/animator.frame_duration);
+}
+
+function from_to_gray (time,animator) {
+  animator.duration_ms = animator.duration * 1000;
+  animator.frame_duration = framerate(animator.fps);
+  animator.predicted_frames = Math.floor(animator.duration_ms/animator.frame_duration);
+  animator.total_change = [];
+  console.log("from_to_gray",{animator});
+  for (let value of rgb_3){
+    let adjusted;
+    if (value == 180) {
+      adjusted = value;
+    }else if (value > 180) {   
+      adjusted = value;
+    }else if (value < 180) {   
+      adjusted = value;
+    }
+    animator.total_change.push(adjusted)
+  }
+  animator.d_per_frame = animator.total_change/animator.predicted_frames;
+  animator.current_frame = Math.floor((time - animator.start)/animator.frame_duration);
 };
+
+function integrate_home_html(){
+  ao.simple.from_home = {"config":{"nodetype":"div","id":"from_home"},"node":document.getElementById("from_home"),"kill":function() {
+    let that_who_will_die = this.node.id;
+    this.node.remove();
+    delete ao.simple[that_who_will_die];
+  }}
+}

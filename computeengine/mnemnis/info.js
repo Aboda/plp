@@ -1,3 +1,6 @@
+/*
+    This section is the system information page
+*/
 let side_menu = [
     {
         "es":"Progreso de Desarrollo",
