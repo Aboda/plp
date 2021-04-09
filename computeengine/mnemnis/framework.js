@@ -317,7 +317,9 @@ function from_to_gray (time,animator) {
   animator.frame_duration = framerate(animator.fps);
   animator.predicted_frames = Math.floor(animator.duration_ms/animator.frame_duration);
   animator.total_change = [];
-  console.log("from_to_gray",window.getComputedStyle(animator.handler.node));
+  let computed = window.getComputedStyle(animator.handler.node)
+  console.log("from_to_gray1",computed.color);
+  console.log("from_to_gray2",computed.backgroundColor);
   for (let value of rgb_3){
     let adjusted;
     if (value == 180) {
