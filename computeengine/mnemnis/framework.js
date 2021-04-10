@@ -153,8 +153,8 @@ const ao = {
     this.ms.width = window.innerWidth;  
     this.ms.columns = Math.floor(this.ms.height / this.ms.tgt);
     this.ms.rows = Math.floor(this.ms.width / this.ms.tgt);
-    this.ms.c_extra = ((this.ms.height / this.ms.tgt) - this.ms.columns)*this.ms.target;
-    this.ms.r_extra = ((this.ms.width / this.ms.tgt) - this.ms.rows)*this.ms.target;
+    this.ms.c_extra = ((this.ms.height / this.ms.tgt) - this.ms.columns) * this.ms.tgt;
+    this.ms.r_extra = ((this.ms.width / this.ms.tgt) - this.ms.rows) * this.ms.tgt;
     this.ms.center = [this.ms.height/2,this.ms.width/2];
     this.ms.side_displayed = this.ms.tgt * this.ms.side_d;
 
