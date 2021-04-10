@@ -84,7 +84,9 @@ const ao = {
 
     for (let items in qq){
       if (this.pass[items] !=  undefined) {
-
+        console.log("items",items);
+        console.log("node[items]",node[items]);
+        console.log("qq[items]",qq[items]);
         if (this.pass[items] == true) {
           node[items] = qq[items];
         }else {
