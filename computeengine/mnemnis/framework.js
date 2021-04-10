@@ -134,7 +134,7 @@ const ao = {
         delete ao.simple[that_who_will_die];
       }
     };
-    zyx("logic test ao setup","success",true);
+    this.zyx("logic test ao setup","success",true);
   }
 };
 
