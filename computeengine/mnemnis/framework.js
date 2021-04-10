@@ -123,6 +123,7 @@ const ao = {
       };
     };
   },
+  "facets":{},
   integrate_home_html(){
     this.simple.from_home = {
       "config":{
@@ -137,17 +138,26 @@ const ao = {
       }
     };
   },
+  make_facet(simple){
+    this.ost(simple,"superstatus",{});
+    simple.superstatus.facet = "";
+  },
   "ms":{
-    "tgt":360
+    "tgt":360,
+    "side_d":.70,
   },
   "adjust_list":{},
   screen_adjust() {
+    console.log("adjust called")
     this.ms.height = window.innerHeight;
     this.ms.width = window.innerWidth;  
     this.ms.columns = Math.floor(this.ms.height / this.ms.tgt);
     this.ms.rows = Math.floor(this.ms.width / this.ms.tgt);
-    this.ms.c_extra = (this.ms.height / this.ms.tgt) - this.ms.columns
-    this.ms.r_extra = (this.ms.width / this.ms.tgt) - this.ms.rows
+    this.ms.c_extra = ((this.ms.height / this.ms.tgt) - this.ms.columns)*this.ms.target;
+    this.ms.r_extra = ((this.ms.width / this.ms.tgt) - this.ms.rows)*this.ms.target;
+    this.ms.center = [this.ms.height/2,this.ms.width/2];
+    this.ms.side_displayed = this.ms.tgt * this.ms.side_d;
+
     for (let things in this.adjust_list) {
       this.adjust_list[things].adjust();
     };
@@ -157,7 +167,6 @@ const ao = {
     "options":{}
   },
   interface(details){
-    console.log(details);
     this.integrate_home_html();
     var crafted_device = this.qq({
       "id":"if_cont",
