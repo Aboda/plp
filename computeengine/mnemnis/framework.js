@@ -84,13 +84,14 @@ const ao = {
 
     for (let items in qq){
       if (this.pass[items] !=  undefined) {
-        console.log("items",items);
-        console.log("node[items]",node[items]);
-        console.log("qq[items]",qq[items]);
+        console.log("items: ",items);
         if (this.pass[items] == true) {
+          console.log("transmision limpia");
           node[items] = qq[items];
         }else {
-          node[items][this.pass[items]] = qq[items];
+          console.log("transmision de estilo");
+          console.log("qq[items]: ",qq[items]);
+          node[this.pass[items]][items] = qq[items];
         };
 
       };
