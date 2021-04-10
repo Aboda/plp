@@ -1,14 +1,14 @@
 /*
     This section is the system information page
 */
-let side_menu = [
+let interface = [
     {
         "es":"Progreso de Desarrollo",
         "en":"Development Progress",
         "go":()=>{
             had_it_comming();
             sidemenu_toggle();
-            fetch_file("https://demian.app/info/progress",(response)=>{
+            ao.fe("https://demian.app/info/progress",(response)=>{
                 let data;
                 try{
                     data = JSON.parse(response);
@@ -65,8 +65,8 @@ let side_menu = [
 ];
 
 let hi_message = {
-    "en":"Status de progreso para los diferentes frentes del proyecto plp",
-    "es":"Progress status for different fronts to the plp proyect",
+    "en":"<p>Status de progreso para los diferentes frentes del proyecto plp</p>",
+    "es":"<p>Progress status for different fronts to the plp proyect</p>",
 }
 
 let site_progress = {
@@ -230,12 +230,12 @@ let modules_progress = {
 }
 function say_hi () {
     let container = document.getElementById("from_home");
-    container.append(make_node({
+    container.append(ao.qq({
         "id":"the_guy_who_always_dies",
         "nodetype":"p",
         "innerText":hi_message[ao.lng]
     }));
-    container.append(make_node({
+    container.append(ao.qq({
         "id":"the_guy_who_always_dies_2",
         "nodetype":"a",
         "target":"https://demian.app/comentarios/",
@@ -254,7 +254,7 @@ function had_it_comming() {
 
 function complicated_ass_card_1(data){
     let chosen_lng = document.documentElement.lang.slice(0,2);
-    let container = make_node({
+    let container = ao.qq({
         "id":"the_guy_who_always_dies",
         "nodetype":"div",
         "styles":["report_container","display_flex"]
@@ -267,14 +267,14 @@ function complicated_ass_card_1(data){
     for (let entry in data) {
         let root_card;
         if (data[entry].meta.root_domain) {
-            root_card = make_node({
+            root_card = ao.qq({
                 "id":entry,
                 "nodetype":"div",
                 "styles":["loved_flex","pad_1","border","ancho"]
             },ao.focus);
             parents.push(entry);
         } else {
-            root_card = make_node({
+            root_card = ao.qq({
                 "id":entry,
                 "nodetype":"div",
                 "styles":["loved_flex","pad_1","border","ancho"]
@@ -282,26 +282,26 @@ function complicated_ass_card_1(data){
         };
         container.append(root_card);
         
-        let root_info_container = make_node({
+        let root_info_container = ao.qq({
             "nodetype":"div",
             "styles":["loved_flex","pad_1"]
         },ao.focus);
         root_card.append(root_info_container);
 
-        let short = make_node({
+        let short = ao.qq({
             "nodetype":"div",
             "innerText": data[entry].meta.short[chosen_lng]
         },ao.focus);
         root_info_container.append(short);
 
         if (data[entry].meta.root_domain) {
-            let domain = make_node({
+            let domain = ao.qq({
                 "nodetype":"div",
                 "innerText": "Domain: "+entry
             },ao.focus);
             root_info_container.append(domain);
         }else{
-            let domain = make_node({
+            let domain = ao.qq({
                 "nodetype":"div",
                 "innerText": "Subdomain: "+entry
             },ao.focus);
@@ -309,7 +309,7 @@ function complicated_ass_card_1(data){
         }        
 
         if (data[entry].meta.etapa != undefined) {
-            let stage = make_node({
+            let stage = ao.qq({
                 "nodetype":"div",
                 "innerText": data[entry].meta.etapa[chosen_lng]
             },ao.focus);
@@ -317,7 +317,7 @@ function complicated_ass_card_1(data){
         }
 
         if (data[entry].astra != undefined) {
-            let sub_container = make_node({
+            let sub_container = ao.qq({
                 "nodetype":"div",
                 "styles":["loved_flex","pad_1","secondary"]
             },ao.focus);
@@ -325,25 +325,25 @@ function complicated_ass_card_1(data){
 
             for (let route in data[entry].astra){
                 let ezr = data[entry].astra[route];
-                let sub_card = make_node({
+                let sub_card = ao.qq({
                     "nodetype":"div",
                     "styles":["loved_flex","pad_1"]
                 },ao.focus);
                 sub_container.append(sub_card);
-                let sub_route = make_node({
+                let sub_route = ao.qq({
                     "nodetype":"div",
                     "innerText": ezr.meta.short[chosen_lng]
                 },ao.focus);
                 sub_card.append(sub_route);
 
-                let sub_progress = make_node({
+                let sub_progress = ao.qq({
                     "nodetype":"div",
                     "innerText": "Route: "+route
                 },ao.focus);
                 sub_card.append(sub_progress);
 
                 if (ezr.meta.etapa != undefined) {
-                    let stage = make_node({
+                    let stage = ao.qq({
                         "nodetype":"div",
                         "innerText": ezr.meta.etapa[chosen_lng]
                     },ao.focus);

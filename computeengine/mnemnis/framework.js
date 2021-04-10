@@ -143,6 +143,8 @@ const ao = {
     this.ms.width = window.innerWidth;  
     this.ms.columns = Math.floor(this.ms.height / this.ms.tgt);
     this.ms.rows = Math.floor(this.ms.width / this.ms.tgt);
+    this.ms.c_extra = (this.ms.height / this.ms.tgt) - this.ms.columns
+    this.ms.r_extra = (this.ms.width / this.ms.tgt) - this.ms.rows
     for (let things in this.adjust_list) {
       this.adjust_list[things].adjust();
     };
