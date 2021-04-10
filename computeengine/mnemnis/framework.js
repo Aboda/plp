@@ -64,6 +64,7 @@ const ao = {
   },
   qq (qq,container) {
     this.aint_got_no_id(qq);
+    console.log(qq)
     var node;
     var type;
     if (this.homogenizador[qq.nodetype] == true) {
@@ -74,15 +75,17 @@ const ao = {
     };
     node = document.createElement(node);
     if (type != undefined) {node.type = type;};
+
     for (let items in this.pass){
       if (qq[items] !=  undefined) {
-        if (qq[items] ==  true) {
+        if (this.pass[items] == true) {
           node[items] = qq[items];
         }else{
           node[items][this.pass[items]] = qq[items]
         } 
       }
     }
+
     if (qq.styles != undefined) {dress(node,qq.styles,true)};
     if (qq.path != undefined) {node.setAttribute("d", qq.path)};
     if (qq.nodetype == "a") {
