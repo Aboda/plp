@@ -39,7 +39,8 @@
                 "treasure":"change opens doors",
                 "quest":"rise up for the challenge"
             }
-        }
+        },
+        "patience":true
     },
 
     "dimensions_of_conflict" : {

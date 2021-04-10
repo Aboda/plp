@@ -1,78 +1,87 @@
 /*
   This section is the global housemade framework
 */
-var ao = {};
-ao.lng = document.documentElement.lang.slice(0,2);
-function zyx(tag,thing,show){
-    var default_history_length_limit = 100;
-    ost(ao,"history",[]);
-    ao.history.push([tag,thing,show]);
+const ao = {
+  "lng":document.documentElement.lang.slice(0,2),
+  "history":[],
+  "default_history_length_limit":100,
+  zyx (tag,thing,show) {
+    this.history.push([tag,thing,show]);
     if (show){console.log(tag,thing);};
-    while (ao.history.length > default_history_length_limit) {
-      ao.history.shift();
-    }
-};
-function ost(object,newkey,content){if(object[newkey] == undefined){object[newkey] = content;return true;}else{return false;};}
-function fetch_file(resource,callback) {
-  var negotiator = new XMLHttpRequest();
-  negotiator.open("GET",resource);
-  negotiator.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          callback(this.responseText);
-      };
-  };
-  negotiator.send();
-}
-function make_node(qq,container) {
-    zyx("node requested",qq,false);
-    ost(ao,"simple",{});
-    aint_got_no_id(qq);
-    var homogenizador = {
-      "a":true,
-      "button":"input",
-      "checkbox":"input",
-      "date":"input",
-      "div":true,
-      "file":"input",
-      "h1":true,
-      "h2":true,
-      "h3":true,
-      "h4":true,
-      "h5":true,
-      "h6":true,
-      "input":true,
-      "label":true,
-      "option":true,
-      "p":true,
-      "path":true,
-      "select":true,
-      "span":true,
-      "sub":true,
-      "textarea":true,
-      "table":true,
+    while (this.history.length > this.default_history_length_limit) {
+      this.history.shift();
     };
+  },
+  ost (object,newkey,content) {
+    if(object[newkey] == undefined){
+      object[newkey] = content;return true;
+    }else{return false;};
+  },
+  fe (resource,callback) {
+    var negotiator = new XMLHttpRequest();
+    negotiator.open("GET",resource);
+    negotiator.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            callback(this.responseText);
+        };
+    };
+    negotiator.send();
+  },
+  "simple":{},
+  "homogenizador":{
+    "a":true,
+    "button":"input",
+    "checkbox":"input",
+    "date":"input",
+    "div":true,
+    "file":"input",
+    "h1":true,
+    "h2":true,
+    "h3":true,
+    "h4":true,
+    "h5":true,
+    "h6":true,
+    "input":true,
+    "label":true,
+    "option":true,
+    "p":true,
+    "path":true,
+    "select":true,
+    "span":true,
+    "sub":true,
+    "textarea":true,
+    "table":true
+  },
+  "pass":{
+    "id":true,
+    "innerText":true,
+    "value":true,
+    "for":true,
+    "title":true,
+    "order":"style",
+    "width":"style",
+    "maxWidth":"style"
+  },
+  qq (qq,container) {
+    this.aint_got_no_id(qq);
     var node;
     var type;
-    if (homogenizador[qq.nodetype] == true) {
+    if (this.homogenizador[qq.nodetype] == true) {
         node = qq.nodetype;
     }else{
-        node = homogenizador[qq.nodetype];
+        node = this.homogenizador[qq.nodetype];
         type = qq.nodetype;
     };
     node = document.createElement(node);
     if (type != undefined) {node.type = type;};
-    let pass = {
-      "id":true,
-      "innerText":true,
-      "value":true,
-      "for":true,
-      "order":true,
-      "width":true,
-      "maxWidth":true,
-      "title":true
-    }
-    for (let items in pass){
-      if (qq[items] != undefined) {node[items] = qq[items];};  
+    for (let items in this.pass){
+      if (qq[items] !=  undefined) {
+        if (qq[items] ==  true) {
+          node[items] = qq[items];
+        }else{
+          node[items][this.pass[items]] = qq[items]
+        } 
+      }
     }
     if (qq.styles != undefined) {dress(node,qq.styles,true)};
     if (qq.path != undefined) {node.setAttribute("d", qq.path)};
@@ -84,47 +93,53 @@ function make_node(qq,container) {
       };
       node.href = qq.target;
     };
-    ost(ao.simple,qq.id,{"config":qq,"node":node,"kill":function() {
+    ost(this.simple,qq.id,{"config":qq,"node":node,"kill":function() {
       let that_who_will_die = this.node.id;
       this.node.remove();
       delete ao.simple[that_who_will_die];
     }});
     if (container != undefined){container[qq.id] = ao.simple[qq.id];};
-    zyx("node created",ao.simple[qq.id],false);
     return node;
-}
-function aint_got_no_id(some_config_obj){
-  ost(ao,"counters",{});
-  ost(ao.counters,"id",0);
-  if (some_config_obj.id == undefined){
-    some_config_obj.id = "aid-"+ao.counters.id;
-    ao.counters.id++;
-  };
-}
-function dress(htmlelement,classarray,trueaddfalseremove){
-  for (var a = 0; a < classarray.length;a++) { 
-    if (trueaddfalseremove){
-      htmlelement.classList.add(classarray[a]);
+  },
+  "counters":{
+    "id":0
+  },
+  aint_got_no_id(some_config_obj){
+    if (some_config_obj.id == undefined){
+      some_config_obj.id = "aid-"+this.counters.id;
+      this.counters.id++;
     };
-    if (trueaddfalseremove == false){
-      htmlelement.classList.remove(classarray[a]);
+  },
+  dress(htmlelement,classarray,trueaddfalseremove){
+    for (var a = 0; a < classarray.length;a++) { 
+      if (trueaddfalseremove){
+        htmlelement.classList.add(classarray[a]);
+      };
+      if (trueaddfalseremove == false){
+        htmlelement.classList.remove(classarray[a]);
+      };
     };
-  };
-}
-function toggle_vis(element) {
-    var default_initial_display_state = "flex";
-    var target_handler = ao.simple[element.id];
-  if (element.style.display === "none") {
-      if (target_handler.config.prevdisplay != undefined) {
-        element.style.display = target_handler.config.prevdisplay;
-      }else{
-        element.style.display = default_initial_display_state;
-      }    
-  } else {
-    target_handler.config.prevdisplay = element.style.display;
-    element.style.display = "none";
+  },
+  integrate_home_html(){
+    this.simple.from_home = {
+      "config":{
+        "nodetype":"div",
+        "id":"from_home",
+        "innerText":document.getElementById("from_home").innerText
+      },
+      "node":document.getElementById("from_home"),
+      "kill":function() {
+        let that_who_will_die = this.node.id;
+        this.node.remove();
+        delete ao.simple[that_who_will_die];
+      }
+    };
+    zyx("logic test ao setup","success",true);
   }
-}
+};
+
+ao.integrate_home_html()
+
 function left_hand_menu(details) {
   var crafted_device = make_node({
     "id":"sidemenu",
@@ -193,7 +208,7 @@ function sidemenu_toggle() {
         "type":"fade_color",
         "direction":"up",
         "fps":30,
-        "duration":.2
+        "duration":1
       };
       aint_got_no_id(buttons_animation);
       manual_animator(buttons_animation);
@@ -205,12 +220,16 @@ function sidemenu_toggle() {
     manual_animator(content_animation);
     sidemenu.config.state = "collapsed"
     for (var ma_me_op in ao.main_menu) {
+      let simple = ao.main_menu[ma_me_op];
+      let computed = window.getComputedStyle(simple.node);
+      simple.config.original_color = peel_rgb(computed.color);
+      simple.config.original_backgroundColor = peel_rgb(computed.backgroundColor);
       let buttons_animation = {
         "target":ma_me_op,
         "type":"fade_color",
         "direction":"down",
         "fps":30,
-        "duration":.2
+        "duration":1
       };
       aint_got_no_id(buttons_animation);
       manual_animator(buttons_animation);
@@ -253,11 +272,20 @@ function manual_animator (animator) {
     case "fade_color":
       switch (animator.direction) {
         case "up":
-          animator.run = (time,id) => {
+          animator.run = function (time,id) {
             let power = ao.anima[id];
             let go = check_duration(time,power);
             if (go) {
               from_to_gray(time,power);
+              power.current = {};
+              for (let entries in power.originals){
+                let t = "rgb(";
+                for (let values of power.originals[entries]){
+                  power.current[entries] = power.current[entries] ;
+                }
+
+                power.current[entries] = t;
+              }
             }
           }
         break;
@@ -316,29 +344,44 @@ function from_to_gray (time,animator) {
   animator.duration_ms = animator.duration * 1000;
   animator.frame_duration = framerate(animator.fps);
   animator.predicted_frames = Math.floor(animator.duration_ms/animator.frame_duration);
-  animator.total_change = [];
-  let computed = window.getComputedStyle(animator.handler.node)
-  console.log("from_to_gray1",computed.color);
-  console.log("from_to_gray2",computed.backgroundColor);
-  for (let value of rgb_3){
-    let adjusted;
-    if (value == 180) {
-      adjusted = value;
-    }else if (value > 180) {   
-      adjusted = value;
-    }else if (value < 180) {   
-      adjusted = value;
+  let originals = {
+    "color":animator.handler.config.original_color,
+    "backgroundColor":animator.handler.config.original_backgroundColor
+  };
+  animator.total_change = {}
+  for (let areas in originals) {
+    animator.total_change[areas] = [];
+    for (let value of originals[areas]){
+      if (value == 180) {
+        animator.total_change[areas].push(0);
+      }else if (value > 180) {   
+        animator.total_change[areas].push(value - 180);
+      }else if (value < 180) {   
+        animator.total_change[areas].push(180 - value);
+      }
     }
-    animator.total_change.push(adjusted)
-  }
-  animator.d_per_frame = animator.total_change/animator.predicted_frames;
+  };
+  animator.d_per_frame = {};
+  for (let areas in animator.total_change) {
+    animator.d_per_frame[areas] = []
+    for (let value of animator.total_change[areas]){
+      animator.d_per_frame[areas].push(value/animator.predicted_frames);
+    }
+  }  
   animator.current_frame = Math.floor((time - animator.start)/animator.frame_duration);
 };
 
-function integrate_home_html(){
-  ao.simple.from_home = {"config":{"nodetype":"div","id":"from_home"},"node":document.getElementById("from_home"),"kill":function() {
-    let that_who_will_die = this.node.id;
-    this.node.remove();
-    delete ao.simple[that_who_will_die];
-  }}
+
+function peel_rgb(rgbstring){
+  let process;
+  let processed = [];  
+  process = rgbstring.slice(rgbstring.indexOf("("));
+  process = process.slice(0,process.length);
+  process = process.split(",");
+  for (let items of process) {
+    processed.push(items.trim());
+  }
+  return processed;
 }
+
+function render_tracker () {}
