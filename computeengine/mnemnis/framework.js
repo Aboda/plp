@@ -1,5 +1,5 @@
 /*
-  This section is the global housemade framework
+  Proven base framework
 */
 const ao = {
   "lng":document.documentElement.lang.slice(0,2),
@@ -124,8 +124,7 @@ const ao = {
     this.simple.from_home = {
       "config":{
         "nodetype":"div",
-        "id":"from_home",
-        "innerText":document.getElementById("from_home").innerText
+        "id":"from_home"
       },
       "node":document.getElementById("from_home"),
       kill() {
@@ -134,45 +133,61 @@ const ao = {
         delete ao.simple[that_who_will_die];
       }
     };
-    this.zyx("logic test ao setup","success",true);
+  },
+  "ms":{
+    "tgt":360
+  },
+  "adjust_list":{},
+  screen_adjust() {
+    this.ms.height = window.innerHeight;
+    this.ms.width = window.innerWidth;  
+    this.ms.columns = Math.floor(this.ms.height / this.ms.tgt);
+    this.ms.rows = Math.floor(this.ms.width / this.ms.tgt);
+    for (let things in this.adjust_list) {
+      this.adjust_list[things].adjust();
+    };
+  },
+  "if":{
+    "outer":{},
+    "options":{}
+  },
+  interface(details){
+    this.integrate_home_html();
+    var crafted_device = this.qq({
+      "id":"if_cont",
+      "nodetype":"div"
+    },this.if.outer);  
+    let men = {
+      "en":"Menu",
+      "es":"Menú"
+    };
+    let icon = this.qq({
+      "id":"if_icon",
+      "nodetype":"div",
+      "innerText":men[this.lng]
+    },this.if.outer);
+    crafted_device.append(icon);
+    for (let buttons of details) {
+      let entry = this.qq({
+        "id":"smbo-"+buttons[this.lng],
+        "nodetype":"div",
+        "innerText":buttons[this.lng]
+      },this.if.options);
+      entry.addEventListener("click",buttons.go);
+      crafted_device.append(entry);
+    };  
+    document.body.append(crafted_device);
+  },
+  "motor":{},
+  animate(animator) {
+    this.aint_got_no_id(animator);
+    this.motor[animator.id] = animator;
+    animator.sid = requestAnimationFrame(animator.go());
   }
 };
 
-ao.integrate_home_html()
 
-function left_hand_menu(details) {
-  var crafted_device = make_node({
-    "id":"sidemenu",
-    "nodetype":"div",
-    "styles":["menu_container","color_contrast_3"],
-    "state":"collapsed"
-  });  
-  let men = {
-    "en":"Menu",
-    "es":"Menú"
-  };
-  let icon = make_node({
-    "id":"sidemenu_icon",
-    "nodetype":"div",
-    "innerText":men[ao.lng],
-    "styles":["menubut","color_contrast_2"]
-  });
-  icon.addEventListener("click",() => {sidemenu_toggle()});
-  crafted_device.append(icon);
-  for (let buttons of details) {
-    let entry = make_node({
-      "id":"smbo-"+buttons[ao.lng],
-      "nodetype":"div",
-      "innerText":buttons[ao.lng],
-      "styles":["menu_button","color_contrast_1"]
-    },ao.main_menu);
-    ost(ao,"main_menu",{});
-    entry.addEventListener("click",buttons.go);
-    crafted_device.append(entry);
-  };  
-  document.body.append(crafted_device);
-  integrate_home_html();
-}
+
 function sidemenu_toggle() {
   let content_animation = {
     "target":"from_home",

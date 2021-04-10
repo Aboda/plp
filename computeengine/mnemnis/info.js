@@ -353,8 +353,10 @@ function complicated_ass_card_1(data){
         };
     };
 };
-window.onload = ()=>{
+
+window.onresize = ao.screen_tracker();
+window.onload = () => {
     document.body.classList.add("background");
-    left_hand_menu(side_menu);
-    say_hi();
+    ao.interface(interface);
+    ao.screen_adjust();
 };
