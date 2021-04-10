@@ -81,15 +81,19 @@ const ao = {
     };
     node = document.createElement(node);
     if (type != undefined) {node.type = type;};
-    for (let items in this.pass){
-      if (qq[items] !=  undefined) {
+
+    for (let items in qq){
+      if (this.pass[items] !=  undefined) {
+
         if (this.pass[items] == true) {
           node[items] = qq[items];
-        }else if (typeof this.pass[items] == "string"){
+        }else {
           node[items][this.pass[items]] = qq[items];
         };
+
       };
     };
+
     if (qq.styles != undefined) {this.dress(node,qq.styles,true)};
     if (qq.path != undefined) {node.setAttribute("d", qq.path)};
     if (qq.nodetype == "a") {
