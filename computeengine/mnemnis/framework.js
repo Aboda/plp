@@ -85,7 +85,7 @@ const ao = {
       if (qq[items] !=  undefined) {
         if (this.pass[items] == true) {
           node[items] = qq[items];
-        }else{
+        }else if (typeof this.pass[items] == "string"){
           node[items][this.pass[items]] = qq[items];
         };
       };
