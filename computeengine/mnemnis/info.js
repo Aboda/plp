@@ -354,7 +354,9 @@ function complicated_ass_card_1(data){
     };
 };
 
-window.onresize = ao.screen_adjust;
+window.onresize = () => {
+    ao.screen_adjust()
+};
 window.onload = () => {
     document.body.classList.add("background");
     ao.interface(interface);
