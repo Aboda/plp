@@ -154,6 +154,7 @@ const ao = {
     "options":{}
   },
   interface(details){
+    console.log(details);
     this.integrate_home_html();
     var crafted_device = this.qq({
       "id":"if_cont",
