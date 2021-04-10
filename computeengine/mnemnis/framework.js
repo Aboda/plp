@@ -93,7 +93,7 @@ const ao = {
       };
       node.href = qq.target;
     };
-    ost(this.simple,qq.id,{"config":qq,"node":node,"kill":function() {
+    ost(this.simple,qq.id,{"config":qq,"node":node,kill() {
       let that_who_will_die = this.node.id;
       this.node.remove();
       delete ao.simple[that_who_will_die];
@@ -128,7 +128,7 @@ const ao = {
         "innerText":document.getElementById("from_home").innerText
       },
       "node":document.getElementById("from_home"),
-      "kill":function() {
+      kill() {
         let that_who_will_die = this.node.id;
         this.node.remove();
         delete ao.simple[that_who_will_die];
