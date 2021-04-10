@@ -40,7 +40,7 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Plataforma:PLP",
                     "en":"Platform:PLP"
                 },
-                "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                "css":[resources_cache.css.plp],
                 "js":[resources_cache.js.framework,resources_cache.js.demian_app,resources_cache.js.plp]
             },
             "astra":{
@@ -66,7 +66,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Retos y Herramientas:PLP",
                             "en":"Tools and Challenges:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }
                 },
@@ -92,7 +92,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Programas Sociales:PLP",
                             "en":"Social Programs:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }
                 },
@@ -118,7 +118,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Tienda de Comida:PLP",
                             "en":"Food shop:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }
                 },
@@ -144,7 +144,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Rentador DVD:PLP",
                             "en":"DVD Leaser:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }
                 },
@@ -172,7 +172,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"SOmeMA:PLP",
                             "en":"SOmeMA:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.fb_cm_login,resources_cache.js.somema]
                     }
                 },
@@ -198,7 +198,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Narrador:PLP",
                             "en":"Storyteller:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }
                 },
@@ -222,7 +222,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Info:Demian",
                             "en":"Info:Demian"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.edgy],
+                        "css":[resources_cache.css.edgy],
                         "js":[resources_cache.js.framework,resources_cache.js.info]
                     }
                 }
@@ -250,7 +250,7 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Blog:PLP",
                     "en":"Blog:PLP"
                 },
-                "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                "css":[resources_cache.css.plp],
                 "js":[resources_cache.js.framework,resources_cache.js.www_demian_app]
             },
             "astra":{
@@ -276,7 +276,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Estáticos:PLP",
                             "en":"Static:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }
                 },
@@ -302,7 +302,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Dinámicos:PLP",
                             "en":"Dynamic:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }                
                 }
@@ -330,7 +330,7 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Inicio:PLP",
                     "en":"Home:PLP"
                 },
-                "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                "css":[resources_cache.css.plp],
                 "js":[resources_cache.js.framework,resources_cache.js.profesional_demian_app]
             },
             "astra":{
@@ -356,7 +356,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Google H&T:PLP",
                             "en":"Google T&T:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.g_prods]
                     }
                 },
@@ -382,7 +382,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Facebook H&T:PLP",
                             "en":"Facebook T&T:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }
                 },
@@ -408,7 +408,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Web H&T:PLP",
                             "en":"Web T&T:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }
                 },
@@ -435,7 +435,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Office H&T:PLP",
                             "en":"Office T&T:PLP"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.plp],
+                        "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.framework,resources_cache.js.en_construc]
                     }
                 }
@@ -469,7 +469,7 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Inicio: Remanso Nocturno",
                     "en":"Home: Nocturnal Remanse",
                 },
-                "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
+                "css":[resources_cache.css.ren],
                 "js":[resources_cache.js.framework,resources_cache.js.ren]
             },
             "astra":{
@@ -495,7 +495,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Comunidad: Remanso Nocturno",
                             "en":"Community: Nocturnal Remanse"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
+                        "css":[resources_cache.css.ren],
                         "js":[resources_cache.js.framework,resources_cache.js.ren]
                     }
                 },
@@ -521,7 +521,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Perfil: Remanso Nocturno",
                             "en":"Profile: Nocturnal Remanse"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
+                        "css":[resources_cache.css.ren],
                         "js":[resources_cache.js.framework,resources_cache.js.ren]
                     }
                 }
@@ -549,7 +549,7 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Blog: Remanso Nocturno",
                     "en":"Blog: Nocturnal Remanse"
                 },
-                "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
+                "css":[resources_cache.css.ren],
                 "js":[resources_cache.js.framework,resources_cache.js.ren]
             },
             "astra":{
@@ -575,7 +575,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Estáticos: Remanso Nocturno",
                             "en":"Static: Nocturnal Remanse"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
+                        "css":[resources_cache.css.ren],
                         "js":[resources_cache.js.framework,resources_cache.js.ren]
                     }                
                 },
@@ -601,7 +601,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Dinámicos: Remanso Nocturno",
                             "en":"Dynamic: Nocturnal Remanse"
                         },
-                        "css":[resources_cache.css.sidemenu,resources_cache.css.ren],
+                        "css":[resources_cache.css.ren],
                         "js":[resources_cache.js.framework,resources_cache.js.ren]
                     }                   
                 }

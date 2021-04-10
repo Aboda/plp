@@ -59,8 +59,14 @@ const ao = {
     "for":true,
     "title":true,
     "order":"style",
+    "height":"style",
     "width":"style",
-    "maxWidth":"style"
+    "top":"style",
+    "left":"style",
+    "right":"style",
+    "display":"style",
+    "position":"style",
+    "alignSelf":"style"
   },
   qq (qq,container) {
     this.aint_got_no_id(qq);
@@ -75,18 +81,16 @@ const ao = {
     };
     node = document.createElement(node);
     if (type != undefined) {node.type = type;};
-
     for (let items in this.pass){
       if (qq[items] !=  undefined) {
         if (this.pass[items] == true) {
           node[items] = qq[items];
         }else{
-          node[items][this.pass[items]] = qq[items]
-        } 
-      }
-    }
-
-    if (qq.styles != undefined) {dress(node,qq.styles,true)};
+          node[items][this.pass[items]] = qq[items];
+        };
+      };
+    };
+    if (qq.styles != undefined) {this.dress(node,qq.styles,true)};
     if (qq.path != undefined) {node.setAttribute("d", qq.path)};
     if (qq.nodetype == "a") {
       if (qq.link_text != undefined) {
@@ -95,6 +99,15 @@ const ao = {
         node.append(document.createTextNode(qq.target));
       };
       node.href = qq.target;
+    };
+    if (qq.color_set != undefined){
+      node.style.color = color_sets[qq.color_set].color;
+      node.style.backgroundColor = color_sets[qq.color_set].background;
+    } 
+    if (qq.triggers != undefined) {
+      for(let items of qq.triggers){
+        node.addEventListener(items[0],items[1]);
+      };
     };
     this.ost(this.simple,qq.id,{"config":qq,"node":node,kill() {
       let that_who_will_die = this.node.id;
@@ -124,75 +137,82 @@ const ao = {
     };
   },
   "facets":{},
-  integrate_home_html(){
-    this.simple.from_home = {
-      "config":{
-        "nodetype":"div",
-        "id":"from_home"
-      },
-      "node":document.getElementById("from_home"),
-      kill() {
-        let that_who_will_die = this.node.id;
-        this.node.remove();
-        delete ao.simple[that_who_will_die];
-      }
-    };
-  },
   make_facet(simple){
     this.ost(simple,"superstatus",{});
     simple.superstatus.facet = "";
   },
   "ms":{
     "tgt":360,
-    "side_d":.70,
+    "sid":300
   },
   "adjust_list":{},
   screen_adjust() {
-    console.log("adjust called")
     this.ms.height = window.innerHeight;
     this.ms.width = window.innerWidth;  
     this.ms.columns = Math.floor(this.ms.height / this.ms.tgt);
     this.ms.rows = Math.floor(this.ms.width / this.ms.tgt);
-    this.ms.c_extra = ((this.ms.height / this.ms.tgt) - this.ms.columns) * this.ms.tgt;
-    this.ms.r_extra = ((this.ms.width / this.ms.tgt) - this.ms.rows) * this.ms.tgt;
+    this.ms.c_extra = this.ms.width - (this.ms.tgt * this.ms.columns);
+    this.ms.r_extra = this.ms.height - (this.ms.tgt * this.ms.rows);
     this.ms.center = [this.ms.height/2,this.ms.width/2];
-    this.ms.side_displayed = this.ms.tgt * this.ms.side_d;
-
     for (let things in this.adjust_list) {
       this.adjust_list[things].adjust();
     };
   },
   "if":{
-    "outer":{},
-    "options":{}
+    "top":{},
+    "top_button":{},
+    "slider":{},
+    "buttons":{}
   },
   interface(details){
-    this.integrate_home_html();
-    var crafted_device = this.qq({
-      "id":"if_cont",
-      "nodetype":"div"
-    },this.if.outer);  
-    let men = {
-      "en":"Menu",
-      "es":"Menú"
-    };
-    let icon = this.qq({
-      "id":"if_icon",
+    document.getElementById("from_home").remove();
+    document.body.classList.add("background");
+    let top_bar = this.qq({
+      "id":"top_bar",
       "nodetype":"div",
-      "innerText":men[this.lng]
-    },this.if.outer);
-    crafted_device.append(icon);
+      "color_set":1,
+      "position":"fixed",
+      "top":"0px",
+      "left":"0px",
+      "right":"0px",
+      "height":"2em",
+      "display":"flex"
+    });
+    let men = {"en":"Menu","es":"Menú"};
+    let top_button = this.qq({
+      "id":"top_button",
+      "nodetype":"button",
+      "value":men[this.lng],
+      "triggers":[["click",(e)=>{
+        console.log(e);
+        console.log(this);
+      }]]
+    });
+    top_bar.append(top_button);
+    document.body.append(top_bar);
+    let sliding_container = this.qq({
+      "id":"sliding_container",
+      "nodetype":"div",
+      "color_set":2
+    });
+    let close_area = this.qq({
+      "id":"sliding_closer",
+      "nodetype":"div",
+      "color_set":1
+    });
     for (let buttons of details) {
       let entry = this.qq({
         "id":"smbo-"+buttons[this.lng],
         "nodetype":"div",
-        "innerText":buttons[this.lng]
+        "innerText":buttons[this.lng],
+        "color_set":3,
+        "triggers":[["click",buttons.go]]
       },this.if.options);
-      entry.addEventListener("click",buttons.go);
       crafted_device.append(entry);
     };  
     document.body.append(crafted_device);
   },
+
   "motor":{},
   animate(animator) {
     this.aint_got_no_id(animator);
@@ -200,9 +220,6 @@ const ao = {
     animator.sid = requestAnimationFrame(animator.go());
   }
 };
-
-
-
 function sidemenu_toggle() {
   let content_animation = {
     "target":"from_home",
@@ -224,7 +241,6 @@ function sidemenu_toggle() {
     "duration":.8
   }
   aint_got_no_id(sidemenu_animation);
-
   let sidemenu = ao.simple.sidemenu;
   if (sidemenu.config.state == "collapsed") {
     sidemenu_animation.direction = "right";
@@ -266,7 +282,6 @@ function sidemenu_toggle() {
     };
   };
 }
-
 function manual_animator (animator) {
   ost(ao,"anima",{});
   ao.anima[animator.id] = animator;
@@ -313,7 +328,6 @@ function manual_animator (animator) {
                 for (let values of power.originals[entries]){
                   power.current[entries] = power.current[entries] ;
                 }
-
                 power.current[entries] = t;
               }
             }
@@ -400,8 +414,6 @@ function from_to_gray (time,animator) {
   }  
   animator.current_frame = Math.floor((time - animator.start)/animator.frame_duration);
 };
-
-
 function peel_rgb(rgbstring){
   let process;
   let processed = [];  
@@ -413,5 +425,3 @@ function peel_rgb(rgbstring){
   }
   return processed;
 }
-
-function render_tracker () {}

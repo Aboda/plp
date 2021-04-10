@@ -1,6 +1,50 @@
 /*
     This section is the system information page
 */
+let color_sets = [
+    {
+        "name":"Venetian Red",
+        "use":"header",
+        "background":"rgb(194,1,20,1)",
+        "color":"rgb(255,255,255,1)"
+    },
+    {
+        "name":"Alice Blue",
+        "use":"menu",
+        "background":"rgb(233,241,247,1)",
+        "color":"rgb(0,0,0,1)"
+    },
+    {
+        "name":"Gun Metal",
+        "use":"button",
+        "background":"rgb(22,38,46,1)",
+        "color":"rgb(255,255,255,1)"
+    },
+    {
+        "name":"Honey Yellow",
+        "use":"active",
+        "background":"rgb(255,177,0,1)",
+        "color":"rgb(0,0,0,1)"
+    },
+    {
+        "name":"Spanish Viridian",
+        "use":"highlight",
+        "background":"rgb(28,124,84,1)",
+        "color":"rgb(255,255,255,1)"
+    },
+    {
+        "name":"Spanish Viridian",
+        "use":"highlight",
+        "background":"rgb(28,124,84,1)",
+        "color":"rgb(255,255,255,1)"
+    },
+    {
+        "name":"Spanish Viridian",
+        "use":"highlight",
+        "background":"rgb(28,124,84,1)",
+        "color":"rgb(255,255,255,1)"
+    }
+];
 let interface = [
     {
         "es":"Progreso de Desarrollo",
@@ -228,6 +272,7 @@ let modules_progress = {
         "residencia":"none"
     }
 }
+
 function say_hi () {
     let container = document.getElementById("from_home");
     container.append(ao.qq({
@@ -358,7 +403,5 @@ window.onresize = () => {
     ao.screen_adjust()
 };
 window.onload = () => {
-    document.body.classList.add("background");
-    ao.interface(interface);
-    ao.screen_adjust();
+    ao.interface(interface,color_sets);
 };
