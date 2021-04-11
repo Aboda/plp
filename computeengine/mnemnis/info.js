@@ -33,16 +33,16 @@ let color_sets = [
         "color":"rgb(255,255,255,1)"
     },
     {
-        "name":"Spanish Viridian",
-        "use":"highlight",
-        "background":"rgb(28,124,84,1)",
-        "color":"rgb(255,255,255,1)"
+        "name":"Gray Out",
+        "use":"off_area",
+        "background":"rgb(180,180,180,.3)",
+        "color":"rgb(180,180,180,.3)"
     },
     {
-        "name":"Spanish Viridian",
-        "use":"highlight",
-        "background":"rgb(28,124,84,1)",
-        "color":"rgb(255,255,255,1)"
+        "name":"Gray Down",
+        "use":"off_device",
+        "background":"rgb(180,180,180,1)",
+        "color":"rgb(180,180,180,1)"
     }
 ];
 let interface = [

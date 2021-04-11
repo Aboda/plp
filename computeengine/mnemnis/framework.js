@@ -66,7 +66,8 @@ const ao = {
     "right":"style",
     "display":"style",
     "position":"style",
-    "alignSelf":"style"
+    "alignSelf":"style",
+    "fontSize":"style"
   },
   qq (qq,container) {
     this.aint_got_no_id(qq);
@@ -177,12 +178,12 @@ const ao = {
     let top_bar = this.qq({
       "id":"top_bar",
       "nodetype":"div",
-      "color_set":1,
+      "color_set":0,
       "position":"fixed",
       "top":"0px",
       "left":"0px",
       "right":"0px",
-      "height":"2em",
+      "height":"3rem",
       "display":"flex"
     });
     let men = {"en":"Menu","es":"Menú"};
@@ -190,6 +191,8 @@ const ao = {
       "id":"top_button",
       "nodetype":"button",
       "value":men[this.lng],
+      "color_set":2,
+      "fontSize":"130%",
       "triggers":[["click",(e)=>{
         console.log(e);
         console.log(this);
@@ -198,26 +201,35 @@ const ao = {
     top_bar.append(top_button);
     document.body.append(top_bar);
     let sliding_container = this.qq({
-      "id":"sliding_container",
+      "id":"sliding_bar",
       "nodetype":"div",
-      "color_set":2
+      "color_set":1,
+      "position":"fixed",
+      "top":"3rem",
+      "left":"-"+ao.ms.sid+"px",
+      "width":ao.ms.sid+"px",
+      "display":"flex"
     });
     let close_area = this.qq({
       "id":"sliding_closer",
       "nodetype":"div",
-      "color_set":1
+      "color_set":5,
+      "triggers":[["click",(e)=>{
+        console.log(e);
+        console.log(this);
+      }]]
     });
     for (let buttons of details) {
       let entry = this.qq({
         "id":"smbo-"+buttons[this.lng],
         "nodetype":"div",
         "innerText":buttons[this.lng],
-        "color_set":3,
+        "color_set":2,
         "triggers":[["click",buttons.go]]
       },this.if.options);
-      crafted_device.append(entry);
+      sliding_container.append(entry);
     };  
-    document.body.append(crafted_device);
+    document.body.append(sliding_container);
   },
 
   "motor":{},
