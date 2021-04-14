@@ -110,10 +110,12 @@ const ao = {
       };
       node.href = qq.target;
     };
+    /*
     if (qq.color_set != undefined && color_sets != undefined){
       node.style.color = color_sets[qq.color_set].color;
       node.style.backgroundColor = color_sets[qq.color_set].background;
-    } 
+    }
+    */
     if (qq.triggers != undefined) {
       for(let items of qq.triggers){
         node.addEventListener(items[0],items[1]);
@@ -425,6 +427,7 @@ function from_to_gray (time,animator) {
   }  
   animator.current_frame = Math.floor((time - animator.start)/animator.frame_duration);
 };
+
 function peel_rgb(rgbstring){
   let process;
   let processed = [];  
