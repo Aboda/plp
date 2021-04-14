@@ -52,10 +52,16 @@ let interface = [
     }
 ];
 
+let initial_message = {
+    "en":"Welcome to my personal development and learning environment, please let me know what brought you here to send you to the right place:",
+    "es":"Bienvenid@ a mi espacio de desarrollo y aprendisaje personal, por favor indica qué es lo que te trajo aqui para poder canalizarte al portal adecuado:"
+}
+
 window.onresize = () => {
     ao.screen_adjust();
 };
 window.onload = () => {
     ao.interface(interface);
+    document.getElementById("from_home").append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}))
 };
 

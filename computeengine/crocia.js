@@ -14,8 +14,8 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Personal Lab Portfolio"
                 },
                 "short":{
-                    "es":"Plataforma de aplicaciones",
-                    "en":"Application platform"
+                    "es":"Portafolio Laboratorio Personal",
+                    "en":"Personal Lab Portfolio"
                 },
                 "loc":"https://demian.app/",
                 "updfreq":"daily",
