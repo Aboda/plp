@@ -200,7 +200,7 @@ const ao = {
         "innerText":buttons[this.lng],
         "styles":["color_contrast_3"],
         "triggers":[["click",buttons.go]]
-      },this.if.options);
+      });
       sidenav.append(entry);
     };  
     document.body.append(sidenav);
