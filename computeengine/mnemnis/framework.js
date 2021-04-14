@@ -110,7 +110,7 @@ const ao = {
       };
       node.href = qq.target;
     };
-    if (qq.color_set != undefined){
+    if (qq.color_set != undefined && color_sets != undefined){
       node.style.color = color_sets[qq.color_set].color;
       node.style.backgroundColor = color_sets[qq.color_set].background;
     } 
@@ -438,8 +438,8 @@ function peel_rgb(rgbstring){
 }
 
 function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("sidenav").style.width = "250px";
 }
 function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("sidenav").style.width = "0";
 }
