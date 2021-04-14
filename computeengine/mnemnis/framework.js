@@ -180,18 +180,13 @@ const ao = {
     let top_bar = this.qq({
       "id":"top_bar",
       "nodetype":"div",
-      "color_set":0,
-      "position":"fixed",
-      "top":"0px",
-      "left":"0px",
-      "right":"0px",
-      "height":"3rem",
-      "display":"flex"
+      "styles":["top_bar","color_contrast_1"]
     });
     let top_button = this.qq({
       "id":"top_button",
       "nodetype":"div",
       "innerText":String.fromCharCode(9776),
+      "fontSize":"150%",
       "triggers":[["click",(e)=>{
         openNav();
         console.log(e);
@@ -203,12 +198,13 @@ const ao = {
     let sidenav = this.qq({
       "id":"sidenav",
       "nodetype":"div",
-      "styles":["sidenav"]
+      "styles":["sidenav","color_contrast_2"]
     });
     let close_area = this.qq({
       "id":"sliding_closer",
       "nodetype":"div",
       "color_set":5,
+      "styles":["color_contrast_1","closebtn"],
       "triggers":[["click",(e)=>{
         console.log(e);
         console.log(this);
@@ -220,6 +216,7 @@ const ao = {
         "id":"smbo-"+buttons[this.lng],
         "nodetype":"div",
         "innerText":buttons[this.lng],
+        "styles":["color_contrast_3"],
         "triggers":[["click",buttons.go]]
       },this.if.options);
       sidenav.append(entry);

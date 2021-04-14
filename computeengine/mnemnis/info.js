@@ -399,9 +399,3 @@ function complicated_ass_card_1(data){
     };
 };
 
-window.onresize = () => {
-    ao.screen_adjust()
-};
-window.onload = () => {
-    ao.interface(interface,color_sets);
-};
