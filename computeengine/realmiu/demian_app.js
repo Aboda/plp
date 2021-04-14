@@ -15,11 +15,10 @@ let interface = [
         "en":"Languaje: English, change to spanish",
         "go":(e)=>{
             if (ao.lng == "es"){
-                window.location.href = window.location.href + "?lng=en";
+                window.location = window.location.href + "?lng=en";
             }else if (ao.lng == "en"){
-                window.location.href = window.location.href + "?lng=es";
+                window.location = window.location.href + "?lng=es";
             }
-            window.location.href = window.location.href;
         }
     },
     {
@@ -35,7 +34,7 @@ let interface = [
         "en":"Message Me",
         "go":(params_if_any)=>{
             closeNav();
-            console.log(params_if_any.target);
+            console.log("envío de mensajes al webmaster");
         }
     },
     {
@@ -43,7 +42,7 @@ let interface = [
         "en":"FAQ",
         "go":(params_if_any)=>{
             closeNav();
-            console.log(params_if_any.target);
+            console.log("faq");
         }
     }
 ];
