@@ -28,6 +28,7 @@
 .sidenav div {
   display: block;
   cursor:pointer;
+  width: 230px;
   margin:.5em;
   padding:.5em;
   transition: 0.3s;
