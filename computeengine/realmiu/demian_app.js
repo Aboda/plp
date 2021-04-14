@@ -14,10 +14,17 @@ let interface = [
         "es":"Idioma: Español, cambiar a inglés",
         "en":"Languaje: English, change to spanish",
         "go":(e)=>{
+            let check = window.location.href.indexOf("lng=");
+            let processed;
+            if (check != -1) {
+                processed = window.location.href.slice(check,check+6);
+            }else{
+                processed = window.location.href;
+            }
             if (ao.lng == "es"){
-                window.location = window.location.host + "?lng=en";
+                window.location = processed + "?lng=en";
             }else if (ao.lng == "en"){
-                window.location = window.location.host + "?lng=es";
+                window.location = processed + "?lng=es";
             }
         }
     },
