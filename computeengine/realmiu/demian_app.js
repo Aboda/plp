@@ -17,7 +17,7 @@ let interface = [
             let check = window.location.href.indexOf("lng=");
             let processed;
             if (check != -1) {
-                processed = window.location.href.slice(check,check+6);
+                processed = window.location.href.slice(check-1,check+6);
             }else{
                 processed = window.location.href;
             }
