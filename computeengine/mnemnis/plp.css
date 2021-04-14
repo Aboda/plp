@@ -1,13 +1,9 @@
-.background{
-    background-color:rgb(255,255,255,1);
-    color:rgb(0,0,0,1);
-}
 .color_contrast_1{
     background-color:rgb(194,1,20,1);
     color:rgb(255,255,255,1);
 }
 .color_contrast_2{
-    background-color:rgb(233,241,247,1);
+    background-color:rgb(179, 222, 255);
     color:rgb(0,0,0,1);
 }
 .color_contrast_3{
@@ -21,42 +17,4 @@
 .color_contrast_5{
     background-color:rgb(28,124,84,1);
     color:rgb(255,255,255,1);
-}
-.top_bar {
-    position:fixed;
-    top:0px;
-    left:0px;
-    right:0px;
-    padding:.2em;
-    margin:.2em;
-    display:flex;
-    justify-content: space-between;
-}
-.sidenav {
-  height: 100%; 
-  width: 0; 
-  position: fixed; 
-  z-index: 1; 
-  top: 0; 
-  left: 0;
-  overflow-x: hidden;
-  transition: 0.5s;
-  display:flex;
-  flex-flow: column nowrap;
-  justify-content: space-evenly;
-}
-.sidenav div {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  cursor:pointer;
-  margin:.5em;
-  padding:.5em;
-  transition: 0.3s;
-  border-style: outset;
-  border-width: 3px;
-  border-color:darkblue;
-}
-.sidenav .closebtn {
-    align-self: flex-end;
 }

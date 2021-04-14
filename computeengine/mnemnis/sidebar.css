@@ -1,0 +1,36 @@
+.top_bar {
+    position:fixed;
+    top:0px;
+    left:0px;
+    right:0px;
+    padding:.2em;
+    margin:.2em;
+    display:flex;
+    justify-content: space-between;
+}
+.sidenav {
+  height: 100%; 
+  width: 0; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  display:flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+}
+.sidenav div {
+  display: block;
+  cursor:pointer;
+  margin:.5em;
+  padding:.5em;
+  transition: 0.3s;
+  border-style: outset;
+  border-width: 3px;
+  border-color:lightblue;
+}
+.sidenav .closebtn {
+    align-self: flex-end;
+}
