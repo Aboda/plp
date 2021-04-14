@@ -1,12 +1,16 @@
+.app_container {
+  position:absolute;
+  top:2em;
+}
 .top_bar {
-    position:fixed;
-    top:0px;
-    left:0px;
-    right:0px;
-    padding:.2em;
-    margin:.2em;
-    display:flex;
-    justify-content: space-between;
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  padding:.2em;
+  margin:.2em;
+  display:flex;
+  justify-content: space-between;
 }
 .sidenav {
   height: 100%; 
@@ -32,5 +36,5 @@
   border-color:lightblue;
 }
 .sidenav .closebtn {
-    align-self: flex-end;
+  align-self: flex-end;
 }

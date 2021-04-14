@@ -73,7 +73,6 @@ const ao = {
   },
   qq (qq,container) {
     this.aint_got_no_id(qq);
-    console.log(qq)
     var node;
     var type;
     if (this.homogenizador[qq.nodetype] == true) {
@@ -86,13 +85,9 @@ const ao = {
     if (type != undefined) {node.type = type;};
     for (let items in qq){
       if (this.pass[items] !=  undefined) {
-        console.log("items: ",items);
         if (this.pass[items] == true) {
-          console.log("transmision limpia");
           node[items] = qq[items];
         }else {
-          console.log("transmision de estilo");
-          console.log("qq[items]: ",qq[items]);
           node[this.pass[items]][items] = qq[items];
         };
 
@@ -170,8 +165,6 @@ const ao = {
       "fontSize":"150%",
       "triggers":[["click",(e)=>{
         openNav();
-        console.log(e);
-        console.log(this);
       }]]
     });
     top_bar.append(top_button);
@@ -187,8 +180,6 @@ const ao = {
       "innerText":"X",
       "styles":["color_contrast_1","closebtn"],
       "triggers":[["click",(e)=>{
-        console.log(e);
-        console.log(this);
         closeNav();
       }]]
     });
