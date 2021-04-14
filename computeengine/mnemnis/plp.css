@@ -30,6 +30,7 @@
     padding:.2em;
     margin:.2em;
     display:flex;
+    flex-flow: column nowrap;
     justify-content: space-between;
 }
 .sidenav {
