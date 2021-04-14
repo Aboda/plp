@@ -67,7 +67,9 @@ const ao = {
     "display":"style",
     "position":"style",
     "alignSelf":"style",
-    "fontSize":"style"
+    "fontSize":"style",
+    "overflowX":"style",
+    "transition":"style"
   },
   qq (qq,container) {
     this.aint_got_no_id(qq);
@@ -186,29 +188,22 @@ const ao = {
       "height":"3rem",
       "display":"flex"
     });
-    let men = {"en":"Menu","es":"Menú"};
     let top_button = this.qq({
       "id":"top_button",
-      "nodetype":"button",
-      "value":men[this.lng],
-      "color_set":2,
-      "fontSize":"130%",
+      "nodetype":"div",
+      "innerText":String.fromCharCode(9776),
       "triggers":[["click",(e)=>{
+        openNav();
         console.log(e);
         console.log(this);
       }]]
     });
     top_bar.append(top_button);
     document.body.append(top_bar);
-    let sliding_container = this.qq({
-      "id":"sliding_bar",
+    let sidenav = this.qq({
+      "id":"sidenav",
       "nodetype":"div",
-      "color_set":1,
-      "position":"fixed",
-      "top":"3rem",
-      "left":"-"+ao.ms.sid+"px",
-      "width":ao.ms.sid+"px",
-      "display":"flex"
+      "styles":["sidenav"]
     });
     let close_area = this.qq({
       "id":"sliding_closer",
@@ -219,17 +214,17 @@ const ao = {
         console.log(this);
       }]]
     });
+    sidenav.append(close_area);
     for (let buttons of details) {
       let entry = this.qq({
         "id":"smbo-"+buttons[this.lng],
         "nodetype":"div",
         "innerText":buttons[this.lng],
-        "color_set":2,
         "triggers":[["click",buttons.go]]
       },this.if.options);
-      sliding_container.append(entry);
+      sidenav.append(entry);
     };  
-    document.body.append(sliding_container);
+    document.body.append(sidenav);
   },
 
   "motor":{},
@@ -443,4 +438,11 @@ function peel_rgb(rgbstring){
     processed.push(items.trim());
   }
   return processed;
+}
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
 }
