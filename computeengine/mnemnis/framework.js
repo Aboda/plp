@@ -205,7 +205,7 @@ const ao = {
     let close_area = this.qq({
       "id":"sliding_closer",
       "nodetype":"div",
-      "color_set":5,
+      "innerText":"X",
       "styles":["color_contrast_1","closebtn"],
       "triggers":[["click",(e)=>{
         console.log(e);
