@@ -30,7 +30,6 @@
     padding:.2em;
     margin:.2em;
     display:flex;
-    flex-flow: column nowrap;
     justify-content: space-between;
 }
 .sidenav {
@@ -43,6 +42,7 @@
   overflow-x: hidden;
   transition: 0.5s;
   display:flex;
+  flex-flow: column nowrap;
   justify-content: space-between;
 }
 .sidenav div {
