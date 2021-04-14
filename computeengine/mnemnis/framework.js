@@ -210,6 +210,7 @@ const ao = {
       "triggers":[["click",(e)=>{
         console.log(e);
         console.log(this);
+        closeNav();
       }]]
     });
     sidenav.append(close_area);
