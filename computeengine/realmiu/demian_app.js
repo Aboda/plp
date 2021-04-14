@@ -15,9 +15,9 @@ let interface = [
         "en":"Languaje: English, change to spanish",
         "go":(e)=>{
             if (ao.lng == "es"){
-                window.location = window.location.href + "?lng=en";
+                window.location = window.location.host + "?lng=en";
             }else if (ao.lng == "en"){
-                window.location = window.location.href + "?lng=es";
+                window.location = window.location.host + "?lng=es";
             }
         }
     },
