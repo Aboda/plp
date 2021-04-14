@@ -14,8 +14,8 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Personal Lab Portfolio"
                 },
                 "short":{
-                    "es":"Portafolio Laboratorio Personal",
-                    "en":"Personal Lab Portfolio"
+                    "es":"PLP:Portafolio Laboratorio Personal",
+                    "en":"PLP:Personal Lab Portfolio"
                 },
                 "loc":"https://demian.app/",
                 "updfreq":"daily",
@@ -37,8 +37,8 @@ exports.set_cache_n_init = (cache) => {
                 "ganalitycs":true,
                 "gtag":"G-6MEPN29LZG",
                 "title":{
-                    "es":"Plataforma:PLP",
-                    "en":"Platform:PLP"
+                    "es":"Raíz:PLP",
+                    "en":"Root:PLP"
                 },
                 "css":[resources_cache.css.sidebar,resources_cache.css.plp],
                 "js":[resources_cache.js.framework,resources_cache.js.demian_app,resources_cache.js.plp]
