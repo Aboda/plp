@@ -1,5 +1,5 @@
 /*
-  Proven base framework
+  Homemade framework
 */
 const ao = {
   "lng":document.documentElement.lang.slice(0,2),
@@ -84,7 +84,6 @@ const ao = {
     };
     node = document.createElement(node);
     if (type != undefined) {node.type = type;};
-
     for (let items in qq){
       if (this.pass[items] !=  undefined) {
         console.log("items: ",items);
@@ -99,7 +98,6 @@ const ao = {
 
       };
     };
-
     if (qq.styles != undefined) {this.dress(node,qq.styles,true)};
     if (qq.path != undefined) {node.setAttribute("d", qq.path)};
     if (qq.nodetype == "a") {
@@ -110,12 +108,6 @@ const ao = {
       };
       node.href = qq.target;
     };
-    /*
-    if (qq.color_set != undefined && color_sets != undefined){
-      node.style.color = color_sets[qq.color_set].color;
-      node.style.backgroundColor = color_sets[qq.color_set].background;
-    }
-    */
     if (qq.triggers != undefined) {
       for(let items of qq.triggers){
         node.addEventListener(items[0],items[1]);
@@ -148,11 +140,6 @@ const ao = {
       };
     };
   },
-  "facets":{},
-  make_facet(simple){
-    this.ost(simple,"superstatus",{});
-    simple.superstatus.facet = "";
-  },
   "ms":{
     "tgt":360,
     "sid":300
@@ -169,12 +156,6 @@ const ao = {
     for (let things in this.adjust_list) {
       this.adjust_list[things].adjust();
     };
-  },
-  "if":{
-    "top":{},
-    "top_button":{},
-    "slider":{},
-    "buttons":{}
   },
   interface(details){
     let top_bar = this.qq({

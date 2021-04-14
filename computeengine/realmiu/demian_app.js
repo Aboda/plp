@@ -11,62 +11,38 @@
 
 let interface = [
     {
-        "es":"Progreso de Desarrollo",
-        "en":"Development Progress",
-        "go":()=>{
-            had_it_comming();
-            sidemenu_toggle();
-            ao.fe("https://demian.app/info/progress",(response)=>{
-                let data;
-                try{
-                    data = JSON.parse(response);
-                    console.log(data);
-                }catch (err){
-                    console.log("error parseando respuesta");
-                    console.log(err);
-                    console.log("respuesta");
-                    console.log(response);
-                }                
-                let new_entity = ost(ao,"focus",{
-                    "kill": function() {
-                        for (let item_name in ao.focus) {
-                            if (item_name != "kill") {
-                                ao.focus[item_name].kill();
-                            };
-                        };
-                    }
-                });
-                if (new_entity != true) {
-                    ao.focus.kill();
-                };
-                complicated_ass_card_1(data);
-            });
+        "es":"Idioma: Español, cambiar a inglés",
+        "en":"Languaje: English, change to spanish",
+        "go":(e)=>{
+            if (ao.lng == "es"){
+                window.location.href = window.location.href + "?lng=en";
+            }else if (ao.lng == "en"){
+                window.location.href = window.location.href + "?lng=es";
+            }
+            window.location.href = window.location.href;
         }
     },
     {
-        "es":"Estadísticas de Operación",
-        "en":"Operational Statistics",
+        "es":"Ingresar",
+        "en":"Login",
         "go":(params_if_any)=>{
-            sidemenu_toggle();
-            had_it_comming();
+            closeNav();
+            console.log("correr dinámica de loggeo de plp");
+        }
+    },
+    {
+        "es":"Contactame",
+        "en":"Message Me",
+        "go":(params_if_any)=>{
+            closeNav();
             console.log(params_if_any.target);
         }
     },
     {
-        "es":"Mensajes de usarios",
-        "en":"Users messages",
+        "es":"Preguntas Frecuentes",
+        "en":"FAQ",
         "go":(params_if_any)=>{
-            sidemenu_toggle();
-            had_it_comming();
-            console.log(params_if_any.target);
-        }
-    },
-    {
-        "es":"Interface de Control",
-        "en":"Control Interface",
-        "go":(params_if_any)=>{
-            sidemenu_toggle();
-            had_it_comming();
+            closeNav();
             console.log(params_if_any.target);
         }
     }

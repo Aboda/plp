@@ -40,7 +40,7 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Plataforma:PLP",
                     "en":"Platform:PLP"
                 },
-                "css":[resources_cache.css.plp],
+                "css":[resources_cache.css.sidebar,resources_cache.css.plp],
                 "js":[resources_cache.js.framework,resources_cache.js.demian_app,resources_cache.js.plp]
             },
             "astra":{
