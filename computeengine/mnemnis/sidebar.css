@@ -35,4 +35,5 @@
   border-style: outset;
   border-width: 3px;
   border-color:lightblue;
+  text-decoration: underline overline;
 }
