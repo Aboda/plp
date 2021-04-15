@@ -18,3 +18,8 @@
     background-color:rgb(28,124,84,1);
     color:rgb(255,255,255,1);
 }
+.spaced{
+    margin: .3em;
+    padding: .3em;
+    transition: 0.5s;
+}
