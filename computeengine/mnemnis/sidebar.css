@@ -25,10 +25,10 @@
   flex-flow: column nowrap;
   justify-content: space-evenly;
 }
-.sidenav div {
+.sidenav .main_opt {
   display: block;
-  cursor:pointer;
-  width: 230px;
+  cursor: pointer;
+  width: 210px;
   margin:.5em;
   padding:.5em;
   transition: 0.3s;
@@ -38,4 +38,5 @@
 }
 .sidenav .closebtn {
   align-self: flex-end;
+  font-size: 200%;
 }

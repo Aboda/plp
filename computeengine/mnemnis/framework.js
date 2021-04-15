@@ -189,7 +189,7 @@ const ao = {
         "id":"smbo-"+buttons[this.lng],
         "nodetype":"div",
         "innerText":buttons[this.lng],
-        "styles":["color_contrast_3"],
+        "styles":["color_contrast_3","main_opt"],
         "triggers":[["click",buttons.go]]
       });
       sidenav.append(entry);
