@@ -198,8 +198,8 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Narrador:PLP",
                             "en":"Storyteller:PLP"
                         },
-                        "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "css":[resources_cache.css.sidebar],
+                        "js":[resources_cache.js.framework,resources_cache.js.demian_app_narrar]
                     }
                 },
                 "info":{
@@ -804,8 +804,24 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
                 "html":[titles[chosen_lng]],
                 "languaje":chosen_lng,
                 "title":"info:plp",
-                "css":chosen_domain.astra.info.intra.css,
-                "js":chosen_domain.astra.info.intra.js
+                "css":chosen_domain.astra[adjusted_path].intra.css,
+                "js":chosen_domain.astra[adjusted_path].intra.js
+            };
+            finish_request (res,200,akhenon.html(options));
+            return;    
+        }
+
+        if (req.headers.host == "demian.app" && adjusted_path == "narrar") {
+            let titles = {
+                "en":"<h1>Narrative Tools</h1>",
+                "es":"<h1>Herramientas Narrativas</h1>"
+            }
+            let options = {
+                "html":[titles[chosen_lng]],
+                "languaje":chosen_lng,
+                "title":"plp:narrar",
+                "css":chosen_domain.astra[adjusted_path].intra.css,
+                "js":chosen_domain.astra[adjusted_path].intra.js
             };
             finish_request (res,200,akhenon.html(options));
             return;    
@@ -834,8 +850,13 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         /*
             Solo respuestas de subrutas múltiple nivel
         */
-        let trimmed_referer = akhenon.adjust_path(akhenon.clear_query(req.headers.referer));
+        let trimmed_referer;
+        if (req.headers.referer != undefined) {
+            trimmed_referer = akhenon.adjust_path(akhenon.clear_query(req.headers.referer));
+        }
+
         if (as_array != undefined) {
+
             if (req.headers.host == "demian.app" && 
                 as_array[0] == "info" && 
                 as_array[1] == "progress" &&
@@ -854,6 +875,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
                     finish_request (res,200,JSON.stringify(response));
                 return;
             }
+            
         }        
         
         let options = {

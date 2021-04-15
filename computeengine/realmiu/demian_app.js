@@ -64,24 +64,40 @@ let final_message = {
 
 let initial_options = [
     {
-        "es":"Soy un profesionista independiente o empresa pequeña en búsqueda de consultoría para automatizar un proceso existente o bien atacar un problema técnico que no he solventado.",
-        "en":"I am an independant professional or small business searching for consulting services to automate an existing process or to tackle an unresolved technical issue."
+        "es":"Soy un profesionista independiente, empleado o empresa pequeña en búsqueda de consultoría para automatizar un proceso existente o bien atacar un problema técnico que no he solventado.",
+        "en":"I am an independant professional, employee or small business searching for consulting services to automate an existing process or to tackle an unresolved technical issue.",
+        "go":(params_if_any)=>{
+            console.log("Generar batería de aclaración para saber si mostrarle portafolio, cv, formato de mensaje sencillo, o formato de agenda de consultoría pagada");
+        }
     },
     {
         "es":"Soy una empresa mediana o grande en búsqueda de un desarrollador competente y autodidacta, con experiencia corporativa y de perspectiva integral para unirse a mi equipo de desarrollo existente.",
-        "en":"I am mid to large business in search of a skilled, self teaching developer with corporate expereince and wide perspective to join my existing development team"
+        "en":"I am mid to large business in search of a skilled, self teaching developer with corporate expereince and wide perspective to join my existing development team",
+        "go":(params_if_any)=>{
+            console.log("Generar batería de aclaración para saber si mostrarle portafolio, cv o formato de mensaje sencillo");
+        }
     },
     {
         "es":"Soy una startup con un proyecto de app que deseo desarrollar, o que ya se encuentra en desarrollo y deseo una perspectiva adicional",
-        "en":"I am a startup with an app proyect that I want developed, or that I am already developing and want to have an additional perspective"
+        "en":"I am a startup with an app proyect that I want developed, or that I am already developing and want to have an additional perspective",
+        "go":(params_if_any)=>{
+            console.log("Generar batería de aclaración para saber si mostrarle formato de mensaje sencillo, o formato de descripción de app");
+        }
     },
     {
         "es":"Soy usuario de algúna de las web apps existentes de esta plataforma",
-        "en":"I am a user from one of the existing web apps in this platform"
+        "en":"I am a user from one of the existing web apps in this platform",
+        "go":(params_if_any)=>{
+            console.log("Enviar a demian.app/login para manejar la identificación general con la plataforma");
+        }
     },
     {
         "es":"Ninguno de los anteriores",
-        "en":"None of the above"
+        "en":"None of the above",
+        "go":(params_if_any)=>{
+            console.log("Generar segunda bateria consultando si hay otro asunto profesional que quiera tratar o bien, enviar a medios estáticos");
+            console.log("Me gustaría generar una tercera batería que ofresca otros entretenimientos tipo geek o de visualización de datos");
+        }
     }
 ]
 
@@ -106,6 +122,6 @@ window.onload = () => {
     ao.main = document.getElementById("from_home");
     ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
     ao.main.append(do_opts(initial_options));
-    ao.main.append(ao.qq({"nodetype":"p","innerText":final_message[ao.lng]}));
+    ao.main.append(ao.qq({"nodetype":"p","innerText":final_message[ao.lng],"styles":["byemessage"]}));
 };
 
