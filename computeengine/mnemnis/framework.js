@@ -189,7 +189,7 @@ const ao = {
       "nodetype":"div",
       "innerText":" "
     });
-    sidenav.append(entry);
+    sidenav.append(spacer_entry);
     for (let buttons of details) {
       let entry = this.qq({
         "id":"smbo-"+buttons[this.lng],
