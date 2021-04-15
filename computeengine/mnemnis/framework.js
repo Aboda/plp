@@ -178,7 +178,7 @@ const ao = {
       "id":"sliding_closer",
       "nodetype":"div",
       "innerText":String.fromCharCode(9776),
-      "styles":["top_bar"],
+      "styles":["second_bar","color_contrast_1"],
       "triggers":[["click",(e)=>{
         closeNav();
       }]]
