@@ -154,7 +154,7 @@ const ao = {
   },
   interface(details){
     let top_bar = this.qq({
-      "id":"top_bar",
+      "id":"top_bar_true",
       "nodetype":"div",
       "styles":["top_bar","color_contrast_1"]
     });
@@ -177,8 +177,8 @@ const ao = {
     let close_area = this.qq({
       "id":"sliding_closer",
       "nodetype":"div",
-      "innerText":"X",
-      "styles":["color_contrast_1","closebtn"],
+      "innerText":String.fromCharCode(9776),
+      "styles":["top_bar"],
       "triggers":[["click",(e)=>{
         closeNav();
       }]]
