@@ -11,6 +11,7 @@
   margin:.2rem;
   height: 2rem;
   display:flex;
+  font-size: 150%;
   justify-content: space-between;
 }
 .second_bar {
@@ -22,6 +23,7 @@
   margin:.2rem;
   height: 2rem;
   display:flex;
+  font-size: 150%;
   justify-content: space-between;
 }
 .sidenav {
@@ -44,5 +46,6 @@
   margin:.5em;
   padding:.5em;
   transition: 0.3s;
+  font-size: 130%;
   text-decoration: underline;
 }

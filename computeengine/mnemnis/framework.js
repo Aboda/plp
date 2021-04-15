@@ -162,7 +162,6 @@ const ao = {
       "id":"top_button",
       "nodetype":"div",
       "innerText":String.fromCharCode(9776),
-      "fontSize":"150%",
       "triggers":[["click",(e)=>{
         openNav();
       }]]
