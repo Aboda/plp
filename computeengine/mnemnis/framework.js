@@ -187,7 +187,7 @@ const ao = {
     let spacer_entry = this.qq({
       "id":"spacer_entry",
       "nodetype":"div",
-      "innerText":" "
+      "styles":["main_opt"]
     });
     sidenav.append(spacer_entry);
     for (let buttons of details) {
