@@ -67,8 +67,8 @@ let initial_options = [
         "en":"I am mid to large business in search of a skilled, self teaching developer with corporate expereince and wide perspective to join my existing development team"
     },
     {
-        "es":"Soy una startup con un proyecto de app que deseo desarrollar",
-        "en":"I am a startup with an app proyect that I want developed"
+        "es":"Soy una startup con un proyecto de app que deseo desarrollar, o que ya se encuentra en desarrollo y deseo una perspectiva adicional",
+        "en":"I am a startup with an app proyect that I want developed, or that I am already developing and want to have an additional perspective"
     },
     {
         "es":"Soy usuario de algúna de las web apps existentes de esta plataforma",
@@ -87,7 +87,7 @@ function do_opts(initial_options) {
         option_container.append(ao.qq({
             "nodetype":"div",
             "innerText":items[ao.lng],
-            "styles":["color_contrast_5","spaced"]
+            "styles":["botopts"]
         },ao.opt1));
     }
     return option_container;
