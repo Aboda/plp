@@ -26,4 +26,5 @@
     border-width: .2em;
     border-style: outset;
     border-color: gray;
+    cursor: pointer;
 }

@@ -57,6 +57,11 @@ let initial_message = {
     "es":"Bienvenid@ a mi espacio de desarrollo y aprendizaje personal, por favor indica qué es lo que te trajo aqui para poder canalizarte al portal adecuado:"
 }
 
+let final_message = {
+    "en":"This site is built on a virtual machine in google cloud using ubuntu, node and certbot. All code written by me, no additional libraries where employed. I am profoundly grateful towards the google community for all the resources made available free of charge, It was that what brought me here.",
+    "es":"Este sitio está construido en una máquina virtual en la nube de google, utiliza ubuntu node y certbot. Todo el código fue escrito por mi, no fuerno empleadas librerías adicionales. Agradezco desde el fondo de mi corazón a la comunidad google por todos los recursos que hacen disponibles sin cargo alguno, fueron ellos los que me trajeron aquí."
+}
+
 let initial_options = [
     {
         "es":"Soy un profesionista independiente o empresa pequeña en búsqueda de consultoría para automatizar un proceso existente o bien atacar un problema técnico que no he solventado.",
@@ -99,7 +104,8 @@ window.onresize = () => {
 window.onload = () => {
     ao.interface(sidemenu);
     ao.main = document.getElementById("from_home");
-    ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}))
-    ao.main.append(do_opts(initial_options))
+    ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
+    ao.main.append(do_opts(initial_options));
+    ao.main.append(ao.qq({"nodetype":"p","innerText":final_message[ao.lng]}));
 };
 
