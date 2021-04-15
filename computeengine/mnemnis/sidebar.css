@@ -7,18 +7,20 @@
   top:0px;
   left:0px;
   right:0px;
-  padding:.2em;
-  margin:.2em;
+  padding:.2rem;
+  margin:.2rem;
+  height: 2rem;
   display:flex;
   justify-content: space-between;
 }
 .second_bar {
-  position:relative;
+  position:absolute;
   top:0px;
   left:0px;
   right:0px;
-  padding:.2em;
-  margin:.2em;
+  padding:.2rem;
+  margin:.2rem;
+  height: 2rem;
   display:flex;
   justify-content: space-between;
 }
@@ -33,7 +35,7 @@
   transition: 0.5s;
   display:flex;
   flex-flow: column nowrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 .sidenav .main_opt {
   display: block;
@@ -42,8 +44,5 @@
   margin:.5em;
   padding:.5em;
   transition: 0.3s;
-  border-style: outset;
-  border-width: 3px;
-  border-color:lightblue;
-  text-decoration: underline overline;
+  text-decoration: underline;
 }
