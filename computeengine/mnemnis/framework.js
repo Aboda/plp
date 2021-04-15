@@ -184,6 +184,12 @@ const ao = {
       }]]
     });
     sidenav.append(close_area);
+    let spacer_entry = this.qq({
+      "id":"spacer_entry",
+      "nodetype":"div",
+      "innerText":" "
+    });
+    sidenav.append(entry);
     for (let buttons of details) {
       let entry = this.qq({
         "id":"smbo-"+buttons[this.lng],
