@@ -4,6 +4,12 @@
 //Carga de recursos a memoria. 
 let resources_cache = {}; 
 let domain_tree = {};
+let track_pass = {
+    "facebooksdk":true,
+    "fbid":true,
+    "ganalitycs":true,
+    "gtag":true,
+}
 exports.set_cache_n_init = (cache) => {
     resources_cache = cache
     domain_tree = {
@@ -688,11 +694,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         let as_array;
 
         if (easyurl.pathname == "/") {
-            let options = akhenon.copy_obj(chosen_domain.intra);
-            options.languaje = chosen_lng; 
-            options.title = options.title[chosen_lng];
-            options.html = ["<h1>"+chosen_domain.meta.short[chosen_lng]+"</h1>"];
-            finish_request (res,200,akhenon.html(options));
+            finish_request (res,200,akhenon.html(serve_level_0(chosen_domain,chosen_lng)));
             return;
         }else{
             if (adjusted_path.indexOf("/") != -1) {
@@ -796,55 +798,21 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         };
 
         if (req.headers.host == "demian.app" && adjusted_path == "info") {
-            let titles = {
-                "en":"<h1>Platform Information</h1>",
-                "es":"<h1>Información de Plataforma</h1>"
-            }
-            let options = {
-                "html":[titles[chosen_lng]],
-                "languaje":chosen_lng,
-                "title":"info:plp",
-                "css":chosen_domain.astra[adjusted_path].intra.css,
-                "js":chosen_domain.astra[adjusted_path].intra.js
-            };
-            finish_request (res,200,akhenon.html(options));
+            finish_request (res,200,akhenon.html(
+                serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
             return;    
         }
 
         if (req.headers.host == "demian.app" && adjusted_path == "narrar") {
-            let titles = {
-                "en":"<h1>Narrative Tools</h1>",
-                "es":"<h1>Herramientas Narrativas</h1>"
-            }
-            let options = {
-                "html":[titles[chosen_lng]],
-                "languaje":chosen_lng,
-                "title":"plp:narrar",
-                "css":chosen_domain.astra[adjusted_path].intra.css,
-                "js":chosen_domain.astra[adjusted_path].intra.js
-            };
-            finish_request (res,200,akhenon.html(options));
+            finish_request (res,200,akhenon.html(
+                serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
             return;    
         }
 
         if (req.headers.host == "demian.app" && adjusted_path == "somema") {
-            let hones = {
-                "en":"<h1>Social media manager</h1>",
-                "es":"<h1>Administrador de redes sociales</h1>"
-            }
-            let options = {
-                "html":[hones[chosen_lng]],
-                "languaje":chosen_lng,
-                "title":chosen_domain.astra.somema.intra.title[chosen_lng],
-                "facebooksdk":chosen_domain.astra.somema.intra.facebooksdk,
-                "fbid":chosen_domain.astra.somema.intra.fbid,
-                "ganalitycs":chosen_domain.astra.somema.intra.ganalitycs,
-                "gtag":chosen_domain.astra.somema.intra.gtag,
-                "css":chosen_domain.astra.somema.intra.css,
-                "js":chosen_domain.astra.somema.intra.js
-            };
-            finish_request (res,200,akhenon.html(options));
-            return;    
+            finish_request (res,200,akhenon.html(
+                serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
+            return;     
         }
 
         /*
@@ -1026,4 +994,35 @@ function index_div (object_meta,chosen_lng,mark) {
         dc = dc + "</div>\n";
     }
     return dc;
+}
+function serve_level_0(chosen_domain,chosen_lng){
+    let hedo = {
+        "html":["<h1>"+chosen_domain.meta.short[chosen_lng]+"</h1>"],
+        "languaje":chosen_lng,
+        "title":chosen_domain.intra.title[chosen_lng],
+        "css":chosen_domain.intra.css,
+        "js":chosen_domain.intra.js
+    };
+    for (let keys in track_pass) {
+        if (chosen_domain.intra[keys] != undefined) {
+            hedo[keys] = chosen_domain.intra[keys];
+        };
+    };
+    return hedo;
+}
+
+function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
+    let hedo = {
+        "html":["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>"],
+        "languaje":chosen_lng,
+        "title":chosen_domain.astra[adjusted_path].intra.title[chosen_lng],
+        "css":chosen_domain.astra[adjusted_path].intra.css,
+        "js":chosen_domain.astra[adjusted_path].intra.js
+    }
+    for (let keys in track_pass) {
+        if (chosen_domain.astra[adjusted_path].intra[keys] != undefined) {
+            hedo[keys] = chosen_domain.astra[adjusted_path].intra[keys];
+        }    
+    }
+    return hedo;
 }
