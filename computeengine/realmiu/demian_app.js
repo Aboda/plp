@@ -65,7 +65,7 @@ let final_message = {
 let initial_options = [
     {
         "es":"Soy un profesionista independiente, empleado o empresa pequeña en búsqueda de consultoría para automatizar un proceso existente o bien atacar un problema técnico que no he solventado.",
-        "en":"I am an independant professional, employee or small business searching for consulting services to automate an existing process or to tackle an unresolved technical issue.",
+        "en":"I am an independent professional, employee or small business searching for consulting services to automate an existing process or to tackle an unresolved technical issue.",
         "go":(params_if_any)=>{
             console.log("Generar batería de aclaración para saber si mostrarle portafolio, cv, formato de mensaje sencillo, o formato de agenda de consultoría pagada");
         }

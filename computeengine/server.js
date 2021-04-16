@@ -37,6 +37,7 @@ var cache = {
         "plp":fs.readFileSync("./mnemnis/plp.css").toString(),
         "ren":fs.readFileSync("./mnemnis/ren.css").toString(),
         "edgy":fs.readFileSync("./mnemnis/edgy.css").toString(),
+        "prh":fs.readFileSync("./mnemnis/prh.css").toString(),
         "sidebar":fs.readFileSync("./mnemnis/sidebar.css").toString()
     },
     "js":{

@@ -204,7 +204,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Narrador:PLP",
                             "en":"Storyteller:PLP"
                         },
-                        "css":[resources_cache.css.sidebar],
+                        "css":[resources_cache.css.sidebar,resources_cache.css.prh],
                         "js":[resources_cache.js.framework,resources_cache.js.demian_app_narrar]
                     }
                 },
