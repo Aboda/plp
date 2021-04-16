@@ -15,7 +15,7 @@
   justify-content: space-between;
 }
 .second_bar {
-  position:absolute;
+  position:sticky;
   top:0px;
   left:0px;
   right:0px;
