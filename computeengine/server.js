@@ -64,14 +64,18 @@ https.createServer(server_options, (req, res) => {
     try {
         //Cuenta la acción
         simple_counter++
-        log_JSON({
+        let action_report = {
             "service_no":simple_counter,
             "timestamp":new Date(),
             "caller_ip":akhenon.clean_ipv6_trail_if_present(req.connection.remoteAddress),
             "host":req.headers.host,
             "url":req.url,
             "method":req.method,
-        });
+        }
+        if (req.headers.referer != undefined) {
+            action_report.referer = req.headers.referer;
+        }
+        log_JSON(action_report);
         //Procesa la solicitud
         crocia.gatekeep(req,res,akhenon,simple_counter);
         //Cacha errores y los loggea
