@@ -206,13 +206,15 @@ const ao = {
   logcontrol(muac){
     switch (muac.st){
       case "check_login_status":
-        let fb_status;
-        try{
-          fb_status = FB.getLoginStatus();
-        }catch(err){
-          fb_status = "No SDK";
-        }
-        console.log(fb_status);
+        setTimeout(function () {
+          let fb_status;
+          try{
+            fb_status = FB.getLoginStatus();
+          }catch(err){
+            fb_status = "No SDK";
+          }
+          console.log(fb_status);
+        },2500);
       break;
     }
   }
