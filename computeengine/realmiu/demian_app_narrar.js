@@ -50,7 +50,6 @@ let sidemenu = [
         "en":"Profile",
         "go":(params_if_any)=>{
             closeNav();
-            console.log("enviar a datos de usuario");
         }
     },
     {
@@ -58,7 +57,6 @@ let sidemenu = [
         "en":"Logoff",
         "go":(params_if_any)=>{
             closeNav();
-            console.log("cerrado de sesión");
         }
     },
     {
@@ -127,8 +125,8 @@ let sidemenu = [
 ];
 
 let initial_message = {
-    "en":"Welcome to the storytelling web tools app, this is a database construction and curation for an ongoing narrative about a reality of magic very semejant to us",
-    "es":"Bienvenido al sitio de herramientas web para la creación de una base de datos de una narrativa al respecto de un mundo de magia semejante al nuestro"
+    "en":"Welcome to the storytelling web tools app, this is a database construction and curation tool for ongoing narrations",
+    "es":"Bienvenido al sitio de herramientas web para la creación y curación de base de datos de narrativas en curso"
 }
 
 let follow_message = {
@@ -142,7 +140,10 @@ window.onresize = () => {
 
 window.onload = () => {
     ao.interface(sidemenu);
+    ao.logcontrol({"st":"check_login_status"});
+    /*
     ao.main = document.getElementById("from_home");
     ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
     ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
+    */
 };
