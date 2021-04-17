@@ -228,7 +228,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Info:Demian",
                             "en":"Info:Demian"
                         },
-                        "css":[resources_cache.css.edgy],
+                        "css":[resources_cache.css.sdb,resources_cache.css.edg],
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_app_info]
                     }
                 }
