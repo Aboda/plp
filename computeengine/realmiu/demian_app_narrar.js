@@ -102,7 +102,7 @@ let sidemenu = [
         }
     },
     {
-        "es":"Cosmovición",
+        "es":"Cosmovisión",
         "en":"Worldview",
         "go":(params_if_any)=>{
             closeNav();
