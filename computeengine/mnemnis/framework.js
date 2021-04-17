@@ -215,3 +215,12 @@ function openNav() {
 function closeNav() {
   document.getElementById("sidenav").style.width = "0";
 }
+function recursive_simple_delete(node,startat) {
+  if (startat == undefined){startat = 0};
+  for (let i = startat; i < ao.main.childNodes.length ; i++) {
+    if (ao.main.childNodes[i].childNodes.length > 0) {
+      recursive_simple_delete(node);
+    }
+    ao.simple(ao.main.childNodes[i].id).kill();
+  }
+}

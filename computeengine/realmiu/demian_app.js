@@ -31,7 +31,7 @@ let sidemenu = [
         "en":"Login",
         "go":(params_if_any)=>{
             closeNav();
-            console.log("correr dinámica de loggeo de plp");
+            console.log("correr dinámica de loggeo");
         }
     },
     {
@@ -72,7 +72,7 @@ let initial_options = [
     },
     {
         "es":"Soy una empresa mediana o grande en búsqueda de un desarrollador competente y autodidacta, con experiencia corporativa y de perspectiva integral para unirse a mi equipo de desarrollo existente.",
-        "en":"I am mid to large business in search of a skilled, self teaching developer with corporate expereince and wide perspective to join my existing development team",
+        "en":"I am mid to large business in search of a skilled, self teaching developer with corporate experience and wide perspective to join my existing development team",
         "go":(params_if_any)=>{
             console.log("Generar batería de aclaración para saber si mostrarle portafolio, cv o formato de mensaje sencillo");
         }
@@ -88,7 +88,29 @@ let initial_options = [
         "es":"Soy usuario de algúna de las web apps existentes de esta plataforma",
         "en":"I am a user from one of the existing web apps in this platform",
         "go":(params_if_any)=>{
-            console.log("Enviar a demian.app/login para manejar la identificación general con la plataforma");
+            recursive_simple_delete(ao.main,1);
+            let ready_apps_message = {
+                "es":"Seleccióna tu app",
+                "en":"Choose your app"
+            }
+            ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]}));
+            let ready_options = {
+                "Narrador":{
+                    "en":"Storytelling Tools",
+                    "es":"Herramientas Narrativas",
+                    "go":()=>{
+
+                    }
+                },
+                "SOmeMA":{
+                    "es":"Herramientas Redes Sociales",
+                    "en":"Social Media Manager",
+                    "go":()=>{
+                        
+                    }
+                }
+            }
+            do_opts(ready_options);
         }
     },
     {

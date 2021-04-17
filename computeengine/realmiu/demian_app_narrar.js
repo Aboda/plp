@@ -140,9 +140,7 @@ function initial_page_setup(response){
     if (response.status === "connected") {
         ao.fbui = response.authResponse.userID;
         ao.fbat = response.authResponse.accessToken;
-        ao.interface(sidemenu);
-        ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
-        ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
+        start_interface();
     } else {
         ao.main.append(build_default_login_window({
             "en":"Only fb login at the time",
@@ -172,6 +170,11 @@ function install_facebook() {
         "src":"https://connect.facebook.net/en_US/sdk.js"
     }));
 }
+function start_interface() {
+    ao.interface(sidemenu);
+    ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
+    ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
+}
 
 function build_facebook_login_button(){
     let button = ao.qq({
@@ -184,6 +187,7 @@ function build_facebook_login_button(){
     button.setAttribute("data-layout","rounded");
     button.setAttribute("data-auto-logout-link","false");
     button.setAttribute("data-use-continue-as","true");
+    button.setAttribute("data-onlogin",start_interface);
     return button;
 }
 
