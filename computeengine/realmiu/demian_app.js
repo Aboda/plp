@@ -91,14 +91,14 @@ let initial_options = [
                     "en":"Storytelling Tools",
                     "es":"Herramientas Narrativas",
                     "go":()=>{
-                        console.log("lanzando ST");
+                        window.location.href = "https://demian.app/narrar";
                     }
                 },
                 { 
                     "es":"Herramientas Redes Sociales",
                     "en":"Social Media Manager",
                     "go":()=>{
-                        console.log("lanzando SOmeMA");
+                        window.location.href = "https://demian.app/somema";
                     }
                 }
             ];
