@@ -235,8 +235,7 @@ function complicated_ass_card_1(data){
     let chosen_lng = document.documentElement.lang.slice(0,2);
     let container = ao.qq({
         "id":"the_guy_who_always_dies",
-        "nodetype":"div",
-        "styles":["layouter"]
+        "nodetype":"div"
     },ao.focus);
     let where = document.getElementById("from_home");
     where.append(container);
@@ -262,8 +261,7 @@ function complicated_ass_card_1(data){
         container.append(root_card);
         
         let root_info_container = ao.qq({
-            "nodetype":"div",
-            "styles":["layouter"]
+            "nodetype":"div"
         },ao.focus);
         root_card.append(root_info_container);
 
