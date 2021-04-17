@@ -11,8 +11,8 @@
 
 let sidemenu = [
     {
-        "es":"Idioma: Español, cambiar a inglés",
-        "en":"Languaje: English, change to spanish",
+        "es":"Idioma: Español, Change to English",
+        "en":"Languaje: English, Cambiar a Español",
         "go":(e)=>{
             let processed = window.location.href;
             let check = processed.indexOf("?");
@@ -24,14 +24,6 @@ let sidemenu = [
             }else if (ao.lng == "en"){
                 window.location = processed + "?lng=es";
             }
-        }
-    },
-    {
-        "es":"Ingresar",
-        "en":"Login",
-        "go":(params_if_any)=>{
-            closeNav();
-            console.log("correr dinámica de loggeo");
         }
     },
     {
@@ -88,7 +80,6 @@ let initial_options = [
         "es":"Soy usuario de algúna de las web apps existentes de esta plataforma",
         "en":"I am a user from one of the existing web apps in this platform",
         "go":(params_if_any)=>{
-            console.log(params_if_any)
             controller_simple_delete(ao.flow.init);
             let ready_apps_message = {
                 "es":"Seleccióna tu app",
