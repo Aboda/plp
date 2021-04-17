@@ -89,7 +89,7 @@ let initial_options = [
         "en":"I am a user from one of the existing web apps in this platform",
         "go":(params_if_any)=>{
             console.log(params_if_any)
-            recursive_simple_delete(ao.main,1);
+            controller_simple_delete(ao.flow.init);
             let ready_apps_message = {
                 "es":"Seleccióna tu app",
                 "en":"Choose your app"
@@ -125,15 +125,14 @@ let initial_options = [
 ]
 
 function do_opts(opts,controller) {
-    ao.opt1 = {};
-    let option_container = ao.qq({"nodetype":"div","id":"option_container"},ao.opt1);
+    let option_container = ao.qq({"nodetype":"div","id":"option_container"},controller);
     for (items of opts) {
         option_container.append(ao.qq({
             "nodetype":"div",
             "innerText":items[ao.lng],
             "styles":["botopts"],
             "triggers":[["click",items.go]]
-        },ao.opt1));
+        },controller));
     }
     return option_container;
 }
@@ -144,9 +143,10 @@ window.onresize = () => {
 
 window.onload = () => {
     ao.interface(sidemenu);
+    ao.flow.init = {}
     ao.main = document.getElementById("from_home");
-    ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
-    ao.main.append(do_opts(initial_options));
-    ao.main.append(ao.qq({"nodetype":"p","innerText":final_message[ao.lng],"styles":["byemessage"]}));
+    ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]},ao.flow.init));
+    ao.main.append(do_opts(initial_options,ao.flow.init));
+    ao.main.append(ao.qq({"nodetype":"p","innerText":final_message[ao.lng],"styles":["byemessage"]},ao.flow.init));
 };
 
