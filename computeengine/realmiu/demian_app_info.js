@@ -18,7 +18,7 @@ let sidemenu = [
                     console.log("respuesta");
                     console.log(response);
                 }                
-                let new_entity = ost(ao,"focus",{
+                let new_entity = ao.ost(ao,"focus",{
                     "kill": function() {
                         for (let item_name in ao.focus) {
                             if (item_name != "kill") {
@@ -227,6 +227,7 @@ let modules_progress = {
 
 function start_interface() {
     ao.interface(sidemenu);
+    ao.main = document.getElementById("from_home");
     ao.main.append(ao.qq({"nodetype":"p","innerText":hi_message[ao.lng]}));
 }
 
