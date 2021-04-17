@@ -89,11 +89,15 @@ exports.html = (options,chosen_lng) => {
     ph = ph + "</body>\n";
     if (options.js != undefined) {
         ph = ph + "<script>\n";
+        let wait_1 = 0;
         for (modules of options.js) {
+            if (wait_1 == 1) {
+                if (options.facebooksdk == true) {
+                    ph = ph + "ao.fbid = "+options.fbid+"\n";
+                }
+            }
             ph = ph + modules+"\n";
-        }
-        if (options.facebooksdk == true) {
-            ph = ph + "ao.fbid = "+options.fbid+"\n";
+            wait_1++;
         }
         ph = ph + "</script>\n";
     }

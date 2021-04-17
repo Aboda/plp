@@ -134,33 +134,22 @@ let follow_message = {
     "es":"Por favor seleccióna el tipo de registro que deseas del menú de la izquierda"
 }
 
-window.onresize = () => {
-    ao.screen_adjust();
-};
-
-window.onload = () => {
-    install_facebook();
-    /*
-    FB.getLoginStatus(function(response) {
-
-    });
-    */
-};
-
+function initial_page_setup(response){
+    if (response.status === "connected") {
+        ao.fbui = response.authResponse.userID;
+        ao.fbat = response.authResponse.accessToken;
+        ao.interface(sidemenu);
+        ao.main = document.getElementById("from_home");
+        ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
+        ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
+    } else {
+        FB.login();
+    };
+    FB.Event.unsubscribe("auth.statusChange", initial_page_setup);
+}
 function install_facebook() {
     window.fbAsyncInit = function () {
-        FB.Event.subscribe('auth.statusChange', function(response) {
-            if (response.status === 'connected') {
-                ao.fbui = response.authResponse.userID;
-                ao.fbat = response.authResponse.accessToken;
-                ao.interface(sidemenu);
-                ao.main = document.getElementById("from_home");
-                ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
-                ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
-            } else {
-                FB.login(console.log("respuesta de login",response));
-            };
-        });
+        FB.Event.subscribe("auth.statusChange", initial_page_setup);
         FB.init({
             "appId" : ao.fbid,
             "autoLogAppEvents":true,
@@ -169,15 +158,20 @@ function install_facebook() {
             "version":"v10.0"
         });
     };
-  
+
     document.getElementsByTagName('head')[0].appendChild(ao.qq({
-      "nodetype":"script",
-      "async":true,
-      "defer":true,
-      "crossorigin":"anonymous",
-      "src":"https://connect.facebook.net/en_US/sdk.js",
-      "triggers":[["load",function() {
-        alert("Script loaded and ready");
-      }]]
+        "nodetype":"script",
+        "async":true,
+        "defer":true,
+        "crossorigin":"anonymous",
+        "src":"https://connect.facebook.net/en_US/sdk.js"
     }));
-  }
+}
+
+window.onresize = () => {
+    ao.screen_adjust();
+};
+
+window.onload = () => {
+    install_facebook();
+};
