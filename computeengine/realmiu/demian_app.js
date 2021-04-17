@@ -141,6 +141,7 @@ function do_opts(opts) {
 window.onresize = () => {
     ao.screen_adjust();
 };
+
 window.onload = () => {
     ao.interface(sidemenu);
     ao.main = document.getElementById("from_home");

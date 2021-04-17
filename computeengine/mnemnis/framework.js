@@ -221,6 +221,6 @@ function recursive_simple_delete(node,startat) {
     if (ao.main.childNodes[i].childNodes.length > 0) {
       recursive_simple_delete(node);
     }
-    ao.simple(ao.main.childNodes[i].id).kill();
+    ao.simple[ao.main.childNodes[i].id].kill();
   }
 }
