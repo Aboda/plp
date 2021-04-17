@@ -139,11 +139,16 @@ window.onresize = () => {
 };
 
 window.onload = () => {
-    ao.interface(sidemenu);
-    ao.logcontrol({"st":"check_login_status"});
-    /*
-    ao.main = document.getElementById("from_home");
-    ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
-    ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
-    */
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            ao.fbid = response.authResponse.userID;
+            ao.fbat = response.authResponse.accessToken;
+            ao.interface(sidemenu);
+            ao.main = document.getElementById("from_home");
+            ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
+            ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
+        } else {
+            FB.login(console.log("respuesta de login",response));
+        };
+    });
 };

@@ -202,25 +202,6 @@ const ao = {
       sidenav.append(entry);
     };  
     document.body.append(sidenav);
-  },
-  logcontrol(muac){
-    switch (muac.st){
-      case "check_login_status":
-        setTimeout(function () {
-          let fb_status;
-          try{
-            FB.getLoginStatus((response)=>{
-              console.log({response});
-              fb_status = response.status;
-              
-            });
-          }catch(err){
-            fb_status = "No SDK";
-          }
-          console.log(fb_status)
-        },2500);
-      break;
-    }
   }
 };
 function openNav() {
