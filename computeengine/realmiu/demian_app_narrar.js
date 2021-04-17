@@ -135,15 +135,18 @@ let follow_message = {
 }
 
 function initial_page_setup(response){
+    ao.main = document.getElementById("from_home");
     if (response.status === "connected") {
         ao.fbui = response.authResponse.userID;
         ao.fbat = response.authResponse.accessToken;
         ao.interface(sidemenu);
-        ao.main = document.getElementById("from_home");
         ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
         ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
     } else {
-        FB.login();
+        ao.main.append(build_default_login_window({
+            "en":"Only fb login at the time",
+            "es":"Solo fb login por el momento"
+        }));
     };
     FB.Event.unsubscribe("auth.statusChange", initial_page_setup);
 }
@@ -166,6 +169,29 @@ function install_facebook() {
         "crossorigin":"anonymous",
         "src":"https://connect.facebook.net/en_US/sdk.js"
     }));
+}
+
+function build_facebook_login_button(){
+    let button = ao.qq({
+        "nodetype":"div",
+        "styles":["fb-login-button"]
+    })
+    button.setAttribute("data-width","300");
+    button.setAttribute("data-size","large");
+    button.setAttribute("data-button-type","login_with");
+    button.setAttribute("data-layout","rounded");
+    button.setAttribute("data-auto-logout-link","false");
+    button.setAttribute("data-use-continue-as","true");
+    return button;
+}
+
+function build_default_login_window(message){
+    let conten = ao.qq({"nodetype":"div"});
+    let mensaje = ao.qq({"nodetype":"p","innerText":message[ao.lng]});
+    let log_w_fb = build_facebook_login_button();
+    conten.append(mensaje);
+    conten.append(log_w_fb);
+    return conten;
 }
 
 window.onresize = () => {
