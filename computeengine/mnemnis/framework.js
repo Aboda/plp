@@ -206,8 +206,13 @@ const ao = {
   logcontrol(muac){
     switch (muac.st){
       case "check_login_status":
-        let fb_login_status = FB.getLoginStatus();
-        console.log(fb_login_status);
+        let fb_status;
+        if (FB == undefined) {
+          fb_status = "Not SDK";
+        } else {
+          fb_status = FB.getLoginStatus();
+        }
+        console.log(fb_status);
       break;
     }
   }
