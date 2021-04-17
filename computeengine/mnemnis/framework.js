@@ -207,10 +207,10 @@ const ao = {
     switch (muac.st){
       case "check_login_status":
         let fb_status;
-        if (FB == undefined) {
-          fb_status = "Not SDK";
-        } else {
+        try{
           fb_status = FB.getLoginStatus();
+        }catch(err){
+          fb_status = "No SDK";
         }
         console.log(fb_status);
       break;

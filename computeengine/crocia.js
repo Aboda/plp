@@ -198,6 +198,8 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
+                        "facebooksdk":true,
+                        "fbid":"2076681439269297",
                         "ganalitycs":true,
                         "gtag":"G-6MEPN29LZG",
                         "title":{
