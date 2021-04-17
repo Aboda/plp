@@ -23,12 +23,18 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    align-items: center;
     margin: 1em;
     padding: .3em;
     transition: 0.5s;
     border-width: .2em;
     border-style: outset;
     border-color: gray;
+}
+.item {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: .5em;
 }
 .byemessage{
     font-size: 85%;

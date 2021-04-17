@@ -266,20 +266,20 @@ function complicated_ass_card_1(data){
         root_card.append(root_info_container);
 
         let short = ao.qq({
-            "nodetype":"div",
+            "nodetype":"p",
             "innerText": data[entry].meta.short[chosen_lng]
         },ao.focus);
         root_info_container.append(short);
 
         if (data[entry].meta.root_domain) {
             let domain = ao.qq({
-                "nodetype":"div",
+                "nodetype":"h2",
                 "innerText": "Domain: "+entry
             },ao.focus);
             root_info_container.append(domain);
         }else{
             let domain = ao.qq({
-                "nodetype":"div",
+                "nodetype":"p",
                 "innerText": "Subdomain: "+entry
             },ao.focus);
             root_info_container.append(domain);
@@ -304,7 +304,7 @@ function complicated_ass_card_1(data){
                 let ezr = data[entry].astra[route];
                 let sub_card = ao.qq({
                     "nodetype":"div",
-                    "styles":["layouter"]
+                    "styles":["item"]
                 },ao.focus);
                 sub_container.append(sub_card);
                 let sub_route = ao.qq({
