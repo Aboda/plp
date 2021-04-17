@@ -1,57 +1,12 @@
 /*
     This section is the system information page
 */
-let color_sets = [
-    {
-        "name":"Venetian Red",
-        "use":"header",
-        "background":"rgb(194,1,20,1)",
-        "color":"rgb(255,255,255,1)"
-    },
-    {
-        "name":"Alice Blue",
-        "use":"menu",
-        "background":"rgb(233,241,247,1)",
-        "color":"rgb(0,0,0,1)"
-    },
-    {
-        "name":"Gun Metal",
-        "use":"button",
-        "background":"rgb(22,38,46,1)",
-        "color":"rgb(255,255,255,1)"
-    },
-    {
-        "name":"Honey Yellow",
-        "use":"active",
-        "background":"rgb(255,177,0,1)",
-        "color":"rgb(0,0,0,1)"
-    },
-    {
-        "name":"Spanish Viridian",
-        "use":"highlight",
-        "background":"rgb(28,124,84,1)",
-        "color":"rgb(255,255,255,1)"
-    },
-    {
-        "name":"Gray Out",
-        "use":"off_area",
-        "background":"rgb(180,180,180,.3)",
-        "color":"rgb(180,180,180,.3)"
-    },
-    {
-        "name":"Gray Down",
-        "use":"off_device",
-        "background":"rgb(180,180,180,1)",
-        "color":"rgb(180,180,180,1)"
-    }
-];
-let interface = [
+let sidemenu = [
     {
         "es":"Progreso de Desarrollo",
         "en":"Development Progress",
         "go":()=>{
-            had_it_comming();
-            sidemenu_toggle();
+            closeNav();
             ao.fe("https://demian.app/info/progress",(response)=>{
                 let data;
                 try{
@@ -83,8 +38,7 @@ let interface = [
         "es":"Estadísticas de Operación",
         "en":"Operational Statistics",
         "go":(params_if_any)=>{
-            sidemenu_toggle();
-            had_it_comming();
+            closeNav();
             console.log(params_if_any.target);
         }
     },
@@ -92,8 +46,7 @@ let interface = [
         "es":"Mensajes de usarios",
         "en":"Users messages",
         "go":(params_if_any)=>{
-            sidemenu_toggle();
-            had_it_comming();
+            closeNav();
             console.log(params_if_any.target);
         }
     },
@@ -101,8 +54,7 @@ let interface = [
         "es":"Interface de Control",
         "en":"Control Interface",
         "go":(params_if_any)=>{
-            sidemenu_toggle();
-            had_it_comming();
+            closeNav();
             console.log(params_if_any.target);
         }
     }
@@ -273,28 +225,9 @@ let modules_progress = {
     }
 }
 
-function say_hi () {
-    let container = document.getElementById("from_home");
-    container.append(ao.qq({
-        "id":"the_guy_who_always_dies",
-        "nodetype":"p",
-        "innerText":hi_message[ao.lng]
-    }));
-    container.append(ao.qq({
-        "id":"the_guy_who_always_dies_2",
-        "nodetype":"a",
-        "target":"https://demian.app/comentarios/",
-        "link_text":"Formato de contacto directo",
-        "styles":["color_contrast_1"]
-    }));
-}
-function had_it_comming() {
-    if (ao.simple["the_guy_who_always_dies"] != undefined) {
-        ao.simple["the_guy_who_always_dies"].kill()
-    }    
-    if (ao.simple["the_guy_who_always_dies_2"] != undefined) {
-        ao.simple["the_guy_who_always_dies_2"].kill()
-    }
+function start_interface() {
+    ao.interface(sidemenu);
+    ao.main.append(ao.qq({"nodetype":"p","innerText":hi_message[ao.lng]}));
 }
 
 function complicated_ass_card_1(data){
