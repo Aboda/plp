@@ -124,7 +124,7 @@ let initial_options = [
     }
 ]
 
-function do_opts(opts) {
+function do_opts(opts,controller) {
     ao.opt1 = {};
     let option_container = ao.qq({"nodetype":"div","id":"option_container"},ao.opt1);
     for (items of opts) {
