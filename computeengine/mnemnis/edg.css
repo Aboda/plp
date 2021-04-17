@@ -19,14 +19,16 @@
     background-color:rgb(41, 0, 59);
     color:rgb(255, 123, 0);
 }
-.botopts{
-    margin: .7em;
+.layouter {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin: 1em;
     padding: .3em;
     transition: 0.5s;
     border-width: .2em;
     border-style: outset;
     border-color: gray;
-    cursor: pointer;
 }
 .byemessage{
     font-size: 85%;

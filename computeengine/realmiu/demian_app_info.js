@@ -236,7 +236,7 @@ function complicated_ass_card_1(data){
     let container = ao.qq({
         "id":"the_guy_who_always_dies",
         "nodetype":"div",
-        "styles":["report_container","display_flex"]
+        "styles":["layouter"]
     },ao.focus);
     let where = document.getElementById("from_home");
     where.append(container);
@@ -249,21 +249,21 @@ function complicated_ass_card_1(data){
             root_card = ao.qq({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["loved_flex","pad_1","border","ancho"]
+                "styles":["layouter"]
             },ao.focus);
             parents.push(entry);
         } else {
             root_card = ao.qq({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["loved_flex","pad_1","border","ancho"]
+                "styles":["layouter"]
             },ao.focus);
         };
         container.append(root_card);
         
         let root_info_container = ao.qq({
             "nodetype":"div",
-            "styles":["loved_flex","pad_1"]
+            "styles":["layouter"]
         },ao.focus);
         root_card.append(root_info_container);
 
@@ -298,7 +298,7 @@ function complicated_ass_card_1(data){
         if (data[entry].astra != undefined) {
             let sub_container = ao.qq({
                 "nodetype":"div",
-                "styles":["loved_flex","pad_1","secondary"]
+                "styles":["layouter"]
             },ao.focus);
             root_card.append(sub_container);
 
@@ -306,7 +306,7 @@ function complicated_ass_card_1(data){
                 let ezr = data[entry].astra[route];
                 let sub_card = ao.qq({
                     "nodetype":"div",
-                    "styles":["loved_flex","pad_1"]
+                    "styles":["layouter"]
                 },ao.focus);
                 sub_container.append(sub_card);
                 let sub_route = ao.qq({
