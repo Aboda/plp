@@ -88,6 +88,7 @@ let initial_options = [
         "es":"Soy usuario de algúna de las web apps existentes de esta plataforma",
         "en":"I am a user from one of the existing web apps in this platform",
         "go":(params_if_any)=>{
+            console.log(params_if_any)
             recursive_simple_delete(ao.main,1);
             let ready_apps_message = {
                 "es":"Seleccióna tu app",
@@ -110,7 +111,7 @@ let initial_options = [
                     }
                 }
             }
-            do_opts(ready_options);
+            ao.main.append(do_opts(ready_options));
         }
     },
     {
@@ -123,14 +124,15 @@ let initial_options = [
     }
 ]
 
-function do_opts(initial_options) {
+function do_opts(opts) {
     ao.opt1 = {};
     let option_container = ao.qq({"nodetype":"div","id":"option_container"},ao.opt1);
-    for (items of initial_options) {
+    for (items of opts) {
         option_container.append(ao.qq({
             "nodetype":"div",
             "innerText":items[ao.lng],
-            "styles":["botopts"]
+            "styles":["botopts"],
+            "triggers":[["click",items.go]]
         },ao.opt1));
     }
     return option_container;
