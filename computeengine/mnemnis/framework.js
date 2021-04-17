@@ -48,6 +48,7 @@ const ao = {
     "p":true,
     "password":"input",
     "path":true,
+    "script":true,
     "select":true,
     "span":true,
     "sub":true,
@@ -55,6 +56,9 @@ const ao = {
     "table":true
   },
   "pass":{
+    "async":true,
+    "crossorigin":true,
+    "defer":true,
     "id":true,
     "innerText":true,
     "value":true,
@@ -68,6 +72,7 @@ const ao = {
     "right":"style",
     "display":"style",
     "position":"style",
+    "src":true,
     "alignSelf":"style",
     "fontSize":"style",
     "overflowX":"style",

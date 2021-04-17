@@ -79,19 +79,6 @@ exports.html = (options,chosen_lng) => {
     }
     ph = ph + "</head>\n";
     ph = ph + "<body>\n";
-    if (options.facebooksdk == true) {
-        ph = ph + "<script>\n";
-        ph = ph + "window.fbAsyncInit = function() {\n";
-        ph = ph + "FB.init({\n";
-        ph = ph + "appId            : '"+options.fbid+"',\n";
-        ph = ph + "autoLogAppEvents : true,\n";
-        ph = ph + "xfbml            : true,\n";
-        ph = ph + "version          : 'v10.0'\n";
-        ph = ph + "});\n";
-        ph = ph + "};\n";
-        ph = ph + "</script>\n";
-        ph = ph + "<script async defer crossorigin='anonymous' src='https://connect.facebook.net/en_US/sdk.js'></script>\n";
-    }
     if (options.html != undefined) {
         ph = ph + "<div id='from_home' class='app_container'>\n";
         for (var html_block of options.html) {
@@ -104,6 +91,9 @@ exports.html = (options,chosen_lng) => {
         ph = ph + "<script>\n";
         for (modules of options.js) {
             ph = ph + modules+"\n";
+        }
+        if (options.facebooksdk == true) {
+            ph = ph + "ao.fbid = "+options.fbid+"\n";
         }
         ph = ph + "</script>\n";
     }

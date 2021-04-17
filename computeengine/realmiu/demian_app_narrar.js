@@ -139,9 +139,11 @@ window.onresize = () => {
 };
 
 window.onload = () => {
+    install_facebook();
+    /*
     FB.getLoginStatus(function(response) {
         if (response.status === 'connected') {
-            ao.fbid = response.authResponse.userID;
+            ao.fbui = response.authResponse.userID;
             ao.fbat = response.authResponse.accessToken;
             ao.interface(sidemenu);
             ao.main = document.getElementById("from_home");
@@ -151,4 +153,27 @@ window.onload = () => {
             FB.login(console.log("respuesta de login",response));
         };
     });
+    */
 };
+
+function install_facebook() {
+    window.fbAsyncInit = function () {
+      FB.init({
+        "appId" : ao.fbid,
+        "autoLogAppEvents":true,
+        "xbfml":true,
+        "version":"v10.0"
+      });
+    };
+  
+    document.getElementsByTagName('head')[0].appendChild(ao.qq({
+      "nodetype":"script",
+      "async":true,
+      "defer":true,
+      "crossorigin":"anonymous",
+      "src":"https://connect.facebook.net/en_US/sdk.js",
+      "triggers":[["load",function() {
+        alert("Script loaded and ready");
+      }]]
+    }));
+  }
