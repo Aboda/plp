@@ -95,22 +95,22 @@ let initial_options = [
                 "en":"Choose your app"
             }
             ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]}));
-            let ready_options = {
-                "Narrador":{
+            let ready_options = [
+                {
                     "en":"Storytelling Tools",
                     "es":"Herramientas Narrativas",
                     "go":()=>{
-
+                        console.log("lanzando ST");
                     }
                 },
-                "SOmeMA":{
+                { 
                     "es":"Herramientas Redes Sociales",
                     "en":"Social Media Manager",
                     "go":()=>{
-                        
+                        console.log("lanzando SOmeMA");
                     }
                 }
-            }
+            ];
             ao.main.append(do_opts(ready_options));
         }
     },
@@ -126,7 +126,7 @@ let initial_options = [
 
 function do_opts(opts,controller) {
     let option_container = ao.qq({"nodetype":"div","id":"option_container"},controller);
-    for (items of opts) {
+    for (let items of opts) {
         option_container.append(ao.qq({
             "nodetype":"div",
             "innerText":items[ao.lng],
