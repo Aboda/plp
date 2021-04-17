@@ -209,11 +209,15 @@ const ao = {
         setTimeout(function () {
           let fb_status;
           try{
-            fb_status = FB.getLoginStatus();
+            FB.getLoginStatus((response)=>{
+              console.log({response});
+              fb_status = response.status;
+              
+            });
           }catch(err){
             fb_status = "No SDK";
           }
-          console.log(fb_status);
+          console.log(fb_status)
         },2500);
       break;
     }
