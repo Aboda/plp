@@ -3,6 +3,29 @@
 */
 let sidemenu = [
     {
+        "es":"Volver a Inicio",
+        "en":"Return Home",
+        "go":()=>{
+            window.location.href = "https://demian.app/info";
+        }
+    },
+    {
+        "es":"Idioma: Español, Change to English",
+        "en":"Languaje: English, Cambiar a Español",
+        "go":()=>{
+            let processed = window.location.href;
+            let check = processed.indexOf("?");
+            if (check != -1) {
+                processed = processed.slice(0,check);
+            }
+            if (ao.lng == "es"){
+                window.location = processed + "?lng=en";
+            }else if (ao.lng == "en"){
+                window.location = processed + "?lng=es";
+            }
+        }
+    },
+    {
         "es":"Progreso de Desarrollo",
         "en":"Development Progress",
         "go":()=>{
@@ -32,30 +55,6 @@ let sidemenu = [
                 };
                 complicated_ass_card_1(data);
             });
-        }
-    },
-    {
-        "es":"Estadísticas de Operación",
-        "en":"Operational Statistics",
-        "go":(params_if_any)=>{
-            closeNav();
-            console.log(params_if_any.target);
-        }
-    },
-    {
-        "es":"Mensajes de usarios",
-        "en":"Users messages",
-        "go":(params_if_any)=>{
-            closeNav();
-            console.log(params_if_any.target);
-        }
-    },
-    {
-        "es":"Interface de Control",
-        "en":"Control Interface",
-        "go":(params_if_any)=>{
-            closeNav();
-            console.log(params_if_any.target);
         }
     }
 ];
@@ -248,7 +247,7 @@ function complicated_ass_card_1(data){
             root_card = ao.qq({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["layouter"]
+                "styles":["layouter","color_contrast_3"]
             },ao.focus);
             parents.push(entry);
         } else {
@@ -279,7 +278,7 @@ function complicated_ass_card_1(data){
             root_info_container.append(domain);
         }else{
             let domain = ao.qq({
-                "nodetype":"p",
+                "nodetype":"h3",
                 "innerText": "Subdomain: "+entry
             },ao.focus);
             root_info_container.append(domain);
@@ -296,7 +295,7 @@ function complicated_ass_card_1(data){
         if (data[entry].astra != undefined) {
             let sub_container = ao.qq({
                 "nodetype":"div",
-                "styles":["layouter"]
+                "styles":["layouter","color_contrast_4"]
             },ao.focus);
             root_card.append(sub_container);
 
@@ -304,7 +303,7 @@ function complicated_ass_card_1(data){
                 let ezr = data[entry].astra[route];
                 let sub_card = ao.qq({
                     "nodetype":"div",
-                    "styles":["item"]
+                    "styles":["item","color_contrast_5"]
                 },ao.focus);
                 sub_container.append(sub_card);
                 let sub_route = ao.qq({
@@ -312,13 +311,11 @@ function complicated_ass_card_1(data){
                     "innerText": ezr.meta.short[chosen_lng]
                 },ao.focus);
                 sub_card.append(sub_route);
-
                 let sub_progress = ao.qq({
                     "nodetype":"div",
                     "innerText": "Route: "+route
                 },ao.focus);
                 sub_card.append(sub_progress);
-
                 if (ezr.meta.etapa != undefined) {
                     let stage = ao.qq({
                         "nodetype":"div",

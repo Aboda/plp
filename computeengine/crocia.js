@@ -15,10 +15,6 @@ exports.set_cache_n_init = (cache) => {
     domain_tree = {
         "demian.app":{
             "meta":{
-                "cool":{
-                    "es":"Portafolio Laboratorio Personal",
-                    "en":"Personal Lab Portfolio"
-                },
                 "short":{
                     "es":"PLP: Portafolio Laboratorio Personal",
                     "en":"PLP: Personal Lab Portfolio"
@@ -449,10 +445,6 @@ exports.set_cache_n_init = (cache) => {
         },
         "remansonocturno.com": {
             "meta":{
-                "cool":{
-                    "es":"Remanso Nocturno",
-                    "en":"Nocturnal Remanse"
-                },
                 "short":{
                     "es":"Red social de creadores",
                     "en":"Creators social network"
@@ -957,7 +949,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
         irlo
     */
         let hc = "<h1>"+common_messages.index[chosen_lng] +
-    root_dom.meta.cool[chosen_lng]+"</h1>\n";
+    root_dom.meta.short[chosen_lng]+"</h1>\n";
 
     for (let entry in party_members) {
         if (party_members[entry].meta.index == true){

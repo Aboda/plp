@@ -1,19 +1,16 @@
 /*
-    Esta página debe de presentar al usuario la opción de decir si es
-    a) un posible empleador
-    b) un usuario de una solución
-    c) otra persona
+    Esta página consulta la naturaleza del nuevo arribo para canalizarlo al
+    contenido pensado para el. 
 
-    en el primer caso, se le reenviará a profesional.demian.app
-    en el segundo caso, se le mostrará la lista de soluciones disponibles
-    en el tercer caso se le enviará a www.demian.app
+    Es distribuidor de la plataforma de demian.app como principal tarea, pero
+    tambien se pueden apreciar cosas de remansonocturno.com
 */
 
 let sidemenu = [
     {
         "es":"Idioma: Español, Change to English",
         "en":"Languaje: English, Cambiar a Español",
-        "go":(e)=>{
+        "go":()=>{
             let processed = window.location.href;
             let check = processed.indexOf("?");
             if (check != -1) {
@@ -27,19 +24,10 @@ let sidemenu = [
         }
     },
     {
-        "es":"Contactame",
-        "en":"Message Me",
-        "go":(params_if_any)=>{
-            closeNav();
-            console.log("envío de mensajes al webmaster");
-        }
-    },
-    {
-        "es":"Preguntas Frecuentes",
-        "en":"FAQ",
-        "go":(params_if_any)=>{
-            closeNav();
-            console.log("faq");
+        "es":"Información de Plataforma",
+        "en":"Platform Information",
+        "go":()=>{
+            window.location.href = "https://demian.app/info";
         }
     }
 ];
@@ -58,21 +46,21 @@ let initial_options = [
     {
         "es":"Soy un profesionista independiente, empleado o empresa pequeña en búsqueda de consultoría para automatizar un proceso existente o bien atacar un problema técnico que no he solventado.",
         "en":"I am an independent professional, employee or small business searching for consulting services to automate an existing process or to tackle an unresolved technical issue.",
-        "go":(params_if_any)=>{
+        "go":()=>{
             console.log("Generar batería de aclaración para saber si mostrarle portafolio, cv, formato de mensaje sencillo, o formato de agenda de consultoría pagada");
         }
     },
     {
         "es":"Soy una empresa mediana o grande en búsqueda de un desarrollador competente y autodidacta, con experiencia corporativa y de perspectiva integral para unirse a mi equipo de desarrollo existente.",
         "en":"I am mid to large business in search of a skilled, self teaching developer with corporate experience and wide perspective to join my existing development team",
-        "go":(params_if_any)=>{
+        "go":()=>{
             console.log("Generar batería de aclaración para saber si mostrarle portafolio, cv o formato de mensaje sencillo");
         }
     },
     {
         "es":"Soy una startup con un proyecto de app que deseo desarrollar, o que ya se encuentra en desarrollo y deseo una perspectiva adicional",
         "en":"I am a startup with an app proyect that I want developed, or that I am already developing and want to have an additional perspective",
-        "go":(params_if_any)=>{
+        "go":()=>{
             console.log("Generar batería de aclaración para saber si mostrarle formato de mensaje sencillo, o formato de descripción de app");
         }
     },
