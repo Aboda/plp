@@ -34,26 +34,22 @@ var cache = {
         "desk":fs.readFileSync("./mnemnis/desk.ico")
     },
     "css":{
+        "edg":fs.readFileSync("./mnemnis/edg.css").toString(),
         "plp":fs.readFileSync("./mnemnis/plp.css").toString(),
-        "ren":fs.readFileSync("./mnemnis/ren.css").toString(),
-        "edgy":fs.readFileSync("./mnemnis/edgy.css").toString(),
         "prh":fs.readFileSync("./mnemnis/prh.css").toString(),
-        "sidebar":fs.readFileSync("./mnemnis/sidebar.css").toString()
+        "ren":fs.readFileSync("./mnemnis/ren.css").toString(),
+        "sdb":fs.readFileSync("./mnemnis/sdb.css").toString(),
+        "sph":fs.readFileSync("./mnemnis/sph.css").toString()
     },
     "js":{
-        "blog":fs.readFileSync("./mnemnis/blog.js").toString(),
-        "ren":fs.readFileSync("./mnemnis/ren.js").toString(),
-        "plp":fs.readFileSync("./mnemnis/plp.js").toString(),
-        "framework":fs.readFileSync("./mnemnis/framework.js").toString(),
-        "info":fs.readFileSync("./mnemnis/info.js").toString(),
-        "fb_cm_login":fs.readFileSync("./mnemnis/fb_cm_login.js").toString(),
-        "somema":fs.readFileSync("./mnemnis/somema.js").toString(),
+        "alpha":fs.readFileSync("./realmiu/alpha.js").toString(),
+        "demian_app_info":fs.readFileSync("./realmiu/demian_app_info.js").toString(),
+        "demian_app_narrar":fs.readFileSync("./realmiu/demian_app_narrar.js").toString(),
+        "demian_app_somema":fs.readFileSync("./realmiu/demian_app_somema.js").toString(),
         "demian_app":fs.readFileSync("./realmiu/demian_app.js").toString(),
-        "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
-        "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString(),
         "en_construc":fs.readFileSync("./realmiu/en_construc.js").toString(),
-        "g_prods":fs.readFileSync("./realmiu/g_prods.js").toString(),
-        "demian_app_narrar":fs.readFileSync("./realmiu/demian_app_narrar.js").toString()
+        "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
+        "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString()        
     }
 }
 

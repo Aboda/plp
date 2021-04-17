@@ -44,8 +44,8 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Raíz:PLP",
                     "en":"Root:PLP"
                 },
-                "css":[resources_cache.css.sidebar,resources_cache.css.plp],
-                "js":[resources_cache.js.framework,resources_cache.js.demian_app]
+                "css":[resources_cache.css.sdb,resources_cache.css.plp],
+                "js":[resources_cache.js.alpha,resources_cache.js.demian_app]
             },
             "astra":{
                 "conavi":{
@@ -71,7 +71,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Tools and Challenges:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 },
                 "sedatu":{
@@ -97,7 +97,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Social Programs:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 },
                 "olmoazul":{
@@ -123,7 +123,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Food shop:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 },
                 "tomauno":{
@@ -149,7 +149,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"DVD Leaser:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 },
                 "somema":{
@@ -176,8 +176,8 @@ exports.set_cache_n_init = (cache) => {
                             "es":"SOmeMA:PLP",
                             "en":"SOmeMA:PLP"
                         },
-                        "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.fb_cm_login,resources_cache.js.somema]
+                        "css":[resources_cache.css.sdb,resources_cache.css.sph],
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_app_somema]
                     }
                 },
                 "narrar":{
@@ -204,8 +204,8 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Narrador:PLP",
                             "en":"Storyteller:PLP"
                         },
-                        "css":[resources_cache.css.sidebar,resources_cache.css.prh],
-                        "js":[resources_cache.js.framework,resources_cache.js.demian_app_narrar]
+                        "css":[resources_cache.css.sdb,resources_cache.css.prh],
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_app_narrar]
                     }
                 },
                 "info":{
@@ -229,7 +229,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Info:Demian"
                         },
                         "css":[resources_cache.css.edgy],
-                        "js":[resources_cache.js.framework,resources_cache.js.info]
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_app_info]
                     }
                 }
             }
@@ -257,7 +257,7 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Blog:PLP"
                 },
                 "css":[resources_cache.css.plp],
-                "js":[resources_cache.js.framework,resources_cache.js.www_demian_app]
+                "js":[resources_cache.js.alpha,resources_cache.js.www_demian_app]
             },
             "astra":{
                 "estat":{
@@ -283,7 +283,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Static:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 },
                 "dinam":{
@@ -309,7 +309,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Dynamic:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }                
                 }
             }
@@ -337,7 +337,7 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Home:PLP"
                 },
                 "css":[resources_cache.css.plp],
-                "js":[resources_cache.js.framework,resources_cache.js.profesional_demian_app]
+                "js":[resources_cache.js.alpha,resources_cache.js.profesional_demian_app]
             },
             "astra":{
                 "google":{
@@ -363,7 +363,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Google T&T:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.g_prods]
+                        "js":[resources_cache.js.alpha,resources_cache.js.g_prods]
                     }
                 },
                 "facebook":{
@@ -389,7 +389,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Facebook T&T:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 },
                 "web":{
@@ -415,7 +415,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Web T&T:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 },
                 "office":{
@@ -442,7 +442,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Office T&T:PLP"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.framework,resources_cache.js.en_construc]
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 }
             }
@@ -476,7 +476,7 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Home: Nocturnal Remanse",
                 },
                 "css":[resources_cache.css.ren],
-                "js":[resources_cache.js.framework,resources_cache.js.ren]
+                "js":[resources_cache.js.alpha,resources_cache.js.ren]
             },
             "astra":{
                 "omno":{
@@ -502,7 +502,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Community: Nocturnal Remanse"
                         },
                         "css":[resources_cache.css.ren],
-                        "js":[resources_cache.js.framework,resources_cache.js.ren]
+                        "js":[resources_cache.js.alpha,resources_cache.js.ren]
                     }
                 },
                 "umno":{
@@ -528,7 +528,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Profile: Nocturnal Remanse"
                         },
                         "css":[resources_cache.css.ren],
-                        "js":[resources_cache.js.framework,resources_cache.js.ren]
+                        "js":[resources_cache.js.alpha,resources_cache.js.ren]
                     }
                 }
             }
@@ -556,7 +556,7 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Blog: Nocturnal Remanse"
                 },
                 "css":[resources_cache.css.ren],
-                "js":[resources_cache.js.framework,resources_cache.js.ren]
+                "js":[resources_cache.js.alpha,resources_cache.js.ren]
             },
             "astra":{
                 "estat":{
@@ -582,7 +582,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Static: Nocturnal Remanse"
                         },
                         "css":[resources_cache.css.ren],
-                        "js":[resources_cache.js.framework,resources_cache.js.ren]
+                        "js":[resources_cache.js.alpha,resources_cache.js.ren]
                     }                
                 },
                 "dinam":{
@@ -608,7 +608,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Dynamic: Nocturnal Remanse"
                         },
                         "css":[resources_cache.css.ren],
-                        "js":[resources_cache.js.framework,resources_cache.js.ren]
+                        "js":[resources_cache.js.alpha,resources_cache.js.ren]
                     }                   
                 }
             }

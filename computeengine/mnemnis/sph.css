@@ -1,0 +1,33 @@
+*{font-family: 'Roboto Mono', monospace;text-align: center;}
+.color_contrast_1{
+    background-color:rgb(255,166,158);
+    color:rgb(0,0,0);
+}
+.color_contrast_2{
+    background-color:rgb(250,243,221);
+    color:rgb(0,0,0);
+}
+.color_contrast_3{
+    background-color:rgb(184,242,230);
+    color:rgb(0,0,0);
+}
+.color_contrast_4{
+    background-color:rgb(174,217,224);
+    color:rgb(0,0,0);
+}
+.color_contrast_5{
+    background-color:rgb(94,100,114);
+    color:rgb(255,255,255);
+}
+.botopts{
+    margin: .7em;
+    padding: .3em;
+    transition: 0.5s;
+    border-width: .2em;
+    border-style: outset;
+    border-color: gray;
+    cursor: pointer;
+}
+.byemessage{
+    font-size: 85%;
+}
