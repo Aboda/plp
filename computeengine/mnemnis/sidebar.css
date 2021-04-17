@@ -1,6 +1,6 @@
 .app_container {
-  position:absolute;
-  top:2em;
+  left:50%;
+  transform:translateX(-50%);
 }
 .top_bar {
   position:fixed;
