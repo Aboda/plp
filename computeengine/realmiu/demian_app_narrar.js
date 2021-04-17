@@ -136,6 +136,7 @@ let follow_message = {
 
 function initial_page_setup(response){
     ao.main = document.getElementById("from_home");
+    console.log("initial_page_setup",{response});
     if (response.status === "connected") {
         ao.fbui = response.authResponse.userID;
         ao.fbat = response.authResponse.accessToken;
@@ -147,6 +148,7 @@ function initial_page_setup(response){
             "en":"Only fb login at the time",
             "es":"Solo fb login por el momento"
         }));
+        FB.XFBML.parse();
     };
     FB.Event.unsubscribe("auth.statusChange", initial_page_setup);
 }
