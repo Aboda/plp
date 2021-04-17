@@ -61,8 +61,8 @@ let sidemenu = [
 ];
 
 let hi_message = {
-    "en":"<p>Status de progreso para los diferentes frentes del proyecto plp</p>",
-    "es":"<p>Progress status for different fronts to the plp proyect</p>",
+    "en":"Status de progreso para los diferentes frentes del proyecto plp",
+    "es":"Progress status for different fronts to the plp proyect",
 }
 
 let site_progress = {
