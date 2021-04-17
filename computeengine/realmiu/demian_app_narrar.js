@@ -142,28 +142,32 @@ window.onload = () => {
     install_facebook();
     /*
     FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            ao.fbui = response.authResponse.userID;
-            ao.fbat = response.authResponse.accessToken;
-            ao.interface(sidemenu);
-            ao.main = document.getElementById("from_home");
-            ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
-            ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
-        } else {
-            FB.login(console.log("respuesta de login",response));
-        };
+
     });
     */
 };
 
 function install_facebook() {
     window.fbAsyncInit = function () {
-      FB.init({
-        "appId" : ao.fbid,
-        "autoLogAppEvents":true,
-        "xbfml":true,
-        "version":"v10.0"
-      });
+        FB.Event.subscribe('auth.statusChange', function(response) {
+            if (response.status === 'connected') {
+                ao.fbui = response.authResponse.userID;
+                ao.fbat = response.authResponse.accessToken;
+                ao.interface(sidemenu);
+                ao.main = document.getElementById("from_home");
+                ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
+                ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
+            } else {
+                FB.login(console.log("respuesta de login",response));
+            };
+        });
+        FB.init({
+            "appId" : ao.fbid,
+            "autoLogAppEvents":true,
+            "xbfml":true,
+            "status":true,
+            "version":"v10.0"
+        });
     };
   
     document.getElementsByTagName('head')[0].appendChild(ao.qq({
