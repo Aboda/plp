@@ -31,3 +31,13 @@
 .byemessage{
     font-size: 85%;
 }
+.dialog_container{
+    border-width: .2em;
+    border-style: outset;
+    border-color: gray;
+}
+.third_container{
+    border-width: .2em;
+    border-style: outset;
+    border-color: gray;
+}

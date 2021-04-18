@@ -62,14 +62,106 @@ let sidemenu = [
 ];
 
 let initial_message = {
-    "en":"Welcome to the content curation site",
-    "es":"Bienvenidos al sitio de curación de contenidos"
+    "en":"Both accounts need to be authorized to continue",
+    "es":"Ambas cuentas necesitan ser autenticadas para continuar"
 }
 
-let follow_message = {
-    "en":"Please pick an action from left hand menu",
-    "es":"Porfavor seleccióna una acción del menú de la izqierda"
+window.onload = () => {control_login_status();};
+
+/*
+    Esta sección controla los usuarios. 
+*/
+function control_login_status(){
+    /*
+        Este dispositivo se encarga de
+            0.- Controlar la instalación de autenticación, +- preparativos pertinentes
+            1.- Al arrancar la página checar si tiene login con fb y google. 
+            2.- En lo que espera las respuestas, construir la base de interface
+            que indica las cuentas loggeadas.
+                a) crear marcos y placeholders
+            3.- Cada consulta, FB y Google, actualizan su sección respectiva
+            4.- Cuando ambas cuentas están loggeadas, habilita el continuar
+            5.- Inicia la interface específica
+    */
+    ao.main = document.getElementById("from_home");
+    ao.main.append(initial_message[ao.lng]);
+    ao.logcon = {};
+    /*                
+        Paso 1, generar elementos html con tagging pertinente para que al
+        arranque de los scripts sean rendereados
+    */
+    let log_main_display = ao.qq({"nodetype":"div","id":"log_main_display","styles":["dialog_container"]});
+    let google_section = ao.qq({"nodetype":"div","id":"google_section","styles":["third_container","color_contrast_3"]});
+    google_section.append(build_google_login_button(),build_google_logout_button());
+    
+    let facebook_section = ao.qq({"nodetype":"div","id":"facebook_section","styles":["third_container","color_contrast_4"]});
+    facebook_section.append(build_facebook_login_button());
+    
+    log_main_display.append(google_section,facebook_section);
+    ao.main.append(log_main_display);
+    /*                
+        Paso 2, en el caso de facebook definir las acciónes a tomar cuando
+        concluya la carga de su script
+    */
+    window.fbAsyncInit = function () {
+        FB.Event.subscribe("auth.statusChange", show_facebook_user_info);
+        FB.init({
+            "appId" : ao.fbid,
+            "autoLogAppEvents":true,
+            "xbfml":true,
+            "status":true,
+            "version":"v10.0"
+        });
+    };
+    /*                
+        Paso 3, agregar los tags de script a la página
+    */
+    install_facebook();
+    install_OA2 ();
 }
+
+
+
+/*
+    Sección Facebook
+*/
+
+function install_facebook() {
+    document.getElementsByTagName('head')[0].appendChild(ao.qq({
+        "nodetype":"script",
+        "async":true,
+        "defer":true,
+        "crossorigin":"anonymous",
+        "src":"https://connect.facebook.net/en_US/sdk.js"
+    }));
+}
+
+function build_facebook_login_button(){
+    let button = ao.qq({
+        "nodetype":"div",
+        "styles":["fb-login-button"]
+    })
+    button.setAttribute("data-width","300");
+    button.setAttribute("data-size","large");
+    button.setAttribute("data-button-type","login_with");
+    button.setAttribute("data-layout","rounded");
+    button.setAttribute("data-auto-logout-link","false");
+    button.setAttribute("data-use-continue-as","true");
+    button.setAttribute("data-onlogin",start_interface);
+    return button;
+}
+
+function show_facebook_user_info(){
+    
+}
+
+
+
+/*
+    Sección Google
+*/
+
+
 
 function send_to_collection () {
     let test_data = {
@@ -98,15 +190,20 @@ function build_google_login_button(){
     return button;
 }
 
-function build_google_logout_button (){
+function build_google_logout_button () {
+    let lofb = {
+        "en":"Sign Out",
+        "es":"Desconectarse"
+    }
     let button = ao.qq({
         "nodetype":"button",
-        "triggers":[["click",signOut]]
+        "value":lofb[ao.lng],
+        "triggers":[["click",signGoogleOut]]
     })
     return button;
 }
 
-function signOut() {
+function signGoogleOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
         console.log('User signed out.');
@@ -116,17 +213,3 @@ function signOut() {
 function OA2_success(huh) {
     console.log("OAuth2 Success",huh);
 }
-
-window.onresize = () => {
-    ao.screen_adjust();
-};
-
-window.onload = () => {
-    ao.interface(sidemenu);
-    ao.main = document.getElementById("from_home");
-    ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
-    ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
-    ao.main.append(build_google_login_button());
-    ao.main.append(build_google_logout_button());
-    install_OA2();
-};
