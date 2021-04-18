@@ -48,6 +48,7 @@ var cache = {
         "demian_app_somema":fs.readFileSync("./realmiu/demian_app_somema.js").toString(),
         "demian_app":fs.readFileSync("./realmiu/demian_app.js").toString(),
         "en_construc":fs.readFileSync("./realmiu/en_construc.js").toString(),
+        "oa2landing":fs.readFileSync("./realmiu/oa2landing.js").toString(),
         "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
         "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString()        
     }

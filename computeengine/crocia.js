@@ -204,6 +204,33 @@ exports.set_cache_n_init = (cache) => {
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_app_narrar]
                     }
                 },
+                "login":{
+                    "meta":{
+                        "short":{
+                            "es":"Aterrizaje OA2",
+                            "en":"OA2 Landing"
+                        },
+                        "loc":"https://demian.app/login/",
+                        "updfreq":"never",
+                        "sitemap":false,
+                        "index":false,
+                        "robots":false,
+                        "priority":0.0,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "oa":"345217584200-aaqh5p3p3huigg3hf0bobee8lhtphe41",
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"OAuth2",
+                            "en":"OAuth2"
+                        },
+                        "css":[resources_cache.css.plp],
+                        "js":[resources_cache.js.oa2landing]
+                    }
+                },
                 "info":{
                     "meta":{
                         "short":{
@@ -787,6 +814,18 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
             return;
         };
+
+        if (req.headers.host == "demian.app" && adjusted_path == "login") {
+            log_JSON({
+                "service_no":simple_counter,
+                "type":"goa2red",
+                "search":easyurl.search,
+                "headers":req.headers
+            })
+            finish_request (res,200,akhenon.html(
+                serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
+            return;     
+        }
 
         if (req.headers.host == "demian.app" && adjusted_path == "info") {
             finish_request (res,200,akhenon.html(

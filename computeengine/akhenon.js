@@ -33,6 +33,7 @@ exports.html = (options,chosen_lng) => {
         languaje
         ganalitycs
         gtag
+        oa
         title
         robo
         dynamic
@@ -60,6 +61,9 @@ exports.html = (options,chosen_lng) => {
     }
     if (options.title != undefined) {
         ph = ph + "<title>"+options.title+"</title>\n";
+    };
+    if (options.oa != undefined) {
+        ph = ph + "<meta name='google-signin-client_id' content='"+options.oa+".apps.googleusercontent.com'>\n";    
     };
     ph = ph + "<base target='_top'>\n";
     ph = ph + "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n";

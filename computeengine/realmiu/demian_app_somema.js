@@ -80,6 +80,29 @@ function send_to_collection () {
     ao.fe("POST",collectos,console.log,JSON.stringify(test_data));
 }
 
+function install_OA2 () {
+    document.getElementsByTagName('head').appendChild(ao.qq({
+        "nodetype":"script",
+        "async":true,
+        "defer":true,
+        "src":"https://apis.google.com/js/platform.js"
+    }));
+}
+
+function build_google_login_button(){
+    let button = ao.qq({
+        "nodetype":"div",
+        "styles":["g-signin2"]
+    })
+    button.setAttribute("data-onsuccess",OA2_success);
+    return button;
+}
+
+function OA2_success(huh) {
+    console.log(huh);
+    alert("éxito");
+}
+
 window.onresize = () => {
     ao.screen_adjust();
 };
