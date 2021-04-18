@@ -71,6 +71,15 @@ let follow_message = {
     "es":"Porfavor seleccióna una acción del menú de la izqierda"
 }
 
+function send_to_collection () {
+    let test_data = {
+        "timestamp":Date.now().toString(),
+        "message":"hola"
+    }
+    let collectos = "https://script.google.com/macros/s/AKfycbzIePzuXLQWFslJv03RzQDQWGC9zMNRQt2_63cw7BaEUSQqQPZwFvSDszK5yI7WZFaa/exec";
+    ao.fe("POST",collectos,console.log,test_data);
+}
+
 window.onresize = () => {
     ao.screen_adjust();
 };

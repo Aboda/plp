@@ -30,7 +30,7 @@ let sidemenu = [
         "en":"Development Progress",
         "go":()=>{
             closeNav();
-            ao.fe("https://demian.app/info/progress",(response)=>{
+            ao.fe("GET","https://demian.app/info/progress",(response)=>{
                 let data;
                 try{
                     data = JSON.parse(response);
@@ -60,8 +60,8 @@ let sidemenu = [
 ];
 
 let hi_message = {
-    "en":"Status de progreso para los diferentes frentes del proyecto plp, por favor seleccióna la opción preferida del menú de la izquierda",
-    "es":"Progress status for different fronts to the plp proyect, please choose an option from the left hand menu",
+    "es":"Status de progreso para los diferentes frentes del proyecto plp, por favor seleccióna la opción preferida del menú de la izquierda",
+    "en":"Progress status for different fronts to the plp proyect, please choose an option from the left hand menu",
 }
 
 let site_progress = {

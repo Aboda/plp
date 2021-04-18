@@ -38,7 +38,7 @@ let initial_message = {
 }
 
 let final_message = {
-    "en":"This site is built on a virtual machine in google cloud using ubuntu, node and certbot. All code written by me, no additional libraries where employed. I am profoundly grateful towards the google and open source communityes for all the resources made available free of charge, It was that what brought me here.",
+    "en":"This site is built on a virtual machine in google cloud using ubuntu, node and certbot. All code written by me, no additional libraries where employed. I am profoundly grateful towards the google and open source community for all the resources made available free of charge, It was that what brought me here.",
     "es":"Este sitio está construido en una máquina virtual en la nube de google, utiliza ubuntu node y certbot. Todo el código fue escrito por mi, no fuerno empleadas librerías adicionales. Agradezco desde el fondo de mi corazón a la comunidad google y open source por todos los recursos que hacen disponibles sin cargo alguno, fueron ellos los que me trajeron aquí."
 }
 

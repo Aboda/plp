@@ -17,15 +17,19 @@ const ao = {
       object[newkey] = content;return true;
     }else{return false;};
   },
-  fe (resource,callback) {
+  fe (method,resource,callback,information) {
     var negotiator = new XMLHttpRequest();
-    negotiator.open("GET",resource);
+    negotiator.open(method,resource);
     negotiator.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             callback(this.responseText);
         };
     };
-    negotiator.send();
+    if (information != undefined) {
+      negotiator.send(information);
+    }else{
+      negotiator.send();
+    }    
   },
   "simple":{},
   "homogenizador":{
