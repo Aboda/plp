@@ -114,8 +114,7 @@ function signOut() {
 }
 
 function OA2_success(huh) {
-    console.log(huh);
-    alert("éxito");
+    console.log("OAuth2 Success",huh);
 }
 
 window.onresize = () => {
@@ -128,5 +127,6 @@ window.onload = () => {
     ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
     ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
     ao.main.append(build_google_login_button());
+    ao.main.append(build_google_logout_button());
     install_OA2();
 };

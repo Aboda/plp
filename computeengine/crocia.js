@@ -230,7 +230,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"OAuth2"
                         },
                         "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.oa2landing]
+                        "js":[resources_cache.js.alpha,resources_cache.js.oa2landing]
                     }
                 },
                 "info":{
