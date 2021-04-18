@@ -19,8 +19,8 @@ const ao = {
   },
   fe (method,resource,callback,information) {
     var negotiator = new XMLHttpRequest();
-    negotiator.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     negotiator.open(method,resource);
+    negotiator.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     negotiator.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             callback(this.responseText);
