@@ -636,7 +636,6 @@ exports.set_cache_n_init = (cache) => {
         }
     }
 }
-
 //Mensajes html comúnes de fácil acceso
 const common_messages = {
     "javascript_disclaimer":{
@@ -656,13 +655,12 @@ const common_messages = {
         "en":"<h1>Pending route configuration in server</h1>"
     }
 }
-
 /*
     Informa a robots.txt, sitemap.xml e index.html
     Informa a akhenon respecto a la página base a servir (pre js) y carga el css y js pertinente indicado en la lista
     Está cargado a memoria como los fragmentos de cache
 */
-exports.gatekeep = (req,res,akhenon,simple_counter) => {
+exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
     /*
         Esta primera sección evalua la solicitud para garantizar que hay contenidos
         programados para su atención
@@ -953,7 +951,6 @@ function valid_method (method,easyurl,domain_tree) {
         return false;
     };    
 }
-
 function build_index(domain_tree,domain_name,chosen_lng) {
     let chosen_domain = domain_tree[domain_name];
     let acronym = chosen_domain.meta.acronimo;
@@ -1007,7 +1004,6 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     }
     return hc
 }
-
 function index_div (object_meta,chosen_lng,mark) {
     let dc = "";
     if (object_meta.index == true) {
@@ -1042,7 +1038,6 @@ function serve_level_0(chosen_domain,chosen_lng){
     };
     return hedo;
 }
-
 function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
     let hedo = {
         "html":["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>"],

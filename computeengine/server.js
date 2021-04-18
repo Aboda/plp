@@ -74,7 +74,7 @@ https.createServer(server_options, (req, res) => {
         }
         log_JSON(action_report);
         //Procesa la solicitud
-        crocia.gatekeep(req,res,akhenon,simple_counter);
+        crocia.gatekeep(req,res,akhenon,simple_counter,log_JSON);
         //Cacha errores y los loggea
     } catch (err) {
         log_JSON({
