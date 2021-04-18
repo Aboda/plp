@@ -9,6 +9,7 @@ let track_pass = {
     "fbid":true,
     "ganalitycs":true,
     "gtag":true,
+    "oa":true
 }
 exports.set_cache_n_init = (cache) => {
     resources_cache = cache
