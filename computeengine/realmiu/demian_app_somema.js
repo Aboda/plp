@@ -81,7 +81,7 @@ function send_to_collection () {
 }
 
 function install_OA2 () {
-    document.getElementsByTagName('head').appendChild(ao.qq({
+    document.getElementsByTagName('head')[0].appendChild(ao.qq({
         "nodetype":"script",
         "async":true,
         "defer":true,
