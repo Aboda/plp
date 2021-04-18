@@ -147,12 +147,12 @@ function build_facebook_login_button(){
     button.setAttribute("data-layout","rounded");
     button.setAttribute("data-auto-logout-link","false");
     button.setAttribute("data-use-continue-as","true");
-    button.setAttribute("data-onlogin",start_interface);
+    button.setAttribute("data-onlogin",console.log);
     return button;
 }
 
 function show_facebook_user_info(){
-    
+
 }
 
 
