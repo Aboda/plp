@@ -174,11 +174,11 @@ function build_facebook_login_button(){
         "nodetype":"div",
         "styles":["fb-login-button"]
     })
-    button.setAttribute("data-width","300");
-    button.setAttribute("data-size","large");
-    button.setAttribute("data-button-type","login_with");
+    button.setAttribute("data-width","160");
+    button.setAttribute("data-size","medium");
+    button.setAttribute("data-button-type","continue_with");
     button.setAttribute("data-layout","rounded");
-    button.setAttribute("data-auto-logout-link","false");
+    button.setAttribute("data-auto-logout-link","true");
     button.setAttribute("data-use-continue-as","true");
     button.setAttribute("data-onlogin",start_interface);
     return button;

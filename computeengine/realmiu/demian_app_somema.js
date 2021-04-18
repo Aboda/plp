@@ -142,11 +142,11 @@ function build_facebook_login_button(){
         "nodetype":"div",
         "styles":["fb-login-button"]
     })
-    button.setAttribute("data-width","300");
-    button.setAttribute("data-size","large");
-    button.setAttribute("data-button-type","login_with");
+    button.setAttribute("data-width","160");
+    button.setAttribute("data-size","medium");
+    button.setAttribute("data-button-type","continue_with");
     button.setAttribute("data-layout","rounded");
-    button.setAttribute("data-auto-logout-link","false");
+    button.setAttribute("data-auto-logout-link","true");
     button.setAttribute("data-use-continue-as","true");
     button.setAttribute("data-onlogin",result_of_button_login);
     return button;
@@ -158,7 +158,7 @@ function result_of_button_login(huh){
 
 function show_facebook_user_info(reply){
     console.log("respuesta a login",reply);
-    FB.Event.unsubscribe("auth.statusChange", initial_page_setup);
+    FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
     FB.api('/me', function(response) {
         console.log("respuesta a /me",response);
     });

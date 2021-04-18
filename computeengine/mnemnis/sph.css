@@ -33,7 +33,7 @@
 }
 .dialog_container{
     display: flex;
-    flex-flow: column;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: space-evenly;
     width: 12em;
