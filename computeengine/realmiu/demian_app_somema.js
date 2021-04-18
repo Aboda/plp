@@ -112,6 +112,7 @@ function control_login_status(){
             "status":true,
             "version":"v10.0"
         });
+        FB.XFBML.parse();
     };
     /*                
         Paso 3, agregar los tags de script a la página
@@ -147,12 +148,20 @@ function build_facebook_login_button(){
     button.setAttribute("data-layout","rounded");
     button.setAttribute("data-auto-logout-link","false");
     button.setAttribute("data-use-continue-as","true");
-    button.setAttribute("data-onlogin",console.log);
+    button.setAttribute("data-onlogin",result_of_button_login);
     return button;
 }
 
-function show_facebook_user_info(){
+function result_of_button_login(huh){
+    console.log("result_of_button_login",huh);
+}
 
+function show_facebook_user_info(reply){
+    console.log("respuesta a login",reply);
+    FB.Event.unsubscribe("auth.statusChange", initial_page_setup);
+    FB.api('/me', function(response) {
+        console.log("respuesta a /me",response);
+    });
 }
 
 
