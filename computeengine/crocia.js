@@ -168,6 +168,7 @@ exports.set_cache_n_init = (cache) => {
                         "fbid":"2076681439269297",
                         "ganalitycs":true,
                         "gtag":"G-6MEPN29LZG",
+                        "oa":"345217584200-aaqh5p3p3huigg3hf0bobee8lhtphe41",
                         "title":{
                             "es":"SOmeMA:PLP",
                             "en":"SOmeMA:PLP"
@@ -196,6 +197,7 @@ exports.set_cache_n_init = (cache) => {
                         "fbid":"2076681439269297",
                         "ganalitycs":true,
                         "gtag":"G-6MEPN29LZG",
+                        "oa":"345217584200-aaqh5p3p3huigg3hf0bobee8lhtphe41",
                         "title":{
                             "es":"Narrador:PLP",
                             "en":"Storyteller:PLP"
@@ -220,7 +222,6 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "oa":"345217584200-aaqh5p3p3huigg3hf0bobee8lhtphe41",
                         "ganalitycs":true,
                         "gtag":"G-6MEPN29LZG",
                         "title":{
