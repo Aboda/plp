@@ -839,7 +839,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter) => {
         }        
         
         let options = {
-            "html":[common_messages.ruta_pendiente[chosen_lng],"<p>host: "+req.headers.host+"</p>","<p>referer: "+req.headers.referer+", adjusted: "+akhenon.adjust_path(req.headers.referer)+"</p>","<p>"+JSON.stringify(as_array)+"</p>"],
+            "html":[common_messages.ruta_pendiente[chosen_lng],"<p>host: "+req.headers.host+"</p>","<p>referer: "+req.headers.referer+", adjusted: "+akhenon.adjust_path(req.headers.host)+"</p>","<p>"+JSON.stringify(as_array)+"</p>"],
             "languaje":chosen_lng,
             "title":"mis:"+chosen_domain.meta.acronimo,
         };
