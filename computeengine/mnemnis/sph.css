@@ -36,15 +36,13 @@
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-evenly;
-    width: 12em;
-    height: 24em;
 }
 .third_container{
     display: flex;
     flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-evenly;
     border-width: .2em;
     border-style: outset;
     border-color: gray;
-    width:10em;
-    height:10em;
 }
