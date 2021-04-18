@@ -30,6 +30,13 @@
 
 let sidemenu = [
     {
+        "es":"Volver a Inicio",
+        "en":"Return Home",
+        "go":()=>{
+            window.location.href = "https://demian.app/";
+        }
+    },
+    {
         "es":"Idioma: Español, change to English",
         "en":"Languaje: English, cambiar a Español",
         "go":(e)=>{

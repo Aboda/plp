@@ -6,7 +6,7 @@ let sidemenu = [
         "es":"Volver a Inicio",
         "en":"Return Home",
         "go":()=>{
-            window.location.href = "https://demian.app/info";
+            window.location.href = "https://demian.app/";
         }
     },
     {
