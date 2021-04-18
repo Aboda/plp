@@ -247,14 +247,14 @@ function complicated_ass_card_1(data){
             root_card = ao.qq({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["layouter","color_contrast_3"]
+                "styles":["layouter","color_contrast_5"]
             },ao.focus);
             parents.push(entry);
         } else {
             root_card = ao.qq({
                 "id":entry,
                 "nodetype":"div",
-                "styles":["layouter"]
+                "styles":["layouter","color_contrast_4"]
             },ao.focus);
         };
         container.append(root_card);
@@ -295,7 +295,7 @@ function complicated_ass_card_1(data){
         if (data[entry].astra != undefined) {
             let sub_container = ao.qq({
                 "nodetype":"div",
-                "styles":["layouter","color_contrast_4"]
+                "styles":["item"]
             },ao.focus);
             root_card.append(sub_container);
 
@@ -303,7 +303,7 @@ function complicated_ass_card_1(data){
                 let ezr = data[entry].astra[route];
                 let sub_card = ao.qq({
                     "nodetype":"div",
-                    "styles":["item","color_contrast_5"]
+                    "styles":["item"]
                 },ao.focus);
                 sub_container.append(sub_card);
                 let sub_route = ao.qq({
