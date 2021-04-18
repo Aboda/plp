@@ -112,4 +112,6 @@ window.onload = () => {
     ao.main = document.getElementById("from_home");
     ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]}));
     ao.main.append(ao.qq({"nodetype":"p","innerText":follow_message[ao.lng]}));
+    ao.main.append(build_google_login_button());
+    install_OA2();
 };
