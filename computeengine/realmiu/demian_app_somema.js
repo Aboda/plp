@@ -77,7 +77,7 @@ function send_to_collection () {
         "message":"hola"
     }
     let collectos = "https://script.google.com/macros/s/AKfycbzIePzuXLQWFslJv03RzQDQWGC9zMNRQt2_63cw7BaEUSQqQPZwFvSDszK5yI7WZFaa/exec";
-    ao.fe("POST",collectos,console.log,test_data);
+    ao.fe("POST",collectos,console.log,JSON.stringify(test_data));
 }
 
 window.onresize = () => {
