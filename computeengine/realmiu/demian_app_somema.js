@@ -158,10 +158,22 @@ function result_of_button_login(huh){
 
 function show_facebook_user_info(reply){
     console.log("respuesta a login",reply);
-    FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
-    FB.api('/me', function(response) {
-        console.log("respuesta a /me",response);
-    });
+    let facebook_section = ao.simple.facebook_section;
+    facebook_section.config.status = reply.status;
+    ao.fblg = reply;
+    if (reply.status == "connected"){
+        FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
+        FB.api('/me', function(response) {
+            console.log("respuesta a /me",response);
+            let user_fb_card = ao.qq({"nodetype":"div","id":"fb_user_logged","styles":["color_contrast_3"]});
+            user_fb_card.append(
+                ao.qq({"nodetype":"h1","id":"fb_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+response.name})
+            );
+            facebook_section.append(user_fb_card);
+        });
+    }else{
+        alert("fallo la conexión a facebook");
+    }    
 }
 
 
@@ -196,7 +208,6 @@ function build_google_login_button(){
         "styles":["g-signin2"]
     })
     button.setAttribute("data-onsuccess","OA2_success");
-    button.setAttribute("data-onfailure","OA2_failure");
     return button;
 }
 
@@ -222,7 +233,9 @@ function signGoogleOut() {
 
 function OA2_success(huh) {
     console.log("OAuth2 Success",huh);
-}
-function OA2_failure(huh) {
-    console.log("OAuth2 Failure",huh);
+    let google_section = ao.simple.google_section;
+    ao.goa2 = huh;
+    google_section.append(
+        ao.qq({"nodetype":"h1","id":"goa2_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+huh.Rs.Te})
+    );
 }
