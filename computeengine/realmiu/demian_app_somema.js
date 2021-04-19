@@ -6,7 +6,6 @@
     Posteriormente permitirá la conexión con redes sociales para habilitar
     el uso de la base de datos constantemente curada
 */
-
 let sidemenu = [
     {
         "es":"Volver a Inicio",
@@ -60,14 +59,11 @@ let sidemenu = [
         }
     }
 ];
-
 let initial_message = {
     "en":"Both accounts need to be authorized to continue",
     "es":"Ambas cuentas necesitan ser autenticadas para continuar"
 }
-
 window.onload = () => {control_login_status();};
-
 /*
     Esta sección controla los usuarios. 
 */
@@ -92,7 +88,7 @@ function control_login_status(){
     */
     let log_main_display = ao.qq({"nodetype":"div","id":"log_main_display","styles":["dialog_container"]});
     let google_section = ao.qq({"nodetype":"div","id":"google_section","styles":["third_container","color_contrast_3"]});
-    google_section.append(build_google_login_button(),build_google_logout_button());
+    google_section.append(build_google_login_button());
     
     let facebook_section = ao.qq({"nodetype":"div","id":"facebook_section","styles":["third_container","color_contrast_4"]});
     facebook_section.append(build_facebook_login_button());
@@ -109,7 +105,6 @@ function control_login_status(){
             "appId" : ao.fbid,
             "autoLogAppEvents":true,
             "xbfml":true,
-            "status":true,
             "version":"v10.0"
         });
         FB.XFBML.parse();
@@ -120,13 +115,9 @@ function control_login_status(){
     install_facebook();
     install_OA2 ();
 }
-
-
-
 /*
     Sección Facebook
 */
-
 function install_facebook() {
     document.getElementsByTagName('head')[0].appendChild(ao.qq({
         "nodetype":"script",
@@ -136,7 +127,6 @@ function install_facebook() {
         "src":"https://connect.facebook.net/en_US/sdk.js"
     }));
 }
-
 function build_facebook_login_button(){
     let button = ao.qq({
         "nodetype":"div",
@@ -146,63 +136,58 @@ function build_facebook_login_button(){
     button.setAttribute("data-size","medium");
     button.setAttribute("data-button-type","continue_with");
     button.setAttribute("data-layout","rounded");
-    button.setAttribute("data-auto-logout-link","true");
+    button.setAttribute("data-auto-logout-link","false");
     button.setAttribute("data-use-continue-as","true");
     button.setAttribute("data-onlogin",result_of_button_login);
     return button;
 }
-
 function result_of_button_login(huh){
     console.log("result_of_button_login",huh);
-}
 
+}
 function show_facebook_user_info(reply){
     console.log("respuesta a login",reply);
+    ao.fblg = reply;
     let facebook_section = ao.simple.facebook_section;
     facebook_section.config.status = reply.status;
-    ao.fblg = reply;
+    facebook_section.append(ao.qq({"nodetype":"div","id":"fb_profile_feedback"}))
+    let profile_feedback = ao.simple.fb_profile_feedback;
     if (reply.status == "connected"){
         FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
         FB.api(
             "/"+ao.fblg.authResponse.userID+"/picture",
             "GET",
-            {"redirect":"false","type":"large"},
+            {"redirect":"false","type":"square"},
             function(fbimgres) {
-                console.log(fbimgres);
-                facebook_section.node.insertBefore(
+                profile_feedback.node.insertBefore(
                     ao.qq({"nodetype":"img","src":fbimgres.data.url}),
-                    facebook_section.node.childNodes[0]
-                )
-                
+                    profile_feedback.node.childNodes[0]
+                );                
             }
           );
-          
-        FB.api(
-            "/me", 
-            "GET",
-            {"fields":"email"},
-            function(response) {
-                console.log("respuesta a /me",response);
-                let user_fb_card = ao.qq({"nodetype":"div","id":"fb_user_logged","styles":["color_contrast_3"]});
-                user_fb_card.append(
-                    ao.qq({"nodetype":"p","id":"fb_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+response.name})
-                );
-                facebook_section.node.append(user_fb_card);
-            }
-        );
+          setTimeout(
+            FB.api(
+                "/me", 
+                "GET",
+                {"fields":"name,email"},
+                function(response) {
+                    console.log("respuesta a /me",response);
+                    profile_feedback.append(
+                        ao.qq({"nodetype":"p","styles":["color_contrast_3"],"innerText":response.name}),
+                        ao.qq({"nodetype":"p","styles":["color_contrast_3"],"innerText":response.email})
+                    );
+                    profile_feedback.node.append(user_fb_card);
+                }
+            ),
+            100
+          );
     }else{
         alert("fallo la conexión a facebook");
     }    
 }
-
-
-
 /*
     Sección Google
 */
-
-
-
 function send_to_collection () {
     let test_data = {
         "timestamp":Date.now().toString(),
@@ -211,7 +196,6 @@ function send_to_collection () {
     let collectos = "https://script.google.com/macros/s/AKfycbzIePzuXLQWFslJv03RzQDQWGC9zMNRQt2_63cw7BaEUSQqQPZwFvSDszK5yI7WZFaa/exec";
     ao.fe("POST",collectos,console.log,JSON.stringify(test_data));
 }
-
 function install_OA2 () {
     document.getElementsByTagName('head')[0].appendChild(ao.qq({
         "nodetype":"script",
@@ -220,7 +204,6 @@ function install_OA2 () {
         "src":"https://apis.google.com/js/platform.js"
     }));
 }
-
 function build_google_login_button(){
     let button = ao.qq({
         "nodetype":"div",
@@ -229,7 +212,6 @@ function build_google_login_button(){
     button.setAttribute("data-onsuccess","OA2_success");
     return button;
 }
-
 function build_google_logout_button () {
     let lofb = {
         "en":"Sign Out",
@@ -242,21 +224,19 @@ function build_google_logout_button () {
     })
     return button;
 }
-
 function signGoogleOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-        console.log('User signed out.');
+        console.log("User signed out.");
     });
 }
-
 function OA2_success(huh) {
     console.log("OAuth2 Success",huh);
     let google_section = ao.simple.google_section;
     ao.goa2 = huh;
     google_section.node.append(
         ao.qq({"nodetype":"img","src":huh.Rs.WI}),
-        ao.qq({"nodetype":"p","styles":["color_contrast_4"],"innerText":"Usuario: "+huh.Rs.Te}),
-        ao.qq({"nodetype":"p","styles":["color_contrast_4"],"innerText":"Usuario: "+huh.Rs.At})
+        ao.qq({"nodetype":"p","innerText":huh.Rs.Te}),
+        ao.qq({"nodetype":"p","innerText":huh.Rs.At})
     );
 }
