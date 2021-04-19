@@ -163,11 +163,19 @@ function show_facebook_user_info(reply){
     ao.fblg = reply;
     if (reply.status == "connected"){
         FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
+        FB.api(
+            "/{"+ao.fblg.authResponse.userID+"}/picture",
+            "GET",
+            {},
+            function(fbimgres) {
+                console.log("facebook_image_response",fbimgres);
+            }
+          );
         FB.api('/me', function(response) {
             console.log("respuesta a /me",response);
             let user_fb_card = ao.qq({"nodetype":"div","id":"fb_user_logged","styles":["color_contrast_3"]});
             user_fb_card.append(
-                ao.qq({"nodetype":"h1","id":"fb_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+response.name})
+                ao.qq({"nodetype":"p","id":"fb_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+response.name})
             );
             facebook_section.node.append(user_fb_card);
         });
@@ -236,6 +244,8 @@ function OA2_success(huh) {
     let google_section = ao.simple.google_section;
     ao.goa2 = huh;
     google_section.node.append(
-        ao.qq({"nodetype":"h1","id":"goa2_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+huh.Rs.Te})
+        ao.qq({"nodetype":"img","src":huh.Rs.WI}),
+        ao.qq({"nodetype":"p","styles":["color_contrast_4"],"innerText":"Usuario: "+huh.Rs.Te}),
+        ao.qq({"nodetype":"p","styles":["color_contrast_4"],"innerText":"Usuario: "+huh.Rs.At})
     );
 }

@@ -47,6 +47,7 @@ const ao = {
     "h4":true,
     "h5":true,
     "h6":true,
+    "img":true,
     "input":true,
     "label":true,
     "option":true,
