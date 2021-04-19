@@ -164,7 +164,7 @@ function show_facebook_user_info(reply){
     if (reply.status == "connected"){
         FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
         FB.api(
-            "/{"+ao.fblg.authResponse.userID+"}/picture",
+            "/"+ao.fblg.authResponse.userID+"/picture",
             "GET",
             {},
             function(fbimgres) {
