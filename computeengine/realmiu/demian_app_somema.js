@@ -169,10 +169,9 @@ function show_facebook_user_info(reply){
             {"redirect":"false","type":"large"},
             function(fbimgres) {
                 console.log(fbimgres);
-                
-                ao.simple.facebook_container.node.insertBefore(
+                facebook_section.node.insertBefore(
                     ao.qq({"nodetype":"img","src":fbimgres.data.url}),
-                    ao.simple.facebook_container.node.childNodes[0]
+                    facebook_section.node.childNodes[0]
                 )
                 
             }
