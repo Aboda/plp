@@ -164,14 +164,18 @@ function show_facebook_user_info(reply){
     if (reply.status == "connected"){
         FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
         FB.api(
-            "/"+ao.fblg.authResponse.userID+"/picture",
+            "/"+ao.fblg.authResponse.userID,
             "GET",
             {},
             function(fbimgres) {
                 console.log("facebook_image_response",fbimgres);
             }
           );
-        FB.api('/me', function(response) {
+        FB.api(
+            "/me", 
+            "GET",
+            {},
+        function(response) {
             console.log("respuesta a /me",response);
             let user_fb_card = ao.qq({"nodetype":"div","id":"fb_user_logged","styles":["color_contrast_3"]});
             user_fb_card.append(
