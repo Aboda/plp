@@ -169,7 +169,7 @@ function show_facebook_user_info(reply){
             user_fb_card.append(
                 ao.qq({"nodetype":"h1","id":"fb_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+response.name})
             );
-            facebook_section.append(user_fb_card);
+            facebook_section.node.append(user_fb_card);
         });
     }else{
         alert("fallo la conexión a facebook");
@@ -235,7 +235,7 @@ function OA2_success(huh) {
     console.log("OAuth2 Success",huh);
     let google_section = ao.simple.google_section;
     ao.goa2 = huh;
-    google_section.append(
+    google_section.node.append(
         ao.qq({"nodetype":"h1","id":"goa2_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+huh.Rs.Te})
     );
 }
