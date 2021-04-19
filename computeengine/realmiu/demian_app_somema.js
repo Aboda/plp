@@ -196,6 +196,7 @@ function build_google_login_button(){
         "styles":["g-signin2"]
     })
     button.setAttribute("data-onsuccess","OA2_success");
+    button.setAttribute("data-onfailure","OA2_failure");
     return button;
 }
 
@@ -221,4 +222,7 @@ function signGoogleOut() {
 
 function OA2_success(huh) {
     console.log("OAuth2 Success",huh);
+}
+function OA2_failure(huh) {
+    console.log("OAuth2 Failure",huh);
 }
