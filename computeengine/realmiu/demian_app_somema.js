@@ -164,25 +164,33 @@ function show_facebook_user_info(reply){
     if (reply.status == "connected"){
         FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
         FB.api(
-            "/"+ao.fblg.authResponse.userID,
+            "/"+ao.fblg.authResponse.userID+"/picture",
             "GET",
-            {},
+            {"redirect":"false","type":"large"},
             function(fbimgres) {
-                console.log("facebook_image_response",fbimgres);
+                console.log(fbimgres);
+                /*
+                ao.simple.facebook_container.node.insertBefore(
+                    newItem,
+                    ao.simple.facebook_container.childNodes[0]
+                )
+                */
             }
           );
+          
         FB.api(
             "/me", 
             "GET",
             {},
-        function(response) {
-            console.log("respuesta a /me",response);
-            let user_fb_card = ao.qq({"nodetype":"div","id":"fb_user_logged","styles":["color_contrast_3"]});
-            user_fb_card.append(
-                ao.qq({"nodetype":"p","id":"fb_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+response.name})
-            );
-            facebook_section.node.append(user_fb_card);
-        });
+            function(response) {
+                console.log("respuesta a /me",response);
+                let user_fb_card = ao.qq({"nodetype":"div","id":"fb_user_logged","styles":["color_contrast_3"]});
+                user_fb_card.append(
+                    ao.qq({"nodetype":"p","id":"fb_user_logged","styles":["color_contrast_3"],"innerText":"Usuario: "+response.name})
+                );
+                facebook_section.node.append(user_fb_card);
+            }
+        );
     }else{
         alert("fallo la conexión a facebook");
     }    
