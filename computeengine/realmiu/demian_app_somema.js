@@ -169,19 +169,19 @@ function show_facebook_user_info(reply){
             {"redirect":"false","type":"large"},
             function(fbimgres) {
                 console.log(fbimgres);
-                /*
+                
                 ao.simple.facebook_container.node.insertBefore(
-                    newItem,
+                    ao.qq({"nodetype":"img","src":fbimgres.data.url}),
                     ao.simple.facebook_container.childNodes[0]
                 )
-                */
+                
             }
           );
           
         FB.api(
             "/me", 
             "GET",
-            {},
+            {"fields":"email"},
             function(response) {
                 console.log("respuesta a /me",response);
                 let user_fb_card = ao.qq({"nodetype":"div","id":"fb_user_logged","styles":["color_contrast_3"]});
