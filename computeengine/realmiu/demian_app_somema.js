@@ -172,7 +172,7 @@ function show_facebook_user_info(reply){
                 
                 ao.simple.facebook_container.node.insertBefore(
                     ao.qq({"nodetype":"img","src":fbimgres.data.url}),
-                    ao.simple.facebook_container.childNodes[0]
+                    ao.simple.facebook_container.node.childNodes[0]
                 )
                 
             }
