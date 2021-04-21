@@ -178,7 +178,6 @@ function show_facebook_user_info(reply){
                         ao.qq({"nodetype":"p","styles":["color_contrast_3"],"innerText":response.name}),
                         ao.qq({"nodetype":"p","styles":["color_contrast_3"],"innerText":response.email})
                     );
-                    profile_feedback.node.append(user_fb_card);
                 }
             ),
             100
