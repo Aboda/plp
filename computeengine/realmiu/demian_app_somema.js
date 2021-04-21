@@ -150,7 +150,7 @@ function show_facebook_user_info(reply){
     ao.fblg = reply;
     let facebook_section = ao.simple.facebook_section;
     facebook_section.config.status = reply.status;
-    facebook_section.append(ao.qq({"nodetype":"div","id":"fb_profile_feedback"}))
+    facebook_section.node.append(ao.qq({"nodetype":"div","id":"fb_profile_feedback"}))
     let profile_feedback = ao.simple.fb_profile_feedback;
     if (reply.status == "connected"){
         FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
