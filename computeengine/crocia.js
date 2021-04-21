@@ -734,6 +734,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         };
 
         if (favicon_trigger) {
+            res.setHeader("Cache-Control", "public, max-age=86400");
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
             return;
         };

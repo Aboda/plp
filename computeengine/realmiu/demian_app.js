@@ -34,12 +34,12 @@ let sidemenu = [
 
 let initial_message = {
     "en":"Welcome to my personal development and learning environment, please let me know what brought you here to better route you to the right portal:",
-    "es":"Bienvenid@ a mi espacio de desarrollo y aprendizaje personal, por favor indica qué es lo que te trajo aqui para poder canalizarte al portal adecuado:"
+    "es":"Bienvenidao a mi espacio de desarrollo y aprendizaje personal, por favor indica qué es lo que te trajo aqui para poder canalizarte al portal adecuado:"
 }
 
 let final_message = {
     "en":"This site is built on a virtual machine in google cloud using ubuntu, node and certbot. All code written by me, no additional libraries where employed. I am profoundly grateful towards the google and open source community for all the resources made available free of charge, It was that what brought me here.",
-    "es":"Este sitio está construido en una máquina virtual en la nube de google, utiliza ubuntu node y certbot. Todo el código fue escrito por mi, no fuerno empleadas librerías adicionales. Agradezco desde el fondo de mi corazón a la comunidad google y open source por todos los recursos que hacen disponibles sin cargo alguno, fueron ellos los que me trajeron aquí."
+    "es":"Este sitio está construido en una máquina virtual en la nube de google, utiliza ubuntu, node y certbot. Todo el código fue escrito por mi, no fueron empleadas librerías adicionales. Agradezco desde el fondo de mi corazón a la comunidad google y open source por todos los recursos que hacen disponibles sin cargo alguno, fueron ellos los que me trajeron aquí."
 }
 
 let initial_options = [
@@ -129,3 +129,26 @@ window.onload = () => {
     ao.main.append(ao.qq({"nodetype":"p","innerText":final_message[ao.lng],"styles":["byemessage"]},ao.flow.init));
 };
 
+/*
+    Modificaciónes pendientes demian.app
+
+    Presentación, ver si despues de cierta talla, pasamos a hacer bloques lado a lado en lugar de extender
+    cada opción como un renglon por si mismo
+
+    General opciones:
+    Cuando la opción elegida ofrezca subopciones, hay que agregar un botoncito de "volver" muy a la mano
+    para que no den "atras" en el navegador. 
+
+    Opción 1, independientes y consultoria
+        Agregar subopciones: 
+        Ver soluciones: Muestrario de cosas hechas en el pasado
+        Consulta interactiva: Cuestionario interactivo para saber más del caso del usuario.
+        Contactame: Interface de mensajes de la página
+
+    Opción 2, empresas y contratación
+        Agregar Subopciones:
+        Ver página profesional: (aqui debe haber algo flashy platicadito que hable de mi experiencia)
+        Ver CV: (sin datos de contacto)
+        Ver soluciones: Muestrario de cosas hechas en el pasado
+        Contactame: Interface de mensajes de la página
+*/

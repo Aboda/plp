@@ -94,3 +94,8 @@ function log_JSON (log_stringifieable) {
         log_file.write(JSON.stringify(log_stringifieable)+ ",\n");
     };
 };
+
+/*
+    Modificaciones pendientes en servidor
+    Ninguna Contemplada
+*/
