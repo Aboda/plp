@@ -103,7 +103,6 @@ function control_login_status(){
         FB.Event.subscribe("auth.statusChange", show_facebook_user_info);
         FB.init({
             "appId" : ao.fbid,
-            "autoLogAppEvents":true,
             "xbfml":true,
             "version":"v10.0"
         });
@@ -124,8 +123,9 @@ function install_facebook() {
         "async":true,
         "defer":true,
         "crossorigin":"anonymous",
-        "src":"https://connect.facebook.net/en_US/sdk.js"
+        "src":"https://connect.facebook.net/en_US/sdk/debug.js"
     }));
+    //prod "https://connect.facebook.net/en_US/sdk.js"
 }
 function build_facebook_login_button(){
     let button = ao.qq({
@@ -154,6 +154,7 @@ function show_facebook_user_info(reply){
     let profile_feedback = ao.simple.fb_profile_feedback;
     if (reply.status == "connected"){
         FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
+        console.log("immediate FB call, my pic")
         FB.api(
             "/"+ao.fblg.authResponse.userID+"/picture",
             "GET",
@@ -172,7 +173,7 @@ function show_facebook_user_info(reply){
                 {"fields":"name,email"},
                 function(response) {
                     console.log("respuesta a /me",response);
-                    profile_feedback.append(
+                    profile_feedback.node.append(
                         ao.qq({"nodetype":"p","styles":["color_contrast_3"],"innerText":response.name}),
                         ao.qq({"nodetype":"p","styles":["color_contrast_3"],"innerText":response.email})
                     );
