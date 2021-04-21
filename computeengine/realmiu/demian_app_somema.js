@@ -152,6 +152,7 @@ function show_facebook_user_info(reply){
     facebook_section.config.status = reply.status;
     facebook_section.node.append(ao.qq({"nodetype":"div","id":"fb_profile_feedback"}))
     let profile_feedback = ao.simple.fb_profile_feedback;
+    console.log("before checking reply status");
     if (reply.status == "connected"){
         FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
         console.log("immediate FB call, my pic")
