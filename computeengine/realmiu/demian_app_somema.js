@@ -155,18 +155,20 @@ function show_facebook_user_info(reply){
     console.log("before checking reply status");
     if (reply.status == "connected"){
         FB.Event.unsubscribe("auth.statusChange", show_facebook_user_info);
-        console.log("immediate FB call, my pic")
+        console.log("immediate FB call, my pic");
         FB.api(
             "/"+ao.fblg.authResponse.userID+"/picture",
             "GET",
             {"redirect":"false","type":"square"},
             function(fbimgres) {
+                console.log({fbimgres});
                 profile_feedback.node.insertBefore(
                     ao.qq({"nodetype":"img","src":fbimgres.data.url}),
                     profile_feedback.node.childNodes[0]
                 );                
             }
           );
+          console.log("timed call, name and email");
           setTimeout(
             FB.api(
                 "/me", 
@@ -182,6 +184,7 @@ function show_facebook_user_info(reply){
             ),
             100
           );
+          console.log("end");
     }else{
         alert("fallo la conexión a facebook");
     }    
