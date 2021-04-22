@@ -60,8 +60,8 @@ let sidemenu = [
     }
 ];
 let initial_message = {
-    "en":"Both accounts need to be authorized to continue",
-    "es":"Ambas cuentas necesitan ser autenticadas para continuar"
+    "en":"This tool allows you to curate content using your own google drive as storage device, it also allows you to programatically use this content for automated publishing on your communication networks, for this abundant permissions on both platforms are required.",
+    "es":"Esta herramienta permite curar contenido utilizando tu propio google drive como dispositivo de almacenamiento, tambien te permite el programar el uso de estas piezas de contenido para publicación automática en tus canales de comunicación, para esto permisos abundantes en ambas plataformas son requeridos"
 }
 window.onload = () => {control_login_status();};
 /*
@@ -80,27 +80,33 @@ function control_login_status(){
             5.- Inicia la interface específica
     */
     ao.main = document.getElementById("from_home");
-    ao.main.append(initial_message[ao.lng]);
+    ao.main.append(ao.qq({"nodetype":"p","id":"tool_brief","innerText":initial_message[ao.lng]}));
     ao.logcon = {};
     /*                
         Paso 1, generar elementos html con tagging pertinente para que al
         arranque de los scripts sean rendereados
     */
     let log_main_display = ao.qq({"nodetype":"div","id":"log_main_display","styles":["dialog_container"]});
-    let google_section = ao.qq({"nodetype":"div","id":"google_section","styles":["third_container","color_contrast_3"]});
+    
+    let google_section = ao.qq({"nodetype":"div","id":"google_section","innerText":"Status Google","styles":["third_container"]});
     google_section.append(build_google_login_button());
     
-    let facebook_section = ao.qq({"nodetype":"div","id":"facebook_section","styles":["third_container","color_contrast_4"]});
+    let facebook_section = ao.qq({"nodetype":"div","id":"facebook_section","innerText":"Status Facebook","styles":["third_container"]});
     facebook_section.append(build_facebook_login_button());
-    
+
     log_main_display.append(google_section,facebook_section);
+
     ao.main.append(log_main_display);
+
+    let login_proceed = ao.qq({"nodetype":"div","id":"proceed_button","innerText":"Evaluando Estado...","styles":["initial_proceed_button"]});
+        
+    ao.main.append(login_proceed);
     /*                
         Paso 2, en el caso de facebook definir las acciónes a tomar cuando
         concluya la carga de su script
     */
     window.fbAsyncInit = function () {
-        FB.Event.subscribe("auth.statusChange", show_facebook_user_info);
+        FB.Event.subscribe("auth.statusChange", react_to_facebook_status);
         FB.init({
             "appId" : ao.fbid,
             "xbfml":true,
@@ -173,7 +179,7 @@ function show_facebook_user_info(reply){
             FB.api(
                 "/me", 
                 "GET",
-                {"fields":"name,email"},
+                {"fields":"name"},
                 function(response) {
                     console.log("respuesta a /me",response);
                     profile_feedback.node.append(
@@ -188,6 +194,11 @@ function show_facebook_user_info(reply){
     }else{
         alert("fallo la conexión a facebook");
     }    
+}
+
+function react_to_facebook_status (response) {
+    alert(response.status);
+
 }
 /*
     Sección Google

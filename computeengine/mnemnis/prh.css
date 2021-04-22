@@ -31,3 +31,6 @@
 .byemessage{
     font-size: 85%;
 }
+.initial_proceed_button{
+    cursor:progress;
+}
