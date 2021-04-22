@@ -119,9 +119,9 @@ function control_login_status(){
     let facebook_section = ao.qq({"nodetype":"div","id":"facebook_section","innerText":"Status Facebook","styles":["third_container"]});
     facebook_section.append(build_facebook_login_button());
 
-    log_main_display.append(google_section,facebook_section);
+    login_main_display.append(google_section,facebook_section);
 
-    ao.main.append(log_main_display);
+    ao.main.append(login_main_display);
 
     let login_proceed = ao.qq({"nodetype":"div","id":"proceed_button","innerText":"Evaluando Estado...","styles":["initial_proceed_button"]});
         
