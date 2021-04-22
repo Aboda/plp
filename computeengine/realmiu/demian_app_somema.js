@@ -79,14 +79,39 @@ function control_login_status(){
             4.- Cuando ambas cuentas están loggeadas, habilita el continuar
             5.- Inicia la interface específica
     */
+    
+    //Agrega el elemento preexistente del servidor a un objeto
     ao.main = document.getElementById("from_home");
+    //Introduce el mensaje de "bienvenida" de la página
     ao.main.append(ao.qq({"nodetype":"p","id":"tool_brief","innerText":initial_message[ao.lng]}));
-    ao.logcon = {};
+    //Prepara el objeto controlador de estados
+    ao.sessions = {
+        "fb":{},
+        "go":{}
+    };
+    //Inserta el nodo "fb root" necesario para la operación con facebook
+    document.body.append(ao.qq({"nodetype":"div","id":"fb-root"}));
     /*                
-        Paso 1, generar elementos html con tagging pertinente para que al
-        arranque de los scripts sean rendereados
+        Construir los contenedores de validación donde se reflejará
+        la interacción de autenticación de las cuentas a utilizar
+
+        Contenedor de autenticación dual
+
+            Contenedor de Proveedor x2
+                Nombre del proveedor
+                Status con proveedor
+                Espacio de retroalimentación
+                Espacio de botones
+                    Firmarse o desfirmarse del proveedor
+        
+        Confirmación de autenticación dual
+
+        Una vez construido el layout, se solicitara saber el status
+        de login de cada proveedor
     */
-    let log_main_display = ao.qq({"nodetype":"div","id":"log_main_display","styles":["dialog_container"]});
+    let login_main_display = ao.qq({"nodetype":"div","id":"dual_auth_container","styles":["dialog_container"]});
+
+    let dual_login_proceed = ao.qq({"nodetype":"div","id":"dual_auth_container","styles":["full_bottom_button","grayed_out"]});
     
     let google_section = ao.qq({"nodetype":"div","id":"google_section","innerText":"Status Google","styles":["third_container"]});
     google_section.append(build_google_login_button());
@@ -196,8 +221,11 @@ function show_facebook_user_info(reply){
     }    
 }
 
-function react_to_facebook_status (response) {
-    alert(response.status);
+function react_to_facebook_status (fbstatusresponse) {
+    console.log("react_to_facebook_status",{fbstatusresponse});
+}
+
+function vendor_login_uni_interface () {
 
 }
 /*

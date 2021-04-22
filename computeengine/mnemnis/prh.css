@@ -19,6 +19,18 @@
     background-color:rgb(72,3,85);
     color:rgb(255,255,255);
 }
+.grayed_out{
+    color:rgb(180,180,180);
+    background-color:rgb(180,180,180);
+}
+.full_bottom_button {
+    bottom:0px;
+    left:0px;
+    right:0px;
+    border-style:outset;
+    border-width:.2em;
+    border-color:grey;
+}
 .botopts{
     margin: .7em;
     padding: .3em;
