@@ -120,10 +120,11 @@ function control_login_status(){
     facebook_section.append(build_facebook_login_button());
 
     login_main_display.append(google_section,facebook_section);
-
+ 
     ao.main.append(login_main_display);
-
-    let login_proceed = ao.qq({"nodetype":"div","id":"proceed_button","innerText":"Evaluando Estado...","styles":["initial_proceed_button"]});
+    
+    let holdon_message = {"es":"Evaluando Estado...","en":"Evaluating Status... "}  
+    let login_proceed = ao.qq({"nodetype":"div","id":"proceed_button","innerText":holdon_message[ao.lng],"styles":["grayed_out"]});
         
     ao.main.append(login_proceed);
     /*                
@@ -133,7 +134,7 @@ function control_login_status(){
     window.fbAsyncInit = function () {
         FB.Event.subscribe("auth.statusChange", react_to_facebook_status);
         FB.init({
-            "appId" : ao.fbid,
+            "appId" :ao.fbid,
             "xbfml":true,
             "version":"v10.0"
         });
@@ -222,6 +223,7 @@ function show_facebook_user_info(reply){
 }
 
 function react_to_facebook_status (fbstatusresponse) {
+    ao.sessions.fb = fbstatusresponse;
     console.log("react_to_facebook_status",{fbstatusresponse});
 }
 
@@ -248,12 +250,15 @@ function install_OA2 () {
     }));
 }
 function build_google_login_button(){
-    let button = ao.qq({
-        "nodetype":"div",
-        "styles":["g-signin2"]
-    })
-    button.setAttribute("data-onsuccess","OA2_success");
-    return button;
+    return gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': OA2_success,
+        'onfailure': onFailure
+      });
 }
 function build_google_logout_button () {
     let lofb = {
@@ -273,13 +278,13 @@ function signGoogleOut() {
         console.log("User signed out.");
     });
 }
-function OA2_success(huh) {
-    console.log("OAuth2 Success",huh);
+function OA2_success(profile) {
+    console.log("OAuth2 Success",{profile});
     let google_section = ao.simple.google_section;
-    ao.goa2 = huh;
+    ao.sessions.go = profile;
     google_section.node.append(
-        ao.qq({"nodetype":"img","src":huh.Rs.WI}),
-        ao.qq({"nodetype":"p","innerText":huh.Rs.Te}),
-        ao.qq({"nodetype":"p","innerText":huh.Rs.At})
+        ao.qq({"nodetype":"img","src":profile.getImageUrl()}),
+        ao.qq({"nodetype":"p","innerText":profile.getName()}),
+        ao.qq({"nodetype":"p","innerText":profile.getEmail()})
     );
 }
