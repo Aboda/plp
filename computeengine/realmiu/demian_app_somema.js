@@ -244,17 +244,16 @@ function send_to_collection () {
 function install_OA2 () {
     document.getElementsByTagName('head')[0].appendChild(ao.qq({
         "nodetype":"script",
-        "async":true,
-        "defer":true,
-        "src":"https://apis.google.com/js/platform.js"
+        "src":"https://apis.google.com/js/client.js"
     }));
+    /*
     document.getElementsByTagName('head')[0].appendChild(ao.qq({
         "nodetype":"script",
         "async":true,
         "defer":true,
-        "src":"https://apis.google.com/js/client.js"
+        "src":"https://apis.google.com/js/platform.js"
     }));
-    
+    */    
 }
 function build_google_login_button(){
     return gapi.signin2.render('my-signin2', {
