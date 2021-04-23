@@ -248,6 +248,13 @@ function install_OA2 () {
         "defer":true,
         "src":"https://apis.google.com/js/platform.js"
     }));
+    document.getElementsByTagName('head')[0].appendChild(ao.qq({
+        "nodetype":"script",
+        "async":true,
+        "defer":true,
+        "src":"https://apis.google.com/js/client.js"
+    }));
+    
 }
 function build_google_login_button(){
     return gapi.signin2.render('my-signin2', {
