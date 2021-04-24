@@ -114,7 +114,7 @@ function control_login_status(){
     let dual_login_proceed = ao.qq({"nodetype":"div","id":"dual_auth_container","styles":["full_bottom_button","grayed_out"]});
     
     let google_section = ao.qq({"nodetype":"div","id":"google_section","innerText":"Status Google","styles":["third_container"]});
-    google_section.append(build_google_login_button());
+    //google_section.append(build_google_login_button());
     
     let facebook_section = ao.qq({"nodetype":"div","id":"facebook_section","innerText":"Status Facebook","styles":["third_container"]});
     facebook_section.append(build_facebook_login_button());
