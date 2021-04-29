@@ -41,6 +41,11 @@ var cache = {
         "sdb":fs.readFileSync("./mnemnis/sdb.css").toString(),
         "sph":fs.readFileSync("./mnemnis/sph.css").toString()
     },
+    "html":{
+        "aboutme":fs.readFileSync("./mnemnis/aboutme.html").toString(),
+        "privacypolicy":fs.readFileSync("./mnemnis/privacypolicy.html").toString(),
+        "termsofserice":fs.readFileSync("./mnemnis/termsofserice.html").toString()
+    },
     "js":{
         "alpha":fs.readFileSync("./realmiu/alpha.js").toString(),
         "demian_app_info":fs.readFileSync("./realmiu/demian_app_info.js").toString(),
@@ -51,11 +56,6 @@ var cache = {
         "oa2landing":fs.readFileSync("./realmiu/oa2landing.js").toString(),
         "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
         "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString()        
-    },
-    "html":{
-        "aboutme":fs.readFileSync("./mnemnis/aboutme.html").toString(),
-        "privacypolicy":fs.readFileSync("./mnemnis/privacypolicy.html").toString(),
-        "termsofserice":fs.readFileSync("./mnemnis/termsofserice.html").toString()
     }
 }
 
