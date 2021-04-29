@@ -44,7 +44,7 @@ var cache = {
     "html":{
         "aboutme":fs.readFileSync("./mnemnis/aboutme.html").toString(),
         "privacypolicy":fs.readFileSync("./mnemnis/privacypolicy.html").toString(),
-        "termsofserice":fs.readFileSync("./mnemnis/termsofserice.html").toString()
+        "termsofservice":fs.readFileSync("./mnemnis/termsofservice.html").toString()
     },
     "js":{
         "alpha":fs.readFileSync("./realmiu/alpha.js").toString(),
