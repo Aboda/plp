@@ -51,6 +51,11 @@ var cache = {
         "oa2landing":fs.readFileSync("./realmiu/oa2landing.js").toString(),
         "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
         "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString()        
+    },
+    "html":{
+        "aboutme":fs.readFileSync("./realmiu/aboutme.html").toString(),
+        "privacypolicy":fs.readFileSync("./realmiu/privacypolicy.html").toString(),
+        "termsofserice":fs.readFileSync("./realmiu/termsofserice.html").toString()
     }
 }
 

@@ -31,3 +31,7 @@
 .byemessage{
     font-size: 85%;
 }
+.option_container{
+    display: flex;
+    flex-flow: row wrap;
+}

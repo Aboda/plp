@@ -62,9 +62,6 @@ exports.html = (options,chosen_lng) => {
     if (options.title != undefined) {
         ph = ph + "<title>"+options.title+"</title>\n";
     };
-    if (options.oa != undefined) {
-        ph = ph + "<meta name='google-signin-client_id' content='"+options.oa+".apps.googleusercontent.com'>\n";    
-    };
     ph = ph + "<base target='_top'>\n";
     ph = ph + "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n";
     ph = ph + "<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n";
@@ -97,8 +94,11 @@ exports.html = (options,chosen_lng) => {
         for (modules of options.js) {
             if (wait_1 == 1) {
                 if (options.facebooksdk == true) {
-                    ph = ph + "ao.fbid = "+options.fbid+"\n";
+                    ph = ph + "ao.fbid = "+options.fbid+";\n";
                 }
+                if (options.oa != undefined) {
+                    ph = ph + "ao.oaid = "+options.oa+";\n";
+                };
             }
             ph = ph + modules+"\n";
             wait_1++;

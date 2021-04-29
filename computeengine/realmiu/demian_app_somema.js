@@ -60,8 +60,8 @@ let sidemenu = [
     }
 ];
 let initial_message = {
-    "en":"This tool allows you to curate content using your own google drive as storage device, it also allows you to programatically use this content for automated publishing on your communication networks, for this abundant permissions on both platforms are required.",
-    "es":"Esta herramienta permite curar contenido utilizando tu propio google drive como dispositivo de almacenamiento, tambien te permite el programar el uso de estas piezas de contenido para publicación automática en tus canales de comunicación, para esto permisos abundantes en ambas plataformas son requeridos"
+    "en":"This tool allows you to curate content using your own google drive as storage device, it also allows you to programatically use this content for automated publishing on your communication networks and to analyse publishing impact Google and Facebook client javascript sdk are employed for this.",
+    "es":"Esta herramienta permite curar contenido utilizando tu propio google drive como dispositivo de almacenamiento, tambien te permite el programar el uso de estas piezas de contenido para publicación automática en tus canales de comunicación y consultar posteriormente su desempeño. Para esto las librerías SDK javascript de Google y Facebook son empleadas"
 }
 window.onload = () => {control_login_status();};
 /*
@@ -111,11 +111,8 @@ function control_login_status(){
     */
     let login_main_display = ao.qq({"nodetype":"div","id":"dual_auth_container","styles":["dialog_container"]});
 
-    let dual_login_proceed = ao.qq({"nodetype":"div","id":"dual_auth_container","styles":["full_bottom_button","grayed_out"]});
-    
     let google_section = ao.qq({"nodetype":"div","id":"google_section","innerText":"Status Google","styles":["third_container"]});
-    //google_section.append(build_google_login_button());
-    
+        
     let facebook_section = ao.qq({"nodetype":"div","id":"facebook_section","innerText":"Status Facebook","styles":["third_container"]});
     facebook_section.append(build_facebook_login_button());
 
@@ -124,26 +121,28 @@ function control_login_status(){
     ao.main.append(login_main_display);
     
     let holdon_message = {"es":"Evaluando Estado...","en":"Evaluating Status... "}  
-    let login_proceed = ao.qq({"nodetype":"div","id":"proceed_button","innerText":holdon_message[ao.lng],"styles":["grayed_out"]});
+    let login_proceed = ao.qq({"nodetype":"div","id":"proceed_button","innerText":holdon_message[ao.lng],"styles":["full_bottom_button","grayed_out"]});
         
     ao.main.append(login_proceed);
     /*                
         Paso 2, en el caso de facebook definir las acciónes a tomar cuando
         concluya la carga de su script
     */
-    window.fbAsyncInit = function () {
-        FB.Event.subscribe("auth.statusChange", react_to_facebook_status);
-        FB.init({
-            "appId" :ao.fbid,
-            "xbfml":true,
-            "version":"v10.0"
-        });
-        FB.XFBML.parse();
+    /*
+        window.fbAsyncInit = function () {
+            FB.Event.subscribe("auth.statusChange", react_to_facebook_status);
+            FB.init({
+                "appId" :ao.fbid,
+                "xbfml":true,
+                "version":"v10.0"
+            });
+            FB.XFBML.parse();
     };
+    */
     /*                
         Paso 3, agregar los tags de script a la página
     */
-    install_facebook();
+    //install_facebook();
     install_OA2 ();
 }
 /*
@@ -158,6 +157,7 @@ function install_facebook() {
         "src":"https://connect.facebook.net/en_US/sdk/debug.js"
     }));
     //prod "https://connect.facebook.net/en_US/sdk.js"
+    //dev "https://connect.facebook.net/en_US/sdk/debug.js"
 }
 function build_facebook_login_button(){
     let button = ao.qq({
@@ -221,39 +221,32 @@ function show_facebook_user_info(reply){
         alert("fallo la conexión a facebook");
     }    
 }
-
 function react_to_facebook_status (fbstatusresponse) {
     ao.sessions.fb = fbstatusresponse;
     console.log("react_to_facebook_status",{fbstatusresponse});
 }
-
-function vendor_login_uni_interface () {
-
-}
 /*
     Sección Google
 */
-function send_to_collection () {
-    let test_data = {
-        "timestamp":Date.now().toString(),
-        "message":"hola"
-    }
-    let collectos = "https://script.google.com/macros/s/AKfycbzIePzuXLQWFslJv03RzQDQWGC9zMNRQt2_63cw7BaEUSQqQPZwFvSDszK5yI7WZFaa/exec";
-    ao.fe("POST",collectos,console.log,JSON.stringify(test_data));
-}
 function install_OA2 () {
+    //Selector curiosillo vía tag de css, solo hay un head en el documento afortunadamente. 
     document.getElementsByTagName('head')[0].appendChild(ao.qq({
         "nodetype":"script",
-        "src":"https://apis.google.com/js/client.js"
+        "src":"https://apis.google.com/js/client.js",
+        "onload":()=>{
+            //Inicia el cliente aqui.
+            gapi.client.init({
+                "apiKey": ao.oaid,
+                "scope": "https://www.googleapis.com/auth/drive,",
+                "discoveryDocs": ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"]
+            }).then(function () {
+                GoogleAuth = gapi.auth2.getAuthInstance();
+          
+                // Listen for sign-in state changes.
+                GoogleAuth.isSignedIn.listen(updateSigninStatus);
+            });
+        }
     }));
-    /*
-    document.getElementsByTagName('head')[0].appendChild(ao.qq({
-        "nodetype":"script",
-        "async":true,
-        "defer":true,
-        "src":"https://apis.google.com/js/platform.js"
-    }));
-    */    
 }
 function build_google_login_button(){
     return gapi.signin2.render('my-signin2', {

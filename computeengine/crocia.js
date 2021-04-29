@@ -1,16 +1,19 @@
 /*
     Este es en si el servidor
 */
-//Carga de recursos a memoria. 
+// Objeto de almacenamiento de cache
 let resources_cache = {}; 
+// Objeto de detallado de estructura de sitio
 let domain_tree = {};
-let track_pass = {
+// Objeto de valores que pasar integros desde domain_tree al Akhenon (vs realizar operaciones con ellos)
+let pass_values_as_found = {
     "facebooksdk":true,
     "fbid":true,
     "ganalitycs":true,
     "gtag":true,
     "oa":true
 }
+// Esta función es llamada desde server.js con el Objeto caché como parámetro
 exports.set_cache_n_init = (cache) => {
     resources_cache = cache
     domain_tree = {
@@ -21,11 +24,9 @@ exports.set_cache_n_init = (cache) => {
                     "en":"PLP: Personal Lab Portfolio"
                 },
                 "loc":"https://demian.app/",
-                "updfreq":"daily",
                 "sitemap":true,
                 "index":true,
                 "robots":true,
-                "priority":0.3,
                 "favicon":"desk",
                 "acronimo":"plp",
                 "root_domain":true,
@@ -45,6 +46,107 @@ exports.set_cache_n_init = (cache) => {
                 "js":[resources_cache.js.alpha,resources_cache.js.demian_app]
             },
             "astra":{
+                "aboutme":{
+                    "meta":{
+                        "short":{
+                            "es":"Del autor",
+                            "en":"About me"
+                        },
+                        "loc":"https://demian.app/aboutme",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Buró:PLP",
+                            "en":"Buro:PLP"
+                        },
+                        "css":[resources_cache.css.plp],
+                        "js":[resources_cache.js.alpha],
+                        "html":[resources_cache.html.aboutme]
+                    }
+                },
+                "buro":{
+                    "meta":{
+                        "short":{
+                            "es":"Documentación derivada de normas",
+                            "en":"Norm derived documentation"
+                        },
+                        "loc":"https://demian.app/buro/",
+                        "sitemap":true,
+                        "index":true,
+                        "robots":true,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Buró:PLP",
+                            "en":"Buro:PLP"
+                        },
+                        "css":[resources_cache.css.plp],
+                        "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
+                    },
+                    "astra":{
+                        "privacypolicy":{
+                            "meta":{
+                                "short":{
+                                    "es":"Politica de Privacidad",
+                                    "en":"Privacy Policy"
+                                },
+                                "loc":"https://demian.app/buro/privacypolicy",
+                                "sitemap":true,
+                                "index":true,
+                                "robots":true,
+                                "favicon":"desk",
+                                "acronimo":"plp"
+                            },
+                            "intra":{
+                                "ganalitycs":true,
+                                "gtag":"G-6MEPN29LZG",
+                                "title":{
+                                    "es":"PolPriv:PLP",
+                                    "en":"PrivPol:PLP"
+                                },
+                                "css":[resources_cache.css.plp],
+                                "js":[resources_cache.js.alpha],
+                                "html":[resources_cache.html.privacypolicy]
+                            },
+                        },
+                        "termsofservice":{
+                            "meta":{
+                                "short":{
+                                    "es":"Condiciones del Servicio",
+                                    "en":"Terms of Service"
+                                },
+                                "loc":"https://demian.app/buro/termsofservice",
+                                "sitemap":true,
+                                "index":true,
+                                "robots":true,
+                                "favicon":"desk",
+                                "acronimo":"plp"
+                            },
+                            "intra":{
+                                "ganalitycs":true,
+                                "gtag":"G-6MEPN29LZG",
+                                "title":{
+                                    "es":"PolPriv:PLP",
+                                    "en":"PrivPol:PLP"
+                                },
+                                "css":[resources_cache.css.plp],
+                                "js":[resources_cache.js.alpha],
+                                "html":[resources_cache.html.termsofservice]
+                            },
+                        }
+                    }
+                },
                 "conavi":{
                     "meta":{
                         "short":{
@@ -665,16 +767,25 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         Esta primera sección evalua la solicitud para garantizar que hay contenidos
         programados para su atención
     */
+    //Este es un track para ser devuelto en caso de error en la validación del recurso
     let iferror = akhenon.teller();
+    //Primer mensaje del iferror indica el número de servicio para poder ser comparado con logs
     iferror.tag("Gatekeepr start number "+simple_counter+" succesful, evaluating");
+    //Construye la url interpretada por la herramienta de node para la tarea
     const easyurl = new URL(req.url, "https://"+req.headers.host+"/");
+    //Decide el lenguaje en que se servira el recurso en función del header y de el parámetro de búsqueda lng (opciones "en" y "es")
     const chosen_lng = akhenon.assert_lng(req.headers["accept-language"],easyurl.search);
+    //Confirma que no hubo conflicto en la autoevaluación de la URL
     iferror.tag("URL auto eval complete, Manual eval begining");
+    //Controla la autorización para servir el recurso despues de la validación con el arbol de dominio
     let do_serve = false;
+    //Confirma que el dominio exista en el arbol de dominios
     if (valid_host(req,domain_tree)) {
         iferror.tag("¡Domain entry found!, validating resource...");
+        //Confirma que exista un "recurso" en el arbol de dominio
         if (valid_resource(easyurl,domain_tree)) {
             iferror.tag("¡Requested resource found!, validating method...");
+            //Por el momento solo da TRUE a GET
             if (valid_method(req.method,easyurl,domain_tree)) {
                 iferror.tag("Method was approved, now serving content...");
                 do_serve = true;
@@ -704,11 +815,11 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
     };
     /*
        De haber sido exitosa la evaluación continua a servir el contenido confirmado
-       En caso contrario el chequeo fallado indicará al solicitante detalles sanitizados
     */
     if (do_serve) {
+        //La llave del dominio en domain_tree es el host
         let chosen_domain = domain_tree[req.headers.host];
-        let crafted_content;
+
         let adjusted_path = akhenon.adjust_path(easyurl.pathname);
         let as_array;
 
@@ -734,6 +845,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         };
 
         if (favicon_trigger) {
+            //Cache de un día
             res.setHeader("Cache-Control", "public, max-age=86400");
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
             return;
@@ -752,9 +864,8 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         };
 
         if (index_trigger) {
-            crafted_content = build_index(domain_tree,req.headers.host,chosen_lng);
             let options = {
-                "html":[crafted_content],
+                "html":[build_index(domain_tree,req.headers.host,chosen_lng)],
                 "languaje":chosen_lng,
                 "title":"ind:"+chosen_domain.meta.acronimo,
                 "css":chosen_domain.intra.css
@@ -816,35 +927,33 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
             return;
         };
 
-        if (req.headers.host == "demian.app" && adjusted_path == "login") {
-            log_JSON({
-                "service_no":simple_counter,
-                "type":"goa2red",
-                "search":easyurl.search,
-                "headers":req.headers
-            })
-            finish_request (res,200,akhenon.html(
-                serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
-            return;     
-        }
-
-        if (req.headers.host == "demian.app" && adjusted_path == "info") {
-            finish_request (res,200,akhenon.html(
-                serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
-            return;    
-        }
-
-        if (req.headers.host == "demian.app" && adjusted_path == "narrar") {
-            finish_request (res,200,akhenon.html(
-                serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
-            return;    
-        }
-
-        if (req.headers.host == "demian.app" && adjusted_path == "somema") {
-            finish_request (res,200,akhenon.html(
-                serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
-            return;     
-        }
+        if (req.headers.host == "demian.app") {
+            switch (adjusted_path) {
+                case"info":
+                finish_request (res,200,akhenon.html(
+                    serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
+                break;
+                case"narrar":
+                finish_request (res,200,akhenon.html(
+                    serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
+                break;
+                case"somema":
+                finish_request (res,200,akhenon.html(
+                    serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
+                break;
+                case "login":
+                log_JSON({
+                    "service_no":simple_counter,
+                    "type":"goa2red",
+                    "search":easyurl.search,
+                    "headers":req.headers
+                })
+                finish_request (res,200,akhenon.html(
+                    serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
+                break;
+            }
+            return;
+        };
 
         /*
             Solo respuestas de subrutas múltiple nivel
@@ -1032,7 +1141,7 @@ function serve_level_0(chosen_domain,chosen_lng){
         "css":chosen_domain.intra.css,
         "js":chosen_domain.intra.js
     };
-    for (let keys in track_pass) {
+    for (let keys in pass_values_as_found) {
         if (chosen_domain.intra[keys] != undefined) {
             hedo[keys] = chosen_domain.intra[keys];
         };
@@ -1047,7 +1156,7 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
         "css":chosen_domain.astra[adjusted_path].intra.css,
         "js":chosen_domain.astra[adjusted_path].intra.js
     }
-    for (let keys in track_pass) {
+    for (let keys in pass_values_as_found) {
         if (chosen_domain.astra[adjusted_path].intra[keys] != undefined) {
             hedo[keys] = chosen_domain.astra[adjusted_path].intra[keys];
         }    

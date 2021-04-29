@@ -62,6 +62,7 @@ const ao = {
     "table":true
   },
   "pass":{
+    "onload":true,
     "async":true,
     "crossorigin":true,
     "defer":true,

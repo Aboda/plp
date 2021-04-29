@@ -297,3 +297,23 @@ function peel_rgb(rgbstring){
   }
   return processed;
 }
+
+function send_to_collection () {
+  //Este es para enviar cosas directamente a un gscript, el problema es cors
+  let test_data = {
+      "timestamp":Date.now().toString(),
+      "message":"hola"
+  }
+  let collectos = "https://script.google.com/macros/s/AKfycbzIePzuXLQWFslJv03RzQDQWGC9zMNRQt2_63cw7BaEUSQqQPZwFvSDszK5yI7WZFaa/exec";
+  ao.fe("POST",collectos,console.log,JSON.stringify(test_data));
+}
+
+    /*
+    Este parece ser solopara la autenticación de oauth2, vs el client que es la librería sdk completa
+    document.getElementsByTagName('head')[0].appendChild(ao.qq({
+        "nodetype":"script",
+        "async":true,
+        "defer":true,
+        "src":"https://apis.google.com/js/platform.js"
+    }));
+    */  
