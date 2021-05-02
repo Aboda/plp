@@ -24,6 +24,10 @@ exports.adjust_path = (pathname) => {
     if (pathname[0] == "/") {
         pathname = pathname.substring(1,pathname.length)
     }
+    /*
+    
+    */
+    pathname = pathname
     return pathname;
 }
 exports.clear_query = (pathname) => {
@@ -118,10 +122,10 @@ exports.html = (options,chosen_lng) => {
 function site_entry (d) {
     var entry = ""
     entry = entry + "<url>\n";
-    entry = entry + "<loc>"+d.loc+"</loc>\n";
-    if (d.changefreq != undefined){entry = entry + "<changefreq>"+d.changefreq+"</changefreq>\n";};
-    if (d.priority != undefined){entry = entry + "<priority>"+d.priority+"</priority>\n";};
-    if (d.lastmod != undefined){entry = entry + "<lastmod>"+d.lastmod+"</lastmod>\n";};
+    entry = entry + "<loc>"+d.loc+"</loc>";
+    if (d.changefreq != undefined){entry = entry + "<changefreq>"+d.changefreq+"</changefreq>";};
+    if (d.priority != undefined){entry = entry + "<priority>"+d.priority+"</priority>";};
+    if (d.lastmod != undefined){entry = entry + "<lastmod>"+d.lastmod+"</lastmod>";};
     entry = entry + "</url>\n";
     return entry;
 }

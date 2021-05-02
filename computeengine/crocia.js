@@ -58,13 +58,12 @@ exports.set_cache_n_init = (cache) => {
                 "aboutme":{
                     "meta":{
                         "short":{
-                            "es":"Del autor",
+                            "es":"Acerca de mi",
                             "en":"About me"
                         },
                         "loc":"https://demian.app/aboutme",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -1070,22 +1069,23 @@ function build_index(domain_tree,domain_name,chosen_lng) {
 }
 // genera una entrada div en texto formato html
 function index_div (object_meta,chosen_lng,mark) {
-    let dc = "";
+    let dc = "<ol>";
     if (object_meta.index == true) {
         if (mark == true){
-            dc = dc + "<div class='color_contrast_2'>\n";
+            dc = dc + "<li class='color_contrast_2'>\n";
             dc = dc + common_messages.here[chosen_lng];
         }else{
-            dc = dc + "<div>\n";
+            dc = dc + "<li>\n";
         }     
         dc = dc + object_meta.short[chosen_lng]+"\n";
         if (mark == true){
-            dc = dc + "<a class='inv_li' href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
+            dc = dc + "<a class='color_contrast_4' href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
         }else{
             dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
         }
-        dc = dc + "</div>\n";
+        dc = dc + "</li>\n";
     }
+    dc = dc + "</ol>\n";
     return dc;
 }
 // entrega algo en el astra de un host
