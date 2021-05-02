@@ -962,6 +962,11 @@ function valid_resource (easyurl,domain_tree) {
     };
     //
     let adjusted = adjust_path(easyurl.pathname);
+    if (adjusted == "robots.txt"||
+        adjusted == "index.html"||
+        adjusted == "sitemap.xml") {
+        return true;
+    };
     let as_array;
     /*
         Si existe un / en el string
