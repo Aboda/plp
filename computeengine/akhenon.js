@@ -12,9 +12,15 @@ exports.clean_ipv6_trail_if_present = (ipv6stringshowingipv4) => {
     }
 }
 exports.adjust_path = (pathname) => {
+    /*
+        Si el último elemento del string es un /, lo elimina
+    */
     if (pathname[pathname.length -1] == "/") {
         pathname = pathname.substring(0,pathname.length -1);
     }
+    /*
+        Si el primer elemento del string es un /, lo elimina 
+    */
     if (pathname[0] == "/") {
         pathname = pathname.substring(1,pathname.length)
     }

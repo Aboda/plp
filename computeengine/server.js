@@ -26,7 +26,7 @@ const server_options = {
 };
 // Seriador del número de llamadas recibidas desde el arranque del servidor
 var simple_counter = 0;
-
+// Caché de recursos del servidor, todo se carga a memoria desde el arranque
 var cache = {
     "favicon":{
         "blog":fs.readFileSync("./mnemnis/blog.ico"),
@@ -58,7 +58,7 @@ var cache = {
         "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString()        
     }
 }
-
+// Se proveen los recursos de caché a la función de confirucación de crocia
 crocia.set_cache_n_init(cache);
 // Este es el servidor en si, maneja la solicitud y se apoya en las otras funciones para entregar el contenido solicitado
 https.createServer(server_options, (req, res) => {
@@ -66,6 +66,7 @@ https.createServer(server_options, (req, res) => {
     try {
         //Cuenta la acción
         simple_counter++
+        //Genera un reporte de entrada
         let action_report = {
             "service_no":simple_counter,
             "timestamp":new Date(),
@@ -74,22 +75,25 @@ https.createServer(server_options, (req, res) => {
             "url":req.url,
             "method":req.method,
         }
+        //Agrega al reporte el dato del dominio que refiere
         if (req.headers.referer != undefined) {
             action_report.referer = req.headers.referer;
         }
+        //Loggea la comunicación entrante
         log_JSON(action_report);
         //Procesa la solicitud
         crocia.gatekeep(req,res,akhenon,simple_counter,log_JSON);
-        //Cacha errores y los loggea
+        //Cacha errores
     } catch (err) {
+        //Loggea el stack del error y los headers, asociar con primer loggeo con el service_no
         log_JSON({
             "service_no":simple_counter,
-            "error":err.stack,
+            "error_stack":err.stack,
             "headers":req.headers
         })
         //se avisa de un error interno en el servidor
         res.writeHead(500);
-        //Se envia un html
+        //Se envia un html indicando que hubo un error en el proceso, 
         res.end(akhenon.html({"title":"500","robot":false,"html":["<h1>Error 500</h1><br><p>Report of the error has been stored for future analisis</p>"]}));
     };
 }).listen(443);

@@ -13,6 +13,21 @@ let pass_values_as_found = {
     "gtag":true,
     "oa":true
 }
+/*
+    let crocia_explanation = {
+        "nombre":"nombre del recurso a servir",
+        "short":"descripción corta en objeto con params en y es",
+        "loc":"URL absoluto del recurso",
+        "sitemap":"bool para desplegarlo en el sitemap",
+        "index":"bool para desplegarlo en el index",
+        "favicon":"nombre clave del favicon en el cache",
+        "acronimo":"reducción a tres letras arbitrario",
+        "root_domain":"bool que indica si es un domáin raíz",
+        "intra":"objeto con cualidades de construcción de la página",
+        "astra":"objeto con contenidos de la página"
+    }
+*/
+
 // Esta función es llamada desde server.js con el Objeto caché como parámetro
 exports.set_cache_n_init = (cache) => {
     resources_cache = cache
@@ -26,14 +41,9 @@ exports.set_cache_n_init = (cache) => {
                 "loc":"https://demian.app/",
                 "sitemap":true,
                 "index":true,
-                "robots":true,
                 "favicon":"desk",
                 "acronimo":"plp",
                 "root_domain":true,
-                "etapa":{
-                    "es":"Desarrollo",
-                    "en":"Desarrollo"
-                }
             },
             "intra":{
                 "ganalitycs":true,
@@ -770,7 +780,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
     //Este es un track para ser devuelto en caso de error en la validación del recurso
     let iferror = akhenon.teller();
     //Primer mensaje del iferror indica el número de servicio para poder ser comparado con logs
-    iferror.tag("Gatekeepr start number "+simple_counter+" succesful, evaluating");
+    iferror.tag("Gatekeeper start number "+simple_counter+" succesful, evaluating");
     //Construye la url interpretada por la herramienta de node para la tarea
     const easyurl = new URL(req.url, "https://"+req.headers.host+"/");
     //Decide el lenguaje en que se servira el recurso en función del header y de el parámetro de búsqueda lng (opciones "en" y "es")
@@ -780,7 +790,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
     //Controla la autorización para servir el recurso despues de la validación con el arbol de dominio
     let do_serve = false;
     //Confirma que el dominio exista en el arbol de dominios
-    if (valid_host(req,domain_tree)) {
+    if (domain_tree[req.headers.host] != undefined) {
         iferror.tag("¡Domain entry found!, validating resource...");
         //Confirma que exista un "recurso" en el arbol de dominio
         if (valid_resource(easyurl,domain_tree)) {
@@ -819,7 +829,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
     if (do_serve) {
         //La llave del dominio en domain_tree es el host
         let chosen_domain = domain_tree[req.headers.host];
-
+        //Remueve / al principio y al final
         let adjusted_path = akhenon.adjust_path(easyurl.pathname);
         let as_array;
 
@@ -832,38 +842,14 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
             };
         };
 
-        let favicon_trigger;
-
-        if (as_array != undefined) {
-            if (as_array[1] == "favicon.ico") {
-                favicon_trigger = true;
-            };
-        }else{
-            if (adjusted_path == "favicon.ico") {
-                favicon_trigger = true;
-            };            
-        };
-
-        if (favicon_trigger) {
+        if (adjusted_path == "favicon.ico") {
             //Cache de un día
             res.setHeader("Cache-Control", "public, max-age=86400");
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
             return;
         };
 
-        let index_trigger;
-        
-        if (as_array != undefined) {
-            if (as_array[1] == "index.html") {
-                index_trigger = true;
-            };
-        }else{
-            if (adjusted_path == "index.html") {
-                index_trigger = true;
-            };            
-        };
-
-        if (index_trigger) {
+        if (adjusted_path == "index.html") {
             let options = {
                 "html":[build_index(domain_tree,req.headers.host,chosen_lng)],
                 "languaje":chosen_lng,
@@ -892,79 +878,32 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
                 }
             }
         }
-        
-        let sitemap_trigger;
 
-        if (as_array != undefined) {
-            if (as_array[1] == "sitemap.xml") {
-                sitemap_trigger = true;
-            };
-        }else{
-            if (adjusted_path == "sitemap.xml") {
-                sitemap_trigger = true;
-            };            
-        };
-
-        if (req.headers.host == "www."+root_dom_name && sitemap_trigger == true) {
+        if (adjusted_path == "sitemap.xml") {
             finish_request (res,200,akhenon.sitemap(domain_tree,req.headers.host));
             return;
         };
 
-        let robots_trigger;
-
-        if (as_array != undefined) {
-            if (as_array[1] == "robots.txt") {
-                robots_trigger = true;
-            };
-        }else{
-            if (adjusted_path == "robots.txt") {
-                robots_trigger = true;
-            };            
-        };
-
-        if (robots_trigger) {
+        if (adjusted_path == "robots.txt") {
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
             return;
         };
-
-        if (req.headers.host == "demian.app") {
-            switch (adjusted_path) {
-                case"info":
-                finish_request (res,200,akhenon.html(
-                    serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
-                break;
-                case"narrar":
-                finish_request (res,200,akhenon.html(
-                    serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
-                break;
-                case"somema":
-                finish_request (res,200,akhenon.html(
-                    serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
-                break;
-                case "login":
-                log_JSON({
-                    "service_no":simple_counter,
-                    "type":"goa2red",
-                    "search":easyurl.search,
-                    "headers":req.headers
-                })
-                finish_request (res,200,akhenon.html(
-                    serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
-                break;
-            }
+        /*
+            Contenta a todas las solicitudes de nivel 1 ej... demian.app/info
+        */
+        if (req.headers.host == "demian.app" && as_array == undefined) {
+            finish_request (res,200,akhenon.html(
+                serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
             return;
         };
-
         /*
-            Solo respuestas de subrutas múltiple nivel
+            Solo respuestas de nivel 2
         */
         let trimmed_referer;
         if (req.headers.referer != undefined) {
             trimmed_referer = akhenon.adjust_path(akhenon.clear_query(req.headers.referer));
         }
-
         if (as_array != undefined) {
-
             if (req.headers.host == "demian.app" && 
                 as_array[0] == "info" && 
                 as_array[1] == "progress" &&
@@ -984,14 +923,16 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
                 return;
             }
             
-        }        
-        
+        } 
+        /*
+            De haber pasado la validación de entrada pero no se encontró otro caso que resolviera la solicituc
+            se entrega este mensaje de "ruta pendiente".
+        */
         let options = {
             "html":[common_messages.ruta_pendiente[chosen_lng],"<p>host: "+req.headers.host+"</p>","<p>referer: "+req.headers.referer+"</p>","<p>"+JSON.stringify(as_array)+"</p>"],
             "languaje":chosen_lng,
             "title":"mis:"+chosen_domain.meta.acronimo,
         };
-        
         finish_request (res,200,akhenon.html(options));
         return;
     }
@@ -1000,13 +941,7 @@ function finish_request (res,code,content) {
     res.writeHead(code);
     res.end(content);
 }
-function valid_host (req,domain_tree) {
-    if (domain_tree[req.headers.host] != undefined){
-        return true
-    }else{
-        return false
-    };
-}
+
 function adjust_path (pathname) {
     if (pathname[pathname.length -1] == "/") {
         pathname = pathname.substring(0,pathname.length -1);
@@ -1017,42 +952,53 @@ function adjust_path (pathname) {
     return pathname.toLowerCase();
 }
 function valid_resource (easyurl,domain_tree) {
+    /*
+        Corresponde al caso de la raíz de un host
+        puesto que ya se ha confirmado que existe el dominio
+        existe en domain_tree información para servir
+    */    
     if (easyurl.pathname == "/") {
         return true;
     };
+    //
     let adjusted = adjust_path(easyurl.pathname);
     let as_array;
+    /*
+        Si existe un / en el string
+        a esta altura se han eliminado el primer y último /
+        del string recibido de forma que solo dará
+        un número distinto de -1 si hay algo en la forma
+        asdassad/sdadsd/dasdsad creando un array
+        [asdassad,sdadsd,dasdsad]
+    */
     if (adjusted.indexOf("/") != -1) {
         as_array = adjusted.split("/");
     }
+    /*
+        En este punto, si "as_array" es undefined significa que la
+        solicitud no lleva / en ella, de forma que debe ser un elemento
+        solicitado directamente a la raíz (ya se removieron / iniciales y finales)
+    */
 
-    if (as_array == undefined){
-        if (adjusted == "favicon.ico" ||
-            adjusted == "index.html" ||
-            adjusted == "robots.txt" ||
-            adjusted == "sitemap.xml" ){
-            return true;
-        };
-    }else{
-        if (as_array[1] == "favicon.ico" ||
-            as_array[1] == "index.html" ||
-            as_array[1] == "robots.txt" ||
-            as_array[1] == "sitemap.xml" ){
-            return true;
-        };
-    }
-    
-    if (as_array == undefined){
+    if (as_array == undefined) {
         if (domain_tree[easyurl.host].astra[adjusted] != undefined) {
             return true;
+        }else{
+            return false;
         };
     }else{
-        if (domain_tree[easyurl.host].astra[as_array[0]] != undefined) {
+        /*
+         por el momento la máxima profundidad es 2 ej demian.app/buro/tos 
+        */
+        if (domain_tree[easyurl.host].astra[asarray[0]].astra[asarray[1]] != undefined) {
             return true;
-        };
+        }else{
+            return false;
+        }
     }
-
-    return false;
+    throw {
+        "error":"se llego a un estado en teoria inalcanzable en valid_resource"
+    }
 }
 function valid_method (method,easyurl,domain_tree) {
     if (method == "GET") {
