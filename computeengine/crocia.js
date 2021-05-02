@@ -27,7 +27,6 @@ let pass_values_as_found = {
         "astra":"objeto con contenidos de la página"
     }
 */
-
 // Esta función es llamada desde server.js con el Objeto caché como parámetro
 exports.set_cache_n_init = (cache) => {
     resources_cache = cache
@@ -937,11 +936,12 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         return;
     }
 }
+// Coloca el código HTML indicado (200 en éxito) y cierra la comunicación
 function finish_request (res,code,content) {
     res.writeHead(code);
     res.end(content);
 }
-
+// remueve / iniciales y finales
 function adjust_path (pathname) {
     if (pathname[pathname.length -1] == "/") {
         pathname = pathname.substring(0,pathname.length -1);
@@ -951,6 +951,7 @@ function adjust_path (pathname) {
     }
     return pathname.toLowerCase();
 }
+// valida que existan los subniveles solicitados en domain_tree del host
 function valid_resource (easyurl,domain_tree) {
     /*
         Corresponde al caso de la raíz de un host
@@ -960,7 +961,7 @@ function valid_resource (easyurl,domain_tree) {
     if (easyurl.pathname == "/") {
         return true;
     };
-    //
+
     let adjusted = adjust_path(easyurl.pathname);
     if (adjusted == "robots.txt"||
         adjusted == "index.html"||
@@ -1005,6 +1006,7 @@ function valid_resource (easyurl,domain_tree) {
         "error":"se llego a un estado en teoria inalcanzable en valid_resource"
     }
 }
+// placeholder para cuando instalemos algo que use POST, de momento da true siempre
 function valid_method (method,easyurl,domain_tree) {
     if (method == "GET") {
         return true;
@@ -1012,6 +1014,7 @@ function valid_method (method,easyurl,domain_tree) {
         return false;
     };    
 }
+// construye el html de índice para el host solicitado basado en el domain_tree
 function build_index(domain_tree,domain_name,chosen_lng) {
     let chosen_domain = domain_tree[domain_name];
     let acronym = chosen_domain.meta.acronimo;
@@ -1065,6 +1068,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     }
     return hc
 }
+// genera una entrada div en texto formato html
 function index_div (object_meta,chosen_lng,mark) {
     let dc = "";
     if (object_meta.index == true) {
@@ -1084,6 +1088,7 @@ function index_div (object_meta,chosen_lng,mark) {
     }
     return dc;
 }
+// entrega algo en el astra de un host
 function serve_level_0(chosen_domain,chosen_lng){
     let hedo = {
         "html":["<h1>"+chosen_domain.meta.short[chosen_lng]+"</h1>"],
@@ -1099,6 +1104,7 @@ function serve_level_0(chosen_domain,chosen_lng){
     };
     return hedo;
 }
+// entrega algo en el astre del astra de un host
 function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
     let hedo = {
         "html":["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>"],
