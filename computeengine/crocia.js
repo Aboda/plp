@@ -1107,16 +1107,20 @@ function serve_level_0(chosen_domain,chosen_lng){
 // entrega algo en el astre del astra de un host
 function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
     let hedo = {
-        "html":["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>",chosen_domain.astra[adjusted_path].intra.html[0]],
         "languaje":chosen_lng,
         "title":chosen_domain.astra[adjusted_path].intra.title[chosen_lng],
         "css":chosen_domain.astra[adjusted_path].intra.css,
         "js":chosen_domain.astra[adjusted_path].intra.js
-    }
+    };
+    if (chosen_domain.astra[adjusted_path].intra.html != undefined) {
+        hedo.html = chosen_domain.astra[adjusted_path].intra.html[0];
+    }else{
+        hedo.html = "<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>";
+    };
     for (let keys in pass_values_as_found) {
         if (chosen_domain.astra[adjusted_path].intra[keys] != undefined) {
             hedo[keys] = chosen_domain.astra[adjusted_path].intra[keys];
-        }    
-    }
+        };
+    };
     return hedo;
 }
