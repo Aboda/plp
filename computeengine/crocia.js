@@ -1050,7 +1050,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     */
         let hc = "<h1>"+common_messages.index[chosen_lng] +
     root_dom.meta.short[chosen_lng]+"</h1>\n";
-    hc = hc + "<ol type='I'>"
+    hc = hc + "<ol type='I' class='stack_left'>"
     for (let entry in party_members) {
         if (party_members[entry].meta.index == true){
             if (domain_name == entry) {

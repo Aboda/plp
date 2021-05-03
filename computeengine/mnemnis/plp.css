@@ -1,4 +1,7 @@
 *{font-family: 'Roboto Mono', monospace;text-align: center;}
+.stack_left{
+    text-align: left;
+}
 .color_contrast_1{
     background-color:rgb(194,1,20,1);
     color:rgb(255,255,255,1);
