@@ -93,7 +93,7 @@ exports.html = (options,chosen_lng) => {
     if (options.html != undefined) {
         ph = ph + "<div id='from_home' class='app_container'>\n";
         for (var html_block of options.html) {
-            ph = ph + html_block+"\n";
+            ph = ph + html_block+"\n";  
         }        
         ph = ph + "</div>\n";
     }
