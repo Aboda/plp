@@ -995,7 +995,7 @@ function valid_resource (easyurl,domain_tree) {
         /*
          por el momento la máxima profundidad es 2 ej demian.app/buro/tos 
         */
-        if (domain_tree[easyurl.host].astra[asarray[0]].astra[asarray[1]] != undefined) {
+        if (domain_tree[easyurl.host].astra[as_array[0]].astra[as_array[1]] != undefined) {
             return true;
         }else{
             return false;
