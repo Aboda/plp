@@ -1113,9 +1113,9 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
         "js":chosen_domain.astra[adjusted_path].intra.js
     };
     if (chosen_domain.astra[adjusted_path].intra.html != undefined) {
-        hedo.html = chosen_domain.astra[adjusted_path].intra.html[0];
+        hedo.html = chosen_domain.astra[adjusted_path].intra.html;
     }else{
-        hedo.html = "<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>";
+        hedo.html = ["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>"];
     };
     for (let keys in pass_values_as_found) {
         if (chosen_domain.astra[adjusted_path].intra[keys] != undefined) {
