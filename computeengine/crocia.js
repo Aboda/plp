@@ -22,9 +22,9 @@ let pass_values_as_found = {
         "index":"bool para desplegarlo en el index",
         "favicon":"nombre clave del favicon en el cache",
         "acronimo":"reducción a tres letras arbitrario",
-        "root_domain":"bool que indica si es un domáin raíz",
+        "root_domain":"bool que indica si es un dominio raíz",
         "intra":"objeto con cualidades de construcción de la página",
-        "astra":"objeto con contenidos de la página"
+        "astra":"objeto con contenidos subrutas de la página"
     }
 */
 // Esta función es llamada desde server.js con el Objeto caché como parámetro
@@ -71,8 +71,8 @@ exports.set_cache_n_init = (cache) => {
                         "ganalitycs":true,
                         "gtag":"G-6MEPN29LZG",
                         "title":{
-                            "es":"Buró:PLP",
-                            "en":"Buro:PLP"
+                            "es":"Acerca de mi:PLP",
+                            "en":"About me:PLP"
                         },
                         "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.alpha],
@@ -887,9 +887,9 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
             return;
         };
         /*
-            Contenta a todas las solicitudes de nivel 1 ej... demian.app/info
+            Contesta a todas las solicitudes de nivel 1 ej... demian.app/info
         */
-        if (req.headers.host == "demian.app" && as_array == undefined) {
+        if (as_array == undefined) {
             finish_request (res,200,akhenon.html(
                 serve_level_1(chosen_domain,adjusted_path,chosen_lng)));
             return;
@@ -897,11 +897,18 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         /*
             Solo respuestas de nivel 2
         */
+        /*
+            Para diferenciar y autorizar llamadas internas
+        */
         let trimmed_referer;
         if (req.headers.referer != undefined) {
             trimmed_referer = akhenon.adjust_path(akhenon.clear_query(req.headers.referer));
         }
         if (as_array != undefined) {
+            /*
+                Consulta específica para panel de información interna
+                Limitada a consultas desde nuestra página
+            */
             if (req.headers.host == "demian.app" && 
                 as_array[0] == "info" && 
                 as_array[1] == "progress" &&
@@ -919,11 +926,14 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
                     }
                     finish_request (res,200,JSON.stringify(response));
                 return;
-            }
-            
+            };
+
+            finish_request (res,200,akhenon.html(
+                serve_level_2(chosen_domain,as_array,chosen_lng)));
+            return;     
         } 
         /*
-            De haber pasado la validación de entrada pero no se encontró otro caso que resolviera la solicituc
+            De haber pasado la validación de entrada pero no se encontró otro caso que resolviera la solicitud
             se entrega este mensaje de "ruta pendiente".
         */
         let options = {
@@ -1120,6 +1130,26 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
     for (let keys in pass_values_as_found) {
         if (chosen_domain.astra[adjusted_path].intra[keys] != undefined) {
             hedo[keys] = chosen_domain.astra[adjusted_path].intra[keys];
+        };
+    };
+    return hedo;
+}
+// 
+function serve_level_2(chosen_domain,as_array,chosen_lng) {
+    let hedo = {
+        "languaje":chosen_lng,
+        "title":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.title[chosen_lng],
+        "css":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.css,
+        "js":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.js
+    };
+    if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html != undefined) {
+        hedo.html = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html;
+    }else{
+        hedo.html = ["<h1>"+chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.short[chosen_lng]+"</h1>"];
+    };
+    for (let keys in pass_values_as_found) {
+        if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys] != undefined) {
+            hedo[keys] = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys];
         };
     };
     return hedo;
