@@ -1050,7 +1050,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     */
         let hc = "<h1>"+common_messages.index[chosen_lng] +
     root_dom.meta.short[chosen_lng]+"</h1>\n";
-
+    hc = hc + "<ol>"
     for (let entry in party_members) {
         if (party_members[entry].meta.index == true){
             if (domain_name == entry) {
@@ -1065,11 +1065,12 @@ function build_index(domain_tree,domain_name,chosen_lng) {
             }
         }
     }
+    hc = hc + "</ol>"
     return hc
 }
 // genera una entrada div en texto formato html
 function index_div (object_meta,chosen_lng,mark) {
-    let dc = "<ol>";
+    let dc = "";
     if (object_meta.index == true) {
         if (mark == true){
             dc = dc + "<li class='color_contrast_2'>\n";
@@ -1085,7 +1086,6 @@ function index_div (object_meta,chosen_lng,mark) {
         }
         dc = dc + "</li>\n";
     }
-    dc = dc + "</ol>\n";
     return dc;
 }
 // entrega algo en el astra de un host
