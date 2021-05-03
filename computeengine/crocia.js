@@ -1050,7 +1050,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     */
         let hc = "<h1>"+common_messages.index[chosen_lng] +
     root_dom.meta.short[chosen_lng]+"</h1>\n";
-    hc = hc + "<ol type='I' class='make_way'>"
+    hc = hc + "<ol type='I'>"
     for (let entry in party_members) {
         if (party_members[entry].meta.index == true){
             if (domain_name == entry) {
@@ -1073,10 +1073,10 @@ function index_div (object_meta,chosen_lng,mark) {
     let dc = "";
     if (object_meta.index == true) {
         if (mark == true){
-            dc = dc + "<li class='color_contrast_2'>\n";
+            dc = dc + "<li class='color_contrast_2 make_way'>\n";
             dc = dc + common_messages.here[chosen_lng];
         }else{
-            dc = dc + "<li>\n";
+            dc = dc + "<li  class='make_way'>\n";
         }     
         dc = dc + object_meta.short[chosen_lng]+"\n<br>";
         if (mark == true){
