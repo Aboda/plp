@@ -791,7 +791,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
     if (domain_tree[req.headers.host] != undefined) {
         iferror.tag("¡Domain entry found!, validating resource...");
         //Confirma que exista un "recurso" en el arbol de dominio
-        if (valid_resource(easyurl,domain_tree)) {
+        if (valid_resource(easyurl,domain_tree,log_JSON)) {
             iferror.tag("¡Requested resource found!, validating method...");
             //Por el momento solo da TRUE a GET
             if (valid_method(req.method,easyurl,domain_tree)) {
@@ -961,7 +961,7 @@ function adjust_path (pathname) {
     return pathname.toLowerCase();
 }
 // valida que existan los subniveles solicitados en domain_tree del host
-function valid_resource (easyurl,domain_tree) {
+function valid_resource (easyurl,domain_tree,log_JSON) {
     /*
         Corresponde al caso de la raíz de un host
         puesto que ya se ha confirmado que existe el dominio
