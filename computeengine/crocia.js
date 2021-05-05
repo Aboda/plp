@@ -994,7 +994,9 @@ function valid_resource (easyurl,domain_tree) {
         solicitud no lleva / en ella, de forma que debe ser un elemento
         solicitado directamente a la raíz (ya se removieron / iniciales y finales)
     */
-
+    log_JSON({
+        "as_array":as_array
+    })
     if (as_array == undefined) {
         if (domain_tree[easyurl.host].astra[adjusted] != undefined) {
             return true;
