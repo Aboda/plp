@@ -365,6 +365,26 @@ exports.set_cache_n_init = (cache) => {
                         },
                         "css":[resources_cache.css.sdb,resources_cache.css.edg],
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_info]
+                    },
+                    "astra":{
+                        "progress":{
+                            "meta":{
+                                "short":{
+                                    "es":"Status Desarrollo",
+                                    "en":"Development Status"
+                                },
+                                "loc":"https://demian.app/info/progress",
+                                "sitemap":false,
+                                "index":false,
+                                "favicon":"desk",
+                                "acronimo":"plp"
+                            },
+                            "intra":{
+                                "data":(domain_tree)=> {
+                                    development_info(domain_tree);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -913,18 +933,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
                 as_array[0] == "info" && 
                 as_array[1] == "progress" &&
                 trimmed_referer == "https://demian.app/info") {
-                    var response = {};
-                    for (var dom_name in domain_tree) {
-                        var domain = domain_tree[dom_name];
-                        response[dom_name] = {};
-                        response[dom_name].meta = domain.meta
-                        response[dom_name].astra = {};
-                        for (var routes in domain.astra) {
-                            response[dom_name].astra[routes] = {};
-                            response[dom_name].astra[routes].meta = domain.astra[routes].meta
-                        }
-                    }
-                    finish_request (res,200,JSON.stringify(response));
+                    
                 return;
             };
 
@@ -1138,21 +1147,40 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
 }
 // 
 function serve_level_2(chosen_domain,as_array,chosen_lng) {
-    let hedo = {
-        "languaje":chosen_lng,
-        "title":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.title[chosen_lng],
-        "css":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.css,
-        "js":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.js
-    };
-    if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html != undefined) {
-        hedo.html = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html;
+    if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data != undefined){
+        return chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data();
     }else{
-        hedo.html = ["<h1>"+chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.short[chosen_lng]+"</h1>"];
-    };
-    for (let keys in pass_values_as_found) {
-        if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys] != undefined) {
-            hedo[keys] = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys];
+        let hedo = {
+            "languaje":chosen_lng,
+            "title":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.title[chosen_lng],
+            "css":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.css,
+            "js":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.js
         };
-    };
-    return hedo;
+        if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html != undefined) {
+            hedo.html = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html;
+        }else{
+            hedo.html = ["<h1>"+chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.short[chosen_lng]+"</h1>"];
+        };
+        for (let keys in pass_values_as_found) {
+            if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys] != undefined) {
+                hedo[keys] = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys];
+            };
+        };
+        return hedo;
+    }
+}
+
+function development_info(domain_tree) {
+    var response = {};
+    for (var dom_name in domain_tree) {
+        var domain = domain_tree[dom_name];
+        response[dom_name] = {};
+        response[dom_name].meta = domain.meta
+        response[dom_name].astra = {};
+        for (var routes in domain.astra) {
+            response[dom_name].astra[routes] = {};
+            response[dom_name].astra[routes].meta = domain.astra[routes].meta
+        }
+    }
+    return JSON.stringify(response);
 }
