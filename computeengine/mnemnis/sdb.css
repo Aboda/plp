@@ -36,11 +36,14 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
 }
-.sidenav .main_opt {
+.side_opt {
   cursor: pointer;
   width: 210px;
   margin:.5em;
   padding:.5em;
   transition: 0.3s;
   text-decoration: underline;
+}
+.smaller{
+  font-size:80%;
 }

@@ -8,22 +8,6 @@
 
 let sidemenu = [
     {
-        "es":"Idioma: Español, Change to English",
-        "en":"Languaje: English, Cambiar a Español",
-        "go":()=>{
-            let processed = window.location.href;
-            let check = processed.indexOf("?");
-            if (check != -1) {
-                processed = processed.slice(0,check);
-            }
-            if (ao.lng == "es"){
-                window.location = processed + "?lng=en";
-            }else if (ao.lng == "en"){
-                window.location = processed + "?lng=es";
-            }
-        }
-    },
-    {
         "es":"Información de Plataforma",
         "en":"Platform Information",
         "go":()=>{
@@ -122,6 +106,7 @@ window.onresize = () => {
 
 window.onload = () => {
     ao.interface(sidemenu);
+    ao.interface(default_opts);
     ao.flow.init = {}
     ao.main = document.getElementById("from_home");
     ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]},ao.flow.init));

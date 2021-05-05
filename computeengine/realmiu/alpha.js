@@ -201,7 +201,7 @@ const ao = {
       let spacer_entry = this.qq({
         "id":"spacer_entry",
         "nodetype":"div",
-        "styles":["main_opt"]
+        "styles":["side_opt"]
       });
       sidenav.append(spacer_entry);
       for (let buttons of details) {
@@ -209,7 +209,7 @@ const ao = {
           "id":"smbo-"+buttons[this.lng],
           "nodetype":"div",
           "innerText":buttons[this.lng],
-          "styles":["main_opt"],
+          "styles":["side_opt"],
           "triggers":[["click",buttons.go]]
         });
         sidenav.append(entry);
@@ -222,7 +222,7 @@ const ao = {
           "id":"smbo-"+buttons[this.lng],
           "nodetype":"div",
           "innerText":buttons[this.lng],
-          "styles":["main_opt"],
+          "styles":["side_opt","smaller","color_constrast_5"],
           "triggers":[["click",buttons.go]]
         });
         sidenav.append(entry);
