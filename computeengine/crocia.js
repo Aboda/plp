@@ -926,21 +926,20 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         }
         if (as_array != undefined) {
             /*
-                Consulta específica para panel de información interna
-                Limitada a consultas desde nuestra página
+                Si la página tiene una entrada de "data" en intra
+                entonces solo es ejecutada la función y se envía el
+                resultado al cliente
             */
-            if (req.headers.host == "demian.app" && 
-                as_array[0] == "info" && 
-                as_array[1] == "progress" &&
-                trimmed_referer == "https://demian.app/info") {
-                    
-                return;
-            };
-
-            finish_request (res,200,akhenon.html(
-                serve_level_2(chosen_domain,as_array,chosen_lng)));
-            return;     
-        } 
+            if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data != undefined){
+                finish_request (res,200,
+                    chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data());
+                return;     
+            }else{
+                finish_request (res,200,akhenon.html(
+                    serve_level_2(chosen_domain,as_array,chosen_lng)));
+                return;     
+            }
+        }
         /*
             De haber pasado la validación de entrada pero no se encontró otro caso que resolviera la solicitud
             se entrega este mensaje de "ruta pendiente".
@@ -1145,29 +1144,26 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
     };
     return hedo;
 }
-// 
+// Crea una página desde el segundo nivel de astra en el domain_tree
 function serve_level_2(chosen_domain,as_array,chosen_lng) {
-    if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data != undefined){
-        return chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data();
+    let hedo = {
+        "languaje":chosen_lng,
+        "title":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.title[chosen_lng],
+        "css":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.css,
+        "js":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.js
+    };
+    if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html != undefined) {
+        hedo.html = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html;
     }else{
-        let hedo = {
-            "languaje":chosen_lng,
-            "title":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.title[chosen_lng],
-            "css":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.css,
-            "js":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.js
+        hedo.html = ["<h1>"+chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.short[chosen_lng]+"</h1>"];
+    };
+    for (let keys in pass_values_as_found) {
+        if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys] != undefined) {
+            hedo[keys] = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys];
         };
-        if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html != undefined) {
-            hedo.html = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html;
-        }else{
-            hedo.html = ["<h1>"+chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.short[chosen_lng]+"</h1>"];
-        };
-        for (let keys in pass_values_as_found) {
-            if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys] != undefined) {
-                hedo[keys] = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys];
-            };
-        };
-        return hedo;
-    }
+    };
+    return hedo;
+
 }
 
 function development_info(domain_tree) {
