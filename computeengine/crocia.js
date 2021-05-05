@@ -381,7 +381,7 @@ exports.set_cache_n_init = (cache) => {
                             },
                             "intra":{
                                 "data":(domain_tree)=> {
-                                    development_info(domain_tree);
+                                   return development_info(domain_tree);
                                 }
                             }
                         }
