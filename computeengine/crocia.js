@@ -919,11 +919,12 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         */
         /*
             Para diferenciar y autorizar llamadas internas
+              let trimmed_referer;
+                if (req.headers.referer != undefined) {
+                    trimmed_referer = akhenon.adjust_path(akhenon.clear_query(req.headers.referer));
+                }
         */
-        let trimmed_referer;
-        if (req.headers.referer != undefined) {
-            trimmed_referer = akhenon.adjust_path(akhenon.clear_query(req.headers.referer));
-        }
+      
         if (as_array != undefined) {
             /*
                 Si la página tiene una entrada de "data" en intra
@@ -932,7 +933,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
             */
             if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data != undefined){
                 finish_request (res,200,
-                    chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data());
+                    chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data(domain_tree));
                 return;     
             }else{
                 finish_request (res,200,akhenon.html(
