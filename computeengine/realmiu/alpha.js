@@ -222,7 +222,7 @@ const ao = {
           "id":"smbo-"+buttons[this.lng],
           "nodetype":"div",
           "innerText":buttons[this.lng],
-          "styles":["side_opt","smaller","color_constrast_5"],
+          "styles":["side_opt","smaller","color_contrast_5"],
           "triggers":[["click",buttons.go]]
         });
         sidenav.append(entry);
