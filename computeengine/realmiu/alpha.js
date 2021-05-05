@@ -167,53 +167,67 @@ const ao = {
     };
   },
   interface(details){
-    let top_bar = this.qq({
-      "id":"top_bar_true",
-      "nodetype":"div",
-      "styles":["top_bar","color_contrast_1"]
-    });
-    let top_button = this.qq({
-      "id":"top_button",
-      "nodetype":"div",
-      "innerText":String.fromCharCode(9776),
-      "triggers":[["click",(e)=>{
-        openNav();
-      }]]
-    });
-    top_bar.append(top_button);
-    document.body.append(top_bar);
-    let sidenav = this.qq({
-      "id":"sidenav",
-      "nodetype":"div",
-      "styles":["sidenav","color_contrast_2"]
-    });
-    let close_area = this.qq({
-      "id":"sliding_closer",
-      "nodetype":"div",
-      "innerText":String.fromCharCode(9776),
-      "styles":["second_bar","color_contrast_1"],
-      "triggers":[["click",(e)=>{
-        closeNav();
-      }]]
-    });
-    sidenav.append(close_area);
-    let spacer_entry = this.qq({
-      "id":"spacer_entry",
-      "nodetype":"div",
-      "styles":["main_opt"]
-    });
-    sidenav.append(spacer_entry);
-    for (let buttons of details) {
-      let entry = this.qq({
-        "id":"smbo-"+buttons[this.lng],
+    if (ao.simple.top_bar_true == undefined) {
+      let top_bar = this.qq({
+        "id":"top_bar_true",
         "nodetype":"div",
-        "innerText":buttons[this.lng],
-        "styles":["main_opt"],
-        "triggers":[["click",buttons.go]]
+        "styles":["top_bar","color_contrast_1"]
       });
-      sidenav.append(entry);
-    };  
-    document.body.append(sidenav);
+      let top_button = this.qq({
+        "id":"top_button",
+        "nodetype":"div",
+        "innerText":String.fromCharCode(9776),
+        "triggers":[["click",(e)=>{
+          openNav();
+        }]]
+      });
+      top_bar.append(top_button);
+      document.body.append(top_bar);
+      let sidenav = this.qq({
+        "id":"sidenav",
+        "nodetype":"div",
+        "styles":["sidenav","color_contrast_2"]
+      });
+      let close_area = this.qq({
+        "id":"sliding_closer",
+        "nodetype":"div",
+        "innerText":String.fromCharCode(9776),
+        "styles":["second_bar","color_contrast_1"],
+        "triggers":[["click",(e)=>{
+          closeNav();
+        }]]
+      });
+      sidenav.append(close_area);
+      let spacer_entry = this.qq({
+        "id":"spacer_entry",
+        "nodetype":"div",
+        "styles":["main_opt"]
+      });
+      sidenav.append(spacer_entry);
+      for (let buttons of details) {
+        let entry = this.qq({
+          "id":"smbo-"+buttons[this.lng],
+          "nodetype":"div",
+          "innerText":buttons[this.lng],
+          "styles":["main_opt"],
+          "triggers":[["click",buttons.go]]
+        });
+        sidenav.append(entry);
+      };  
+      document.body.append(sidenav);
+    }else{
+      let sidenav = ao.simple.sidenav.node;
+      for (let buttons of details) {
+        let entry = this.qq({
+          "id":"smbo-"+buttons[this.lng],
+          "nodetype":"div",
+          "innerText":buttons[this.lng],
+          "styles":["main_opt"],
+          "triggers":[["click",buttons.go]]
+        });
+        sidenav.append(entry);
+      };
+    }
   },
   "flow":{}
 };

@@ -3,29 +3,6 @@
 */
 let sidemenu = [
     {
-        "es":"Volver a Inicio",
-        "en":"Return Home",
-        "go":()=>{
-            window.location.href = "https://demian.app/";
-        }
-    },
-    {
-        "es":"Idioma: Español, Change to English",
-        "en":"Languaje: English, Cambiar a Español",
-        "go":()=>{
-            let processed = window.location.href;
-            let check = processed.indexOf("?");
-            if (check != -1) {
-                processed = processed.slice(0,check);
-            }
-            if (ao.lng == "es"){
-                window.location = processed + "?lng=en";
-            }else if (ao.lng == "en"){
-                window.location = processed + "?lng=es";
-            }
-        }
-    },
-    {
         "es":"Progreso de Desarrollo",
         "en":"Development Progress",
         "go":()=>{
@@ -226,6 +203,7 @@ let modules_progress = {
 
 function start_interface() {
     ao.interface(sidemenu);
+    ao.interface(default_opts);
     ao.main = document.getElementById("from_home");
     ao.main.append(ao.qq({"nodetype":"p","innerText":hi_message[ao.lng]}));
 }

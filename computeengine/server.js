@@ -55,7 +55,8 @@ var cache = {
         "en_construc":fs.readFileSync("./realmiu/en_construc.js").toString(),
         "oa2landing":fs.readFileSync("./realmiu/oa2landing.js").toString(),
         "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
-        "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString()        
+        "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString(),
+        "demian_basic_nav":fs.readFileSync("./realmiu/demian_basic_nav.js").toString()        
     }
 }
 // Se proveen los recursos de caché a la función de confirucación de crocia
