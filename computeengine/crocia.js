@@ -811,7 +811,7 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
     if (domain_tree[req.headers.host] != undefined) {
         iferror.tag("¡Domain entry found!, validating resource...");
         //Confirma que exista un "recurso" en el arbol de dominio
-        if (valid_resource(easyurl,domain_tree,log_JSON)) {
+        if (valid_resource(easyurl,domain_tree)) {
             iferror.tag("¡Requested resource found!, validating method...");
             //Por el momento solo da TRUE a GET
             if (valid_method(req.method,easyurl,domain_tree)) {
@@ -927,8 +927,8 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         if (as_array != undefined) {
             /*
                 Si la página tiene una entrada de "data" en intra
-                entonces solo es ejecutada la función y se envía el
-                resultado al cliente
+                entonces solo es ejecutada la función en ella y 
+                se envía el resultado al cliente
             */
             if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.data != undefined){
                 finish_request (res,200,
@@ -969,7 +969,7 @@ function adjust_path (pathname) {
     return pathname.toLowerCase();
 }
 // valida que existan los subniveles solicitados en domain_tree del host
-function valid_resource (easyurl,domain_tree,log_JSON) {
+function valid_resource (easyurl,domain_tree) {
     /*
         Corresponde al caso de la raíz de un host
         puesto que ya se ha confirmado que existe el dominio
@@ -1002,9 +1002,6 @@ function valid_resource (easyurl,domain_tree,log_JSON) {
         solicitud no lleva / en ella, de forma que debe ser un elemento
         solicitado directamente a la raíz (ya se removieron / iniciales y finales)
     */
-    log_JSON({
-        "as_array":as_array
-    })
     if (as_array == undefined) {
         if (domain_tree[easyurl.host].astra[adjusted] != undefined) {
             return true;
@@ -1163,7 +1160,6 @@ function serve_level_2(chosen_domain,as_array,chosen_lng) {
         };
     };
     return hedo;
-
 }
 
 function development_info(domain_tree) {
