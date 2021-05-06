@@ -5,7 +5,6 @@
     Es distribuidor de la plataforma de demian.app como principal tarea, pero
     tambien se pueden apreciar cosas de remansonocturno.com
 */
-
 let sidemenu = [
     {
         "es":"Información de Plataforma",
@@ -15,17 +14,14 @@ let sidemenu = [
         }
     }
 ];
-
 let initial_message = {
     "en":"Welcome to my personal development and learning environment, please let me know what brought you here to better route you to the right portal:",
     "es":"Bienvenidao a mi espacio de desarrollo y aprendizaje personal, por favor indica qué es lo que te trajo aqui para poder canalizarte al portal adecuado:"
 }
-
 let final_message = {
-    "en":"This site is built on a virtual machine in google cloud using ubuntu, node and certbot. All code written by me, no additional libraries where employed. I am profoundly grateful towards the google and open source community for all the resources made available free of charge, It was that what brought me here.",
-    "es":"Este sitio está construido en una máquina virtual en la nube de google, utiliza ubuntu, node y certbot. Todo el código fue escrito por mi, no fueron empleadas librerías adicionales. Agradezco desde el fondo de mi corazón a la comunidad google y open source por todos los recursos que hacen disponibles sin cargo alguno, fueron ellos los que me trajeron aquí."
+    "en":"The operation cost of this server and its pages is 25$ USD per year, this for the 2 domains it holds. It is hosted in free infrastructure offered by Google Cloud and employs open source software where I did not personally write the code for it",
+    "es":"El costo de operación de este servidor y sus páginas es 520$ MXN anuales por los dominios que hospeda. Está albergado en infraestructura gratuita ofrecida por Google Cloud y emplea software open source donde no programé personalmente el código."
 }
-
 let initial_options = [
     {
         "es":"Soy un profesionista independiente, empleado o empresa pequeña en búsqueda de consultoría para automatizar un proceso existente o bien atacar un problema técnico que no he solventado.",
@@ -57,7 +53,7 @@ let initial_options = [
                 "es":"Seleccióna tu app",
                 "en":"Choose your app"
             }
-            ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]}));
+            ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]},ao.flow.init));
             let ready_options = [
                 {
                     "en":"Storytelling Tools",
@@ -72,9 +68,17 @@ let initial_options = [
                     "go":()=>{
                         window.location.href = "https://demian.app/somema";
                     }
+                },
+                { 
+                    "es":"Volver a Inicio",
+                    "en":"Return Home",
+                    "go":()=>{
+                        controller_simple_delete(ao.flow.init);
+                        ao.main.append(do_opts(opts,ao.flow.init));
+                    }
                 }
             ];
-            ao.main.append(do_opts(ready_options));
+            ao.main.append(do_opts(ready_options,ao.flow.init));
         }
     },
     {
@@ -100,6 +104,12 @@ function do_opts(opts,controller) {
     return option_container;
 }
 
+function screen_1() {
+    ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]},ao.flow.init));
+    ao.main.append(do_opts(initial_options,ao.flow.init));
+    ao.main.append(ao.qq({"nodetype":"p","innerText":final_message[ao.lng],"styles":["byemessage"]},ao.flow.init));
+}
+
 window.onresize = () => {
     ao.screen_adjust();
 };
@@ -109,9 +119,7 @@ window.onload = () => {
     ao.interface(default_opts);
     ao.flow.init = {}
     ao.main = document.getElementById("from_home");
-    ao.main.append(ao.qq({"nodetype":"p","innerText":initial_message[ao.lng]},ao.flow.init));
-    ao.main.append(do_opts(initial_options,ao.flow.init));
-    ao.main.append(ao.qq({"nodetype":"p","innerText":final_message[ao.lng],"styles":["byemessage"]},ao.flow.init));
+    screen_1();
 };
 
 /*

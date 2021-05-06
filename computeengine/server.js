@@ -107,5 +107,31 @@ function log_JSON (log_stringifieable) {
 
 /*
     Modificaciones pendientes en servidor
-    Ninguna Contemplada
+    
+    Integrar un módulo de defensa ante solicitudes maliciosas que:
+        1.- Pueda limitar el número de solicitudes que se atienden de una
+        IP dada en función de reglas prescritas:
+
+            *Esto es ambiguo porque el handshake HTTPS acontece antes de conocer los
+            parámetros de la comunicación, de forma que ya está usando recursos el 
+            escasos el atender a una solicitud al punto de hacer disponible la IP
+            para su evaluación
+
+            *Creo que podemos checar la interacción de la VM con el firewall para ver si se pueden bloquear agentes
+            de forma dinámica antes de su llegada a nuestro equipo. 
+                -Existe google firewall manejando el tráfico a este servidor, de forma que podemos
+                construir una cloud function que reciba el mensaje de alarma desde este cliente para bloquear
+                temporal o permanentemente a cualquier agresor y conservar operabilidad. 
+
+            ej. Si una IP realiza más de 10 solicitudes por segundo, 100 por minuto ó 1000 por hora se dejará de contestar
+            a la IP en cuestión.
+
+            esto para disuadir un uso inadecuado, se pueden instalar whitelists de ser legítimas las llamadas
+
+        2.- Si la suma de consultas en un margen de tiempo supera un umbral máximo, se apagará el servidor.
+            
+            esto para generar un cost breaker interno por el tema de poder superar el
+            limite gratuito proveído por google. 
+
+            tambien hay que trabajar la limitación de costos de google cloud
 */
