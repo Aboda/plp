@@ -74,7 +74,7 @@ let initial_options = [
                     "en":"Return Home",
                     "go":()=>{
                         controller_simple_delete(ao.flow.init);
-                        ao.main.append(do_opts(opts,ao.flow.init));
+                        ao.main.append(do_opts(initial_options,ao.flow.init));
                     }
                 }
             ];
