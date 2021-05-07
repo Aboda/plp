@@ -33,6 +33,37 @@ let common_option_internal_return_home = {
 }
 let initial_options = [
     {
+        "es":"Soy usuario de algúna de las web apps existentes de esta plataforma",
+        "en":"I am a user from one of the existing web apps in this platform",
+        "go":()=>{
+            controller_simple_delete(ao.flow.init);
+            ao.flow.init = {};
+            let ready_apps_message = {
+                "es":"Seleccióna tu app",
+                "en":"Choose your app"
+            }
+            ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]},ao.flow.init));
+            let ready_options = [
+                {
+                    "es":"Herramientas Narrativas",
+                    "en":"Storytelling Tools",
+                    "go":()=>{
+                        window.location.href = "https://demian.app/narrar";
+                    }
+                },
+                { 
+                    "es":"Herramientas Redes Sociales",
+                    "en":"Social Media Manager",
+                    "go":()=>{
+                        window.location.href = "https://demian.app/somema";
+                    }
+                },
+                common_option_internal_return_home
+            ];
+            ao.main.append(do_opts(ready_options,ao.flow.init));
+        }
+    },
+    {
         "es":"Soy un profesionista independiente, empleado o empresa pequeña en búsqueda de consultoría para automatizar un proceso existente o bien atacar un problema técnico que no he solventado.",
         "en":"I am an independent professional, employee or small business searching for consulting services to automate an existing process or to tackle an unresolved technical issue.",
         "go":()=>{
@@ -63,44 +94,6 @@ let initial_options = [
                     "es":"El generador de citas en caso de que desees ir directo a agendar tiempo dedicado con videoconferencia para evaluar el asunto de interés",
                     "go":()=>{
                         window.location.href = "https://profesional.demian.app/consult";
-                    }
-                },
-                common_option_internal_return_home
-            ];
-            ao.main.append(do_opts(ready_options,ao.flow.init));
-        }
-    },
-    {
-        "es":"Soy una empresa mediana o grande en búsqueda de un desarrollador competente y autodidacta, con experiencia corporativa y de perspectiva integral para unirse a mi equipo de desarrollo existente.",
-        "en":"I am mid to large business in search of a skilled, self teaching developer with corporate experience and wide perspective to join my existing development team",
-        "go":()=>{
-            controller_simple_delete(ao.flow.init);
-            ao.flow.init = {};
-            let ready_apps_message = {
-                "es":"Gracias por su interés, por favor indiqueme que desea ver ahora:",
-                "en":"Thank you for your interest, please let me know what would you rather see now:"
-            }
-            ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]},ao.flow.init));
-            let ready_options = [
-                {
-                    "en":"My curriculum vitae",
-                    "es":"Mi curriculum vitae",
-                    "go":()=>{
-                        window.location.href = "https://profesional.demian.app/cv";
-                    }
-                },
-                { 
-                    "es":"Portafolio de Trabajos Previos",
-                    "en":"Previous Work Portfolio",
-                    "go":()=>{
-                        window.location.href = "https://profesional.demian.app/";
-                    }
-                },
-                { 
-                    "es":"Formato de mensaje directo",
-                    "en":"Direct message form",
-                    "go":()=>{
-                        window.location.href = "https://profesional.demian.app/msg";
                     }
                 },
                 common_option_internal_return_home
@@ -147,29 +140,36 @@ let initial_options = [
         }
     },
     {
-        "es":"Soy usuario de algúna de las web apps existentes de esta plataforma",
-        "en":"I am a user from one of the existing web apps in this platform",
+        "es":"Soy una empresa mediana o grande en búsqueda de un desarrollador competente y autodidacta, con experiencia corporativa y de perspectiva integral para unirse a mi equipo de desarrollo existente.",
+        "en":"I am mid to large business in search of a skilled, self teaching developer with corporate experience and wide perspective to join my existing development team",
         "go":()=>{
             controller_simple_delete(ao.flow.init);
             ao.flow.init = {};
             let ready_apps_message = {
-                "es":"Seleccióna tu app",
-                "en":"Choose your app"
+                "es":"Gracias por su interés, por favor indiqueme que desea ver ahora:",
+                "en":"Thank you for your interest, please let me know what would you rather see now:"
             }
             ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]},ao.flow.init));
             let ready_options = [
                 {
-                    "es":"Herramientas Narrativas",
-                    "en":"Storytelling Tools",
+                    "en":"My curriculum vitae",
+                    "es":"Mi curriculum vitae",
                     "go":()=>{
-                        window.location.href = "https://demian.app/narrar";
+                        window.location.href = "https://profesional.demian.app/cv";
                     }
                 },
                 { 
-                    "es":"Herramientas Redes Sociales",
-                    "en":"Social Media Manager",
+                    "es":"Portafolio de Trabajos Previos",
+                    "en":"Previous Work Portfolio",
                     "go":()=>{
-                        window.location.href = "https://demian.app/somema";
+                        window.location.href = "https://profesional.demian.app/";
+                    }
+                },
+                { 
+                    "es":"Formato de mensaje directo",
+                    "en":"Direct message form",
+                    "go":()=>{
+                        window.location.href = "https://profesional.demian.app/msg";
                     }
                 },
                 common_option_internal_return_home
