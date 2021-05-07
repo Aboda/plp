@@ -27,6 +27,7 @@
     border-style: outset;
     border-color: gray;
     cursor: pointer;
+    max-width: 170px;
 }
 .byemessage{
     font-size: 85%;

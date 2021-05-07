@@ -59,7 +59,7 @@ let initial_options = [
                     }
                 },
                 { 
-                    "en":"The appointment setter, in case you want to go straight to scheduling a dedicated time with video conference to asses the subject matter",
+                    "en":"The appointment setter, in case you want to go straight to scheduling a dedicated time with video conference to assess the subject matter",
                     "es":"El generador de citas en caso de que desees ir directo a agendar tiempo dedicado con videoconferencia para evaluar el asunto de interés",
                     "go":()=>{
                         window.location.href = "https://profesional.demian.app/consult";
@@ -184,23 +184,16 @@ let initial_options = [
             controller_simple_delete(ao.flow.init);
             ao.flow.init = {};
             let ready_apps_message = {
-                "en":"Choose your app",
-                "es":"Seleccióna tu app"                
+                "en":"I also host here a domain dedicated entirely to fiction and fantasy, do you want to take a look at it?",
+                "es":"Tambien hosteo aqui un dominio dedidado enteramente a ficción y fantasía, ¿quieres hecharle un vistaso?"                
             }
             ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]},ao.flow.init));
             let ready_options = [
                 {
-                    "en":"Storytelling Tools",
-                    "es":"Herramientas Narrativas",
+                    "en":"Sure, send me there.",
+                    "es":"Claro, envíame.",
                     "go":()=>{
-                        window.location.href = "https://demian.app/narrar";
-                    }
-                },
-                { 
-                    "en":"Social Media Manager",
-                    "es":"Herramientas Redes Sociales",
-                    "go":()=>{
-                        window.location.href = "https://demian.app/somema";
+                        window.location.href = "https://remansonocturno.com";
                     }
                 },
                 common_option_internal_return_home
