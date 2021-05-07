@@ -19,7 +19,7 @@ let initial_message = {
     "es":"Bienvenidao a mi espacio de desarrollo y aprendizaje personal, por favor indica qué es lo que te trajo aqui para poder canalizarte al portal adecuado:"
 }
 let final_message = {
-    "en":"The operation cost of this server and its pages is 25$ USD per year, this for the 2 domains it holds. It is hosted in free infrastructure offered by Google Cloud and employs open source software where I did not personally write the code for it",
+    "en":"The operation cost of this server and its pages is 25$ USD per year, this for the 2 domains it holds. It is hosted in free infrastructure offered by Google Cloud and employs open source software where I did not personally write the code for it.",
     "es":"El costo de operación de este servidor y sus páginas es 520$ MXN anuales por los dominios que hospeda. Está albergado en infraestructura gratuita ofrecida por Google Cloud y emplea software open source donde no programé personalmente el código."
 }
 let common_option_internal_return_home = { 
@@ -52,15 +52,15 @@ let initial_options = [
                     }
                 },
                 { 
-                    "es":"The message box so you can tell me what´s up and we can begin communicating directly",
-                    "en":"La ventanilla de mensajes para que me puedas decir lo que necesitas y nos comuniquemos directamente",
+                    "en":"The message box so you can tell me what´s up and we can begin communicating directly",
+                    "es":"La ventanilla de mensajes para que me puedas decir lo que necesitas y nos comuniquemos directamente",
                     "go":()=>{
                         window.location.href = "https://profesional.demian.app/msg";
                     }
                 },
                 { 
-                    "es":"The appointment setter, in case you want to go straight to scheduling a dedicated time with video conference to asses the subject matter",
-                    "en":"El generador de citas en caso de que desees ir directo a agendar tiempo dedicado con videoconferencia para evaluar el asunto de interés",
+                    "en":"The appointment setter, in case you want to go straight to scheduling a dedicated time with video conference to asses the subject matter",
+                    "es":"El generador de citas en caso de que desees ir directo a agendar tiempo dedicado con videoconferencia para evaluar el asunto de interés",
                     "go":()=>{
                         window.location.href = "https://profesional.demian.app/consult";
                     }
@@ -159,8 +159,8 @@ let initial_options = [
             ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]},ao.flow.init));
             let ready_options = [
                 {
-                    "en":"Storytelling Tools",
                     "es":"Herramientas Narrativas",
+                    "en":"Storytelling Tools",
                     "go":()=>{
                         window.location.href = "https://demian.app/narrar";
                     }
@@ -180,9 +180,32 @@ let initial_options = [
     {
         "es":"Ninguno de los anteriores",
         "en":"None of the above",
-        "go":(params_if_any)=>{
-            console.log("Generar segunda bateria consultando si hay otro asunto profesional que quiera tratar o bien, enviar a medios estáticos");
-            console.log("Me gustaría generar una tercera batería que ofresca otros entretenimientos tipo geek o de visualización de datos");
+        "go":()=>{
+            controller_simple_delete(ao.flow.init);
+            ao.flow.init = {};
+            let ready_apps_message = {
+                "en":"Choose your app",
+                "es":"Seleccióna tu app"                
+            }
+            ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]},ao.flow.init));
+            let ready_options = [
+                {
+                    "en":"Storytelling Tools",
+                    "es":"Herramientas Narrativas",
+                    "go":()=>{
+                        window.location.href = "https://demian.app/narrar";
+                    }
+                },
+                { 
+                    "en":"Social Media Manager",
+                    "es":"Herramientas Redes Sociales",
+                    "go":()=>{
+                        window.location.href = "https://demian.app/somema";
+                    }
+                },
+                common_option_internal_return_home
+            ];
+            ao.main.append(do_opts(ready_options,ao.flow.init));
         }
     }
 ]
