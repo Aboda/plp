@@ -27,12 +27,12 @@
     border-style: outset;
     border-color: gray;
     cursor: pointer;
-    max-width: 170px;
+    max-width: 300px;
 }
 .byemessage{
     font-size: 85%;
 }
-.option_container{
+#option_container{
     display: flex;
     flex-flow: row wrap;
 }
