@@ -129,7 +129,7 @@ let initial_options = [
                 },
                 { 
                     "es":"Si quieres saber de mi experiencia, puedes consultar mi portafolio",
-                    "en":"If you want to know about my experience, you can also see my portfolio",
+                    "en":"If you want to know about my experience, you can see my portfolio",
                     "go":()=>{
                         window.location.href = "https://profesional.demian.app/";
                     }

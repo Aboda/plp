@@ -609,12 +609,8 @@ exports.set_cache_n_init = (cache) => {
                     "en":"Creators social network"
                 },
                 "loc":"https://remansonocturno.com/",
-                "updfreq":"weekly",
                 "sitemap":true,
                 "index":true,
-                "robots":true,
-                "priority":0.0,
-                "lastmod":"2021-03-22",
                 "favicon":"casa",
                 "acronimo":"ren",
                 "root_domain":true
@@ -637,11 +633,8 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Community perspective data"
                         },
                         "loc":"https://remansonocturno.com/omno/",
-                        "updfreq":"weekly",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.0,
                         "favicon":"casa",
                         "acronimo":"ren"
                     },
@@ -859,14 +852,12 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
                 as_array = adjusted_path.split("/");
             };
         };
-
         if (adjusted_path == "favicon.ico") {
             //Cache de un día
             res.setHeader("Cache-Control", "public, max-age=86400");
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
             return;
         };
-
         if (adjusted_path == "index.html") {
             let options = {
                 "html":[build_index(domain_tree,req.headers.host,chosen_lng)],
@@ -983,7 +974,8 @@ function valid_resource (easyurl,domain_tree) {
     let adjusted = adjust_path(easyurl.pathname);
     if (adjusted == "robots.txt"||
         adjusted == "index.html"||
-        adjusted == "sitemap.xml") {
+        adjusted == "sitemap.xml"||
+        adjusted == "favicon.ico") {
         return true;
     };
     let as_array;
