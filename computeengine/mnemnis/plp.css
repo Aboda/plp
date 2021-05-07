@@ -27,7 +27,7 @@
     border-style: outset;
     border-color: gray;
     cursor: pointer;
-    max-width: 300px;
+    max-width: 410px;
 }
 .byemessage{
     font-size: 85%;
@@ -41,4 +41,10 @@
 .make_way{
     margin: 1em;
     padding: 1em;
+}
+
+@media only screen and (max-width: 410px) {
+    .botopts{
+        width:100%;
+    }
 }
