@@ -76,8 +76,8 @@ let initial_options = [
             ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]},ao.flow.init));
             let ready_options = [
                 {
-                    "en":"My portfolio, with references to existing and past work to see if anything looks like your current problem, 'anything you like, you can have'",
-                    "es":"Mi portafolio, con referencias a trabajo presente o pasado para apreciar si se parece a tu problema actual, 'si algo te gusta, puedes tenerlo' ",
+                    "en":"My portfolio, with references to existing and past work to see if anything looks like your current problem, anything you like, you can have",
+                    "es":"Mi portafolio, con referencias a trabajo presente o pasado para apreciar si se parece a tu problema actual, si algo te gusta, puedes tenerlo",
                     "go":()=>{
                         window.location.href = "https://profesional.demian.app/";
                     }

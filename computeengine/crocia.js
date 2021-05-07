@@ -74,9 +74,8 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Acerca de mi:PLP",
                             "en":"About me:PLP"
                         },
-                        "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav],
-                        "html":[resources_cache.html.aboutme]
+                        "css":[resources_cache.css.sdb,resources_cache.css.plp],
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_aboutme]
                     }
                 },
                 "buro":{
@@ -854,7 +853,8 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         };
         if (adjusted_path == "favicon.ico") {
             //Cache de un día
-            res.setHeader("Cache-Control", "public, max-age=86400");
+            res.setHeader("Cache-Control", "public, max-age=86400");"image/x-icon"
+            res.setHeader("Content-Type", "image/x-icon");
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
             return;
         };
@@ -972,8 +972,8 @@ function valid_resource (easyurl,domain_tree) {
     };
 
     let adjusted = adjust_path(easyurl.pathname);
-    if (adjusted == "robots.txt"||
-        adjusted == "index.html"||
+    if (adjusted == "robots.txt" ||
+        adjusted == "index.html" ||
         adjusted == "sitemap.xml"||
         adjusted == "favicon.ico") {
         return true;
