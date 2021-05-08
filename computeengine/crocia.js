@@ -123,8 +123,7 @@ exports.set_cache_n_init = (cache) => {
                                     "en":"PrivPol:PLP"
                                 },
                                 "css":[resources_cache.css.plp],
-                                "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav],
-                                "html":[resources_cache.html.privacypolicy]
+                                "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.privacypolicy]
                             },
                         },
                         "termsofservice":{
@@ -148,8 +147,7 @@ exports.set_cache_n_init = (cache) => {
                                     "en":"PrivPol:PLP"
                                 },
                                 "css":[resources_cache.css.plp],
-                                "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav],
-                                "html":[resources_cache.html.termsofservice]
+                                "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.privacypolicy]
                             },
                         }
                     }

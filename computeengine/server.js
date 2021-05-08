@@ -41,22 +41,20 @@ var cache = {
         "sdb":fs.readFileSync("./mnemnis/sdb.css").toString(),
         "sph":fs.readFileSync("./mnemnis/sph.css").toString()
     },
-    "html":{
-        "privacypolicy":fs.readFileSync("./mnemnis/privacypolicy.html").toString(),
-        "termsofservice":fs.readFileSync("./mnemnis/termsofservice.html").toString()
-    },
     "js":{
         "alpha":fs.readFileSync("./realmiu/alpha.js").toString(),
-        "demian_app":fs.readFileSync("./realmiu/demian_app.js").toString(),
+        "demian_app_aboutme":fs.readFileSync("./realmiu/demian_app_aboutme.js").toString(),
         "demian_app_info":fs.readFileSync("./realmiu/demian_app_info.js").toString(),
         "demian_app_narrar":fs.readFileSync("./realmiu/demian_app_narrar.js").toString(),
+        "demian_app_privacypolicy":fs.readFileSync("./realmiu/demian_app_privacypolicy.js").toString(),
         "demian_app_somema":fs.readFileSync("./realmiu/demian_app_somema.js").toString(),
-        "demian_app_aboutme":fs.readFileSync("./realmiu/demian_app_aboutme.js").toString(),
+        "demian_app_termsofservice":fs.readFileSync("./realmiu/demian_app_somematermsofservice.js").toString(),
+        "demian_app":fs.readFileSync("./realmiu/demian_app.js").toString(),
+        "demian_basic_nav":fs.readFileSync("./realmiu/demian_basic_nav.js").toString(),
         "en_construc":fs.readFileSync("./realmiu/en_construc.js").toString(),
         "oa2landing":fs.readFileSync("./realmiu/oa2landing.js").toString(),
         "profesional_demian_app":fs.readFileSync("./realmiu/profesional_demian_app.js").toString(),
         "www_demian_app":fs.readFileSync("./realmiu/www_demian_app.js").toString(),
-        "demian_basic_nav":fs.readFileSync("./realmiu/demian_basic_nav.js").toString()        
     }
 }
 // Se proveen los recursos de caché a la función de confirucación de crocia
