@@ -3,10 +3,6 @@
 */
 
 let plain_content = [
-    ["h1",
-    "About Me",
-    "Acerca de Mi"
-    ],
     ["p",
     "Hello, my name is Demian, I am a self taught developer looking for new challenges.",
     "Hola, mi nombre es Demian, soy un desarrollador autodidacta buscando nuevos retos."

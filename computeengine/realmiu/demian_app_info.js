@@ -10,7 +10,6 @@ let sidemenu = [
             ao.fe("GET","https://demian.app/info/progress",(response)=>{
                 let data;
                 try{
-                    console.log(response);
                     data = JSON.parse(response);
                     console.log(data);
                 }catch (err){

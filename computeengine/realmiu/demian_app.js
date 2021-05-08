@@ -5,18 +5,9 @@
     Es distribuidor de la plataforma de demian.app como principal tarea, pero
     tambien se pueden apreciar cosas de remansonocturno.com
 */
-let sidemenu = [
-    {
-        "es":"Información de Plataforma",
-        "en":"Platform Information",
-        "go":()=>{
-            window.location.href = "https://demian.app/info";
-        }
-    }
-];
 let initial_message = {
     "en":"Welcome to my personal development and learning environment, please let me know what brought you here to better route you to the right portal:",
-    "es":"Bienvenidao a mi espacio de desarrollo y aprendizaje personal, por favor indica qué es lo que te trajo aqui para poder canalizarte al portal adecuado:"
+    "es":"Bienvenido a mi espacio de desarrollo y aprendizaje personal, por favor indica qué es lo que te trajo aqui para poder canalizarte al portal adecuado:"
 }
 let final_message = {
     "en":"The operation cost of this server and its pages is 25$ USD per year, this for the 2 domains it holds. It is hosted in free infrastructure offered by Google Cloud and employs open source software where I did not personally write the code for it.",
@@ -178,6 +169,37 @@ let initial_options = [
         }
     },
     {
+        "es":"Dime más de esta plataforma",
+        "en":"Tell me more about this platform",
+        "go":()=>{
+            controller_simple_delete(ao.flow.init);
+            ao.flow.init = {};
+            let ready_apps_message = {
+                "en":"There are various angles to the description of the proyect, pick one",
+                "es":"Hay varios angúlos a la descripción del proyecto, elige una"
+            }
+            ao.main.append(ao.qq({"nodetype":"p","innerText":ready_apps_message[ao.lng]},ao.flow.init));
+            let ready_options = [
+                {
+                    "en":"Live information interfaces",
+                    "es":"Interfaces de información en vivo",
+                    "go":()=>{
+                        window.location.href = "https://demian.app/info";
+                    }
+                },
+                {
+                    "en":"Project diagrams",
+                    "es":"Diagramas del proyecto",
+                    "go":()=>{
+                        window.location.href = "https://demian.app/draw.io";
+                    }
+                },
+                common_option_internal_return_home
+            ];
+            ao.main.append(do_opts(ready_options,ao.flow.init));
+        }
+    },
+    {
         "es":"Ninguno de los anteriores",
         "en":"None of the above",
         "go":()=>{
@@ -227,7 +249,6 @@ window.onresize = () => {
 };
 
 window.onload = () => {
-    ao.interface(sidemenu);
     ao.interface(default_opts);
     ao.main = document.getElementById("from_home");
     ao.flow.init = {};

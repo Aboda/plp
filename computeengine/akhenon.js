@@ -107,7 +107,7 @@ exports.html = (options,chosen_lng) => {
                     ph = ph + "ao.fbid = "+options.fbid+";\n";
                 }
                 if (options.oa != undefined) {
-                    ph = ph + "ao.oaid = "+options.oa+";\n";
+                    ph = ph + "ao.oaid = '"+options.oa+"';\n";
                 };
             }
             ph = ph + modules+"\n";

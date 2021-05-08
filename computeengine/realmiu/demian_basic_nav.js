@@ -1,3 +1,6 @@
+/*
+    Esta variable representan las opciones universales del menú izquierdo
+*/
 let default_opts = [
     {
         "es":"Inicio",
