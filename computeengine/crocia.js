@@ -55,6 +55,52 @@ exports.set_cache_n_init = (cache) => {
                 "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app]
             },
             "astra":{
+                "faq":{
+                    "meta":{
+                        "short":{
+                            "es":"Preguntas Frecuentes",
+                            "en":"FAQ"
+                        },
+                        "loc":"https://demian.app/faq",
+                        "sitemap":true,
+                        "index":true,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Preguntas Frecuentes:PLP",
+                            "en":"FAQ:PLP"
+                        },
+                        "css":[resources_cache.css.sdb,resources_cache.css.plp],
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_faq]
+                    }
+                },
+                "draw.io":{
+                    "meta":{
+                        "short":{
+                            "es":"Diagramas",
+                            "en":"Diagrams"
+                        },
+                        "loc":"https://demian.app/draw.io",
+                        "sitemap":true,
+                        "index":true,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":"G-6MEPN29LZG",
+                        "title":{
+                            "es":"Diagramas:PLP",
+                            "en":"Diagrams:PLP"
+                        },
+                        "css":[resources_cache.css.sdb,resources_cache.css.plp],
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_drawio]
+                    }
+                },
                 "aboutme":{
                     "meta":{
                         "short":{
