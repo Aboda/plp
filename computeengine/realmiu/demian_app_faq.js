@@ -3,10 +3,6 @@
 */
 
 let plain_content = [
-    ["h1",
-    "Frequently Asked Questions",
-    "Preguntas Frecuentes"
-    ],
     ["p",
     "What is this place?",
     "¿Qué es este lugar?"    
@@ -24,8 +20,8 @@ let plain_content = [
     "Es un proyecto personal que es usado por múltiples testers"
     ],
     ["p",
-    "Vendes esto?",
-    "¿Do you sell this?"
+    "¿Do you sell this?",
+    "Vendes esto?"    
     ],
     ["p",
     "If this is what you want / require yes of course, but what I sell is systems engineering and development",
