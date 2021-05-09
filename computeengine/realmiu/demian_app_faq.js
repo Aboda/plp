@@ -13,7 +13,7 @@ let plain_content = [
     ],
     ["p",
     "This is my portfolio / testing ground to be able to practice and showcase aquired knowledges",    
-    "Este es mi portafolio / espacio de práctica para poder emplear y mostrar conocimientos adquiridos",
+    "Este es mi portafolio / espacio de práctica para poder emplear y mostrar conocimientos adquiridos"
     ],
     ["p",
     "How may people work on this project?",
