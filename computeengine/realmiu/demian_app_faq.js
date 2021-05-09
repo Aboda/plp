@@ -22,7 +22,7 @@ let plain_content = [
     ["p",
     "It is a personal proyect that is used by a few testers",
     "Es un proyecto personal que es usado por múltiples testers"
-    ]
+    ],
     ["p",
     "Vendes esto?",
     "¿Do you sell this?"
