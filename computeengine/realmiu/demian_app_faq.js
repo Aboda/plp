@@ -20,8 +20,8 @@ let plain_content = [
     "Es un proyecto personal que es usado por múltiples testers"
     ],
     ["p",
-    "¿Do you sell this?",
-    "Vendes esto?"    
+    "Do you sell this?",
+    "¿Vendes esto?"    
     ],
     ["p",
     "If this is what you want / require yes of course, but what I sell is systems engineering and development",
