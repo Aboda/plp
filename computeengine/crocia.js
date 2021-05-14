@@ -81,8 +81,8 @@ exports.set_cache_n_init = (cache) => {
                 "requirements":{
                     "meta":{
                         "short":{
-                            "es":"Requerimientos:plp",
-                            "en":"Requirements:plp"
+                            "es":"Requerimientos",
+                            "en":"Requirements"
                         },
                         "loc":"https://demian.app/requirements",
                         "sitemap":true,
@@ -94,8 +94,8 @@ exports.set_cache_n_init = (cache) => {
                         "ganalitycs":true,
                         "gtag":"G-6MEPN29LZG",
                         "title":{
-                            "es":"Diagramas:PLP",
-                            "en":"Diagrams:PLP"
+                            "es":"Req:PLP",
+                            "en":"Req:PLP"
                         },
                         "css":[resources_cache.css.sdb,resources_cache.css.plp],
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_requirements]
