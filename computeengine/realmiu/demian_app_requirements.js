@@ -94,8 +94,8 @@ let initial_structure = [
                         "nodetype":"p",
                         "styles":["normal_font"],
                         "innerText":{
-                            "en":"Being accesible enough to allow for intuitive operation by third parties",
-                            "es":"Ser lo suficientemente accesible para permitir al operación intuitiva por terceros"
+                            "en":"Being accesible enough to allow for intuitive operation by third parties\nDesign for smartphone whenever possible",
+                            "es":"Ser lo suficientemente accesible para permitir al operación intuitiva por terceros\nDiseño para smartphone cuando sea posible"
                         }
                     }
                 ]  
