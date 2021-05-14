@@ -230,8 +230,10 @@ function make_content_v2(target,content_array) {
     */
     for (let pieces of content_array) {
         console.log(pieces);
-        if (typeof pieces.innerText != "string") {
-            pieces.innerText = pieces.innerText[ao.lng];
+        if (pieces.innerText != undefined) {
+            if (typeof pieces.innerText != "string") {
+                pieces.innerText = pieces.innerText[ao.lng];
+            };
         };
         let built_item = ao.qq(pieces);
         if (pieces.content != undefined) {
