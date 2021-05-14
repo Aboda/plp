@@ -5,11 +5,6 @@
     parte de un sistema de distribución de contenidos que lleva esta infor
     mación a un modelo consultable a modo de blog.
 
-    El flujo a la carga es consultar si el usuario está registrado con la 
-    plataforma a travez de facebook login, en caso de no estarlo se comie
-    nza el flujo de autenticación fb y una vez terminado presenta los con
-    tenidos.
-
     El contenido de la página permite crear los siguientes registros:
         A)personaje
         B)casa
@@ -132,15 +127,9 @@ let sidemenu = [
 ];
 
 let initial_message = {
-    "en":"Welcome to the storytelling web tools app, this is a database construction and curation tool for ongoing narrations",
-    "es":"Bienvenido al sitio de herramientas web para la creación y curación de base de datos de narrativas en curso"
+    "en":"This is a database construction tool designed to assist in the creation and organization of ongoing interactive narrations",
+    "es":"Esta es una herramienta de construcción de base de datos diseñada para asistir en la creación y organización de narraciones interactivas."
 }
-
-let follow_message = {
-    "en":"Please ensure the proper accounts are logged in",
-    "es":"Por favor asegurate que las cuentas apropiadas estén registradas"
-}
-
 
 
 function install_facebook() {

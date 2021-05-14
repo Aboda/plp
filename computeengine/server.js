@@ -50,6 +50,7 @@ var cache = {
         "demian_app_narrar":fs.readFileSync("./realmiu/demian_app_narrar.js").toString(),
         "demian_app_msg":fs.readFileSync("./realmiu/demian_app_msg.js").toString(),
         "demian_app_privacypolicy":fs.readFileSync("./realmiu/demian_app_privacypolicy.js").toString(),
+        "demian_app_requirements":fs.readFileSync("./realmiu/demian_app_requirements.js").toString(),
         "demian_app_somema":fs.readFileSync("./realmiu/demian_app_somema.js").toString(),
         "demian_app_termsofservice":fs.readFileSync("./realmiu/demian_app_termsofservice.js").toString(),
         "demian_app":fs.readFileSync("./realmiu/demian_app.js").toString(),
