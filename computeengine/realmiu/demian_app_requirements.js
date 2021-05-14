@@ -229,6 +229,7 @@ function make_content_v2(target,content_array) {
         con contenidos de ser necesario.
     */
     for (let pieces of content_array) {
+        console.log(pieces);
         if (typeof pieces.innerText != "string") {
             pieces.innerText = pieces.innerText[ao.lng];
         };
