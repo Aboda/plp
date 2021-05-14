@@ -1201,7 +1201,7 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
     }else{
         hedo.html = ["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>"];
     };
-    if (chosen_domain.meta.description != undefined) {
+    if (chosen_domain.astra[adjusted_path].meta.description != undefined) {
         hedo.description = chosen_domain.astra[adjusted_path].meta.description[chosen_lng]
     };
     for (let keys in pass_values_as_found) {
@@ -1224,7 +1224,7 @@ function serve_level_2(chosen_domain,as_array,chosen_lng) {
     }else{
         hedo.html = ["<h1>"+chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.short[chosen_lng]+"</h1>"];
     };
-    if (chosen_domain.meta.description != undefined) {
+    if (chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.description != undefined) {
         hedo.description = chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.description[chosen_lng]
     };
     for (let keys in pass_values_as_found) {
