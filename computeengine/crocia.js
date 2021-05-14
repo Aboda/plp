@@ -13,6 +13,9 @@ let pass_values_as_found = {
     "gtag":true,
     "oa":true
 }
+// Códigos de apps fb y googletag iniciales
+let main_gtag = "G-6MEPN29LZG";
+let fb_id = 2076681439269297;
 /*
     let crocia_explanation = {
         "nombre":"nombre del recurso a servir",
@@ -46,7 +49,7 @@ exports.set_cache_n_init = (cache) => {
             },
             "intra":{
                 "ganalitycs":true,
-                "gtag":"G-6MEPN29LZG",
+                "gtag":main_gtag,
                 "title":{
                     "es":"Raíz:PLP",
                     "en":"Root:PLP"
@@ -69,40 +72,13 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Preguntas Frecuentes:PLP",
                             "en":"FAQ:PLP"
                         },
                         "css":[resources_cache.css.sdb,resources_cache.css.plp],
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_faq]
-                    }
-                },
-                "requirements":{
-                    "meta":{
-                        "short":{
-                            "es":"Requerimientos",
-                            "en":"Requirements"
-                        },
-                        "description":{
-                            "es":"Requerimientos de plataforma usados para construir mi portafolio laboratorio personal",
-                            "en":"Platform requirements used to build my personal laboratory portfolio"
-                        },
-                        "loc":"https://demian.app/requirements",
-                        "sitemap":true,
-                        "index":true,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
-                        "title":{
-                            "es":"Req:PLP",
-                            "en":"Req:PLP"
-                        },
-                        "css":[resources_cache.css.sdb,resources_cache.css.plp],
-                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_requirements]
                     }
                 },
                 "draw.io":{
@@ -119,7 +95,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Diagramas:PLP",
                             "en":"Diagrams:PLP"
@@ -142,7 +118,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Acerca de mi:PLP",
                             "en":"About me:PLP"
@@ -166,7 +142,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Buró:PLP",
                             "en":"Buro:PLP"
@@ -190,7 +166,7 @@ exports.set_cache_n_init = (cache) => {
                             },
                             "intra":{
                                 "ganalitycs":true,
-                                "gtag":"G-6MEPN29LZG",
+                                "gtag":main_gtag,
                                 "title":{
                                     "es":"PolPriv:PLP",
                                     "en":"PrivPol:PLP"
@@ -214,7 +190,7 @@ exports.set_cache_n_init = (cache) => {
                             },
                             "intra":{
                                 "ganalitycs":true,
-                                "gtag":"G-6MEPN29LZG",
+                                "gtag":main_gtag,
                                 "title":{
                                     "es":"PolPriv:PLP",
                                     "en":"PrivPol:PLP"
@@ -242,7 +218,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Retos y Herramientas:PLP",
                             "en":"Tools and Challenges:PLP"
@@ -268,7 +244,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Programas Sociales:PLP",
                             "en":"Social Programs:PLP"
@@ -294,7 +270,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Tienda de Comida:PLP",
                             "en":"Food shop:PLP"
@@ -320,7 +296,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Rentador DVD:PLP",
                             "en":"DVD Leaser:PLP"
@@ -346,9 +322,9 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "facebooksdk":true,
-                        "fbid":"2076681439269297",
+                        "fbid":fb_id,
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "oa":"345217584200-aaqh5p3p3huigg3hf0bobee8lhtphe41",
                         "title":{
                             "es":"SOmeMA:PLP",
@@ -375,9 +351,9 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "facebooksdk":true,
-                        "fbid":"2076681439269297",
+                        "fbid":fb_id,
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "oa":"345217584200-aaqh5p3p3huigg3hf0bobee8lhtphe41",
                         "title":{
                             "es":"Narrador:PLP",
@@ -404,7 +380,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"OAuth2",
                             "en":"OAuth2"
@@ -476,7 +452,7 @@ exports.set_cache_n_init = (cache) => {
             },
             "intra":{
                 "ganalitycs":true,
-                "gtag":"G-6MEPN29LZG",
+                "gtag":main_gtag,
                 "title":{
                     "es":"Blog:PLP",
                     "en":"Blog:PLP"
@@ -502,7 +478,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Estáticos:PLP",
                             "en":"Static:PLP"
@@ -528,7 +504,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Dinámicos:PLP",
                             "en":"Dynamic:PLP"
@@ -556,7 +532,7 @@ exports.set_cache_n_init = (cache) => {
             },
             "intra":{
                 "ganalitycs":true,
-                "gtag":"G-6MEPN29LZG",
+                "gtag":main_gtag,
                 "title":{
                     "es":"Inicio:PLP",
                     "en":"Home:PLP"
@@ -565,6 +541,33 @@ exports.set_cache_n_init = (cache) => {
                 "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.profesional_demian_app]
             },
             "astra":{
+                "requirements":{
+                    "meta":{
+                        "short":{
+                            "es":"Requerimientos",
+                            "en":"Requirements"
+                        },
+                        "description":{
+                            "es":"Requerimientos de plataforma usados para construir mi portafolio laboratorio personal",
+                            "en":"Platform requirements used to build my personal laboratory portfolio"
+                        },
+                        "loc":"https://demian.app/requirements",
+                        "sitemap":true,
+                        "index":true,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":main_gtag,
+                        "title":{
+                            "es":"Req:PLP",
+                            "en":"Req:PLP"
+                        },
+                        "css":[resources_cache.css.sdb,resources_cache.css.plp],
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_requirements]
+                    }
+                },
                 "google":{
                     "meta":{
                         "short":{
@@ -582,7 +585,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Google H&T:PLP",
                             "en":"Google T&T:PLP"
@@ -608,7 +611,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Facebook H&T:PLP",
                             "en":"Facebook T&T:PLP"
@@ -634,7 +637,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Web H&T:PLP",
                             "en":"Web T&T:PLP"
@@ -661,7 +664,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"G-6MEPN29LZG",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Office H&T:PLP",
                             "en":"Office T&T:PLP"
@@ -913,7 +916,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
         //Remueve / al principio y al final
         let adjusted_path = akhenon.adjust_path(easyurl.pathname);
         let as_array;
-
         if (easyurl.pathname == "/") {
             finish_request (res,200,akhenon.html(serve_level_0(chosen_domain,chosen_lng)));
             return;
@@ -947,10 +949,8 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
             finish_request (res,200,akhenon.html(options));
             return;
         };
-
         let acronym = chosen_domain.meta.acronimo;
         let root_dom_name;
-
         for (let entry in domain_tree) {
             if (domain_tree[entry].meta.acronimo == acronym) {
                 if (domain_tree[entry].meta.root_domain == true) {
@@ -958,12 +958,10 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
                 }
             }
         }
-
         if (adjusted_path == "sitemap.xml") {
             finish_request (res,200,akhenon.sitemap(domain_tree,req.headers.host));
             return;
         };
-
         if (adjusted_path == "robots.txt") {
             finish_request (res,200,akhenon.robots("https://www."+root_dom_name+"/sitemap.xml"));
             return;
@@ -986,7 +984,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
                     trimmed_referer = akhenon.adjust_path(akhenon.clear_query(req.headers.referer));
                 }
         */
-      
         if (as_array != undefined) {
             /*
                 Si la página tiene una entrada de "data" en intra
@@ -1041,7 +1038,6 @@ function valid_resource (easyurl,domain_tree) {
     if (easyurl.pathname == "/") {
         return true;
     };
-
     let adjusted = adjust_path(easyurl.pathname);
     if (adjusted == "robots.txt" ||
         adjusted == "index.html" ||
@@ -1129,7 +1125,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
         el objetivo es leer en cada nivel el meta, e introduc
         irlo
     */
-        let hc = "<h1>"+common_messages.index[chosen_lng] +
+    let hc = "<h1>"+common_messages.index[chosen_lng] +
     root_dom.meta.short[chosen_lng]+"</h1>\n";
     hc = hc + "<ol type='I'>"
     for (let entry in party_members) {
@@ -1234,7 +1230,6 @@ function serve_level_2(chosen_domain,as_array,chosen_lng) {
     };
     return hedo;
 }
-
 function development_info(domain_tree) {
     var response = {};
     for (var dom_name in domain_tree) {
