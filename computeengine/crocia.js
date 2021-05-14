@@ -84,6 +84,10 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Requerimientos",
                             "en":"Requirements"
                         },
+                        "description":{
+                            "es":"Requerimientos de plataforma usados para construir mi portafolio laboratorio personal",
+                            "en":"Platform requirements used to build my personal laboratory portfolio"
+                        },
                         "loc":"https://demian.app/requirements",
                         "sitemap":true,
                         "index":true,
@@ -1174,6 +1178,9 @@ function serve_level_0(chosen_domain,chosen_lng){
         "css":chosen_domain.intra.css,
         "js":chosen_domain.intra.js
     };
+    if (chosen_domain.meta.description != undefined) {
+        hedo.description = chosen_domain.meta.description[chosen_lng]
+    };
     for (let keys in pass_values_as_found) {
         if (chosen_domain.intra[keys] != undefined) {
             hedo[keys] = chosen_domain.intra[keys];
@@ -1194,6 +1201,9 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
     }else{
         hedo.html = ["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>"];
     };
+    if (chosen_domain.meta.description != undefined) {
+        hedo.description = chosen_domain.astra[adjusted_path].meta.description[chosen_lng]
+    };
     for (let keys in pass_values_as_found) {
         if (chosen_domain.astra[adjusted_path].intra[keys] != undefined) {
             hedo[keys] = chosen_domain.astra[adjusted_path].intra[keys];
@@ -1213,6 +1223,9 @@ function serve_level_2(chosen_domain,as_array,chosen_lng) {
         hedo.html = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html;
     }else{
         hedo.html = ["<h1>"+chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.short[chosen_lng]+"</h1>"];
+    };
+    if (chosen_domain.meta.description != undefined) {
+        hedo.description = chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.description[chosen_lng]
     };
     for (let keys in pass_values_as_found) {
         if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys] != undefined) {
