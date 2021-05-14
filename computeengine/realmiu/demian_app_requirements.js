@@ -1,7 +1,6 @@
 /*
-    Página estática con dos idiomas posibles
+    Resumen de requerimientos del proyecto al 2021/14/05
 */
-
 let initial_structure = [
     {
         "nodetype":"div",
@@ -449,13 +448,11 @@ let initial_structure = [
         ]
     }
 ]
-
 window.onload = () => {
     ao.main = document.getElementById("from_home");
     ao.interface(default_opts);
     make_content_v2(ao.main, initial_structure);
 }
-
 function make_content_v2(target,content_array) {
     /*
         Función recursiva para crear contenido html en página deacuerdo al lenguaje
