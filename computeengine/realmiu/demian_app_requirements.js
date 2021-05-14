@@ -8,7 +8,7 @@ let initial_structure = [
         "content":[
             {
                 "nodetype":"h2",
-                "styles":["branch_root"],
+                "styles":["branch_root", "color_contrast_3"],
                 "innerText":{
                     "en":"Functionality",
                     "es":"Funcionalidad"
@@ -84,7 +84,7 @@ let initial_structure = [
         "content":[
             {
                 "nodetype":"h2",
-                "styles":["branch_root"],
+                "styles":["branch_root", "color_contrast_4"],
                 "innerText":{
                     "en":"Usability",
                     "es":"Usabilidad"
@@ -177,7 +177,7 @@ let initial_structure = [
         "content":[
             {
                 "nodetype":"h2",
-                "styles":["branch_root"],
+                "styles":["branch_root", "color_contrast_3"],
                 "innerText":{
                     "en":"Reliability",
                     "es":"Estabilidad"
@@ -265,7 +265,7 @@ let initial_structure = [
     },
     {
         "nodetype":"div",
-        "styles":["tree_container"],
+        "styles":["tree_container", "color_contrast_3"],
         "content":[
             {
                 "nodetype":"h2",
@@ -357,7 +357,7 @@ let initial_structure = [
     },
     {
         "nodetype":"div",
-        "styles":["tree_container"],
+        "styles":["tree_container", "color_contrast_3"],
         "content":[
             {
                 "nodetype":"h2",
