@@ -75,7 +75,7 @@ exports.html = (options,chosen_lng) => {
     ph = ph + "<base target='_top'>\n";
     ph = ph + "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n";
     ph = ph + "<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n";
-    if (options.robo != false) {
+    if (options.robo == true) {
         ph = ph + "<link href='https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap' rel='stylesheet'>\n";
     };
     if (options.dynamic == "redirect") {

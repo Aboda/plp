@@ -111,7 +111,7 @@ let initial_structure = [
                         "nodetype":"p",
                         "styles":["normal_font"],
                         "innerText":{
-                            "en":"This tool is intended to expand my capabilities to being able to quickly prototype content and tools as needed",
+                            "en":"This tool is intended to expand my capability to be able to quickly prototype content and tools as needed",
                             "es":"Esta herramienta prentende expandir mis capacidades para ser capaz de generar prototipos de contenido y herramienta conforme sea necesario"
                         }
                     }
@@ -177,7 +177,7 @@ let initial_structure = [
         "content":[
             {
                 "nodetype":"h2",
-                "styles":["branch_root", "color_contrast_3"],
+                "styles":["branch_root"],
                 "innerText":{
                     "en":"Reliability",
                     "es":"Estabilidad"
@@ -459,7 +459,6 @@ function make_content_v2(target,content_array) {
         con contenidos de ser necesario.
     */
     for (let pieces of content_array) {
-        console.log(pieces);
         if (pieces.innerText != undefined) {
             if (typeof pieces.innerText != "string") {
                 pieces.innerText = pieces.innerText[ao.lng];
