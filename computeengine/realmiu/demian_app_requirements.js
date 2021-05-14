@@ -4,11 +4,11 @@
 let initial_structure = [
     {
         "nodetype":"div",
-        "styles":["tree_container"],
+        "styles":["tree_container", "color_contrast_2"],
         "content":[
             {
                 "nodetype":"h2",
-                "styles":["branch_root", "color_contrast_3"],
+                "styles":["branch_root"],
                 "innerText":{
                     "en":"Functionality",
                     "es":"Funcionalidad"
@@ -80,11 +80,11 @@ let initial_structure = [
     {
         
         "nodetype":"div",
-        "styles":["tree_container"],
+        "styles":["tree_container", "color_contrast_3"],
         "content":[
             {
                 "nodetype":"h2",
-                "styles":["branch_root", "color_contrast_4"],
+                "styles":["branch_root"],
                 "innerText":{
                     "en":"Usability",
                     "es":"Usabilidad"
@@ -173,7 +173,7 @@ let initial_structure = [
     {
         
         "nodetype":"div",
-        "styles":["tree_container"],
+        "styles":["tree_container", "color_contrast_4"],
         "content":[
             {
                 "nodetype":"h2",
@@ -265,7 +265,7 @@ let initial_structure = [
     },
     {
         "nodetype":"div",
-        "styles":["tree_container", "color_contrast_3"],
+        "styles":["tree_container", "color_contrast_5"],
         "content":[
             {
                 "nodetype":"h2",
@@ -357,7 +357,7 @@ let initial_structure = [
     },
     {
         "nodetype":"div",
-        "styles":["tree_container", "color_contrast_3"],
+        "styles":["tree_container", "color_contrast_2"],
         "content":[
             {
                 "nodetype":"h2",
