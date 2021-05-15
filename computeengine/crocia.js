@@ -551,7 +551,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Requerimientos de plataforma usados para construir mi portafolio laboratorio personal",
                             "en":"Platform requirements used to build my personal laboratory portfolio"
                         },
-                        "loc":"https://demian.app/requirements",
+                        "loc":"https://profesional.demian.app/requirements",
                         "sitemap":true,
                         "index":true,
                         "favicon":"desk",
@@ -568,18 +568,19 @@ exports.set_cache_n_init = (cache) => {
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_requirements]
                     }
                 },
-                "google":{
+                "design":{
                     "meta":{
                         "short":{
-                            "es":"Herramientas y tecnologías google empleadas",
-                            "en":"Google tools and technologies employed",
+                            "es":"Diseño",
+                            "en":"Design",
                         },
-                        "loc":"https://profesional.demian.app/google/",
-                        "updfreq":"monthly",
+                        "description":{
+                            "es":"Detalles de diseño de mi portafolio laboratorio personal",
+                            "en":"Design details for my personal laboratory portfolio"
+                        },
+                        "loc":"https://profesional.demian.app/design",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -587,25 +588,26 @@ exports.set_cache_n_init = (cache) => {
                         "ganalitycs":true,
                         "gtag":main_gtag,
                         "title":{
-                            "es":"Google H&T:PLP",
-                            "en":"Google T&T:PLP"
+                            "es":"Diseño:PLP",
+                            "en":"Design:PLP"
                         },
                         "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.alpha,resources_cache.js.g_prods]
                     }
                 },
-                "facebook":{
+                "implementation":{
                     "meta":{
                         "short":{
-                            "es":"Herramientas y tecnologías facebook empleadas",
-                            "en":"Facebook tools and technologies employed",
+                            "es":"Implementation details for my personal laboratory portfolio",
+                            "en":"Detalles de implementación de mi portafolio laboratorio personal",
                         },
-                        "loc":"https://profesional.demian.app/facebook/",
-                        "updfreq":"monthly",
+                        "description":{
+                            "es":"Detalles de diseño de mi portafolio laboratorio personal",
+                            "en":"Design details for my personal laboratory portfolio"
+                        },
+                        "loc":"https://profesional.demian.app/implement",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -613,25 +615,26 @@ exports.set_cache_n_init = (cache) => {
                         "ganalitycs":true,
                         "gtag":main_gtag,
                         "title":{
-                            "es":"Facebook H&T:PLP",
-                            "en":"Facebook T&T:PLP"
+                            "es":"Imple:PLP",
+                            "en":"Imple:PLP"
                         },
                         "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 },
-                "web":{
+                "interface":{
                     "meta":{
                         "short":{
-                            "es":"Herramientas y tecnologías web empleadas",
-                            "en":"Web tools and technologies employed",
+                            "es":"Detalles de interface para mi portafolio laboratorio personal",
+                            "en":"Interface details for my personal laboratory portfolio",
                         },
-                        "loc":"https://profesional.demian.app/web/",
-                        "updfreq":"monthly",
+                        "description":{
+                            "es":"Detalles de diseño de mi portafolio laboratorio personal",
+                            "en":"Design details for my personal laboratory portfolio"
+                        },
+                        "loc":"https://profesional.demian.app/interface",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -639,26 +642,27 @@ exports.set_cache_n_init = (cache) => {
                         "ganalitycs":true,
                         "gtag":main_gtag,
                         "title":{
-                            "es":"Web H&T:PLP",
-                            "en":"Web T&T:PLP"
+                            "es":"Interface:PLP",
+                            "en":"Interface:PLP"
                         },
                         "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
                     }
                 },
-                "office":{
+                "physical":{
                     "meta":{
                         "short":{
-                            "es":"Herramientas y tecnologías de oficina empleadas",
-                            "en":"Office tools and technologies employed",
+                            "es":"Diseño de sistemas, consideraciones físicas",
+                            "en":"Sistem design, physical considerations",
                         },
-                        "loc":"https://profesional.demian.app/office/",
+                        "description":{
+                            "es":"Consideraciones físicas de mi portafolio laboratorio personal",
+                            "en":"Physical considerations for my personal laboratory portfolio"
+                        },
+                        "loc":"https://profesional.demian.app/physical",
                         "updfreq":"monthly",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "lastmod":"2021-19-03",
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -666,8 +670,8 @@ exports.set_cache_n_init = (cache) => {
                         "ganalitycs":true,
                         "gtag":main_gtag,
                         "title":{
-                            "es":"Office H&T:PLP",
-                            "en":"Office T&T:PLP"
+                            "es":"Fisicas:PLP",
+                            "en":"Physical:PLP"
                         },
                         "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.alpha,resources_cache.js.en_construc]
@@ -1150,10 +1154,10 @@ function index_div (object_meta,chosen_lng,mark) {
     let dc = "";
     if (object_meta.index == true) {
         if (mark == true){
-            dc = dc + "<li class='color_contrast_2 make_way'>\n";
+            dc = dc + "<div class='color_contrast_2 make_way'>\n";
             dc = dc + common_messages.here[chosen_lng];
         }else{
-            dc = dc + "<li  class='make_way'>\n";
+            dc = dc + "<div  class='make_way'>\n";
         }     
         dc = dc + object_meta.short[chosen_lng]+"\n<br>";
         if (mark == true){
@@ -1161,7 +1165,7 @@ function index_div (object_meta,chosen_lng,mark) {
         }else{
             dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
         }
-        dc = dc + "</li>\n";
+        dc = dc + "</div>\n";
     }
     return dc;
 }

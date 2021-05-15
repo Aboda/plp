@@ -77,8 +77,7 @@ let initial_structure = [
             },
         ]
     },
-    {
-        
+    {        
         "nodetype":"div",
         "styles":["tree_container", "color_contrast_3"],
         "content":[

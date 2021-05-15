@@ -130,7 +130,10 @@ let initial_message = {
     "en":"This is a database construction tool designed to assist in the creation and organization of ongoing interactive narrations",
     "es":"Esta es una herramienta de construcción de base de datos diseñada para asistir en la creación y organización de narraciones interactivas."
 }
-
+let follow_message = {
+    "en":"Please select the subsection of your choice option from the sidemenu",
+    "es":"Por favor seleccióna la subsección de tu preferencia del menú lateral"
+}
 
 function install_facebook() {
     window.fbAsyncInit = function () {
