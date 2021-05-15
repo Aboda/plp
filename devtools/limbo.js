@@ -308,12 +308,31 @@ function send_to_collection () {
   ao.fe("POST",collectos,console.log,JSON.stringify(test_data));
 }
 
-    /*
-    Este parece ser solopara la autenticación de oauth2, vs el client que es la librería sdk completa
-    document.getElementsByTagName('head')[0].appendChild(ao.qq({
-        "nodetype":"script",
-        "async":true,
-        "defer":true,
-        "src":"https://apis.google.com/js/platform.js"
-    }));
-    */  
+  /*
+  Este parece ser solopara la autenticación de oauth2, vs el client que es la librería sdk completa
+  document.getElementsByTagName('head')[0].appendChild(ao.qq({
+      "nodetype":"script",
+      "async":true,
+      "defer":true,
+      "src":"https://apis.google.com/js/platform.js"
+  }));
+  */
+  
+  if (adjusted_path == "index.html") {
+    let options = {
+        "html":[build_index(domain_tree,req.headers.host,chosen_lng)],
+        "languaje":chosen_lng,
+        "title":"ind:"+chosen_domain.meta.acronimo,
+        "css":chosen_domain.intra.css
+    };
+    if (chosen_domain.meta.ganalitycs == true) {
+        options.ganalitycs = true;
+        options.gtag = chosen_domain.meta.gtag;
+    };
+    if (chosen_domain.meta.facebooksdk == true) {
+        options.facebooksdk = true;
+        options.fbid = chosen_domain.meta.fbid;
+    };
+    finish_request (res,200,akhenon.html(options));
+    return;
+};

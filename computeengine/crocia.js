@@ -58,6 +58,56 @@ exports.set_cache_n_init = (cache) => {
                 "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app]
             },
             "astra":{
+                "index.html":{
+                    "meta":{
+                        "short":{
+                            "es":"Indice:plp",
+                            "en":"Index:plp"
+                        },
+                        "descrip":{
+                            "es":"Listado de páginas públicas en el dominio",
+                            "en":"Listing of public páges in the domain"
+                        },
+                        "loc":"https://demian.app/index.html",
+                        "sitemap":true,
+                        "index":true,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":main_gtag,
+                        "title":{
+                            "es":"Indice:plp",
+                            "en":"Index:plp"
+                        },
+                        "css":[resources_cache.css.sdb,resources_cache.css.plp],
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_faq]
+                    }
+                },
+                "sitemap.xml":{
+                    "meta":{
+                        "short":{
+                            "es":"Preguntas Frecuentes",
+                            "en":"FAQ"
+                        },
+                        "loc":"https://demian.app/sitemap.xml",
+                        "sitemap":false,
+                        "index":false,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":main_gtag,
+                        "title":{
+                            "es":"Preguntas Frecuentes:PLP",
+                            "en":"FAQ:PLP"
+                        },
+                        "css":[resources_cache.css.sdb,resources_cache.css.plp],
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_faq]
+                    }
+                },
                 "faq":{
                     "meta":{
                         "short":{
@@ -836,6 +886,11 @@ exports.set_cache_n_init = (cache) => {
         }
     }
 }
+//Self referencing content calculation
+domain_tree["demian.app"].astra["index.html"].intra.html = {
+    "en":build_index(domain_tree,"demian.app","en"),
+    "es":build_index(domain_tree,"demian.app","es")
+}
 //Mensajes html comúnes de fácil acceso
 const common_messages = {
     "javascript_disclaimer":{
@@ -935,24 +990,6 @@ exports.gatekeep = (req,res,akhenon,simple_counter,log_JSON) => {
             finish_request (res,200,resources_cache.favicon[chosen_domain.meta.favicon]);
             return;
         };
-        if (adjusted_path == "index.html") {
-            let options = {
-                "html":[build_index(domain_tree,req.headers.host,chosen_lng)],
-                "languaje":chosen_lng,
-                "title":"ind:"+chosen_domain.meta.acronimo,
-                "css":chosen_domain.intra.css
-            };
-            if (chosen_domain.meta.ganalitycs == true) {
-                options.ganalitycs = true;
-                options.gtag = chosen_domain.meta.gtag;
-            };
-            if (chosen_domain.meta.facebooksdk == true) {
-                options.facebooksdk = true;
-                options.fbid = chosen_domain.meta.fbid;
-            };
-            finish_request (res,200,akhenon.html(options));
-            return;
-        };
         let acronym = chosen_domain.meta.acronimo;
         let root_dom_name;
         for (let entry in domain_tree) {
@@ -1044,8 +1081,6 @@ function valid_resource (easyurl,domain_tree) {
     };
     let adjusted = adjust_path(easyurl.pathname);
     if (adjusted == "robots.txt" ||
-        adjusted == "index.html" ||
-        adjusted == "sitemap.xml"||
         adjusted == "favicon.ico") {
         return true;
     };
@@ -1172,11 +1207,11 @@ function index_div (object_meta,chosen_lng,mark) {
 // entrega algo en el astra de un host
 function serve_level_0(chosen_domain,chosen_lng){
     let hedo = {
-        "html":["<h1>"+chosen_domain.meta.short[chosen_lng]+"</h1>"],
         "languaje":chosen_lng,
         "title":chosen_domain.intra.title[chosen_lng],
         "css":chosen_domain.intra.css,
-        "js":chosen_domain.intra.js
+        "js":chosen_domain.intra.js,
+        "html":["<h1>"+chosen_domain.meta.short[chosen_lng]+"</h1>"]
     };
     if (chosen_domain.meta.description != undefined) {
         hedo.description = chosen_domain.meta.description[chosen_lng]
@@ -1197,7 +1232,7 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
         "js":chosen_domain.astra[adjusted_path].intra.js
     };
     if (chosen_domain.astra[adjusted_path].intra.html != undefined) {
-        hedo.html = chosen_domain.astra[adjusted_path].intra.html;
+        hedo.html = chosen_domain.astra[adjusted_path].intra.html[chosen_lng];
     }else{
         hedo.html = ["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>"];
     };
