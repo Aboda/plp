@@ -1146,7 +1146,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
             }
         }
     }
-    hc = hc + "</ol>"
+    hc = hc + "</div>"
     return hc
 }
 // genera una entrada div en texto formato html
