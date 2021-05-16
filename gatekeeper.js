@@ -8,15 +8,15 @@ const crocia = require("./crocia.js");
 const akhenon = require("./akhenon.js");
 // Configuración del output general de loggeo a un archivo en el SO, está en su propia carpeta y es de escritura pública
 const do_log = true;
-const log_file = fs.createWriteStream("../../din/server_log.txt", {flags : "a"});
+const log_file = fs.createWriteStream("../din/server_log.txt", {flags : "a"});
 /*
     Configuración del servidor https
     modo "poca paciencia" no recuerda sesiones y ofrece restricciónes de 1 2 y 3 segundos para transmitir headers, contenido y para considerar una conexión muerta respectivamente
     Lo anterior sumado a un modelo de entrega de pocas llamadas pretende reducir la huella de memoria que es el recurso más limitado de la computadora gratuita
 */
 const server_options = {
-    key: fs.readFileSync("../../tls/privkey.pem"),
-    cert: fs.readFileSync("../../tls/fullchain.pem"),
+    key: fs.readFileSync("../tls/privkey.pem"),
+    cert: fs.readFileSync("../tls/fullchain.pem"),
     maxCachedSessions: 0,
     keepAliveTimeout: 0,
     headersTimeout: 1000,
