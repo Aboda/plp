@@ -115,8 +115,8 @@ function log_JSON (log_stringifieable) {
         IP dada en función de reglas prescritas:
 
             *Esto es ambiguo porque el handshake HTTPS acontece antes de conocer los
-            parámetros de la comunicación, de forma que ya está usando recursos el 
-            escasos el atender a una solicitud al punto de hacer disponible la IP
+            parámetros de la comunicación, de forma que ya está usando recursos 
+            escasos al atender a una solicitud al punto de hacer disponible la IP
             para su evaluación
 
             *Creo que podemos checar la interacción de la VM con el firewall para ver si se pueden bloquear agentes
