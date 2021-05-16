@@ -887,10 +887,12 @@ exports.set_cache_n_init = (cache) => {
     }
 }
 //Self referencing content calculation
+/*
 domain_tree["demian.app"].astra["index.html"].intra.html = {
     "en":build_index(domain_tree,"demian.app","en"),
     "es":build_index(domain_tree,"demian.app","es")
 }
+*/
 //Mensajes html comúnes de fácil acceso
 const common_messages = {
     "javascript_disclaimer":{
