@@ -5,7 +5,8 @@
 let resources_cache = {}; 
 // Objeto de detallado de estructura de sitio
 let domain_tree = {};
-// Objeto de valores que pasar integros desde domain_tree al Akhenon (vs realizar operaciones con ellos)
+// Objeto de valores que pasar integros desde domain_tree al Akhenon 
+// vs pasar datos de forma "manual" a travez de serve_level_N
 let pass_values_as_found = {
     "facebooksdk":true,
     "fbid":true,
@@ -39,6 +40,10 @@ exports.set_cache_n_init = (cache) => {
                 "short":{
                     "es":"PLP: Portafolio Laboratorio Personal",
                     "en":"PLP: Personal Lab Portfolio"
+                },
+                "descrip":{
+                    "es":"Página raíz del proyecto, cuenta con una serie de preguntas para canalizar al transeunte a los diversos contenidos.",
+                    "en":"Root page of the proyect, you may find here a series of questions to route you to the different elements of the project."
                 },
                 "loc":"https://demian.app/",
                 "sitemap":true,
@@ -1194,14 +1199,14 @@ function index_div (object_meta,chosen_lng,mark) {
             dc = dc + "<div class='color_contrast_2 make_way'>\n";
             dc = dc + common_messages.here[chosen_lng];
         }else{
-            dc = dc + "<div  class='make_way'>\n";
+            dc = dc + "<div class='make_way'>\n";
         }     
-        dc = dc + object_meta.short[chosen_lng]+"\n<br>";
         if (mark == true){
             dc = dc + "<a class='color_contrast_4' href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
         }else{
-            dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
+            dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.short[chosen_lng]+"</a>\n";
         }
+        object_meta.descrip[chosen_lng]
         dc = dc + "</div>\n";
     }
     return dc;
@@ -1257,7 +1262,7 @@ function serve_level_2(chosen_domain,as_array,chosen_lng) {
         "js":chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.js
     };
     if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html != undefined) {
-        hedo.html = chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html;
+        hedo.html = [chosen_domain.astra[as_array[0]].astra[as_array[1]].intra.html];
     }else{
         hedo.html = ["<h1>"+chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.short[chosen_lng]+"</h1>"];
     };
