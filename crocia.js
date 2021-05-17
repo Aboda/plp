@@ -12,8 +12,7 @@ let pass_values_as_found = {
     "fbid":true,
     "ganalitycs":true,
     "gtag":true,
-    "oa":true,
-    "descrip":true
+    "oa":true
 }
 // Códigos de apps fb y googletag iniciales
 let main_gtag = "G-6MEPN29LZG";
@@ -1210,8 +1209,8 @@ function serve_level_0(chosen_domain,chosen_lng){
         "js":chosen_domain.intra.js,
         "html":["<h1>"+chosen_domain.meta.short[chosen_lng]+"</h1>"]
     };
-    if (chosen_domain.meta.description != undefined) {
-        hedo.description = chosen_domain.meta.description[chosen_lng]
+    if (chosen_domain.meta.descrip != undefined) {
+        hedo.descrip = chosen_domain.meta.descrip[chosen_lng]
     };
     for (let keys in pass_values_as_found) {
         if (chosen_domain.intra[keys] != undefined) {
@@ -1233,8 +1232,8 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
     }else{
         hedo.html = ["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>"];
     };
-    if (chosen_domain.astra[adjusted_path].meta.description != undefined) {
-        hedo.description = chosen_domain.astra[adjusted_path].meta.description[chosen_lng]
+    if (chosen_domain.astra[adjusted_path].meta.descrip != undefined) {
+        hedo.descrip = chosen_domain.astra[adjusted_path].meta.descrip[chosen_lng]
     };
     for (let keys in pass_values_as_found) {
         if (chosen_domain.astra[adjusted_path].intra[keys] != undefined) {
@@ -1256,8 +1255,8 @@ function serve_level_2(chosen_domain,as_array,chosen_lng) {
     }else{
         hedo.html = ["<h1>"+chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.short[chosen_lng]+"</h1>"];
     };
-    if (chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.description != undefined) {
-        hedo.description = chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.description[chosen_lng]
+    if (chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.descrip != undefined) {
+        hedo.descrip = chosen_domain.astra[as_array[0]].astra[as_array[1]].meta.descrip[chosen_lng]
     };
     for (let keys in pass_values_as_found) {
         if (chosen_domain.astra[as_array[0]].astra[as_array[1]].intra[keys] != undefined) {
