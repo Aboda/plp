@@ -82,7 +82,7 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Index:plp"
                         },
                         "css":[resources_cache.css.sdb,resources_cache.css.plp],
-                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_faq]
+                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav]
                     }
                 },
                 "sitemap.xml":{
@@ -884,15 +884,15 @@ exports.set_cache_n_init = (cache) => {
                 }
             }
         }
+    }// end initial crocia setup
+    
+    //Self referencing content calculation
+    domain_tree["demian.app"].astra["index.html"].intra.html = {
+        "en":build_index(domain_tree,"demian.app","en"),
+        "es":build_index(domain_tree,"demian.app","es")
     }
 }
-//Self referencing content calculation
-/*
-domain_tree["demian.app"].astra["index.html"].intra.html = {
-    "en":build_index(domain_tree,"demian.app","en"),
-    "es":build_index(domain_tree,"demian.app","es")
-}
-*/
+
 //Mensajes html comúnes de fácil acceso
 const common_messages = {
     "javascript_disclaimer":{
