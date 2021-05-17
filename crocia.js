@@ -404,11 +404,8 @@ exports.set_cache_n_init = (cache) => {
                             "en":"Database curation tool for the creation of fictional worlds"
                         },
                         "loc":"https://demian.app/narrar/",
-                        "updfreq":"weekly",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -740,7 +737,7 @@ exports.set_cache_n_init = (cache) => {
             },
             "intra":{
                 "ganalitycs":true,
-                "gtag":"UA-116485229-1",
+                "gtag":main_gtag,
                 "title":{
                     "es":"Inicio: Remanso Nocturno",
                     "en":"Home: Nocturnal Remanse",
@@ -749,6 +746,33 @@ exports.set_cache_n_init = (cache) => {
                 "js":[resources_cache.js.alpha,resources_cache.js.ren]
             },
             "astra":{
+                "index.html":{
+                    "meta":{
+                        "short":{
+                            "es":"Indice",
+                            "en":"Index"
+                        },
+                        "descrip":{
+                            "es":"Listado de páginas de primer y segúndo nivel del dominio",
+                            "en":"Listing of first and second level pages in the domain"
+                        },
+                        "loc":"https://www.remansonocturno.com/index.html",
+                        "sitemap":true,
+                        "index":true,
+                        "favicon":"desk",
+                        "acronimo":"plp"
+                    },
+                    "intra":{
+                        "ganalitycs":true,
+                        "gtag":main_gtag,
+                        "title":{
+                            "es":"Indice:plp",
+                            "en":"Index:plp"
+                        },
+                        "css":[resources_cache.css.sdb,resources_cache.css.ren],
+                        "js":[resources_cache.js.alpha]
+                    }
+                },
                 "omno":{
                     "meta":{
                         "short":{
@@ -767,7 +791,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"UA-116485229-1",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Comunidad: Remanso Nocturno",
                             "en":"Community: Nocturnal Remanse"
@@ -794,7 +818,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"UA-116485229-1",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Perfil: Remanso Nocturno",
                             "en":"Profile: Nocturnal Remanse"
@@ -823,7 +847,7 @@ exports.set_cache_n_init = (cache) => {
             },
             "intra":{
                 "ganalitycs":true,
-                "gtag":"UA-116485229-1",
+                "gtag":main_gtag,
                 "title":{
                     "es":"Blog: Remanso Nocturno",
                     "en":"Blog: Nocturnal Remanse"
@@ -850,7 +874,7 @@ exports.set_cache_n_init = (cache) => {
                     },
                     "intra":{
                         "ganalitycs":true,
-                        "gtag":"UA-116485229-1",
+                        "gtag":main_gtag,
                         "title":{
                             "es":"Estáticos: Remanso Nocturno",
                             "en":"Static: Nocturnal Remanse"
@@ -867,6 +891,10 @@ exports.set_cache_n_init = (cache) => {
     domain_tree["demian.app"].astra["index.html"].intra.html = {
         "en":build_index(domain_tree,"demian.app","en"),
         "es":build_index(domain_tree,"demian.app","es")
+    }
+    domain_tree["remansonoctuno.com"].astra["index.html"].intra.html = {
+        "en":build_index(domain_tree,"remansonoctuno.com","en"),
+        "es":build_index(domain_tree,"remansonoctuno.com","es")
     }
 }
 
