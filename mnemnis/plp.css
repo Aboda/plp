@@ -43,6 +43,9 @@
     flex-flow: column nowrap;
     margin: 1em;
     padding: 1em;
+    border-width: .2em;
+    border-style: outset;
+    border-color: gray;
 }
 .normal_font{
     font-size: 1rem;
