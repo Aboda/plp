@@ -1234,7 +1234,7 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
         "js":chosen_domain.astra[adjusted_path].intra.js
     };
     if (chosen_domain.astra[adjusted_path].intra.html != undefined) {
-        hedo.html = chosen_domain.astra[adjusted_path].intra.html[chosen_lng];
+        hedo.html = [chosen_domain.astra[adjusted_path].intra.html[chosen_lng]];
     }else{
         hedo.html = ["<h1>"+chosen_domain.astra[adjusted_path].meta.short[chosen_lng]+"</h1>"];
     };
@@ -1247,7 +1247,7 @@ function serve_level_1(chosen_domain,adjusted_path,chosen_lng){
         };
     };
     return hedo;
-}
+}0
 // Crea una página desde el segundo nivel de astra en el domain_tree
 function serve_level_2(chosen_domain,as_array,chosen_lng) {
     let hedo = {
