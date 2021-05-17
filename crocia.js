@@ -1176,11 +1176,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     hc = hc + "<div>"
     for (let entry in party_members) {
         if (party_members[entry].meta.index == true){
-            if (domain_name == entry) {
-                hc = hc + index_div(party_members[entry].meta,chosen_lng,true);
-            }else{
-                hc = hc + index_div(party_members[entry].meta,chosen_lng);
-            }
+            hc = hc + index_div(party_members[entry].meta,chosen_lng);
             for (let route in party_members[entry].astra) {
                 if (party_members[entry].astra[route].meta.index == true){
                     hc = hc + index_div(party_members[entry].astra[route].meta,chosen_lng);
@@ -1192,20 +1188,11 @@ function build_index(domain_tree,domain_name,chosen_lng) {
     return hc
 }
 // genera una entrada div en texto formato html
-function index_div (object_meta,chosen_lng,mark) {
+function index_div (object_meta,chosen_lng) {
     let dc = "";
     if (object_meta.index == true) {
-        if (mark == true){
-            dc = dc + "<div class='color_contrast_2 make_way'>\n";
-            dc = dc + common_messages.here[chosen_lng];
-        }else{
-            dc = dc + "<div class='make_way'>\n";
-        };
-        if (mark == true){
-            dc = dc + "<a class='color_contrast_4' href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
-        }else{
-            dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.short[chosen_lng]+"</a>\n";
-        };
+        dc = dc + "<div class='color_contrast_2 make_way'>\n";
+        dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.short[chosen_lng]+"</a>\n";
         if (object_meta.descrip != undefined){
             dc = dc + object_meta.descrip[chosen_lng];
         };
