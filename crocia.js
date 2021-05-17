@@ -892,9 +892,9 @@ exports.set_cache_n_init = (cache) => {
         "en":build_index(domain_tree,"demian.app","en"),
         "es":build_index(domain_tree,"demian.app","es")
     }
-    domain_tree["remansonoctuno.com"].astra["index.html"].intra.html = {
-        "en":build_index(domain_tree,"remansonoctuno.com","en"),
-        "es":build_index(domain_tree,"remansonoctuno.com","es")
+    domain_tree["remansonocturno.com"].astra["index.html"].intra.html = {
+        "en":build_index(domain_tree,"remansonocturno.com","en"),
+        "es":build_index(domain_tree,"remansonocturno.com","es")
     }
 }
 
