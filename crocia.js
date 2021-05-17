@@ -38,12 +38,12 @@ exports.set_cache_n_init = (cache) => {
         "demian.app":{
             "meta":{
                 "short":{
-                    "es":"PLP: Portafolio Laboratorio Personal",
-                    "en":"PLP: Personal Lab Portfolio"
+                    "es":"Portafolio Laboratorio Personal:plp",
+                    "en":"Personal Lab Portfolio:plp"
                 },
                 "descrip":{
                     "es":"Página raíz del proyecto, cuenta con una serie de preguntas para canalizar al transeunte a los diversos contenidos.",
-                    "en":"Root page of the proyect, you may find here a series of questions to route you to the different elements of the project."
+                    "en":"Root page of the project, you may find here a series of questions to route you to the different elements of the project."
                 },
                 "loc":"https://demian.app/",
                 "sitemap":true,
@@ -66,12 +66,12 @@ exports.set_cache_n_init = (cache) => {
                 "index.html":{
                     "meta":{
                         "short":{
-                            "es":"Indice:plp",
-                            "en":"Index:plp"
+                            "es":"Indice",
+                            "en":"Index"
                         },
                         "descrip":{
-                            "es":"Listado de páginas públicas en el dominio",
-                            "en":"Listing of public páges in the domain"
+                            "es":"Listado de páginas de primer y segúndo nivel del dominio",
+                            "en":"Listing of first and second level pages in the domain"
                         },
                         "loc":"https://demian.app/index.html",
                         "sitemap":true,
@@ -90,34 +90,15 @@ exports.set_cache_n_init = (cache) => {
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav]
                     }
                 },
-                "sitemap.xml":{
-                    "meta":{
-                        "short":{
-                            "es":"Preguntas Frecuentes",
-                            "en":"FAQ"
-                        },
-                        "loc":"https://demian.app/sitemap.xml",
-                        "sitemap":false,
-                        "index":false,
-                        "favicon":"desk",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":main_gtag,
-                        "title":{
-                            "es":"Preguntas Frecuentes:PLP",
-                            "en":"FAQ:PLP"
-                        },
-                        "css":[resources_cache.css.sdb,resources_cache.css.plp],
-                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_faq]
-                    }
-                },
                 "faq":{
                     "meta":{
                         "short":{
                             "es":"Preguntas Frecuentes",
                             "en":"FAQ"
+                        },
+                        "descrip":{
+                            "es":"Preguntas concretas y respuestas rápidas relativas al proyecto",
+                            "en":"Concrete questions and quick answers related to"
                         },
                         "loc":"https://demian.app/faq",
                         "sitemap":true,
@@ -129,8 +110,8 @@ exports.set_cache_n_init = (cache) => {
                         "ganalitycs":true,
                         "gtag":main_gtag,
                         "title":{
-                            "es":"Preguntas Frecuentes:PLP",
-                            "en":"FAQ:PLP"
+                            "es":"Preguntas Frecuentes",
+                            "en":"FAQ"
                         },
                         "css":[resources_cache.css.sdb,resources_cache.css.plp],
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.demian_app_faq]
@@ -141,6 +122,10 @@ exports.set_cache_n_init = (cache) => {
                         "short":{
                             "es":"Diagramas",
                             "en":"Diagrams"
+                        },
+                        "descrip":{
+                            "es":"Diagramas explicativos del proyecto",
+                            "en":"Project diagrams"
                         },
                         "loc":"https://demian.app/draw.io",
                         "sitemap":true,
@@ -165,6 +150,10 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Acerca de mi",
                             "en":"About me"
                         },
+                        "descrip":{
+                            "es":"Aquí hablo de mi mismo",
+                            "en":"Here I talk about myself"
+                        },
                         "loc":"https://demian.app/aboutme",
                         "sitemap":true,
                         "index":true,
@@ -188,10 +177,13 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Documentación derivada de normas",
                             "en":"Norm derived documentation"
                         },
+                        "descrip":{
+                            "es":"Sección dedicada a satisfacer diferentes regulaciónes burocráticas",
+                            "en":"Section dedicated to satisfy varied burocratic regulations"
+                        },
                         "loc":"https://demian.app/buro/",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -212,10 +204,13 @@ exports.set_cache_n_init = (cache) => {
                                     "es":"Politica de Privacidad",
                                     "en":"Privacy Policy"
                                 },
+                                "descrip":{
+                                    "es":"Detalla que datos personales de nuestros usuarios se recolectan y como se manejan.",
+                                    "en":"Details on user data collection and handling."
+                                },
                                 "loc":"https://demian.app/buro/privacypolicy",
                                 "sitemap":true,
                                 "index":true,
-                                "robots":true,
                                 "favicon":"desk",
                                 "acronimo":"plp"
                             },
@@ -236,10 +231,13 @@ exports.set_cache_n_init = (cache) => {
                                     "es":"Condiciones del Servicio",
                                     "en":"Terms of Service"
                                 },
+                                "descrip":{
+                                    "es":"Detalles de las condiciones de prestación del servicio",
+                                    "en":"Details on the warranties surronding the service"
+                                },
                                 "loc":"https://demian.app/buro/termsofservice",
                                 "sitemap":true,
                                 "index":true,
-                                "robots":true,
                                 "favicon":"desk",
                                 "acronimo":"plp"
                             },
@@ -256,18 +254,19 @@ exports.set_cache_n_init = (cache) => {
                         }
                     }
                 },
-                "conavi":{
+                "precloud":{
                     "meta":{
                         "short":{
                             "es":"Retos y herramientas 2019 y 2020",
                             "en":"Challenges and Tools 2019 and 2020"
                         },
-                        "loc":"https://demian.app/conavi/",
-                        "updfreq":"yearly",
+                        "descrip":{
+                            "es":"Portafolio de manejo y análisis de datos previo a la generación de esta plataforma",
+                            "en":"Management and análisis of data previous to the creation of this platform"
+                        },
+                        "loc":"https://demian.app/precloud/",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -282,18 +281,19 @@ exports.set_cache_n_init = (cache) => {
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.en_construc]
                     }
                 },
-                "sedatu":{
+                "socialorg":{
                     "meta":{
                         "short":{
-                            "es":"Propuesta interactiva de operación de programas de gobierno",
-                            "en":"Interactive proposal for government program execution"
+                            "es":"Propuesta para programas federales",
+                            "en":"Federal programs proposal"
                         },
-                        "loc":"https://demian.app/sedatu/",
-                        "updfreq":"yearly",
+                        "descrip":{
+                            "es":"Propuesta de interface de asistencia gubernamental",
+                            "en":"Government assistanceinterface proposal"
+                        },
+                        "loc":"https://demian.app/socialorg/",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.3,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -308,18 +308,20 @@ exports.set_cache_n_init = (cache) => {
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.en_construc]
                     }
                 },
-                "olmoazul":{
+                "foodhouse":{
                     "meta":{
                         "short":{
                             "es":"Tienda de platillos preparados en linea",
                             "en":"Online prepared food shop"
                         },
-                        "loc":"https://demian.app/olmoazul/",
+                        "descrip":{
+                            "es":"Propuesta de plataforma de venta de comida para pequeños negocios",
+                            "en":"Platform proposal for small food business sales"
+                        },
+                        "loc":"https://demian.app/foodhouse/",
                         "updfreq":"monthly",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -334,18 +336,19 @@ exports.set_cache_n_init = (cache) => {
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.en_construc]
                     }
                 },
-                "tomauno":{
+                "dvdrental":{
                     "meta":{
                         "short":{
                             "es":"Renta en linea de películas en DVD",
                             "en":"Online DVD movie lease store"
                         },
-                        "loc":"https://demian.app/tomauno/",
-                        "updfreq":"monthly",
+                        "descrip":{
+                            "es":"Propuesta de plataforma de renta de DVDs físicos",
+                            "en":"Platform proposal for physycal DVD rentals"
+                        },
+                        "loc":"https://demian.app/dvdrental/",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -363,15 +366,16 @@ exports.set_cache_n_init = (cache) => {
                 "somema":{
                     "meta":{
                         "short":{
-                            "es":"Herramientas de manejo de redes sociales",
-                            "en":"Social media management tools"
+                            "es":"Manejador de redes sociales",
+                            "en":"Social media management tool"
+                        },
+                        "descrip":{
+                            "es":"Curación, posteo y rastreo de contenidos de redes sociales",
+                            "en":"Curation, posting, and tracking for social media contents"
                         },
                         "loc":"https://demian.app/somema/",
-                        "updfreq":"weekly",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -394,6 +398,10 @@ exports.set_cache_n_init = (cache) => {
                         "short":{
                             "es":"Herramientas para narraciones",
                             "en":"Storytelling tools"
+                        },
+                        "descrip":{
+                            "es":"Herramienta de curación de base de datos para la creación de mundos ficticios",
+                            "en":"Database curation tool for the creation of fictional worlds"
                         },
                         "loc":"https://demian.app/narrar/",
                         "updfreq":"weekly",
@@ -424,12 +432,13 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Aterrizaje OA2",
                             "en":"OA2 Landing"
                         },
+                        "descrip":{
+                            "es":"Punto de recepción de forwarding por parte de autenticación de OAuth2",
+                            "en":"Reception point for OAuth2 authentication forwarding"
+                        },
                         "loc":"https://demian.app/login/",
-                        "updfreq":"never",
                         "sitemap":false,
                         "index":false,
-                        "robots":false,
-                        "priority":0.0,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -450,12 +459,13 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Información de Plataforma",
                             "en":"Platform Information"
                         },
+                        "descrip":{
+                            "es":"Información operativa de la plataforma.",
+                            "en":"Operational information of the platform."
+                        },
                         "loc":"https://demian.app/info/",
-                        "updfreq":"weekly",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.0,
                         "favicon":"desk",
                         "acronimo":"plp"
                     },
@@ -496,12 +506,13 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Blog de tecnología",
                     "en":"Tech blog"
                 },
+                "descrip":{
+                    "es":"Página principal de mi blog de tecnología y trabajo",
+                    "en":"Main page of my technology and work blog"
+                },
                 "loc":"https://www.demian.app/",
-                "updfreq":"weekly",
                 "sitemap":true,
                 "index":true,
-                "robots":true,
-                "priority":0.6,
                 "favicon":"blog",
                 "acronimo":"plp"
             },
@@ -516,18 +527,19 @@ exports.set_cache_n_init = (cache) => {
                 "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.www_demian_app]
             },
             "astra":{
-                "estat":{
+                "summon":{
                     "meta":{
                         "short":{
                             "es":"Contenido estático del blog",
                             "en":"Blog static content"
                         },
-                        "loc":"https://www.demian.app/estat/",
-                        "updfreq":"weekly",
+                        "descrip":{
+                            "es":"Depósito de contenidos estáticos permanentes del blog ",
+                            "en":"Static permanent contents for the blog"
+                        },
+                        "loc":"https://www.demian.app/summon/",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"blog",
                         "acronimo":"plp"
                     },
@@ -541,47 +553,22 @@ exports.set_cache_n_init = (cache) => {
                         "css":[resources_cache.css.plp],
                         "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.en_construc]
                     }
-                },
-                "dinam":{
-                    "meta":{
-                        "short":{
-                            "es":"Contenido dinámico del blog",
-                            "en":"Blog dynamic content"
-                        },
-                        "loc":"https://www.demian.app/dinam/",
-                        "updfreq":"always",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.4,
-                        "favicon":"blog",
-                        "acronimo":"plp"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":main_gtag,
-                        "title":{
-                            "es":"Dinámicos:PLP",
-                            "en":"Dynamic:PLP"
-                        },
-                        "css":[resources_cache.css.plp],
-                        "js":[resources_cache.js.alpha,resources_cache.js.demian_basic_nav,resources_cache.js.en_construc]
-                    }                
                 }
             }
         },
         "profesional.demian.app":{
             "meta":{
                 "short":{
-                    "es":"Portafolio laboratorio personal",
-                    "en":"Personal lab portfolio"
+                    "es":"Portafolio profesional",
+                    "en":"Professional portfolio"
+                },
+                "descrip":{
+                    "es":"Página principal de mi portafolio profesional",
+                    "en":"Main page of my professional portfolio"
                 },
                 "loc":"https://profesional.demian.app/",
-                "updfreq":"monthly",
                 "sitemap":true,
                 "index":true,
-                "robots":true,
-                "priority":0.6,
                 "favicon":"desk",
                 "acronimo":"plp"
             },
@@ -602,7 +589,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Requerimientos",
                             "en":"Requirements"
                         },
-                        "description":{
+                        "descrip":{
                             "es":"Requerimientos de plataforma usados para construir mi portafolio laboratorio personal",
                             "en":"Platform requirements used to build my personal laboratory portfolio"
                         },
@@ -629,7 +616,7 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Diseño",
                             "en":"Design",
                         },
-                        "description":{
+                        "descrip":{
                             "es":"Detalles de diseño de mi portafolio laboratorio personal",
                             "en":"Design details for my personal laboratory portfolio"
                         },
@@ -653,12 +640,12 @@ exports.set_cache_n_init = (cache) => {
                 "implementation":{
                     "meta":{
                         "short":{
-                            "es":"Implementation details for my personal laboratory portfolio",
-                            "en":"Detalles de implementación de mi portafolio laboratorio personal",
+                            "es":"Implementación",
+                            "en":"Implementation",
                         },
-                        "description":{
-                            "es":"Detalles de diseño de mi portafolio laboratorio personal",
-                            "en":"Design details for my personal laboratory portfolio"
+                        "descrip":{
+                            "es":"Detalles de implementación de mi portafolio laboratorio personal",
+                            "en":"Implementation details for my personal laboratory portfolio"
                         },
                         "loc":"https://profesional.demian.app/implement",
                         "sitemap":true,
@@ -680,12 +667,12 @@ exports.set_cache_n_init = (cache) => {
                 "interface":{
                     "meta":{
                         "short":{
-                            "es":"Detalles de interface para mi portafolio laboratorio personal",
-                            "en":"Interface details for my personal laboratory portfolio",
+                            "es":"Interface",
+                            "en":"Interface",
                         },
-                        "description":{
-                            "es":"Detalles de diseño de mi portafolio laboratorio personal",
-                            "en":"Design details for my personal laboratory portfolio"
+                        "descrip":{
+                            "es":"Detalles de interface para mi portafolio laboratorio personal",
+                            "en":"Interface details for my personal laboratory portfolio"
                         },
                         "loc":"https://profesional.demian.app/interface",
                         "sitemap":true,
@@ -707,12 +694,12 @@ exports.set_cache_n_init = (cache) => {
                 "physical":{
                     "meta":{
                         "short":{
-                            "es":"Diseño de sistemas, consideraciones físicas",
-                            "en":"Sistem design, physical considerations",
+                            "es":"Físicas",
+                            "en":"Physical",
                         },
-                        "description":{
-                            "es":"Consideraciones físicas de mi portafolio laboratorio personal",
-                            "en":"Physical considerations for my personal laboratory portfolio"
+                        "descrip":{
+                            "es":"Diseño de sistemas, consideraciones físicas",
+                            "en":"Sistem design, physical considerations"
                         },
                         "loc":"https://profesional.demian.app/physical",
                         "updfreq":"monthly",
@@ -740,6 +727,10 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Red social de creadores",
                     "en":"Creators social network"
                 },
+                "descrip":{
+                    "es":"Espacio de creación comentario e intercambio de ficción",
+                    "en":"Creation discussion and exchange of fiction"
+                },
                 "loc":"https://remansonocturno.com/",
                 "sitemap":true,
                 "index":true,
@@ -764,6 +755,10 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Datos perspectiva comunidad",
                             "en":"Community perspective data"
                         },
+                        "descrip":{
+                            "es":"Sección colectiva de la plataforma",
+                            "en":"Platform colective section"
+                        },
                         "loc":"https://remansonocturno.com/omno/",
                         "sitemap":true,
                         "index":true,
@@ -787,12 +782,13 @@ exports.set_cache_n_init = (cache) => {
                             "es":"Datos usuario centricos",
                             "en":"User centered data"
                         },
+                        "descrip":{
+                            "es":"Sección individual de la plataforma.",
+                            "en":"Platform individual section"
+                        },
                         "loc":"https://remansonocturno.com/umno/",
-                        "updfreq":"weekly",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.0,
                         "favicon":"casa",
                         "acronimo":"ren"
                     },
@@ -815,12 +811,13 @@ exports.set_cache_n_init = (cache) => {
                     "es":"Ficción de varios sabores y en diversas presentaciones",
                     "en":"Fiction in varied flavors and presentations"
                 },
+                "descrip":{
+                    "es":"Blog de exposición de los contenidos generados por los miembros de la plataforma",
+                    "en":"Exposition blog for the contentes generated by the platform users"
+                },
                 "loc":"https://www.remansonocturno.com/",
-                "updfreq":"weekly",
                 "sitemap":true,
                 "index":true,
-                "robots":true,
-                "priority":0.6,
                 "favicon":"blog",
                 "acronimo":"ren"
             },
@@ -835,18 +832,19 @@ exports.set_cache_n_init = (cache) => {
                 "js":[resources_cache.js.alpha,resources_cache.js.ren]
             },
             "astra":{
-                "estat":{
+                "summon":{
                     "meta":{
                         "short":{
                             "es":"Recursos estáticos para el blog",
                             "en":"Static resources for the blog",
                         },
-                        "loc":"https://www.remansonocturno.com/estat/",
-                        "updfreq":"weekly",
+                        "descrip":{
+                            "es":"Depósito de contenidos estáticos permanentes del blog ",
+                            "en":"Static permanent contents for the blog"
+                        },
+                        "loc":"https://www.remansonocturno.com/summon/",
                         "sitemap":true,
                         "index":true,
-                        "robots":true,
-                        "priority":0.5,
                         "favicon":"blog",
                         "acronimo":"ren"
                     },
@@ -860,32 +858,6 @@ exports.set_cache_n_init = (cache) => {
                         "css":[resources_cache.css.ren],
                         "js":[resources_cache.js.alpha,resources_cache.js.ren]
                     }                
-                },
-                "dinam":{
-                    "meta":{
-                        "short":{
-                            "es":"recursos dinámicos para el blog",
-                            "en":"dynamic resources for the blog",
-                        },
-                        "loc":"https://www.remansonocturno.com/dinam/",
-                        "updfreq":"always",
-                        "sitemap":true,
-                        "index":true,
-                        "robots":true,
-                        "priority":0.5,
-                        "favicon":"blog",
-                        "acronimo":"ren"
-                    },
-                    "intra":{
-                        "ganalitycs":true,
-                        "gtag":"UA-116485229-1",
-                        "title":{
-                            "es":"Dinámicos: Remanso Nocturno",
-                            "en":"Dynamic: Nocturnal Remanse"
-                        },
-                        "css":[resources_cache.css.ren],
-                        "js":[resources_cache.js.alpha,resources_cache.js.ren]
-                    }                   
                 }
             }
         }
@@ -1191,7 +1163,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
 function index_div (object_meta,chosen_lng) {
     let dc = "";
     if (object_meta.index == true) {
-        dc = dc + "<div class='color_contrast_2 index_entry'>\n";
+        dc = dc + "<div class='color_contrast_3 index_entry'>\n";
         dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.short[chosen_lng]+"</a>\n";
         if (object_meta.descrip != undefined){
             dc = dc + object_meta.descrip[chosen_lng];
