@@ -76,7 +76,7 @@ exports.html = (options,chosen_lng) => {
     ph = ph + "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>\n";
     ph = ph + "<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n";
     if (options.descrip != undefined) {
-        ph = ph + "<meta name='description' content='"+options.description[chosen_lng]+"'>\n";
+        ph = ph + "<meta name='description' content='"+options.descrip[chosen_lng]+"'>\n";
     };
     if (options.robo == true) {
         ph = ph + "<link href='https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap' rel='stylesheet'>\n";
