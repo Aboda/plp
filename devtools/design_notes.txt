@@ -1,0 +1,5 @@
+Infrastructure
+
+Ubuntu : Cant find a slimmer OS to run Node
+Node : My first actual susccesful use of programming came with Javascript. Node is a natural fit.
+Certbot : Free https certificates

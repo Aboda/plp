@@ -2,9 +2,9 @@ Homemade Lexicon.
 
 garcon: the watcher of thresholds and gatekeeper
     -it is the entry point for the platform execution
-    -it reads resources, keeps in memory, starts the server
+    -it reads resources and creates cache
+    -it sets up the homemade https server
     xit bars the entry to repeated requests 
-    -it sets up the https server
 
 crocia: the threshold between the self and the outside
     -it holds all details from served contents

@@ -1,6 +1,5 @@
 This system is immune to:
 
-
 https://owasp.org/www-community/attacks/Path_Traversal
 
     We do not use any automated fileserver, every call is screened for precise options and discarded if it does not conform

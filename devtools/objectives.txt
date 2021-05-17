@@ -28,7 +28,7 @@
 * Technical form
     Work on async await methodology and writing style to better take advantage of node infrastructure
     Be aware of the streaming write and read options to reduce the memory load of the proxys server
-    Keep quick dropping of no ideal connections as the server cannot be compromised by slow clients
+    Keep quick dropping of not-ideal connections as the server cannot be compromised by slow clients
     Build a "source ip counter" to automatically blacklist repeated requests
     Build a memory monitor to send log when certain threshold is reached process.memoryUsage()
     Modularize the server so that it can better adapt to evolving needs

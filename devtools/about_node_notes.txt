@@ -1,5 +1,0 @@
-https://www.youtube.com/watch?v=8aGhZQkoFbQ&t=2s
-
-wrap in timer 0 to ensure that the action is delayed until empty stack
-
-Stack | (APIs web o c++) | task queue | event loop
