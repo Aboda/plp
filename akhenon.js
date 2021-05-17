@@ -123,14 +123,7 @@ exports.html = (options,chosen_lng) => {
 }
 
 function site_entry (d) {
-    var entry = ""
-    entry = entry + "<url>\n";
-    entry = entry + "<loc>"+d.loc+"</loc>";
-    if (d.changefreq != undefined){entry = entry + "<changefreq>"+d.changefreq+"</changefreq>";};
-    if (d.priority != undefined){entry = entry + "<priority>"+d.priority+"</priority>";};
-    if (d.lastmod != undefined){entry = entry + "<lastmod>"+d.lastmod+"</lastmod>";};
-    entry = entry + "</url>\n";
-    return entry;
+    return "<url><loc>"+d.loc+"</loc></url>\n";
 }
 
 exports.sitemap = (domain_tree,domain_name) => {
