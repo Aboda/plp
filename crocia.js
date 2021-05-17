@@ -1200,13 +1200,15 @@ function index_div (object_meta,chosen_lng,mark) {
             dc = dc + common_messages.here[chosen_lng];
         }else{
             dc = dc + "<div class='make_way'>\n";
-        }     
+        };
         if (mark == true){
             dc = dc + "<a class='color_contrast_4' href='"+object_meta.loc+"'>"+object_meta.loc+"</a>\n";
         }else{
             dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.short[chosen_lng]+"</a>\n";
-        }
-        object_meta.descrip[chosen_lng]
+        };
+        if (object_meta.descrip != undefined){
+            dc = dc + object_meta.descrip[chosen_lng];
+        };
         dc = dc + "</div>\n";
     }
     return dc;
