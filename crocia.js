@@ -98,7 +98,7 @@ exports.set_cache_n_init = (cache) => {
                         },
                         "descrip":{
                             "es":"Preguntas concretas y respuestas rápidas relativas al proyecto",
-                            "en":"Concrete questions and quick answers related to"
+                            "en":"Concrete questions and quick answers related to the project"
                         },
                         "loc":"https://demian.app/faq",
                         "sitemap":true,
@@ -289,7 +289,7 @@ exports.set_cache_n_init = (cache) => {
                         },
                         "descrip":{
                             "es":"Propuesta de interface de asistencia gubernamental",
-                            "en":"Government assistanceinterface proposal"
+                            "en":"Government assistance interface proposal"
                         },
                         "loc":"https://demian.app/socialorg/",
                         "sitemap":true,
@@ -1163,7 +1163,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
 function index_div (object_meta,chosen_lng) {
     let dc = "";
     if (object_meta.index == true) {
-        dc = dc + "<div class='color_contrast_3 index_entry'>\n";
+        dc = dc + "<div class='color_contrast_5 index_entry'>\n";
         dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.short[chosen_lng]+"</a>\n";
         if (object_meta.descrip != undefined){
             dc = dc + object_meta.descrip[chosen_lng];
