@@ -12,7 +12,8 @@ let pass_values_as_found = {
     "fbid":true,
     "ganalitycs":true,
     "gtag":true,
-    "oa":true
+    "oa":true,
+    "descrip":true
 }
 // Códigos de apps fb y googletag iniciales
 let main_gtag = "G-6MEPN29LZG";
