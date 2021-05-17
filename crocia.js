@@ -1191,7 +1191,7 @@ function build_index(domain_tree,domain_name,chosen_lng) {
 function index_div (object_meta,chosen_lng) {
     let dc = "";
     if (object_meta.index == true) {
-        dc = dc + "<div class='color_contrast_2 make_way'>\n";
+        dc = dc + "<div class='color_contrast_2 index_entry'>\n";
         dc = dc + "<a href='"+object_meta.loc+"'>"+object_meta.short[chosen_lng]+"</a>\n";
         if (object_meta.descrip != undefined){
             dc = dc + object_meta.descrip[chosen_lng];

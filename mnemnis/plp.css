@@ -38,7 +38,9 @@
     justify-content: center;
     align-items: center;
 }
-.make_way{
+.index_entry {
+    display: flex;
+    flex-flow: column nowrap;
     margin: 1em;
     padding: 1em;
 }
