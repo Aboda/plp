@@ -93,8 +93,8 @@ let initial_options = [
         }
     },
     {
-        "es":"Soy una startup con un proyecto de app que deseo desarrollar, o que ya se encuentra en desarrollo y deseo una perspectiva adicional",
-        "en":"I am a startup with an app proyect that I want developed, or that I am already developing and want to have an additional perspective",
+        "es":"Soy una startup o un negocio establecido con un proyecto de app que deseo desarrollar, o que ya se encuentra en desarrollo y deseo una perspectiva adicional",
+        "en":"I am a startup or established business with an app proyect that I want developed, or that I am already developing and want to have an additional perspective",
         "go":()=>{
             controller_simple_delete(ao.flow.init);
             ao.flow.init = {};

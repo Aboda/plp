@@ -8,7 +8,7 @@ let plain_content = [
     "¿Qué es este lugar?"    
     ],
     ["p",
-    "This is my portfolio / testing ground to be able to practice and showcase aquired knowledges",    
+    "This is my portfolio / testing ground to be able to practice and showcase aquired knowledge",    
     "Este es mi portafolio / espacio de práctica para poder emplear y mostrar conocimientos adquiridos"
     ],
     ["p",
@@ -16,8 +16,8 @@ let plain_content = [
     "¿Cuantás personas trabajan en este proyecto?"
     ],
     ["p",
-    "It is a personal proyect that is used by a few testers",
-    "Es un proyecto personal que es usado por múltiples testers"
+    "It is a personal proyect that is used by a few friends",
+    "Es un proyecto personal que es usado por múltiples amistades"
     ],
     ["p",
     "Do you sell this?",
