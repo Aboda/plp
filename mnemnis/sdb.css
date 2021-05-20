@@ -35,6 +35,7 @@
   display:flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
+  border-radius: 0px 100px 100px 0px;
 }
 .side_opt {
   cursor: pointer;
