@@ -24,10 +24,6 @@ exports.adjust_path = (pathname) => {
     if (pathname[0] == "/") {
         pathname = pathname.substring(1,pathname.length)
     }
-    /*
-    
-    */
-    pathname = pathname
     return pathname;
 }
 exports.clear_query = (pathname) => {
@@ -61,13 +57,22 @@ exports.html = (options,chosen_lng) => {
     }
     ph = ph + "<head>\n";
     if (options.ganalytics == true) {
-        ph = ph + "<script async src='https://www.googletagmanager.com/gtag/js?id='"+options.gtag+"'></script>\n";
-        ph = ph + "<script>\n";
-        ph = ph + "window.dataLayer = window.dataLayer || [];\n";
-        ph = ph + "function gtag(){dataLayer.push(arguments);}\n";
-        ph = ph + "gtag('js', new Date());\n";
-        ph = ph + "gtag('config', '"+options.gtag+"');\n";
-        ph = ph + "</script>\n";
+        /*
+            ph = ph + "<script async src='https://www.googletagmanager.com/gtag/js?id='"+options.gtag+"'></script>\n";
+            ph = ph + "<script>\n";
+            ph = ph + "window.dataLayer = window.dataLayer || [];\n";
+            ph = ph + "function gtag(){dataLayer.push(arguments);}\n";
+            ph = ph + "gtag('js', new Date());\n";
+            ph = ph + "gtag('config', '"+options.gtag+"');\n";
+            ph = ph + "</script>\n";
+        */
+        ph = ph + "<!-- Google Tag Manager -->";
+        ph = ph + "<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':";
+        ph = ph + "new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],";
+        ph = ph + "j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=";
+        ph = ph + "'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);";
+        ph = ph + "})(window,document,'script','dataLayer','GTM-MXKB7NV');</script>";
+        ph = ph + "<!-- End Google Tag Manager -->";
     }
     if (options.title != undefined) {
         ph = ph + "<title>"+options.title+"</title>\n";
@@ -101,6 +106,12 @@ exports.html = (options,chosen_lng) => {
         ph = ph + "</div>\n";
     }
     ph = ph + "</body>\n";
+    if (options.ganalytics == true) {
+        ph = ph +  "<!-- Google Tag Manager (noscript) -->";
+        ph = ph +  "<noscript><iframe src='https://www.googletagmanager.com/ns.html?id=GTM-MXKB7NV'";
+        ph = ph +  "height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>"
+        ph = ph +  "<!-- End Google Tag Manager (noscript) -->"
+    }
     if (options.js != undefined) {
         ph = ph + "<script>\n";
         let wait_1 = 0;
