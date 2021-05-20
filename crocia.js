@@ -10,7 +10,7 @@ let domain_tree = {};
 let pass_values_as_found = {
     "facebooksdk":true,
     "fbid":true,
-    "ganalitycs":true,
+    "ganalytics":true,
     "gtag":true,
     "oa":true
 }
@@ -53,7 +53,7 @@ exports.set_cache_n_init = (cache) => {
                 "root_domain":true,
             },
             "intra":{
-                "ganalitycs":true,
+                "ganalytics":true,
                 "gtag":main_gtag,
                 "title":{
                     "es":"Raíz:PLP",
@@ -80,7 +80,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Indice:plp",
@@ -107,7 +107,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Preguntas Frecuentes",
@@ -134,7 +134,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Diagramas:PLP",
@@ -161,7 +161,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Acerca de mi:PLP",
@@ -188,7 +188,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Buró:PLP",
@@ -215,7 +215,7 @@ exports.set_cache_n_init = (cache) => {
                                 "acronimo":"plp"
                             },
                             "intra":{
-                                "ganalitycs":true,
+                                "ganalytics":true,
                                 "gtag":main_gtag,
                                 "title":{
                                     "es":"PolPriv:PLP",
@@ -242,7 +242,7 @@ exports.set_cache_n_init = (cache) => {
                                 "acronimo":"plp"
                             },
                             "intra":{
-                                "ganalitycs":true,
+                                "ganalytics":true,
                                 "gtag":main_gtag,
                                 "title":{
                                     "es":"PolPriv:PLP",
@@ -271,7 +271,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Retos y Herramientas:PLP",
@@ -298,7 +298,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Programas Sociales:PLP",
@@ -326,7 +326,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Tienda de Comida:PLP",
@@ -353,7 +353,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Rentador DVD:PLP",
@@ -382,7 +382,7 @@ exports.set_cache_n_init = (cache) => {
                     "intra":{
                         "facebooksdk":true,
                         "fbid":fb_id,
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "oa":"345217584200-aaqh5p3p3huigg3hf0bobee8lhtphe41",
                         "title":{
@@ -412,7 +412,7 @@ exports.set_cache_n_init = (cache) => {
                     "intra":{
                         "facebooksdk":true,
                         "fbid":fb_id,
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "oa":"345217584200-aaqh5p3p3huigg3hf0bobee8lhtphe41",
                         "title":{
@@ -440,7 +440,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"OAuth2",
@@ -514,7 +514,7 @@ exports.set_cache_n_init = (cache) => {
                 "acronimo":"plp"
             },
             "intra":{
-                "ganalitycs":true,
+                "ganalytics":true,
                 "gtag":main_gtag,
                 "title":{
                     "es":"Blog:PLP",
@@ -541,7 +541,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Estáticos:PLP",
@@ -570,7 +570,7 @@ exports.set_cache_n_init = (cache) => {
                 "acronimo":"plp"
             },
             "intra":{
-                "ganalitycs":true,
+                "ganalytics":true,
                 "gtag":main_gtag,
                 "title":{
                     "es":"Inicio:PLP",
@@ -597,7 +597,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Req:PLP",
@@ -624,7 +624,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Diseño:PLP",
@@ -651,7 +651,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Imple:PLP",
@@ -678,7 +678,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Interface:PLP",
@@ -706,7 +706,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Fisicas:PLP",
@@ -736,7 +736,7 @@ exports.set_cache_n_init = (cache) => {
                 "root_domain":true
             },
             "intra":{
-                "ganalitycs":true,
+                "ganalytics":true,
                 "gtag":main_gtag,
                 "title":{
                     "es":"Inicio: Remanso Nocturno",
@@ -763,7 +763,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"plp"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Indice:plp",
@@ -790,7 +790,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"ren"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Comunidad: Remanso Nocturno",
@@ -817,7 +817,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"ren"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Perfil: Remanso Nocturno",
@@ -846,7 +846,7 @@ exports.set_cache_n_init = (cache) => {
                 "acronimo":"ren"
             },
             "intra":{
-                "ganalitycs":true,
+                "ganalytics":true,
                 "gtag":main_gtag,
                 "title":{
                     "es":"Blog: Remanso Nocturno",
@@ -873,7 +873,7 @@ exports.set_cache_n_init = (cache) => {
                         "acronimo":"ren"
                     },
                     "intra":{
-                        "ganalitycs":true,
+                        "ganalytics":true,
                         "gtag":main_gtag,
                         "title":{
                             "es":"Estáticos: Remanso Nocturno",
