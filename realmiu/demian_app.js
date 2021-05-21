@@ -10,8 +10,8 @@ let initial_message = {
     "es":"Bienvenido a mi espacio de desarrollo y aprendizaje personal, por favor indica qué es lo que te trajo aqui para poder canalizarte al portal adecuado:"
 }
 let final_message = {
-    "en":"The operation cost of this server and its pages is 25$ USD per year, this for the 2 domains it holds. It is hosted in free infrastructure offered by Google Cloud and employs open source software where I did not personally write the code for it.",
-    "es":"El costo de operación de este servidor y sus páginas es 520$ MXN anuales por los dominios que hospeda. Está albergado en infraestructura gratuita ofrecida por Google Cloud y emplea software open source donde no programé personalmente el código."
+    "en":"The operation cost of this server and its pages is 25$ USD per year, this for the 2 domains it holds. It is hosted in free infrastructure offered by Google Cloud and employs only Node.js and certbot where I did not personally write the code for it.",
+    "es":"El costo de operación de este servidor y sus páginas es 520$ MXN anuales por los dominios que hospeda. Está albergado en infraestructura gratuita ofrecida por Google Cloud y emplea solamente Node.js y certbot, siendo el resto programado personalmente por mi."
 }
 let common_option_internal_return_home = { 
     "es":"Volver a Inicio",
