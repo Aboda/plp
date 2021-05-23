@@ -1,0 +1,12 @@
+{
+    "name": "plp",
+    "version": "0.0.1",
+    "main": "garcon.js",
+    "license": "none",
+    "scripts": {
+      "update": "npm getgit && npm restart",
+      "getgit": "git pull origin master",
+      "restart": "sudo systemctl restart plp.service"
+    }
+}
+  
