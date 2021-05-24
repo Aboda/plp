@@ -1,0 +1,8 @@
+[
+    {
+      "origins": ["https://demian.app/draw.io"],
+      "method": ["GET"],
+      "responseHeader": ["Content-Type"],
+      "maxAgeSeconds": 3600
+    }
+]
