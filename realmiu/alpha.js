@@ -63,6 +63,7 @@ const ao = {
   },
   "pass":{
     "onload":true,
+    "alt":true,
     "async":true,
     "crossorigin":true,
     "defer":true,
