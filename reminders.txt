@@ -86,7 +86,6 @@ sudo apt install nodejs
 sudo apt install git
 sudo apt install certbot
 
-certificate setup (post a record pointing)
+certificate setup (post A record pointing)
 
 sudo certbot certonly --standalone
-
