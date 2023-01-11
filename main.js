@@ -9,7 +9,6 @@
 
 const fs = require("fs")
 const https = require("https")
-const url = require("url")
 
 /*
     These are manual parameters that may change continually as new apps script server scripts are published.
@@ -65,7 +64,7 @@ function basic_text_fetch(url,method,message,callback) {
 
 function process_initial_configuration(complete_server_config_text){
     core = eval(complete_server_config_text)
-    start_the_https_server(core)
+    start_the_https_server()
 }
 
 basic_text_fetch(current_backend_url,"POST",server_request,process_initial_configuration)
@@ -84,11 +83,11 @@ const server_conf = {
 /*
     Here we start the server with the already available resources
 */
-function start_the_https_server(core){
+function start_the_https_server(){
     https.createServer(server_conf, (req, res) => {
         let report = create_report(req)
         try {
-            core.serve(req,res,report,toolbox)
+            core.serve(req,res)
          } catch (err) {
             report.endcode = 500
             report.error = err.stack
