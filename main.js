@@ -64,7 +64,6 @@ function basic_text_fetch(url,method,message,callback) {
 }
 
 function process_initial_configuration(complete_server_config_text){
-    console.log("received",{complete_server_config_text})
     core = eval(complete_server_config_text)
     start_the_https_server(core)
 }
