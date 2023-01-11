@@ -1,0 +1,15 @@
+[Unit]
+Description=personal laboratory portfolio
+After=network.target
+
+[Service]
+Environment=PATH=/usr/bin:/usr/local/bin:/snap/bin
+Environment=NODE_ENV=production
+Restart=always
+WorkingDirectory=/home/andthenbeyond/plp/
+ExecStart=/usr/bin/node /home/andthenbeyond/plp/main.js
+StartLimitInterval=3
+StartLimitBurst=1
+
+[Install]
+WantedBy=multi-user.target

@@ -1,3 +1,12 @@
+/*
+    This is intended to be deployed on the single terminal that handles all
+    domains traffic, it will have iterations. In the future, this
+    server will be expanded to be used as a container deployed in cloud run
+
+    the idea is to roll initial proyects here, and once any of those pick up
+    either grow vertically or horizontally. 
+*/
+
 const fs = require("fs")
 const https = require("https")
 let stream = fs.createWriteStream("../din/log.txt", {flags:'a'})
