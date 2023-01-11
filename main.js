@@ -67,7 +67,9 @@ function process_initial_configuration(complete_server_config_text){
     start_the_https_server()
 }
 
+
 basic_text_fetch(current_backend_url,"POST",server_request,process_initial_configuration)
+startup_report.backend_request_time = new Date()
 
 const server_conf = {
     key: fs.readFileSync("/etc/letsencrypt/live/demian.app/privkey.pem"),
@@ -79,15 +81,17 @@ const server_conf = {
     requestTimeout: 2000,
     timeout:3000
 }
+startup_report.local_read_ready = new Date()
 
 /*
     Here we start the server with the already available resources
 */
 function start_the_https_server(){
+    startup_report.server_start_time = new Date()
     https.createServer(server_conf, (req, res) => {
         let report = create_report(req)
         try {
-            core.serve(req,res)
+            core.serve(req,res,report)
          } catch (err) {
             report.endcode = 500
             report.error = err.stack
@@ -99,6 +103,10 @@ function start_the_https_server(){
     }).listen(443)
 }
 
+/*
+    Run at end of startup
+*/
+loc_log(startup_report)
 
 /*
     General tooling
@@ -206,8 +214,3 @@ function create_report(req) {
 
     return report
 }
-
-/*
-    Run at end of startup
-*/
-loc_log(startup_report)
