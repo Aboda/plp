@@ -10,10 +10,66 @@
 const fs = require("fs")
 const https = require("https")
 const url = require("url")
-let stream = fs.createWriteStream("../din/log.txt", {flags:'a'})
+
+/*
+    These are manual parameters that may change continually as new apps script server scripts are published.
+
+    A server could be set to be served by any of the continually active published URLs, this is something to keep
+    present in all considerations as it entails flexibility and a different margin for error than the non versioned
+    publishment strategy. 
+*/
+
+const current_backend_url = "https://script.google.com/macros/s/AKfycbxo9f22XvkLovf6Fu_Doc7gViVlyxcOFWk2aJtKj2NfW3Vgw7NZKrQ_HjWpM6AW9E9d/exec"
+
+const server_request = {
+    "command":"fetch_server_configuration",
+    "type":"gcp-compute-engine-plp.js"
+}
+
+let log_stream = fs.createWriteStream("../din/log.txt", {flags:'a'})
 let service_no = 0
-let toolbox = {}
-let cache = {}
+let core = {}
+
+
+let startup_report = {
+    "version":"prealpha_modeling",
+    "start_time":new Date(),
+    "start_command":server_request
+}
+
+function basic_text_fetch(url,method,message,callback) {
+    let options = {
+        "method":method
+    }
+    let req = https.request(url,options, (res) => {
+        if (res.statusCode == 302 || res.statusCode == 307){
+            basic_text_fetch(res.headers.location,"GET",null,callback)
+        }else{
+            let data = ""
+            res.on('data', (d) => {
+                data = data + d
+            });
+            res.on('end', () => {
+                callback(data)
+            });
+        }
+    });
+    req.on('error', (e) => {
+      throw e
+    });
+    if (message != undefined){
+        req.write(JSON.stringify(message))
+    }
+    req.end();
+}
+
+function process_initial_configuration(complete_server_config_text){
+    console.log("received",{complete_server_config_text})
+    core = eval(complete_server_config_text)
+    start_the_https_server(core)
+}
+
+basic_text_fetch(current_backend_url,"POST",server_request,process_initial_configuration)
 
 const server_conf = {
     key: fs.readFileSync("/etc/letsencrypt/live/demian.app/privkey.pem"),
@@ -26,54 +82,39 @@ const server_conf = {
     timeout:3000
 }
 
-const loc_log = (thing_to_log) => {
-    stream.write(JSON.stringify(thing_to_log, null, 2)+",\n")
+/*
+    Here we start the server with the already available resources
+*/
+function start_the_https_server(core){
+    https.createServer(server_conf, (req, res) => {
+        let report = create_report(req)
+        try {
+            core.serve(req,res,report,toolbox)
+         } catch (err) {
+            report.endcode = 500
+            report.error = err.stack
+            report.headers = req.headers
+            loc_log(report)
+            res.writeHead(report.endcode)
+            res.end()
+        }
+    }).listen(443)
 }
+
+
+/*
+    General tooling
+*/
+
+const loc_log = (thing_to_log) => {
+    log_stream.write(JSON.stringify(thing_to_log, null, 2)+",\n")
+}
+
 const clean_ipv6_trail_if_present = (address_to_eval) => {
     let processed_adress
     address_to_eval.startsWith("::ffff:") ? processed_adress = address_to_eval.substring(7) : processed_adress = address_to_eval
     return processed_adress;
 }
-const fetch_local = (item_path,force_reload,raw,circle_pass) => {
-    if (circle_pass.cache[item_path] == undefined || force_reload == true){
-        raw == true ? circle_pass.cache[item_path] = fs.readFileSync(item_path) : circle_pass.cache[item_path] = fs.readFileSync(item_path).toString()
-        return circle_pass.cache[item_path]
-    }else{
-        return circle_pass.cache[item_path]
-    }
-}
-const get_or_update_toolbox = ()=>{
-    let raw = fs.readFileSync("./toolbox.js").toString()
-    toolbox = eval(raw)
-    toolbox.cache = cache
-    toolbox.fetch = fetch_local
-}
-get_or_update_toolbox()
-https.createServer(server_conf, (req, res) => {
-    service_no++
-    let report = {
-        "service_no":service_no,
-        "timestamp":new Date(),
-        "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
-        "host":req.headers.host,
-        "url":req.url,
-        "method":req.method,
-    }
-    if (req.headers.referer != undefined) {
-        report.referer = req.headers.referer;
-    }
-    try {
-        eval_and_serve_item(req,res,report,toolbox)
-     } catch (err) {
-        report.endcode = 500
-        report.error = err.stack
-        report.headers = req.headers
-        loc_log(report)
-        res.writeHead(report.endcode)
-        res.end()
-    }
-}).listen(443)
-delete server_conf
 
 const eval_and_serve_item = (req,res,report,toolbox) => {
     break_url(req,report)
@@ -150,104 +191,25 @@ const read_commands  = (report) => {
     }
 }
 
-/*
-    These are manual parameters that may change continually as new apps script server scripts are published.
-
-    A server could be set to be served by any of the continually active published URLs, this is something to keep
-    present in all considerations as it entails flexibility and a different margin for error than the non versioned
-    publishment strategy. 
-*/
-
-const current_backend_url = "https://script.google.com/macros/s/AKfycbxo9f22XvkLovf6Fu_Doc7gViVlyxcOFWk2aJtKj2NfW3Vgw7NZKrQ_HjWpM6AW9E9d/exec"
-const server_request = {
-    "command":"fetch_server_configuration",
-    "type":"gcp-compute-engine-plp.js"
-}
-
-/*
-    This is the callback function used once the server configuration is received
-*/
-function process_initial_configuration(complete_server_config_text){
-    console.log("received",{complete_server_config_text})
-    const full_config = eval(complete_server_config_text)
-    start_the_https_server(full_config)
-}
-
-
-/*
-    Here we start the server with the already available resources
-*/
-function start_the_https_server(full_config){
-    console.log("attempting to start server with",full_config)
-
-    const server_conf = {
-        key: full_config.tls.key,
-        cert: full_config.tls.chain,
-        maxCachedSessions: 0,
-        keepAliveTimeout: 0,
-        headersTimeout: 1000,
-        maxHeadersCount: 10,
-        requestTimeout: 2000,
-        timeout:3000
+function create_report(req) {
+    service_no++
+    let report = {
+        "service_no":service_no,
+        "timestamp":new Date(),
+        "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
+        "host":req.headers.host,
+        "url":req.url,
+        "method":req.method,
     }
-    
-    https.createServer(server_conf, (req, res) => {
-        service_no++
-        let report = {
-            "service_no":service_no,
-            "timestamp":new Date(),
-            "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
-            "host":req.headers.host,
-            "url":req.url,
-            "method":req.method,
-        }
-        if (req.headers.referer != undefined) {
-            report.referer = req.headers.referer;
-        }
-        try {
-            eval_and_serve_item(req,res,report,toolbox)
-         } catch (err) {
-            report.endcode = 500
-            report.error = err.stack
-            report.headers = req.headers
-            loc_log(report)
-            res.writeHead(report.endcode)
-            res.end()
-        }
-    }).listen(443)
-}
 
+    if (req.headers.referer != undefined) {
+        report.referer = req.headers.referer;
+    }
 
-/*
-    This is a reusable text fetch function that will be called a lot
-*/
-function basic_text_fetch(url,method,message,callback) {
-    let options = {
-        "method":method
-    }
-    let req = https.request(url,options, (res) => {
-        if (res.statusCode == 302 || res.statusCode == 307){
-            basic_text_fetch(res.headers.location,"GET",null,callback)
-        }else{
-            let data = ""
-            res.on('data', (d) => {
-                data = data + d
-            });
-            res.on('end', () => {
-                callback(data)
-            });
-        }
-    });
-    req.on('error', (e) => {
-      throw e
-    });
-    if (message != undefined){
-        req.write(JSON.stringify(message))
-    }
-    req.end();
+    return report
 }
 
 /*
-    Here we actually call the function to begin the process.
+    Run at end of startup
 */
-basic_text_fetch(current_backend_url,"POST",server_request,process_initial_configuration)
+loc_log(startup_report)
