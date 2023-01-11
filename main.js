@@ -9,10 +9,12 @@
 
 const fs = require("fs")
 const https = require("https")
+const url = require("url")
 let stream = fs.createWriteStream("../din/log.txt", {flags:'a'})
 let service_no = 0
 let toolbox = {}
 let cache = {}
+
 const server_conf = {
     key: fs.readFileSync("/etc/letsencrypt/live/demian.app/privkey.pem"),
     cert: fs.readFileSync("/etc/letsencrypt/live/demian.app/fullchain.pem"),
@@ -23,6 +25,7 @@ const server_conf = {
     requestTimeout: 2000,
     timeout:3000
 }
+
 const loc_log = (thing_to_log) => {
     stream.write(JSON.stringify(thing_to_log, null, 2)+",\n")
 }
@@ -160,14 +163,6 @@ const server_request = {
     "command":"fetch_server_configuration",
     "type":"gcp-compute-engine-plp.js"
 }
-
-
-/*
-    Here we require necessary node integrated modules
-*/
-/*Used to fetch backend resources AND to serve to the web via https*/
-const https = require('https');
-
 
 /*
     This is the callback function used once the server configuration is received

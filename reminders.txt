@@ -88,4 +88,7 @@ sudo apt install certbot
 
 certificate setup (post A record pointing)
 
-sudo certbot certonly --standalone
+sudo certbot certonly --standalone (answer questions)
+
+get this repo from git
+git clone https://github.com/Aboda/plp
