@@ -91,6 +91,7 @@ startup_report.local_read_ready = new Date()
     Here we start the server with the already available resources
 */
 function start_the_https_server(){
+    console.log("state of core at startup",core)
     startup_report.server_start_time = new Date()
     https.createServer(server_conf, (req, res) => {
         let report = create_report(req)
