@@ -20,26 +20,51 @@ const https = require("https")
 
 const current_backend_url = "https://script.google.com/macros/s/AKfycbxo9f22XvkLovf6Fu_Doc7gViVlyxcOFWk2aJtKj2NfW3Vgw7NZKrQ_HjWpM6AW9E9d/exec"
 
+/*
+    Initial version loads a single large javascript file that has been prepared with serving tools and written content worked by sections in google drive, altough future iterations might have a plethora of calls to allow for on the fly reload of parts of the content.
+*/
+
 const server_request = {
     "command":"fetch_server_configuration",
     "type":"gcp-compute-engine-plp.js"
 }
 
+/*
+    This is a basic compute engine hard drive log for troubleshooting, it logs an event at startup and at each serviced call. 
+*/
 let log_stream = fs.createWriteStream("../din/log.txt", {flags:'a'})
 const loc_log = (thing_to_log) => {
     log_stream.write(JSON.stringify(thing_to_log, null, 2)+",\n")
 }
 
+/*
+    Global service counter from server startup, used in reporting
+*/
 let service_no = 0
+
+/*
+    This is the global object that contains the entirety of the programmed server. 
+
+    Serve function - Main function driver, this is executed on each request
+    Tools - Tools to parse requests and build different content types
+    Templates - HTML commonly used text blocks
+    Domains - Served website basic structure, homepage and L1 calls are routed here
+    Assets - Served website general media relationship sheet (web surface loads an asset from a google backend specified by entry)
+*/
 let core = {}
 
-
+/*
+    Per startup report
+*/
 let startup_report = {
     "version":"prealpha_modeling",
     "start_time":new Date(),
     "start_command":server_request
 }
 
+/*
+    Fully fetchs the contents of the target url after https request
+*/
 function basic_text_fetch(url,method,message,callback) {
     let options = {
         "method":method
@@ -66,25 +91,41 @@ function basic_text_fetch(url,method,message,callback) {
     req.end();
 }
 
+/*
+    Modular function to update global core object with the result of the evaluation of the js text
+*/
 function process_initial_configuration(complete_server_config_text){
     core = eval(complete_server_config_text)
     start_the_https_server()
 }
 
-
-basic_text_fetch(current_backend_url,"POST",server_request,process_initial_configuration)
+/*
+    Report timetag
+*/
 startup_report.backend_request_time = new Date()
 
+/*
+    Actual moment of call for initial main configuration. 
+*/
+basic_text_fetch(current_backend_url,"POST",server_request,process_initial_configuration)
+
+/*
+    Certificates are handled locally at the time via certbot, in the future, with horizontal growth projections certificate updates have to propagate and trigger a server reset.
+*/
 const server_conf = {
     key: fs.readFileSync("/etc/letsencrypt/live/demian.app/privkey.pem"),
     cert: fs.readFileSync("/etc/letsencrypt/live/demian.app/fullchain.pem"),
-    maxCachedSessions: 0,
-    keepAliveTimeout: 0,
-    headersTimeout: 1000,
-    maxHeadersCount: 10,
+    maxCachedSessions: 5,
+    keepAliveTimeout: 300,
+    headersTimeout: 300,
+    maxHeadersCount: 15,
     requestTimeout: 2000,
     timeout:3000
 }
+
+/*
+    Timetag after local read is finished
+*/
 startup_report.local_read_ready = new Date()
 
 /*
@@ -113,10 +154,8 @@ function start_the_https_server(){
 loc_log(startup_report)
 
 /*
-    General tooling
+    For Event reporting
 */
-
-
 
 const clean_ipv6_trail_if_present = (address_to_eval) => {
     let processed_adress
