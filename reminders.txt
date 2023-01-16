@@ -51,9 +51,10 @@ General notes:
     Intended flow is to:
 
     0.- Start
-    1.- Request contents
+    1.- Request tooling and contents
     2.- Read certificates
-    3.- Begin serving
+    4.- Receive tooling and contents
+    5.- Start serving
 
     Update flow is inteded to (while serving):
 
@@ -63,10 +64,13 @@ General notes:
     Contents are:
 
     0.- Serving Tools:
-        any code related to server operation, serverside html construction, https management etc...
+        Any code related to server operation, serverside html construction, https management etc...
 
     1.- Content Structure:
-        a big json where all domains and valid resources are listed along with servicing details for them
+        A big json where all domains and valid resources are listed along with servicing details for them
+
+    2.- Asset map:
+        An asset source path / website url identifier to make public facing https servers that can boot up and access shared resources on backend without usage of local storage
 
 The idea is to "set and forget" the server up until next development stage, when its resources stop being sufficient to manage the traffic of the multiple serviced domains. 
 At that stage, situation control will be to upgrade the virtualized hardware in a temporary fashion, or extract the better performing site to an individual server.
