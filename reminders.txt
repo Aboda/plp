@@ -22,7 +22,7 @@ Tech Stack
     Platform: Emulated core GCP Compute Engine Free Tier
     OS: Debian
     Runtime: NodeJS
-    HTTPS Certificates: certbot
+    HTTPS Certificates: Certbot
     Site management: Google Drive
     Object Storage: GCP Cloud Bucket
 
