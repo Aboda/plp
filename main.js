@@ -165,11 +165,18 @@ const clean_ipv6_trail_if_present = (address_to_eval) => {
 
 function create_report(req) {
     service_no++
+
+    let asserted_host = ""
+    if (req.headers.host.indexOf("www.") == 0){
+        asserted_host = req.headers.host
+    }else{
+        asserted_host = "www."+req.headers.host
+    }
     let report = {
         "service_no":service_no,
         "timestamp":new Date(),
         "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
-        "host":req.headers.host,
+        "host":asserted_host,
         "url":req.url,
         "method":req.method,
     }
