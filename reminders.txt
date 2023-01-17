@@ -96,3 +96,17 @@ sudo certbot certonly --standalone (answer questions)
 
 get this repo from git
 git clone https://github.com/Aboda/plp
+
+daemonization of node process to remain up while the computer is up*
+a) from virtual machine after .service file upload
+    sudo cp -f /home/andthenbeyond/plp/plp.service /etc/systemd/system/plp.service
+
+b) daemonization controls
+    systemctl status plp.service
+    sudo systemctl daemon-reload
+    sudo systemctl start plp.service
+    sudo systemctl stop plp.service
+    sudo systemctl restart plp.service
+    sudo systemctl enable plp.service
+    sudo systemctl disable plp.service
+    sudo systemctl reenable plp.service
