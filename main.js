@@ -156,7 +156,6 @@ loc_log(startup_report)
 /*
     For Event reporting
 */
-
 const clean_ipv6_trail_if_present = (address_to_eval) => {
     let processed_adress
     address_to_eval.startsWith("::ffff:") ? processed_adress = address_to_eval.substring(7) : processed_adress = address_to_eval
@@ -165,27 +164,23 @@ const clean_ipv6_trail_if_present = (address_to_eval) => {
 
 function create_report(req) {
     service_no++
-
-    let asserted_host = ""
-    let asserted_domain = ""
-    
-    if (req.headers.host.indexOf("www.") == 0){
-        asserted_host = req.headers.host
-        asserted_domain = asserted_host.slice(3)
-    }else{
-        asserted_host = req.headers.host
-        asserted_domain = asserted_host
-    }
-
     let report = {
         "service_no":service_no,
         "timestamp":new Date(),
         "caller_ip":clean_ipv6_trail_if_present(req.connection.remoteAddress),
-        "domain":asserted_domain,
-        "host":asserted_host,
-        "url":req.url,
         "method":req.method,
+        "url":req.url,
+        "host":req.headers.host
     }
+
+    if (req.headers.host.indexOf("www.") == 0){
+         report.domain = asserted_host.slice(3)
+         report.subdomain = "www"
+    }else{
+        report.domain = asserted_host
+    }
+
+
 
     if (req.headers.referer != undefined) {
         report.referer = req.headers.referer;
