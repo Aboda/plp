@@ -173,18 +173,22 @@ function create_report(req) {
         "host":req.headers.host
     }
 
+    /*
+        For now we only serve www and base domain
+        this can be expanded
+    */
     if (req.headers.host.indexOf("www.") == 0){
-         report.domain = asserted_host.slice(4)
+         report.domain = report.host.slice(4)
          report.subdomain = "www"
     }else{
-        report.domain = asserted_host
+        report.domain = report.host
+        report.subdomain = "/"
     }
-
-
-
+    /*
+        Report if referred
+    */
     if (req.headers.referer != undefined) {
         report.referer = req.headers.referer;
     }
-
     return report
 }
