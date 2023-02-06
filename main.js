@@ -103,7 +103,7 @@ function basic_text_fetch(url,method,message,callback) {
     Otherwise we have a secure server. So we will have to trust TLS on this one.
 */
 function process_initial_configuration(complete_server_config_text){
-    core = eval(core_text)
+    core = eval(complete_server_config_text)
     start_the_https_server()
 }
 
