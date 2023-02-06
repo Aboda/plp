@@ -18,7 +18,7 @@ const https = require("https")
     publishment strategy. 
 */
 
-const current_backend_url = "https://script.google.com/macros/s/AKfycbzXD74sDR3YL9SiexwrRZ-XqwQ1FqDI1vDs5N-TXBnKaATFtvPkH12CjmRJHdo53al5/exec"
+const current_backend_url = "https://script.google.com/macros/s/AKfycbx3l06egInWNfh9hAiiwDjRrzdLJ3qBpcpSdc5gVL2WUr6Ob147FBuH-MpHnFMXUV_Z/exec"
 
 /*
     Initial version loads a single large javascript file that has been prepared with serving tools and written content worked by sections in google drive, altough future iterations might have a plethora of calls to allow for on the fly reload of parts of the content.
