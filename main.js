@@ -18,7 +18,7 @@ const https = require("https")
     publishment strategy. 
 */
 
-const current_backend_url = "https://script.google.com/macros/s/AKfycbxo9f22XvkLovf6Fu_Doc7gViVlyxcOFWk2aJtKj2NfW3Vgw7NZKrQ_HjWpM6AW9E9d/exec"
+const current_backend_url = "https://script.google.com/macros/s/AKfycbzXD74sDR3YL9SiexwrRZ-XqwQ1FqDI1vDs5N-TXBnKaATFtvPkH12CjmRJHdo53al5/exec"
 
 /*
     Initial version loads a single large javascript file that has been prepared with serving tools and written content worked by sections in google drive, altough future iterations might have a plethora of calls to allow for on the fly reload of parts of the content.
@@ -92,10 +92,18 @@ function basic_text_fetch(url,method,message,callback) {
 }
 
 /*
-    Modular function to update global core object with the result of the evaluation of the js text
+    Here is the exposed core of the deathstar, if an attacker can MiM the source
+    of the code to execute it can steal the server.
+    
+    Risk is minimal since all the information held by the server is public, and
+    the emulated environment has 0 rights outside of itself.
+
+    Greatest risk comes from access to the web certificates. 
+
+    Otherwise we have a secure server. So we will have to trust TLS on this one.
 */
 function process_initial_configuration(complete_server_config_text){
-    core = eval(complete_server_config_text)
+    core = eval(core_text)
     start_the_https_server()
 }
 
