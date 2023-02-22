@@ -110,3 +110,7 @@ b) daemonization controls
     sudo systemctl enable plp.service
     sudo systemctl disable plp.service
     sudo systemctl reenable plp.service
+
+Restart the node process with gcloud command
+
+gcloud compute ssh fearsome --zone us-central1-a --project plp-fearsome --command 'sudo systemctl restart plp.service'

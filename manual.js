@@ -12,11 +12,10 @@ const current_backend_url = "https://script.google.com/macros/s/AKfycbxkEoU9MjYx
 
 const server_request = {
     "command":"fetch_server_configuration",
-    "type":"gcp-compute-engine-plp.js"
+    "type":"home-development-environment-plp.js"
 }
 
 let service_no = 0
-
 
 let core = {}
 
