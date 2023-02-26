@@ -6,7 +6,6 @@
     the idea is to roll initial proyects here, and once any of those pick up
     either grow vertically or horizontally. 
 */
-
 const fs = require("fs")
 const https = require("https")
 
@@ -17,13 +16,11 @@ const https = require("https")
     present in all considerations as it entails flexibility and a different margin for error than the non versioned
     publishment strategy. 
 */
-
 const current_backend_url = "https://script.google.com/macros/s/AKfycbxkEoU9MjYxXpda8jRrTO9f1RGQFTQ_AL1s8dAVhPPPQBeO91Eqs5xZzF4X4wDciJ1O/exec"
 
 /*
     Initial version loads a single large javascript file that has been prepared with serving tools and written content worked by sections in google drive, altough future iterations might have a plethora of calls to allow for on the fly reload of parts of the content.
 */
-
 const server_request = {
     "command":"fetch_server_configuration",
     "type":"gcp-compute-engine-plp.js"
@@ -103,8 +100,31 @@ function basic_text_fetch(url,method,message,callback) {
     Otherwise we have a secure server. So we will have to trust TLS on this one.
 */
 function process_initial_configuration(complete_server_config_text){
-    core = eval(complete_server_config_text)
+    process_configuration(complete_server_config_text)
     start_the_https_server()
+}
+
+/*
+    These two functions are added to allow for the core to be able to reload
+    itself during operation without server restart.
+
+    We are playing with enclosures here to make the functions available to
+    functions within the other half of the server. 
+*/
+function process_configuration(complete_server_config_text){
+    core = eval(complete_server_config_text)
+    core.tools.basic_text_fetch = basic_text_fetch
+    core.tools.loc_log = loc_log
+    enable_reload(core)
+}
+
+function enable_reload(core){
+    core.tools.reload = (core)=>{
+        core.tools.basic_text_fetch(core.current_general_endpoint,"POST",{
+            "command":"fetch_server_configuration",
+            "type":"gcp-compute-engine-plp.js"
+        },process_configuration)
+    }  
 }
 
 /*
