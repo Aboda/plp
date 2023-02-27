@@ -1,6 +1,6 @@
 Hello
 
-My name is Demian, I am 35 years old (as of 2022) self taught programmer and this software is my main project.
+My name is Demian, I am (1987 - present year) years old self taught programmer and this software is my main project.
 
 I aim to become a fullstack engineer / cloud architect as to be able to field significant solutions for a variety of problems.
 
@@ -78,39 +78,3 @@ Such a traffic success will make valuable to start working with a load balancer 
 
 Content management will happen in Google Drive, where interfaces are easier to build and there is extensive storage, access control and organizational tools.
 The cloud bucket is intended to host the public static data selected by the application users. 
-
-Google CLI for instance creation
-
-gcloud compute instances create fearsome --project=plp-fearsome --zone=us-central1-a --machine-type=e2-micro --network-interface=address=34.136.255.49,network-tier=PREMIUM,nic-type=VIRTIO_NET,subnet=default --maintenance-policy=MIGRATE --provisioning-model=STANDARD --no-service-account --no-scopes --tags=http-server,https-server --create-disk=auto-delete=yes,boot=yes,device-name=fearsome,image=projects/debian-cloud/global/images/debian-11-bullseye-v20221206,mode=rw,size=10,type=projects/plp-fearsome/zones/us-central1-a/diskTypes/pd-balanced --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any
-
-node js , git, certbot setup (debian 11)
-
-sudo apt update
-sudo apt install nodejs
-sudo apt install git
-sudo apt install certbot
-
-certificate setup (post A record pointing)
-
-sudo certbot certonly --standalone (answer questions)
-
-get this repo from git
-git clone https://github.com/Aboda/plp
-
-daemonization of node process to remain up while the computer is up*
-a) from virtual machine after .service file upload
-    sudo cp -f /home/andthenbeyond/plp/plp.service /etc/systemd/system/plp.service
-
-b) daemonization controls
-    systemctl status plp.service
-    sudo systemctl daemon-reload
-    sudo systemctl start plp.service
-    sudo systemctl stop plp.service
-    sudo systemctl restart plp.service
-    sudo systemctl enable plp.service
-    sudo systemctl disable plp.service
-    sudo systemctl reenable plp.service
-
-Restart the node process with gcloud command
-
-gcloud compute ssh fearsome --zone us-central1-a --project plp-fearsome --command 'sudo systemctl restart plp.service'

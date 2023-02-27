@@ -190,6 +190,15 @@ const clean_ipv6_trail_if_present = (address_to_eval) => {
     return processed_adress;
 }
 
+/*
+    This is used to log activity in a local log, but also by the serving system
+
+    The idea is to also create a regular offloading of that file to a yet to be
+    developed traffic analizer.
+
+    Initially I might use Google Analytics, and this report might not be needed,
+    but I am not certain yet. 
+*/
 function create_report(req) {
     service_no++
     let report = {
