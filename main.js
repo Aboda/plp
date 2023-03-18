@@ -16,7 +16,7 @@ const https = require("https")
     present in all considerations as it entails flexibility and a different margin for error than the non versioned
     publishment strategy. 
 */
-const current_backend_url = "https://script.google.com/macros/s/AKfycbxkEoU9MjYxXpda8jRrTO9f1RGQFTQ_AL1s8dAVhPPPQBeO91Eqs5xZzF4X4wDciJ1O/exec"
+const current_backend_url = "https://script.google.com/macros/s/AKfycbyqKR9SAL5kdYc0z7JRQzydqpUlgtkKWknWzQZB0ywiiXzym5WvTi7ZwzvmNVpVVYZC/exec"
 
 /*
     Initial version loads a single large javascript file that has been prepared with serving tools and written content worked by sections in google drive, altough future iterations might have a plethora of calls to allow for on the fly reload of parts of the content.
