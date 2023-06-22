@@ -141,8 +141,8 @@ basic_text_fetch(current_backend_url,"POST",server_request,process_initial_confi
     Certificates are handled locally at the time via certbot, in the future, with horizontal growth projections certificate updates have to propagate and trigger a server reset.
 */
 const server_conf = {
-    key: fs.readFileSync("/etc/letsencrypt/live/demian.app-001/privkey.pem"),
-    cert: fs.readFileSync("/etc/letsencrypt/live/demian.app-001/fullchain.pem"),
+    key: fs.readFileSync("/etc/letsencrypt/live/demian.app-0001/privkey.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/live/demian.app-0001/fullchain.pem"),
     maxCachedSessions: 5,
     keepAliveTimeout: 300,
     headersTimeout: 300,
