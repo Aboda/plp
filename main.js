@@ -31,7 +31,7 @@ const server_request = {
 */
 let log_stream = fs.createWriteStream("../din/log.txt", {flags:'a'})
 const loc_log = (thing_to_log) => {
-    log_stream.write(JSON.stringify(thing_to_log, null, 2)+",\n")
+    log_stream.write(JSON.stringify(thing_to_log)+"\n")
 }
 
 /*
