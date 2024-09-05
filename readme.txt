@@ -19,7 +19,7 @@ Project codename is plp: personal laboratory portfolio, it is intended to be bot
 
 Tech Stack
 
-    Platform: Emulated core GCP Compute Engine Free Tier
+    Platform: GCP Compute Engine
     OS: Debian
     Runtime: NodeJS
     HTTPS Certificates: Certbot
@@ -28,7 +28,7 @@ Tech Stack
 
 Notes on tech choices:
 
-    Platform: Emulated core GCP Compute Engine Free Tier
+    Platform: Emulated core GCP Compute Engine (Free Tier)
         Selected due to the always free element, domain cost is reduced to yearly registration. 
 
     OS: Debian

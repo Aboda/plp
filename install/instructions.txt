@@ -1,0 +1,9 @@
+If you where to set new servers with this deployment remember to:
+
+manually create the din folder with the credentials files
+
+if it is a support server, you have to resolve how to propagate the keys from
+the server that actually negotiates them to it, not sure on what happens if each
+server negotiates its own certificate.
+
+you have to setup systemctl .service file so that the server is always up.
