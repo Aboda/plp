@@ -8,6 +8,7 @@
 */
 const fs = require("fs");
 const https = require("https");
+const { report } = require("process");
 
 /*
     These are manual parameters that may change continually as new apps scripts
@@ -170,17 +171,18 @@ startup_report.local_read_ready = new Date();
 function start_the_https_server(){
     startup_report.server_start_time = new Date();
     https.createServer(server_conf, (req, res) => {
-        let report = create_report(req);
-        try {
-            core.serve(req,res,report,core);
-         } catch (err) {
-            report.endcode = 500;
-            report.error = err.stack;
-            report.headers = req.headers;
-            loc_log(report);
-            res.writeHead(report.endcode);
-            res.end();
-        }
+        let report = {};      
+            try {
+                report = create_report(req);
+                core.serve(req,res,report,core);
+             } catch (err) {
+                report.endcode = 500;
+                report.error = err.stack;
+                report.headers = req.headers;
+                loc_log(report);
+                res.writeHead(report.endcode);
+                res.end();
+            }
     }).listen(443);
 }
 
