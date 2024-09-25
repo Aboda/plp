@@ -224,13 +224,17 @@ function create_report(req) {
         For now we only serve www and base domain
         this can be expanded
     */
+
+   if(req.headers.host){
     if (req.headers.host.indexOf("www.") == 0){
-         report.domain = report.host.slice(4);
-         report.subdomain = "www";
+        report.domain = report.host.slice(4);
+        report.subdomain = "www";
     }else{
         report.domain = report.host;
         report.subdomain = "/";
     }
+   }
+    
     /*
         Report if referred
     */
