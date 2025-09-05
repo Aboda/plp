@@ -8,7 +8,8 @@
 */
 const fs = require("fs");
 const https = require("https");
-const { report } = require("process");
+const path = require("path");
+const { spawn } = require("child_process");
 
 /*
     These are manual parameters that may change continually as new apps scripts
@@ -221,14 +222,17 @@ function create_report(req) {
     };
 
     /*
-        For now we only serve www and base domain
-        this can be expanded
+        At some point we might want to automate this, for now we are explicitly stating
+        the subdomains we are using.
     */
 
    if(req.headers.host){
     if (req.headers.host.indexOf("www.") == 0){
         report.domain = report.host.slice(4);
         report.subdomain = "www";
+    }else if (req.headers.host.indexOf("gvss.") == 0){
+        report.domain = report.host.slice(5);
+        report.subdomain = "gvss";
     }else{
         report.domain = report.host;
         report.subdomain = "/";
