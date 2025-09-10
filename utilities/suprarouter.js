@@ -15,7 +15,7 @@
     shorthand is a short identifier for the application, used in internal routing and tools
 */
 
-const infra = require("infra.js");
+const infra = require("./infra.js");
 
 const metadata = [
     {
