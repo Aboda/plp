@@ -87,11 +87,12 @@ for(let app of metadata) {
     try{
         apps[app.serve_as] = require(app.source_folder + "/router.js");
     }catch(e) {
-        console.error("Error at startup, no router found for " + app.serve_as);
+        console.error("No router found for" + app.serve_as);
+        apps[app.serve_as] = infra.default_router
     }    
 }
 
-async function suprarouter(req,res,infra) {
+async function suprarouter(req,res) {
     /*
         Gate guard is only meant to defend against ddos, and brute force trough rate limiting
         it is not meant to be a security layer, that is the responsibility of each application

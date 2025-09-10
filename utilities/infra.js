@@ -250,10 +250,14 @@ function template_in_construction_page() {
     `;
 }
 
+function default_router(req,res,infra){
+    reply_site_in_construction(req, res);
+}
 
 
 module.exports = {
     create_random_token,
+    default_router,
     extract_basic_call_data,
     gate_guard,
     get_cookie_value_from_req,
