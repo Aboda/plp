@@ -87,8 +87,8 @@ for(let app of metadata) {
     try{
         apps[app.serve_as] = require(app.source_folder + "/router.js");
     }catch(e) {
-        console.error("No router found for" + app.serve_as);
-        apps[app.serve_as] = infra.default_router
+        console.error("No router found for " + app.serve_as);
+        apps[app.serve_as] = {router:infra.default_router}
     }    
 }
 
