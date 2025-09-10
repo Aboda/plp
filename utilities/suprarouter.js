@@ -36,7 +36,7 @@ const metadata = [
         desc:"Admin interface for the platform",
         service_type: "application",
         service_name: "admin",
-        serve_as: "www.demian.app",
+        serve_as: "demian.app",
         source_folder:"./din/adm"
     },
     {
