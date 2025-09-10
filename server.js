@@ -2,7 +2,8 @@ const fs = require("fs").promises;
 const https = require("https");
 const suprarouter = require("./utilities/suprarouter.js");
 async function main(){
-    const tls_path = await fs.readFile("./din/tls_path.txt").trim();
+    let tls_path = await fs.readFile("./din/tls_path.txt");
+    tls_path = tls_path.trim();
     const opts = {
         key: await fs.readFile(tls_path +"/privkey.pem"),
         cert: await fs.readFile(tls_path + "/fullchain.pem")
