@@ -5,6 +5,7 @@ const crypto = require('crypto');
 let cache = {
     ips:{}
 };
+let service_no = 0
 function create_random_token(base_seed){
     return hash_string("sha512","hex",`${r_bits(1)}${user_email}${r_bits(1)}${Date.now()}${r_bits(1)}`);
 }
@@ -31,11 +32,10 @@ function gate_guard(req){
     const number_of_base_calls = 10;
     const call_retrieval_window = 1000;
     const now_ts = Date.now();
+    const {ip,method,url} = extract_basic_call_data(req)
     /*
         We might have to remove the ::ffff: part of the ip
     */
-    let ip = req.connection.remoteAddress;
-    ip = ip.replace("::ffff:","");
 
     if (cache.ips[ip] == undefined){
         cache.ips[ip] = {count:0,last:now_ts};
@@ -56,8 +56,10 @@ function gate_guard(req){
         approval = false;
     }
 
-    return approval;
+    const reply = {ts:now_ts,m:method,c:cache.ips[ip].count,a:approval,ip,url}
+    return reply
 }
+
 function get_cookie_value_from_req(req, cookie_name) {
     if (!req.headers.cookie) {
         return null;

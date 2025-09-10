@@ -101,8 +101,8 @@ async function suprarouter(req,res) {
         At some point the gate guard will be expanded to enable the google firewall service against repeated offenders
         and to manage an automatic cool timeout for ips to be de-blacklisted
     */
-    const gate_guard_approval = infra.gate_guard(req);
-    if(!gate_guard_approval) {
+    let call_report = infra.gate_guard(req);
+    if(!call_report.a) {
         infra.reply_request_throttled(req,res);
         return;
     }
@@ -119,15 +119,16 @@ async function suprarouter(req,res) {
     */
 
     let host = req.headers.host.split(":")[0]; // remove port if any
+    call_report.host = host;
     if(host in apps) {
-        // we have a router for this domain/subdomain
-        return await apps[host].router(req,res,infra);
+        // we should have a router for this domain/subdomain
+        await apps[host].router(req,res,infra,call_report);
     } else {
         // no router found for this domain/subdomain
-        res.writeHead(404, {"Content-Type": "text/plain"});
-        res.end("404 Not Found - No application found to handle this host: " + host);
-        return;
-    }    
+        call_report.reply_code = "404"
+        infra.reply_resource_not_found(req,res);
+    } 
+    console.log(call_report);
 }
 
 module.exports = suprarouter;
