@@ -9,7 +9,7 @@ function create_random_token(base_seed){
     return hash_string("sha512","hex",`${r_bits(1)}${user_email}${r_bits(1)}${Date.now()}${r_bits(1)}`);
 }
 function extract_basic_call_data(req){
-    return {method:req.method,ip:remove_trailing_ipv6(req.ip),url:req.url}
+    return {method:req.method,ip:remove_trailing_ipv6(req.connection.remoteAddress),url:req.url}
 }
 function gate_guard(req){
     /*
