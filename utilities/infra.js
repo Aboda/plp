@@ -1,0 +1,274 @@
+const fs = require("fs");
+const path = require("path");
+const https = require("https");
+const crypto = require('crypto');
+let cache = {
+    ips:{}
+};
+function create_random_token(base_seed){
+    return hash_string("sha512","hex",`${r_bits(1)}${user_email}${r_bits(1)}${Date.now()}${r_bits(1)}`);
+}
+function extract_basic_call_data(req){
+    return {method:req.method,ip:remove_trailing_ipv6(req.ip),url:req.url}
+}
+function gate_guard(req){
+    /*
+        this function uses persistent cache.ips to track the number of requests
+        and provide minimal rate limiting for infringing ips
+
+        the logic is:
+
+        each call will store in the track item the caller ip
+        if not present create an entry 
+        then add +1 tho the ip entry
+        then calculate how much to deduct since last call
+        then assess wheter or not to approve the call
+
+        the idea is that we dont neet to generate a recurring call to manage this and
+        that each caller manages its own call rate
+    */
+    let approval = true;
+    const number_of_base_calls = 10;
+    const call_retrieval_window = 1000;
+    const now_ts = Date.now();
+    /*
+        We might have to remove the ::ffff: part of the ip
+    */
+    let ip = req.connection.remoteAddress;
+    ip = ip.replace("::ffff:","");
+
+    if (cache.ips[ip] == undefined){
+        cache.ips[ip] = {count:0,last:now_ts};
+    }
+
+    cache.ips[ip].count ++;
+    const time_diff = now_ts - cache.ips[ip].last;
+    const calls_to_deduct = Math.floor(time_diff / call_retrieval_window);
+    if (calls_to_deduct > 0){
+        cache.ips[ip].count -= calls_to_deduct;
+        if (cache.ips[ip].count < 0){
+            cache.ips[ip].count = 0;
+        }
+        cache.ips[ip].last = now_ts;
+    }
+
+    if (cache.ips[ip].count > number_of_base_calls){
+        approval = false;
+    }
+
+    return approval;
+}
+function get_cookie_value_from_req(req, cookie_name) {
+    if (!req.headers.cookie) {
+        return null;
+    }
+    const cookies = req.headers.cookie.split(";").reduce((acc, cookie) => {
+        const [key, value] = cookie.trim().split("=");
+        acc[key] = value;
+        return acc;
+    }, {});
+    return cookies[cookie_name];
+}
+function get_parameter_from_url_string(url,param){
+    try{
+        let url_parts = url.split("?");
+        let params = url_parts[1].split("&");
+        for (let i = 0; i < params.length; i++){
+            let key_val = params[i].split("=");
+            if (key_val[0] == param){
+                return decodeURIComponent(key_val[1]);
+            }
+        }
+    }catch(err){}
+    return false
+}
+function hash_string(algo,output,input){
+    const hash = crypto.createHash(algo); // Specify the hash algorithm (e.g., 'sha256', 'sha1', 'md5', etc.)
+    hash.update(input);                        // Add the string to be hashed
+    return hash.digest(output);                 // Output the hash as a hexadecimal string
+}
+async function pipe_file_from_filesys(res,http_reply_code,source_path,content_type){
+    const readStream = fs.createReadStream(source_path);
+    res.writeHead(http_reply_code, { "Content-Type": content_type });
+    readStream.pipe(res);
+    console.log("hard drive pipe of "+source_path+" concluded");
+}
+async function pipe_data_to_filesys(req,res,destination_path){
+    return new Promise((resolve, reject) => {
+        const writeStream = fs.createWriteStream(destination_path);
+        req.pipe(writeStream);
+        writeStream.on('finish', () => {
+            res.writeHead(200, { "Content-Type": "text/plain" });
+            res.end("File saved successfully.");
+            resolve();
+        });
+        writeStream.on('error', (err) => {
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end("Error saving file.");
+            reject(err);
+        });
+    });
+}
+function r_bits(n){
+    let bits = "";
+    for (let i = 0; i < n; i++){
+        bits += Math.random().toString(36).slice(2);
+    }
+    return bits;
+}
+async function receive_request_post_data(req){
+    const prom = new Promise((s, j) => {
+      let b = "";
+      req.on("data", c=> b+= c.toString());
+      req.on("end", () => {s(b);});
+      req.on("error", (e) => {j(e);});
+    });
+    return prom;
+}
+function remove_trailing_ipv6(ip){
+    if (typeof ip !== "string") return ip;
+    if (ip.startsWith("::ffff:")) {
+        return ip.replace("::ffff:", "");
+    }
+    return ip;
+}
+async function requestlink_auth_follow(uri, token){
+    return new Promise((resolve, reject) => {
+        https.get(uri, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        }, (response) => {
+            let result = '';
+            response.on('data', (chunk) => {
+                result += chunk;
+            });
+            response.on('end', () => {
+                resolve(result);
+            });
+            response.on('error', (err) => {
+                reject(err);
+            });
+        }).on('error', (err) => {
+            reject(err);
+        });
+    });
+}
+async function requestlink_auth_post(uri, token, data) {
+    return new Promise((resolve, reject) => {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Content-Length': Buffer.byteLength(JSON.stringify(data))
+            }
+        };
+
+        const req = https.request(uri, options, (response) => {
+            let result = '';
+            response.on('data', (chunk) => {
+                result += chunk;
+            });
+            response.on('end', () => {
+                resolve(result);
+            });
+            response.on('error', (err) => {
+                reject(err);
+            });
+        });
+
+        req.on('error', (err) => {
+            reject(err);
+        });
+
+        req.write(JSON.stringify(data));
+        req.end();
+    });
+}
+function reply_request_throttled(req,res){
+    console.log({m:"403", ...extract_basic_call_data(req)})
+    res.writeHead(403, {"Content-Type": "text/plain"});
+    res.end("403 Forbidden - Your access has been temporarily restricted. Please try again later.");
+}
+function reply_resource_not_found(req,res){
+    console.log({m:"404", ...extract_basic_call_data(req)});
+    res.writeHead(404, {"Content-Type": "text/plain"});
+    res.end("404 Not Found - The requested resource could not be found.");
+}
+function reply_site_in_construction(req,res){
+    console.log({m:"503", ...extract_basic_call_data(req)});
+    res.writeHead(503, { "Content-Type": "text/html" });
+    res.end(template_in_construction_page());
+}
+async function sleep(ms){
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+function template_in_construction_page() {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>In Construction</title>
+        <style>
+            body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f8f8f8; margin: 0; }
+        </style>
+    </head>
+    <body>
+        <div>
+            <svg width="300" height="200" viewBox="0 0 300 200">
+                <!-- Cat body -->
+                <ellipse cx="150" cy="130" rx="60" ry="40" fill="#f4c542" stroke="#333" stroke-width="3"/>
+                <!-- Cat head -->
+                <ellipse cx="150" cy="80" rx="35" ry="30" fill="#f4c542" stroke="#333" stroke-width="3"/>
+                <!-- Cat ears -->
+                <polygon points="120,60 135,40 140,70" fill="#f4c542" stroke="#333" stroke-width="3"/>
+                <polygon points="180,60 165,40 160,70" fill="#f4c542" stroke="#333" stroke-width="3"/>
+                <!-- Cat eyes -->
+                <ellipse cx="140" cy="80" rx="5" ry="8" fill="#fff" stroke="#333" stroke-width="2"/>
+                <ellipse cx="160" cy="80" rx="5" ry="8" fill="#fff" stroke="#333" stroke-width="2"/>
+                <circle cx="140" cy="83" r="2" fill="#333"/>
+                <circle cx="160" cy="83" r="2" fill="#333"/>
+                <!-- Cat nose -->
+                <ellipse cx="150" cy="90" rx="4" ry="2" fill="#e07a5f" stroke="#333" stroke-width="1"/>
+                <!-- Cat mouth -->
+                <path d="M146 95 Q150 100 154 95" stroke="#333" stroke-width="2" fill="none"/>
+                <!-- Spanner (wrench) -->
+                <rect x="170" y="110" width="60" height="10" rx="5" fill="#bbb" stroke="#333" stroke-width="2" transform="rotate(-20 200 115)"/>
+                <ellipse cx="225" cy="115" rx="8" ry="8" fill="#bbb" stroke="#333" stroke-width="2"/>
+                <rect x="220" y="110" width="10" height="10" rx="2" fill="#fff" stroke="#333" stroke-width="1"/>
+                <!-- Cat paw holding spanner -->
+                <ellipse cx="175" cy="120" rx="10" ry="7" fill="#f4c542" stroke="#333" stroke-width="2"/>
+            </svg>
+            <h2 style="text-align:center; font-family:sans-serif; color:#333;">Page Under Construction</h2>
+        </div>
+    </body>
+    </html>
+    `;
+}
+
+
+
+module.exports = {
+    create_random_token,
+    extract_basic_call_data,
+    gate_guard,
+    get_cookie_value_from_req,
+    get_parameter_from_url_string,
+    hash_string,
+    pipe_file_from_filesys,
+    pipe_data_to_filesys,
+    r_bits,
+    receive_request_post_data,
+    remove_trailing_ipv6,
+    requestlink_auth_follow,
+    requestlink_auth_post,
+    reply_request_throttled,
+    reply_resource_not_found,
+    reply_site_in_construction,
+    sleep,
+    template_in_construction_page
+}
