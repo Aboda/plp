@@ -23,7 +23,7 @@ const metadata = [
         service_type: "application",
         service_name: "gvss",
         serve_as: "gvss.demian.app",
-        source_folder:"./din/autinv"
+        source_folder:"./din/gvss"
     },
     {
         desc:"Social Media Management Tool",
