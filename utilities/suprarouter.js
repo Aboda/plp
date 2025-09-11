@@ -16,6 +16,7 @@
 */
 
 const infra = require("./infra.js");
+const path = require("path");
 
 const metadata = [
     {
@@ -85,7 +86,9 @@ let apps = {};
 
 for(let app of metadata) {
     try{
-        apps[app.serve_as] = require(app.source_folder + "/router.js");
+        const router_path = path.join(__dirname,app.source_folder,"router.js");
+        console.log("attempting load of router for "+router_path)
+        apps[app.serve_as] = require(router_path);
     }catch(e) {
         console.error("No router found for " + app.serve_as);
         apps[app.serve_as] = {router:infra.default_router}
