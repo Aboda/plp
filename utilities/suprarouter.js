@@ -92,7 +92,7 @@ for(let app of metadata) {
         console.log("attempting load of router for "+router_path)
         apps[app.serve_as] = require(router_path);
     }catch(e) {
-        console.error("No router found for " + app.serve_as);
+        console.error("No router found for " + app.serve_as,e);
         apps[app.serve_as] = {router:infra.default_router}
     }    
 }
