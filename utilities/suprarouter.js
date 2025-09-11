@@ -91,7 +91,6 @@ let apps = {};
 for(let app of metadata) {
     try{
         const router_path = path.join(__dirname,app.source_folder,"router.js");
-        console.log("attempting load of router for "+router_path)
         apps[app.serve_as] = require(router_path);
     }catch(e) {
         console.error("No router found for " + app.serve_as,e);
