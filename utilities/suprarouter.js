@@ -28,6 +28,7 @@ const metadata = [
         serve_as: "gvss.demian.app",
         source_folder:"../din/gvss"
     },
+    /*
     {
         desc:"Social Media Management Tool",
         service_type: "application",
@@ -77,6 +78,7 @@ const metadata = [
         serve_as: "senderoholistico.com",
         source_folder: "../din/senderoholistico",
     }
+    */
 ]
 
 
