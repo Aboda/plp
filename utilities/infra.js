@@ -199,6 +199,10 @@ async function requestlink_auth_post(uri, token, data) {
         req.end();
     });
 }
+function reply_error_while_processing(req,res){
+    res.writeHead(500, {"Content-Type": "text/plain"});
+    res.end(template_error_page());
+}
 function reply_request_throttled(req,res){
     res.writeHead(403, {"Content-Type": "text/plain"});
     res.end("403 Forbidden - Your access has been temporarily restricted. Please try again later.");
@@ -363,6 +367,7 @@ module.exports = {
     remove_trailing_ipv6,
     requestlink_auth_follow,
     requestlink_auth_post,
+    reply_error_while_processing,
     reply_request_throttled,
     reply_resource_not_found,
     reply_site_in_construction,
