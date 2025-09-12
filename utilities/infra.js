@@ -89,11 +89,21 @@ function hash_string(algo,output,input){
     hash.update(input);                        // Add the string to be hashed
     return hash.digest(output);                 // Output the hash as a hexadecimal string
 }
-async function pipe_file_from_filesys(res,http_reply_code,source_path,content_type){
-    const readStream = fs.createReadStream(source_path);
+async function pipe_file_from_filesys(res, http_reply_code, source_path, content_type) {
+    const absolutePath = path.resolve(__dirname, "..", source_path);
+    const readStream = fs.createReadStream(absolutePath);
+
+    readStream.on('error', (err) => {
+        res.writeHead(404, { "Content-Type": "text/plain" });
+        res.end("File not found or error reading file.");
+        console.error("Error piping file:", err);
+    });
+
     res.writeHead(http_reply_code, { "Content-Type": content_type });
     readStream.pipe(res);
-    console.log("hard drive pipe of "+source_path+" concluded");
+    readStream.on('end', () => {
+        console.log("hard drive pipe of " + absolutePath + " concluded");
+    });
 }
 async function pipe_data_to_filesys(req,res,destination_path){
     return new Promise((resolve, reject) => {
