@@ -200,17 +200,14 @@ async function requestlink_auth_post(uri, token, data) {
     });
 }
 function reply_request_throttled(req,res){
-    //console.log({m:"403", ...extract_basic_call_data(req)})
     res.writeHead(403, {"Content-Type": "text/plain"});
     res.end("403 Forbidden - Your access has been temporarily restricted. Please try again later.");
 }
 function reply_resource_not_found(req,res){
-    //console.log({m:"404", ...extract_basic_call_data(req)});
     res.writeHead(404, {"Content-Type": "text/plain"});
     res.end("404 Not Found - The requested resource could not be found.");
 }
 function reply_site_in_construction(req,res){
-    //console.log({m:"503", ...extract_basic_call_data(req)});
     res.writeHead(503, { "Content-Type": "text/html" });
     res.end(template_in_construction_page());
 }

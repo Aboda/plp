@@ -134,7 +134,7 @@ async function suprarouter(req,res) {
         call_report.reply_code = "404"
         infra.reply_resource_not_found(req,res);
     } 
-    console.log(call_report);
+    console.log(JSON.stringify(call_report));
 }
 
 module.exports = suprarouter;
