@@ -216,6 +216,88 @@ async function sleep(ms){
         setTimeout(resolve, ms);
     });
 }
+
+function template_error_page() {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>In Construction</title>
+        <style>
+            body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f8f8f8; margin: 0; }
+        </style>
+    </head>
+    <body>
+        <div>
+            <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background -->
+            <rect width="400" height="300" fill="#f0f4f8"/>
+
+            <!-- Desk -->
+            <rect x="50" y="200" width="300" height="80" fill="#8b5e3c" rx="10"/>
+            <rect x="50" y="190" width="300" height="10" fill="#6b4e31"/>
+
+            <!-- Computer Monitor -->
+            <rect x="200" y="120" width="100" height="60" fill="#333" rx="5"/>
+            <rect x="205" y="125" width="90" height="50" fill="#87ceeb"/>
+            <!-- Screen content (simplified code) -->
+            <rect x="210" y="130" width="80" height="40" fill="#000" opacity="0.3"/>
+            <text x="230" y="155" font-family="Arial" font-size="10" fill="#0f0">0101</text>
+
+            <!-- Monitor Stand -->
+            <rect x="240" y="180" width="20" height="20" fill="#555"/>
+            <rect x="230" y="200" width="40" height="5" fill="#555"/>
+
+            <!-- Keyboard -->
+            <rect x="210" y="210" width="80" height="20" fill="#222" rx="3"/>
+            <rect x="215" y="213" width="70" height="14" fill="#444" rx="2"/>
+
+            <!-- Cat Body -->
+            <ellipse cx="150" cy="180" rx="40" ry="50" fill="#ff9900"/>
+            <!-- Cat Head -->
+            <circle cx="150" cy="120" r="30" fill="#ff9900"/>
+            <!-- Ears -->
+            <polygon points="135,90 145,70 155,90" fill="#ff9900"/>
+            <polygon points="145,90 155,70 165,90" fill="#ff9900"/>
+            <polygon points="138,90 145,75 152,90" fill="#ffe6b3"/>
+            <polygon points="148,90 155,75 162,90" fill="#ffe6b3"/>
+            <!-- Eyes -->
+            <circle cx="142" cy="115" r="5" fill="#fff"/>
+            <circle cx="158" cy="115" r="5" fill="#fff"/>
+            <circle cx="142" cy="115" r="2" fill="#000"/>
+            <circle cx="158" cy="115" r="2" fill="#000"/>
+            <!-- Nose and Whiskers -->
+            <circle cx="150" cy="125" r="2" fill="#ff6666"/>
+            <line x1="140" y1="125" x2="130" y2="120" stroke="#fff" stroke-width="2"/>
+            <line x1="140" y1="127" x2="130" y2="127" stroke="#fff" stroke-width="2"/>
+            <line x1="160" y1="125" x2="170" y2="120" stroke="#fff" stroke-width="2"/>
+            <line x1="160" y1="127" x2="170" y2="127" stroke="#fff" stroke-width="2"/>
+            <!-- Tail -->
+            <path d="M110,200 Q90,220 100,240" stroke="#ff9900" stroke-width="10" fill="none"/>
+
+            <!-- Paws -->
+            <ellipse cx="130" cy="195" rx="10" ry="8" fill="#ffe6b3"/>
+            <ellipse cx="170" cy="195" rx="10" ry="8" fill="#ffe6b3"/>
+            <!-- Paw holding screwdriver -->
+            <ellipse cx="180" cy="170" rx="10" ry="8" fill="#ffe6b3" transform="rotate(-30 180 170)"/>
+            <rect x="175" y="155" width="5" height="20" fill="#666" transform="rotate(-30 180 170)"/>
+            <rect x="172" y="150" width="11" height="5" fill="#ff0000" transform="rotate(-30 180 170)"/>
+
+            <!-- Tools on Desk -->
+            <circle cx="80" cy="220" r="5" fill="#999"/> <!-- Bolt -->
+            <rect x="90" y="215" width="10" height="10" fill="#666" transform="rotate(45 95 220)"/> <!-- Wrench -->
+            <path d="M100,225 L110,215 L120,225" fill="#33cc33"/> <!-- Circuit board piece -->
+
+            <!-- Floor -->
+            <rect x="0" y="280" width="400" height="20" fill="#d3d3d3"/>
+            </svg>
+            <h2 style="text-align:center; font-family:sans-serif; color:#333;">An error has been experienced while servicing your request.</h2>
+        </div>
+    </body>
+    </html>
+    `;
+}
 function template_in_construction_page() {
     return `
     <!DOCTYPE html>
@@ -260,6 +342,7 @@ function template_in_construction_page() {
     `;
 }
 
+
 function default_router(req,res,infra){
     reply_site_in_construction(req, res);
 }
@@ -284,5 +367,6 @@ module.exports = {
     reply_resource_not_found,
     reply_site_in_construction,
     sleep,
+    template_error_page,
     template_in_construction_page
 }
