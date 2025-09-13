@@ -123,8 +123,12 @@ async function suprarouter(req,res) {
             gvss.demian.app -> gvss application
             demian.app -> demian.app website
     */
-
-    let host = req.headers.host.split(":")[0]; // remove port if any
+    let host
+    try{
+        host = req.headers.host.split(":")[0]; // remove port if any
+    }catch(e){
+        host = ""
+    }    
     call_report.host = host;
     if(host in apps) {
         // we should have a router for this domain/subdomain
