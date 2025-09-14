@@ -212,8 +212,8 @@ function reply_resource_not_found(req,res){
     res.end("404 Not Found - The requested resource could not be found.");
 }
 function reply_site_in_construction(req,res){
-    res.writeHead(503, { "Content-Type": "text/html" });
-    res.end(template_in_construction_page());
+        res.writeHead(503, { "Content-Type": "text/html" });
+        res.end(template_in_construction_page());
 }
 async function sleep(ms){
     return new Promise((resolve) => {
