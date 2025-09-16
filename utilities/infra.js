@@ -351,6 +351,25 @@ function default_router(req,res,infra){
     reply_site_in_construction(req, res);
 }
 
+async function read_metadata_from_folder_files(folderpath){
+    const files = await fs.promises.readdir(folderpath);
+    const metadata = {};
+    for (const file of files) {
+        const filepath = path.join(folderpath, file);
+        const stats = await fs.promises.stat(filepath);
+        metadata[file] = {
+            size: stats.size, // size in bytes
+            last_edited: stats.mtime.getTime(), // modification time
+            created: stats.birthtime.getTime(), // creation time
+            last_accessed: stats.atime.getTime(), // last access time
+            isFile: stats.isFile(),
+            isDirectory: stats.isDirectory(),
+        };
+    }
+    return metadata;
+
+}
+
 
 module.exports = {
     create_random_token,
@@ -363,6 +382,7 @@ module.exports = {
     pipe_file_from_filesys,
     pipe_data_to_filesys,
     r_bits,
+    read_metadata_from_folder_files,
     receive_request_post_data,
     remove_trailing_ipv6,
     requestlink_auth_follow,
