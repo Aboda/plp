@@ -12,6 +12,14 @@ function create_random_token(base_seed){
 function extract_basic_call_data(req){
     return {method:req.method,ip:remove_trailing_ipv6(req.connection.remoteAddress),url:req.url}
 }
+function favicon(res){
+    const favicon = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill="#000" d="M0 0h16v16H0z"/><path fill="#0f0" d="M2 2v12l12-6z"/></svg>`).toString('base64')
+    res.writeHead(200, {
+      'Content-Type': 'image/svg+xml',
+      'Content-Length': Buffer.byteLength(favicon, 'base64')
+    });
+    res.end(Buffer.from(favicon, 'base64')); // Send as binary
+}
 function gate_guard(req){
     /*
         this function uses persistent cache.ips to track the number of requests
@@ -375,6 +383,7 @@ module.exports = {
     create_random_token,
     default_router,
     extract_basic_call_data,
+    favicon,
     gate_guard,
     get_cookie_value_from_req,
     get_parameter_from_url_string,
