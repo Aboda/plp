@@ -208,7 +208,7 @@ async function requestlink_auth_post(uri, token, data) {
     });
 }
 function reply_error_while_processing(req,res){
-    res.writeHead(500, {"Content-Type": "text/plain"});
+    res.writeHead(500, {"Content-Type": "text/html"});
     res.end(template_error_page());
 }
 function reply_request_throttled(req,res){
