@@ -375,6 +375,21 @@ async function read_metadata_from_folder_files(folderpath){
 
 }
 
+async function read_metadata_from_file(filepath){
+    const stats = await fs.promises.stat(filepath);
+    const filename = path.basename(filepath);
+    return {
+        [filename]: {
+            size: stats.size,
+            last_edited: stats.mtime.getTime(),
+            created: stats.birthtime.getTime(),
+            last_accessed: stats.atime.getTime(),
+            isFile: stats.isFile(),
+            isDirectory: stats.isDirectory(),
+        }
+    };
+}
+
 
 module.exports = {
     create_random_token,
@@ -388,6 +403,7 @@ module.exports = {
     pipe_file_from_filesys,
     pipe_data_to_filesys,
     r_bits,
+    read_metadata_from_file,
     read_metadata_from_folder_files,
     receive_request_post_data,
     remove_trailing_ipv6,
