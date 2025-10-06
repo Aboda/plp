@@ -37,8 +37,8 @@ function gate_guard(req){
         that each caller manages its own call rate
     */
     let approval = true;
-    const number_of_base_calls = 10;
-    const call_retrieval_window = 1000;
+    const number_of_base_calls = 20;
+    const call_retrieval_window = 500;
     const now_ts = Date.now();
     const {ip,method,url} = extract_basic_call_data(req)
     /*
