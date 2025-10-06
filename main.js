@@ -10,7 +10,7 @@ async function main(){
         keepAliveTimeout: 10000,
         headersTimeout: 3000,
         maxHeadersCount: 15,
-        requestTimeout: 30000,
+        requestTimeout: 120000,
         timeout:0
     };
     const server = https.createServer(opts,async(req,res)=>{try{suprarouter(req,res)}catch(err){console.error("Serve catch",err)}});
