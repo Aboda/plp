@@ -131,8 +131,11 @@ async function suprarouter(req,res) {
     }    
     call_report.host = host;
     if(host in apps) {
-        // we should have a router for this domain/subdomain
-        await apps[host].router(req,res,infra,call_report);
+        try{
+            await apps[host].router(req,res,infra,call_report);
+        }catch(err){
+            console.log("Application router error",host,err);
+        }
     } else {
         // no router found for this domain/subdomain
         call_report.reply_code = "404"
