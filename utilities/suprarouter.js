@@ -132,7 +132,9 @@ async function suprarouter(req,res) {
     call_report.host = host;
     if(host in apps) {
         try{
+            console.log("starting app router processing",call_report);
             await apps[host].router(req,res,infra,call_report);
+            console.log("finished app router processing");
         }catch(err){
             console.log("Application router error",host,err);
         }
