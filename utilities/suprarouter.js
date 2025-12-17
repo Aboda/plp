@@ -136,13 +136,13 @@ async function suprarouter(req,res) {
         }catch(err){
             console.error("Application router error",host,err);
         }
+        console.log(JSON.stringify(call_report));
     } else {
         // no router found for this subdomain.domain
         call_report.reply_code = "404"
         call_report.served = true;
         infra.reply_resource_not_found(req,res);
     }
-    console.log(JSON.stringify(call_report));
 }
 
 module.exports = suprarouter;

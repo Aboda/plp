@@ -99,7 +99,6 @@ function hash_string(algo,output,input){
 }
 async function pipe_file_from_filesys(res, http_reply_code, source_path, content_type) {
     const absolutePath = path.resolve(__dirname, "..", source_path);
-    console.log("piping files "+absolutePath);
     const readStream = fs.createReadStream(absolutePath);
     
     readStream.on('error', (err) => {
@@ -111,7 +110,7 @@ async function pipe_file_from_filesys(res, http_reply_code, source_path, content
     res.writeHead(http_reply_code, { "Content-Type": content_type });
     readStream.pipe(res);
     readStream.on('end', () => {
-        console.log("hard drive pipe of " + absolutePath + " concluded");
+
     });
 }
 async function pipe_data_to_filesys(req,res,destination_path){
