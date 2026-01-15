@@ -21,14 +21,21 @@ const path = require("path");
     Paths use the __dirname, ad start at utilities
 */
 const metadata = [
-    {
-        desc:"Inventory Management Tool",
-        service_type: "application",
-        service_name: "gvss",
-        serve_as: "gvss.demian.app",
-        source_folder:"../din/gvss"
-    },
-    /*
+  {
+    desc: "Inventory Management Tool",
+    service_type: "application",
+    service_name: "gvss",
+    serve_as: "gvss.demian.app",
+    source_folder: "../din/gvss",
+  },
+  {
+    desc: "Admin interface for the platform",
+    service_type: "application",
+    service_name: "admin",
+    serve_as: "demian.app",
+    source_folder: "../din/adm",
+  },
+  /*
     {
         desc:"Social Media Management Tool",
         service_type: "application",
@@ -36,13 +43,7 @@ const metadata = [
         serve_as: "soma.demian.app",
         source_folder:"../din/soma"
     },
-    {
-        desc:"Admin interface for the platform",
-        service_type: "application",
-        service_name: "admin",
-        serve_as: "demian.app",
-        source_folder:"../din/adm"
-    },
+,
     {
         desc:"Homesite, about me and my services",
         service_type: "website",
@@ -79,8 +80,7 @@ const metadata = [
         source_folder: "../din/senderoholistico",
     }
     */
-]
-
+];
 
 /*
     each path is only meant to connect a subdomain+domain in the server to the proper application
@@ -88,18 +88,18 @@ const metadata = [
 */
 let apps = {};
 
-for(let app of metadata) {
-    try{
-        const router_path = path.join(__dirname,app.source_folder,"router.js");
-        apps[app.serve_as] = require(router_path);
-    }catch(e) {
-        console.error("No router found for " + app.serve_as,e);
-        apps[app.serve_as] = {router:infra.default_router}
-    }    
+for (let app of metadata) {
+  try {
+    const router_path = path.join(__dirname, app.source_folder, "router.js");
+    apps[app.serve_as] = require(router_path);
+  } catch (e) {
+    console.error("No router found for " + app.serve_as, e);
+    apps[app.serve_as] = { router: infra.default_router };
+  }
 }
 
-async function suprarouter(req,res) {
-    /*
+async function suprarouter(req, res) {
+  /*
         Gate guard is only meant to defend against ddos, and brute force trough rate limiting
         it is not meant to be a security layer, that is the responsibility of each application
         this is just to avoid unnecessary load on the server from malicious or disfunctional sources
@@ -107,13 +107,13 @@ async function suprarouter(req,res) {
         At some point the gate guard will be expanded to enable the google firewall service against repeated offenders
         and to manage an automatic cool timeout for ips to be de-blacklisted
     */
-    let call_report = infra.gate_guard(req);
-    if(!call_report.a) {
-        infra.reply_request_throttled(req,res);
-        return;
-    }
+  let call_report = infra.gate_guard(req);
+  if (!call_report.a) {
+    infra.reply_request_throttled(req, res);
+    return;
+  }
 
-    /*
+  /*
         Step 1, to assert the router to use we will use the subdomain + domain
         the domain demian.app, can have a website running while www.demian.app can have an application and so on
         this way we can have multiple services running in the same domain, which can be easily severed and run on their own if needed
@@ -123,26 +123,26 @@ async function suprarouter(req,res) {
             gvss.demian.app -> gvss application
             demian.app -> demian.app website
     */
-    let host
-    try{
-        host = req.headers.host.split(":")[0]; // remove port if any
-    }catch(e){
-        host = ""
-    }    
-    call_report.host = host;
-    if(host in apps) {
-        try{
-            await apps[host].router(req,res,infra,call_report);
-        }catch(err){
-            console.error("Application router error",host,err);
-        }
-        console.log(JSON.stringify(call_report));
-    } else {
-        // no router found for this subdomain.domain
-        call_report.reply_code = "404"
-        call_report.served = true;
-        infra.reply_resource_not_found(req,res);
+  let host;
+  try {
+    host = req.headers.host.split(":")[0]; // remove port if any
+  } catch (e) {
+    host = "";
+  }
+  call_report.host = host;
+  if (host in apps) {
+    try {
+      await apps[host].router(req, res, infra, call_report);
+    } catch (err) {
+      console.error("Application router error", host, err);
     }
+    console.log(JSON.stringify(call_report));
+  } else {
+    // no router found for this subdomain.domain
+    call_report.reply_code = "404";
+    call_report.served = true;
+    infra.reply_resource_not_found(req, res);
+  }
 }
 
 module.exports = suprarouter;
