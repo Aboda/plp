@@ -35,6 +35,13 @@ const metadata = [
     serve_as: "demian.app",
     source_folder: "../din/adm",
   },
+  {
+      desc:"Smart Messaging Tool",
+      service_type: "application",
+      service_name: "smme",
+      serve_as: "smme.demian.app",
+      source_folder:"../din/smme"
+  },
   /*
     {
         desc:"Social Media Management Tool",
@@ -43,7 +50,7 @@ const metadata = [
         serve_as: "soma.demian.app",
         source_folder:"../din/soma"
     },
-,
+
     {
         desc:"Homesite, about me and my services",
         service_type: "website",
