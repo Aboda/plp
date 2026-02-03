@@ -15,7 +15,7 @@ async function main() {
   };
   const server = https.createServer(opts, async (req, res) => {
     try {
-      suprarouter(req, res);
+      await suprarouter(req, res);
     } catch (err) {
       console.error("Serve catch", err);
     }
