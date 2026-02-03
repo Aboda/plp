@@ -28,7 +28,7 @@ function gate_guard(req){
         the logic is:
 
         each call will store in the track item the caller ip
-        if not present create an entry 
+        if not present create an entry
         then add +1 tho the ip entry
         then calculate how much to deduct since last call
         then assess wheter or not to approve the call
@@ -100,11 +100,9 @@ function hash_string(algo,output,input){
 async function pipe_file_from_filesys(res, http_reply_code, source_path, content_type) {
     const absolutePath = path.resolve(__dirname, "..", source_path);
     const readStream = fs.createReadStream(absolutePath);
-    
+
     readStream.on('error', (err) => {
-        res.writeHead(404, { "Content-Type": "text/plain" });
-        res.end("File not found or error reading file.");
-        console.error("Error piping file:", err);
+      throw err;
     });
 
     res.writeHead(http_reply_code, { "Content-Type": content_type });
