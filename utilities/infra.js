@@ -97,8 +97,13 @@ function hash_string(algo,output,input){
     hash.update(input);                        // Add the string to be hashed
     return hash.digest(output);                 // Output the hash as a hexadecimal string
 }
-async function pipe_file_from_filesys(res, http_reply_code, source_path, content_type) {
-    const absolutePath = path.resolve(__dirname, "..", source_path);
+async function pipe_file_from_filesys(res, http_reply_code, source_path, content_type, is_absolute = false) {
+    let absolutePath;
+    if (is_absolute){
+      absolutePath = source_path;
+    }else{
+      absolutePath = path.resolve(__dirname, "..", source_path);
+    }
     const readStream = fs.createReadStream(absolutePath);
 
     readStream.on('error', (err) => {
