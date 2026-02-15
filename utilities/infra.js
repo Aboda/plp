@@ -241,69 +241,46 @@ function template_error_page() {
     </head>
     <body>
         <div>
-            <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-            <!-- Background -->
-            <rect width="400" height="300" fill="#f0f4f8"/>
+        <h2 style="text-align:center; font-family:sans-serif; color:#333;">An error has been experienced while servicing your request.</h2>
 
-            <!-- Desk -->
-            <rect x="50" y="200" width="300" height="80" fill="#8b5e3c" rx="10"/>
-            <rect x="50" y="190" width="300" height="10" fill="#6b4e31"/>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+          <rect width="500" height="500" fill="#0d0d1a" />
+          <g opacity="0.2" stroke="#00ff00" stroke-width="1">
+            <path d="M 20,0 V 500 M 480,0 V 500 M 0,20 H 500 M 0,480 H 500 M 100,0 V 500 M 400,0 V 500 M 0,100 H 500 M 0,400 H 500 M 250,0 V 500 M 0,250 H 500" />
+            <path d="M 0,0 L 500,500 M 500,0 L 0,500" opacity="0.1" />
+          </g>
 
-            <!-- Computer Monitor -->
-            <rect x="200" y="120" width="100" height="60" fill="#333" rx="5"/>
-            <rect x="205" y="125" width="90" height="50" fill="#87ceeb"/>
-            <!-- Screen content (simplified code) -->
-            <rect x="210" y="130" width="80" height="40" fill="#000" opacity="0.3"/>
-            <text x="230" y="155" font-family="Arial" font-size="10" fill="#0f0">0101</text>
+          <rect x="50" y="350" width="400" height="20" fill="#333" rx="5" />
+          <rect x="100" y="200" width="300" height="180" fill="#222" rx="10" /> <rect x="110" y="210" width="280" height="150" fill="#111" rx="5" /> <rect x="120" y="220" width="260" height="130" fill="#001a00"> <animate attributeName="fill" values="#001a00;#003300;#001a00" dur="2s" repeatCount="indefinite" />
+          </rect>
+          <text x="130" y="245" fill="#00ff00" font-family="monospace" font-size="12">&gt; _error report...</text>
+          <text x="130" y="265" fill="#00ff00" font-family="monospace" font-size="12">TARGET: mainframe_db</text>
+          <text x="130" y="285" fill="#00ff00" font-family="monospace" font-size="12">STATUS: bypassing firewall [||||||  ]</text>
+          <text x="130" y="305" fill="#00ff00" font-family="monospace" font-size="12">USER: [root@feline ~]$</text>
+          <rect x="280" y="295" width="8" height="12" fill="#00ff00">
+            <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite" />
+          </rect>
+          <rect x="110" y="380" width="280" height="10" fill="#444" rx="2" /> <g transform="translate(250, 330)">
+            <path d="M -60,60 C -80,40 -90,80 -70,100 C -50,120 -30,100 -40,80" fill="none" stroke="#333" stroke-width="8" stroke-linecap="round" />
+            <path d="M -70,70 Q -80,0 0,-20 Q 80,0 70,70 L 60,100 Q 0,110 -60,100 Z" fill="#222" />
+            <path d="M -50,0 Q -60,-70 0,-80 Q 60,-70 50,0 C 50,40 30,60 0,60 C -30,60 -50,40 -50,0 Z" fill="#333" />
+            <path d="M -40,-10 Q -50,-60 0,-70 Q 50,-60 40,-10 C 40,20 20,30 0,30 C -20,30 -40,20 -40,-10 Z" fill="#222" /> <g transform="translate(0, -10)">
+              <path d="M -35,-50 L -25,-75 L -10,-55 Z" fill="#222" />
+              <path d="M 35,-50 L 25,-75 L 10,-55 Z" fill="#222" />
+              <ellipse cx="-15" cy="0" rx="8" ry="5" fill="#00ff00" />
+              <ellipse cx="15" cy="0" rx="8" ry="5" fill="#00ff00" />
+              <ellipse cx="-15" cy="0" rx="2" ry="4" fill="#000" /> <ellipse cx="15" cy="0" rx="2" ry="4" fill="#000" />
+              <path d="M 0,10 L -3,13 L 3,13 Z" fill="#666" />
+              <path d="M -3,15 Q 0,18 3,15" fill="none" stroke="#666" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M -20,12 L -40,10 M -20,15 L -40,17 M -20,18 L -40,22" fill="none" stroke="#666" stroke-width="1" opacity="0.5" />
+              <path d="M 20,12 L 40,10 M 20,15 L 40,17 M 20,18 L 40,22" fill="none" stroke="#666" stroke-width="1" opacity="0.5" />
+            </g>
+            <ellipse cx="-30" cy="60" rx="15" ry="10" fill="#333" />
+            <ellipse cx="30" cy="60" rx="15" ry="10" fill="#333" />
+            <path d="M -35,65 L -35,70 M -30,65 L -30,70 M -25,65 L -25,70" fill="none" stroke="#111" stroke-width="2" /> <path d="M 35,65 L 35,70 M 30,65 L 30,70 M 25,65 L 25,70" fill="none" stroke="#111" stroke-width="2" />
+          </g>
+        </svg>
 
-            <!-- Monitor Stand -->
-            <rect x="240" y="180" width="20" height="20" fill="#555"/>
-            <rect x="230" y="200" width="40" height="5" fill="#555"/>
-
-            <!-- Keyboard -->
-            <rect x="210" y="210" width="80" height="20" fill="#222" rx="3"/>
-            <rect x="215" y="213" width="70" height="14" fill="#444" rx="2"/>
-
-            <!-- Cat Body -->
-            <ellipse cx="150" cy="180" rx="40" ry="50" fill="#ff9900"/>
-            <!-- Cat Head -->
-            <circle cx="150" cy="120" r="30" fill="#ff9900"/>
-            <!-- Ears -->
-            <polygon points="135,90 145,70 155,90" fill="#ff9900"/>
-            <polygon points="145,90 155,70 165,90" fill="#ff9900"/>
-            <polygon points="138,90 145,75 152,90" fill="#ffe6b3"/>
-            <polygon points="148,90 155,75 162,90" fill="#ffe6b3"/>
-            <!-- Eyes -->
-            <circle cx="142" cy="115" r="5" fill="#fff"/>
-            <circle cx="158" cy="115" r="5" fill="#fff"/>
-            <circle cx="142" cy="115" r="2" fill="#000"/>
-            <circle cx="158" cy="115" r="2" fill="#000"/>
-            <!-- Nose and Whiskers -->
-            <circle cx="150" cy="125" r="2" fill="#ff6666"/>
-            <line x1="140" y1="125" x2="130" y2="120" stroke="#fff" stroke-width="2"/>
-            <line x1="140" y1="127" x2="130" y2="127" stroke="#fff" stroke-width="2"/>
-            <line x1="160" y1="125" x2="170" y2="120" stroke="#fff" stroke-width="2"/>
-            <line x1="160" y1="127" x2="170" y2="127" stroke="#fff" stroke-width="2"/>
-            <!-- Tail -->
-            <path d="M110,200 Q90,220 100,240" stroke="#ff9900" stroke-width="10" fill="none"/>
-
-            <!-- Paws -->
-            <ellipse cx="130" cy="195" rx="10" ry="8" fill="#ffe6b3"/>
-            <ellipse cx="170" cy="195" rx="10" ry="8" fill="#ffe6b3"/>
-            <!-- Paw holding screwdriver -->
-            <ellipse cx="180" cy="170" rx="10" ry="8" fill="#ffe6b3" transform="rotate(-30 180 170)"/>
-            <rect x="175" y="155" width="5" height="20" fill="#666" transform="rotate(-30 180 170)"/>
-            <rect x="172" y="150" width="11" height="5" fill="#ff0000" transform="rotate(-30 180 170)"/>
-
-            <!-- Tools on Desk -->
-            <circle cx="80" cy="220" r="5" fill="#999"/> <!-- Bolt -->
-            <rect x="90" y="215" width="10" height="10" fill="#666" transform="rotate(45 95 220)"/> <!-- Wrench -->
-            <path d="M100,225 L110,215 L120,225" fill="#33cc33"/> <!-- Circuit board piece -->
-
-            <!-- Floor -->
-            <rect x="0" y="280" width="400" height="20" fill="#d3d3d3"/>
-            </svg>
-            <h2 style="text-align:center; font-family:sans-serif; color:#333;">An error has been experienced while servicing your request.</h2>
         </div>
     </body>
     </html>
@@ -322,6 +299,7 @@ function template_in_construction_page() {
     </head>
     <body>
         <div>
+          <h2 style="text-align:center; font-family:sans-serif; color:#333;">Page Under Construction</h2>
             <svg width="300" height="200" viewBox="0 0 300 200">
                 <!-- Cat body -->
                 <ellipse cx="150" cy="130" rx="60" ry="40" fill="#f4c542" stroke="#333" stroke-width="3"/>
@@ -346,7 +324,7 @@ function template_in_construction_page() {
                 <!-- Cat paw holding spanner -->
                 <ellipse cx="175" cy="120" rx="10" ry="7" fill="#f4c542" stroke="#333" stroke-width="2"/>
             </svg>
-            <h2 style="text-align:center; font-family:sans-serif; color:#333;">Page Under Construction</h2>
+
         </div>
     </body>
     </html>
