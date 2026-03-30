@@ -209,21 +209,27 @@ async function requestlink_auth_post(uri, token, data) {
         req.end();
     });
 }
-function reply_error_while_processing(req,res){
-    res.writeHead(500, {"Content-Type": "text/html"});
-    res.end(template_error_page());
+function reply_error_while_processing(req, res, rep) {
+  const reply_code = 500;
+  if (rep) rep.reply_code = reply_code;
+  res.writeHead(reply_code, {"Content-Type": "text/html"});
+  res.end(template_error_page());
+}
+function reply_site_in_construction(req, res, rep) {
+  const reply_code = 500;
+  if (rep) rep.reply_code = reply_code;
+  res.writeHead(reply_code, { "Content-Type": "text/html" });
+  res.end(template_in_construction_page());
 }
 function reply_request_throttled(req,res){
-    res.writeHead(403, {"Content-Type": "text/plain"});
-    res.end("403 Forbidden - Your access has been temporarily restricted. Please try again later.");
+  res.writeHead(403, {"Content-Type": "text/plain"});
+  res.end("403 Forbidden - Your access has been temporarily restricted. Please try again later.");
 }
-function reply_resource_not_found(req,res){
-    res.writeHead(404, {"Content-Type": "text/plain"});
-    res.end("404 Not Found - The requested resource could not be found.");
-}
-function reply_site_in_construction(req,res){
-    res.writeHead(503, { "Content-Type": "text/html" });
-    res.end(template_in_construction_page());
+function reply_resource_not_found(req, res, rep) {
+  const reply_code = 404;
+  if (rep) rep.reply_code = reply_code;
+  res.writeHead(reply_code, {"Content-Type": "text/plain"});
+  res.end("404 Not Found - The requested resource could not be found.");
 }
 
 async function sleep(ms){return new Promise((resolve)=>{setTimeout(resolve, ms);});}
