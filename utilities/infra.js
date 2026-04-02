@@ -117,43 +117,7 @@ async function pipe_file_from_filesys(res, http_reply_code, source_path, content
 
     });
 }
-async function pipe_file_from_filesys_compressed(req, res, http_reply_code, source_path, content_type, is_absolute = false) {
-    let absolutePath;
-    if (is_absolute) {
-        absolutePath = source_path;
-    } else {
-        absolutePath = path.resolve(__dirname, "..", source_path);
-    }
 
-    const accept = req.headers['accept-encoding'] || '';
-    let encoding = null;
-    let compressor = null;
-
-    // Brotli first (best ratio for text), then gzip
-    if (accept.includes('br')) {
-        encoding = 'br';
-        compressor = zlib.createBrotliCompress();
-    } else if (accept.includes('gzip')) {
-        encoding = 'gzip';
-        compressor = zlib.createGzip();
-    }
-
-    const headers = { "Content-Type": content_type };
-    if (encoding) {
-        headers["Content-Encoding"] = encoding;
-    }
-
-    res.writeHead(http_reply_code, headers);
-
-    const readStream = fs.createReadStream(absolutePath);
-    readStream.on('error', (err) => { throw err; });
-
-    if (compressor) {
-        readStream.pipe(compressor).pipe(res);
-    } else {
-        readStream.pipe(res);
-    }
-}
 async function pipe_data_to_filesys(req,res,destination_path){
     return new Promise((resolve, reject) => {
         const writeStream = fs.createWriteStream(destination_path);
@@ -425,7 +389,6 @@ module.exports = {
     get_parameter_from_url_string,
     hash_string,
     pipe_file_from_filesys,
-    pipe_file_from_filesys_compressed,
     pipe_data_to_filesys,
     r_bits,
     read_metadata_from_file,
