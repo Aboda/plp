@@ -1,6 +1,13 @@
 const fs = require("fs").promises;
 const https = require("https");
-const suprarouter = require("./utilities/suprarouter.js");
+let suprarouter
+
+try {
+  suprarouter = require("./din/suprarouter.js");
+} catch (error) {
+  suprarouter = require("./utilities/suprarouter.js");
+}
+
 async function main() {
   const tls_path = String(await fs.readFile("./din/tls_path.txt")).trim();
   const opts = {

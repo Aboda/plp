@@ -1,18 +1,18 @@
 /*
-    Each application migh have its own logic to be served, there is no default exploration of the source data other than the attempt to load a router.js file
+  Each application migh have its own logic to be served, there is no default exploration of the source data other than the attempt to load a router.js file
 
-    this is what the service_type in metadata is for
+  this is what the service_type in metadata is for
 
-    applications are complex tools that often require authentication and user management
-    websites are more static and simple, often just a presentation layer
+  applications are complex tools that often require authentication and user management
+  websites are more static and simple, often just a presentation layer
 
-    service name is the preferred internal identifier
+  service name is the preferred internal identifier
 
-    serve_as is the domain or subdomain where the application will be served
+  serve_as is the domain or subdomain where the application will be served
 
-    source_folder is the path to the application folder root
+  source_folder is the path to the application folder root
 
-    shorthand is a short identifier for the application, used in internal routing and tools
+  shorthand is a short identifier for the application, used in internal routing and tools
 */
 
 const infra = require("./infra.js");

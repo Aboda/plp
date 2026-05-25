@@ -1,0 +1,18 @@
+[Unit]
+Description=personal laboratory portfolio
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+User=root
+Group=root
+Environment=PATH=/home/demian:/usr/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/demian/plp/
+ExecStart=/home/demian/bin/node /home/demian/plp/main.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
