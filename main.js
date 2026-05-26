@@ -4,8 +4,10 @@ let suprarouter
 
 try {
   suprarouter = require("./din/suprarouter.js");
+  console.log("loaded supra router from din")
 } catch (error) {
   suprarouter = require("./utilities/suprarouter.js");
+  console.log("loaded supra router from base")
 }
 
 async function main() {
@@ -22,6 +24,7 @@ async function main() {
   };
   const server = https.createServer(opts, async (req, res) => {
     try {
+      console.log("serving",req.url);
       await suprarouter(req, res);
     } catch (err) {
       console.error("Serve catch", err);
