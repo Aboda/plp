@@ -1,13 +1,16 @@
 const fs = require("fs").promises;
 const https = require("https");
 let suprarouter
+let environment
 
 try {
   suprarouter = require("./din/suprarouter.js");
-  console.log("loaded supra router from din")
+  console.log("loaded supra router from din");
+  environment = "prod";
 } catch (error) {
   suprarouter = require("./utilities/suprarouter.js");
   console.log("loaded supra router from base")
+  environment = "dev";
 }
 
 async function main() {
@@ -25,7 +28,7 @@ async function main() {
   const server = https.createServer(opts, async (req, res) => {
     try {
       console.log("serving",req.url);
-      await suprarouter(req, res);
+      await suprarouter(req, res, environment);
     } catch (err) {
       console.error("Serve catch", err);
     }
