@@ -105,7 +105,7 @@ for (let app of metadata) {
   }
 }
 
-async function suprarouter(req, res) {
+async function suprarouter(req, res, env) {
   /*
         Gate guard is only meant to defend against ddos, and brute force trough rate limiting
         it is not meant to be a security layer, that is the responsibility of each application
@@ -115,6 +115,7 @@ async function suprarouter(req, res) {
         and to manage an automatic cool timeout for ips to be de-blacklisted
     */
   let call_report = infra.gate_guard(req);
+  call_report.env = env;
   if (!call_report.a) {
     infra.reply_request_throttled(req, res);
     return;

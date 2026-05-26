@@ -22,8 +22,9 @@ for (let app of metadata) {
   }
 }
 
-async function suprarouter(req, res) {
+async function suprarouter(req, res, env) {
   let call_report = infra.gate_guard(req);
+  call_report.env = env;
   if (!call_report.a) {
     infra.reply_request_throttled(req, res);
     return;
