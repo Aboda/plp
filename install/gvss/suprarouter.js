@@ -1,4 +1,4 @@
-const infra = require("./infra.js");
+const infra = require("../utilities/infra.js");
 const path = require("path");
 const metadata = [
   {

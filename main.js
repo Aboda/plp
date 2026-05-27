@@ -1,17 +1,24 @@
 const fs = require("fs").promises;
 const https = require("https");
-let suprarouter
+
 let environment
 
 try {
-  suprarouter = require("./din/suprarouter.js");
-  console.log("loaded supra router from din");
-  environment = "prod";
+  environment = require("./din/environment.txt");
+  console.log("loaded env");
 } catch (error) {
-  console.log(error.message, error.stack);
-  suprarouter = require("./utilities/suprarouter.js");
-  console.log("loaded supra router from base")
   environment = "dev";
+  console.log("loaded supra router from base");
+}
+
+let suprarouter
+
+if (environment == "prod") {
+  suprarouter = require("./install/gvss/suprarouter.js");
+  console.log("loaded production router");
+} else {
+  suprarouter = require("./install/demian/suprarouter.js");
+  console.log("loaded development router");
 }
 
 async function main() {
