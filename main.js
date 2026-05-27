@@ -11,6 +11,8 @@ try {
   console.log("loaded supra router from base");
 }
 
+console.log("environment",environment);
+
 let suprarouter
 
 if (environment == "prod") {
