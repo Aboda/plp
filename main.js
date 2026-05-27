@@ -5,7 +5,7 @@ let environment
 
 
 try {
-  environment = require("./din/environment.txt");
+  environment = fs.readFileSync("./din/environment.txt","utf8");
   console.log("required environ",{environment});
 } catch (error) {
   console.log(error);
