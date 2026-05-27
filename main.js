@@ -8,6 +8,7 @@ try {
   environment = require("./din/environment.txt");
   console.log("required environ",{environment});
 } catch (error) {
+  console.log(error);
   environment = "dev";
   console.log("loaded supra router from base");
 }
