@@ -5,14 +5,14 @@ let environment
 
 try {
   environment = fs.readFileSync("./din/environment.txt","utf8");
-  console.log("required environ",{environment});
+  console.log("stated env",{environment});
 } catch (error) {
-  console.log(error);
+  console.log("error in attempt to read environment",error);
   environment = "dev";
   console.log("loaded supra router from base");
 }
 
-console.log("environment",environment);
+console.log("assigned env", { environment }, environment == "prod", environment == "prod\n");
 
 let suprarouter
 
@@ -23,6 +23,8 @@ if (environment == "prod") {
   suprarouter = require("./install/demian/suprarouter.js");
   console.log("loaded development router");
 }
+
+console.log("supra router loaded tools", console.log(Object.keys(suprarouter)));
 
 async function main() {
   const tls_path = String(await fs.promises.readFile("./din/tls_path.txt")).trim();
