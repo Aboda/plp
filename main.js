@@ -1,8 +1,7 @@
-const fs = require("fs").promises;
+const fs = require("fs");
 const https = require("https");
 
 let environment
-
 
 try {
   environment = fs.readFileSync("./din/environment.txt","utf8");
@@ -26,10 +25,10 @@ if (environment == "prod") {
 }
 
 async function main() {
-  const tls_path = String(await fs.readFile("./din/tls_path.txt")).trim();
+  const tls_path = String(await fs.promises.readFile("./din/tls_path.txt")).trim();
   const opts = {
-    key: await fs.readFile(tls_path + "/privkey.pem"),
-    cert: await fs.readFile(tls_path + "/fullchain.pem"),
+    key: await fs.promises.readFile(tls_path + "/privkey.pem"),
+    cert: await fs.promises.readFile(tls_path + "/fullchain.pem"),
     maxCachedSessions: 10,
     keepAliveTimeout: 10000,
     headersTimeout: 3000,
