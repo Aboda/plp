@@ -3,9 +3,10 @@ const https = require("https");
 
 let environment
 
+
 try {
   environment = require("./din/environment.txt");
-  console.log("loaded env");
+  console.log({environment});
 } catch (error) {
   environment = "dev";
   console.log("loaded supra router from base");
