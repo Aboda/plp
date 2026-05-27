@@ -6,7 +6,7 @@ const metadata = [
     service_type: "application",
     service_name: "gvss",
     serve_as: "gvssgroup.com",
-    source_folder: "../din/gvss",
+    source_folder: "../../din/gvss",
   }
 ];
 

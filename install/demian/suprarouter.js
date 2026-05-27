@@ -26,21 +26,21 @@ const metadata = [
     service_type: "application",
     service_name: "gvss",
     serve_as: "gvss.demian.app",
-    source_folder: "../din/gvss",
+    source_folder: "../../din/gvss",
   },
   {
     desc: "Admin interface for the platform",
     service_type: "application",
     service_name: "admin",
     serve_as: "demian.app",
-    source_folder: "../din/adm",
+    source_folder: "../../din/adm",
   },
   {
       desc:"Smart Messaging Tool",
       service_type: "application",
       service_name: "smme",
       serve_as: "smme.demian.app",
-      source_folder:"../din/smme"
+      source_folder:"../../din/smme"
   },
   /*
     {
@@ -48,7 +48,7 @@ const metadata = [
         service_type: "application",
         service_name: "soma",
         serve_as: "soma.demian.app",
-        source_folder:"../din/soma"
+        source_folder:"../../din/soma"
     },
 
     {
@@ -56,35 +56,35 @@ const metadata = [
         service_type: "website",
         service_name: "demian",
         serve_as: "www.demian.app",
-        source_folder: "../din/demian"
+        source_folder: "../../din/demian"
     },
     {
         desc:"Internet stories in 5 minutes",
         service_type: "website",
         service_name: "historiasen5minutos",
         serve_as: "historiasen5minutos.com",
-        source_folder: "../din/historiasen5minutos"
+        source_folder: "../../din/historiasen5minutos"
     },
     {
         desc:"Artist Blog and Portfolio",
         service_type: "website",
         service_name: "neorrey",
         serve_as: "neorrey.art",
-        source_folder: "../din/neorrey"
+        source_folder: "../../din/neorrey"
     },
     {
         desc:"Fiction Site",
         service_type: "website",
         service_name: "remansonocturno",
         serve_as: "remansonocturno.com",
-        source_folder: "../din/remansonocturno"
+        source_folder: "../../din/remansonocturno"
     },
     {
         desc:"Personal Integration Site",
         service_type: "website",
         service_name: "senderoholistico",
         serve_as: "senderoholistico.com",
-        source_folder: "../din/senderoholistico",
+        source_folder: "../../din/senderoholistico",
     }
     */
 ];

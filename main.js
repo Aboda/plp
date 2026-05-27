@@ -4,18 +4,19 @@ const https = require("https");
 let environment
 
 try {
-  environment = fs.readFileSync("./din/environment.txt","utf8");
+  environment = fs.readFileSync("./din/environment.txt", "utf8");
+  environment = "prod";
+  console.log("loaded gvss supra router");
 } catch (error) {
-  console.log("error in attempt to read environment",error);
   environment = "dev";
-  console.log("loaded supra router from base");
+  console.log("loaded demian supra router");
 }
 
 console.log("assigned env", { environment });
 
 let suprarouter
 
-if (environment == "prod\n") {
+if (environment == "prod") {
   suprarouter = require("./install/gvss/suprarouter.js");
   console.log("loaded production router");
 } else {
