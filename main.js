@@ -8,6 +8,7 @@ try {
   console.log("loaded supra router from din");
   environment = "prod";
 } catch (error) {
+  console.log(error.message, error.stack);
   suprarouter = require("./utilities/suprarouter.js");
   console.log("loaded supra router from base")
   environment = "dev";
