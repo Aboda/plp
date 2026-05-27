@@ -5,18 +5,17 @@ let environment
 
 try {
   environment = fs.readFileSync("./din/environment.txt","utf8");
-  console.log("stated env",{environment});
 } catch (error) {
   console.log("error in attempt to read environment",error);
   environment = "dev";
   console.log("loaded supra router from base");
 }
 
-console.log("assigned env", { environment }, environment == "prod", environment == "prod\n");
+console.log("assigned env", { environment });
 
 let suprarouter
 
-if (environment == "prod") {
+if (environment == "prod\n") {
   suprarouter = require("./install/gvss/suprarouter.js");
   console.log("loaded production router");
 } else {
