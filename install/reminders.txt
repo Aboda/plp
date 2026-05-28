@@ -1,0 +1,4 @@
+cp plp/install/gvss/plp.service /etc/systemd/system/
+cp plp/install/demian/plp.service /etc/systemd/system/
+
+sudo systemctl daemon-reload

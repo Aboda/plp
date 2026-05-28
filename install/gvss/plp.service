@@ -7,7 +7,7 @@ StartLimitBurst=3
 [Service]
 User=root
 Group=root
-Environment=PATH=/home/demian:/usr/bin
+Environment=PATH=/home/demian:/usr/bin/node
 Environment=NODE_ENV=production
 WorkingDirectory=/home/demian/plp/
 ExecStart=/home/demian/bin/node /home/demian/plp/main.js
