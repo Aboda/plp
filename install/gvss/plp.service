@@ -10,7 +10,7 @@ Group=root
 Environment=NODE_ENV=production
 
 WorkingDirectory=/home/demian/plp
-ExecStart=usr/bin/node /home/demian/plp/main.js
+ExecStart=/usr/bin/node /home/demian/plp/main.js
 Restart=always
 RestartSec=5
 
