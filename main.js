@@ -24,8 +24,6 @@ if (environment == "prod") {
   console.log("loaded development router");
 }
 
-console.log("supra router loaded tools", console.log(Object.keys(suprarouter)));
-
 async function main() {
   const tls_path = String(await fs.promises.readFile("./din/tls_path.txt")).trim();
   const opts = {
