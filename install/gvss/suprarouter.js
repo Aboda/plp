@@ -44,6 +44,23 @@ async function suprarouter(req, res, env) {
     }
     console.log(JSON.stringify(call_report));
   } else {
+    /*
+      This patches the calls that come from a subdomain for gvss
+    */
+    let is_gvssgroup_subdomain = false;
+    const split_host = host.split(".")
+    const domain_check = split_host[split_host.length - 2] + "." + split_host[split_host.length - 1]
+    if (domain_check == "gvssgroup.com") {
+      is_gvssgroup_subdomain = true;
+    }
+    if (is_gvssgroup_subdomain) {
+      try {
+        await apps["gvssgroup.com"].router(req, res, infra, call_report);
+      } catch (err) {
+        console.error("Application router error", host, err);
+      }
+      console.log(JSON.stringify(call_report));
+    }
     call_report.reply_code = "404";
     call_report.served = true;
     infra.reply_resource_not_found(req, res);
