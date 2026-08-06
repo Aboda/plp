@@ -60,10 +60,11 @@ async function suprarouter(req, res, env) {
         console.error("Application router error", host, err);
       }
       console.log(JSON.stringify(call_report));
+    } else {
+      call_report.reply_code = "404";
+      call_report.served = true;
+      infra.reply_resource_not_found(req, res);
     }
-    call_report.reply_code = "404";
-    call_report.served = true;
-    infra.reply_resource_not_found(req, res);
   }
 }
 
