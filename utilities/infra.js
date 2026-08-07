@@ -40,31 +40,32 @@ function gate_guard(req){
     const number_of_base_calls = 20;
     const call_retrieval_window = 500;
     const now_ts = Date.now();
-    const {ip,method,url} = extract_basic_call_data(req)
+    const { ip, method, url } = extract_basic_call_data(req)
+    const key = (req.gvss && req.gvss.client_ip) || req.socket.remoteAddress || "";
     /*
         We might have to remove the ::ffff: part of the ip
     */
 
-    if (cache.ips[ip] == undefined){
-        cache.ips[ip] = {count:0,last:now_ts};
+    if (cache.ips[key] == undefined){
+        cache.ips[key] = {count:0,last:now_ts};
     }
 
-    cache.ips[ip].count ++;
-    const time_diff = now_ts - cache.ips[ip].last;
+    cache.ips[key].count ++;
+    const time_diff = now_ts - cache.ips[key].last;
     const calls_to_deduct = Math.floor(time_diff / call_retrieval_window);
     if (calls_to_deduct > 0){
-        cache.ips[ip].count -= calls_to_deduct;
-        if (cache.ips[ip].count < 0){
-            cache.ips[ip].count = 0;
+        cache.ips[key].count -= calls_to_deduct;
+        if (cache.ips[key].count < 0){
+            cache.ips[key].count = 0;
         }
-        cache.ips[ip].last = now_ts;
+        cache.ips[key].last = now_ts;
     }
 
-    if (cache.ips[ip].count > number_of_base_calls){
+    if (cache.ips[key].count > number_of_base_calls){
         approval = false;
     }
 
-    const reply = {ts:now_ts,m:method,c:cache.ips[ip].count,a:approval,ip,url}
+    const reply = {ts:now_ts,m:method,c:cache.ips[key].count,a:approval,key,url}
     return reply
 }
 
