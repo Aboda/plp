@@ -128,7 +128,7 @@ async function start_direct() {
       cert: await fs.promises.readFile(tls_path + "/fullchain.pem"),
     };
     const server = https.createServer(opts, handler);
-    tune(server, { keep_alive: 10000, headers: 15000, request: 240000 });
+    tune(server, { keep_alive: 1000 * 360, headers: 15000, request: 240000 });
     server.on("error", (err) => {
       console.error("direct listener error — apex is dark, LB path unaffected", err.message);
     });
