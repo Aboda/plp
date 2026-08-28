@@ -105,7 +105,7 @@ function tune(server, opts) {
 
 function start_internal() {
   const server = http.createServer(handler);
-  tune(server, { keep_alive: 620000, headers: 625000, request: 0 });
+  tune(server, { keep_alive: 6200000, headers: 625000, request: 0 });
   server.on("error", (err) => {
     console.error("internal listener error — LB path is DOWN", err.message);
   });
@@ -128,7 +128,7 @@ async function start_direct() {
       cert: await fs.promises.readFile(tls_path + "/fullchain.pem"),
     };
     const server = https.createServer(opts, handler);
-    tune(server, { keep_alive: 1000 * 360, headers: 15000, request: 240000 });
+    tune(server, { keep_alive: 1000 * 360 * 24, headers: 15000, request: 240000 });
     server.on("error", (err) => {
       console.error("direct listener error — apex is dark, LB path unaffected", err.message);
     });
