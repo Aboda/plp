@@ -25,6 +25,16 @@ const INTERNAL_PORT = 8080; // matches CE_PORT in subdomains/scripts/lib/common.
 const DIRECT_PORT = 443;
 
 /*
+  Idle keep-alive window shared by both listeners. 15 minutes, as requested:
+  a peer that reuses a connection after a quiet stretch must never write into
+  a socket this process has already closed (Node's default keep-alive is 5s,
+  which is what causes the sporadic 502s).
+*/
+const KEEP_ALIVE_WINDOW_MS = 15 * 60 * 1000; // 900000
+// headersTimeout must exceed keepAliveTimeout (see tune() below).
+const HEADERS_TIMEOUT_MS = KEEP_ALIVE_WINDOW_MS + 60 * 1000; // 960000
+
+/*
   Environment selection is EXISTENCE-based, exactly as it always was: a
   readable ./din/environment.txt selects prod. The file's content is logged
   for visibility but deliberately NOT authoritative — the previous code
@@ -68,27 +78,25 @@ const handler = lb_gateway.wrap(suprarouter, environment, {
   so the process has been running on Node defaults all along. Assigning the
   properties after creation is what actually takes effect.
 
+  Both listeners share the 15-minute idle window (KEEP_ALIVE_WINDOW_MS):
+    keepAliveTimeout 15m   An idle connection survives 15 minutes instead of
+                           Node's default 5s, so a peer that reuses a
+                           connection after a quiet stretch never writes into
+                           a socket this process already closed (502
+                           backend_connection_closed_before_data_sent).
+    headersTimeout   16m   Must exceed keepAliveTimeout — on Node versions
+                           where the headers timer spans the keep-alive gap,
+                           a smaller value kills idle sockets early, which is
+                           the same 502 by another route.
+
   INTERNAL listener — the peer is the Google front end:
-    keepAliveTimeout 620s   The GFE holds idle connections to the origin for
-                            up to ~10 minutes and reuses them. If Node closes
-                            an idle socket first (default: 5s!) the GFE can
-                            write a request into a closing socket → sporadic
-                            502 backend_connection_closed_before_data_sent.
-                            The origin must outlast the LB: 620s > 600s.
-    headersTimeout   625s   Must exceed keepAliveTimeout — on Node versions
-                            where the headers timer spans the keep-alive gap,
-                            a smaller value kills idle sockets early, which is
-                            the same 502 by another route. Slow-header abuse
-                            is not a concern here: only the GFE (which buffers
-                            complete headers) and loopback can reach the port.
     requestTimeout     0    The LB is the timeout authority on this path — it
                             gives up at the backend service's 120s. A second,
                             shorter server-side clock would just race it.
+    Slow-header abuse is not a concern here: only the GFE (which buffers
+    complete headers) and loopback can reach the port.
 
   DIRECT listener — the peer is any browser on the internet:
-    keepAliveTimeout  10s   The original intent (was set, never applied).
-    headersTimeout    15s   Above keepAliveTimeout; tight is fine facing
-                            browsers.
     requestTimeout   240s   The original intent, now actually in effect.
 
   maxHeadersCount: the previous value of 15 was never applied — and would
@@ -105,7 +113,7 @@ function tune(server, opts) {
 
 function start_internal() {
   const server = http.createServer(handler);
-  tune(server, { keep_alive: 6200000, headers: 625000, request: 0 });
+  tune(server, { keep_alive: KEEP_ALIVE_WINDOW_MS, headers: HEADERS_TIMEOUT_MS, request: 0 });
   server.on("error", (err) => {
     console.error("internal listener error — LB path is DOWN", err.message);
   });
@@ -128,7 +136,7 @@ async function start_direct() {
       cert: await fs.promises.readFile(tls_path + "/fullchain.pem"),
     };
     const server = https.createServer(opts, handler);
-    tune(server, { keep_alive: 1000 * 360 * 24, headers: 15000, request: 240000 });
+    tune(server, { keep_alive: KEEP_ALIVE_WINDOW_MS, headers: HEADERS_TIMEOUT_MS, request: 240000 });
     server.on("error", (err) => {
       console.error("direct listener error — apex is dark, LB path unaffected", err.message);
     });
