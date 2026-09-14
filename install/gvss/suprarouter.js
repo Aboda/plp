@@ -37,7 +37,7 @@ function resolve_app(host) {
     return apps[host];
   }
   const domain_check = host.split(".").slice(-2).join(".");
-  if (domain_check == "gvssgroup.com") {
+  if (domain_check == "gvssgroup.com"  || domain_check == "goodvibessmoke.com") {
     return apps["gvssgroup.com"];
   }
   return null;
