@@ -98,24 +98,80 @@ function hash_string(algo,output,input){
     hash.update(input);                        // Add the string to be hashed
     return hash.digest(output);                 // Output the hash as a hexadecimal string
 }
+/*
+    Serve one file from disk, and treat a missing file as an HTTP outcome, not an
+    exception.
+
+    WHY: the previous version attached an 'error' listener that did `throw err`.
+    That is an ASYNCHRONOUS throw — it runs from the read stream's internal I/O
+    callback, so it is not inside any try/catch on the call path (not the router's,
+    not the gate's) and Node turns it into an uncaughtException that takes the whole
+    process down. One stale link whose target file had been removed was therefore
+    enough to kill the CE for every host it serves.
+
+    The reply code is chosen BEFORE any header goes out, so a miss is a clean 404
+    rather than a crash or an empty 200. The existence probe is synchronous on
+    purpose: every caller invokes this fire-and-forget (they do not await it), and
+    the gate answers 404 itself when `res.headersSent` is still false once the
+    router returns — so the writeHead here must happen in the same tick, exactly as
+    it always has. The mounted-folder and hybrid callers already stat'd the target a
+    moment before, so this probe hits a warm dentry even under gcsfuse.
+
+    A non-throwing 'error' handler stays for the residual case the probe cannot
+    cover: the file vanishing between probe and open, or an I/O failure mid-stream.
+    If headers are already out the only honest move left is to cut the response; it
+    is never a reason to throw.
+*/
 async function pipe_file_from_filesys(res, http_reply_code, source_path, content_type, is_absolute = false) {
-    let absolutePath;
-    if (is_absolute){
-      absolutePath = source_path;
-    }else{
-      absolutePath = path.resolve(__dirname, "..", source_path);
+    const absolutePath = is_absolute
+      ? source_path
+      : path.resolve(__dirname, "..", source_path);
+
+    let stats;
+    try {
+      stats = fs.statSync(absolutePath);
+    } catch (err) {
+      reply_file_unavailable(res, absolutePath, err);
+      return;
     }
+    // A directory is a miss, not a servable target — handing one to the read
+    // stream raises EISDIR inside the same unreachable 'error' event.
+    if (!stats.isFile()) {
+      reply_file_unavailable(res, absolutePath, { code: "EISDIR" });
+      return;
+    }
+
     const readStream = fs.createReadStream(absolutePath);
 
     readStream.on('error', (err) => {
-      throw err;
+      reply_file_unavailable(res, absolutePath, err);
     });
 
     res.writeHead(http_reply_code, { "Content-Type": content_type });
     readStream.pipe(res);
-    readStream.on('end', () => {
+}
 
+/*
+    The single answer for "this file could not be served". ENOENT / EISDIR mean the
+    caller asked for something genuinely not there (404); anything else is a 500.
+    If the head has already gone out the status can no longer change, so the
+    response is destroyed instead — still without throwing.
+*/
+function reply_file_unavailable(res, absolutePath, err) {
+    const code = err && (err.code === "ENOENT" || err.code === "EISDIR") ? 404 : 500;
+    console.error("pipe_file_from_filesys: cannot serve file", {
+      path: absolutePath,
+      code: (err && err.code) || (err && err.message) || "unknown",
+      reply: code,
     });
+    if (res.headersSent) {
+      res.destroy();
+      return;
+    }
+    res.writeHead(code, { "Content-Type": "text/plain" });
+    res.end(code === 404
+      ? "404 Not Found - The requested resource could not be found."
+      : "500 Internal Server Error");
 }
 
 async function pipe_data_to_filesys(req,res,destination_path){
